@@ -86,6 +86,7 @@ h6 {
   line-height: 22px;
   letter-spacing: 0em;
   text-align: left;
+  color: var(--primary-white);
 }
 
 p {
