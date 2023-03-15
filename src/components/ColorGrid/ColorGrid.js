@@ -1,6 +1,6 @@
 import "./../index.css";
 import ColorItem from "./ColorItem";
-import { hexToHSL } from "../functions/hexToHSL";
+import { hexToHSL } from "../../functions/hexToHSL";
 
 export default function ColorGrid(props) {
   let hslColor = hexToHSL(props.suggestedColor);
