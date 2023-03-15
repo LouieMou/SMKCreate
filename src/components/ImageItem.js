@@ -1,6 +1,6 @@
-import "./CategoryItem.css";
+import "./ImageItem.css";
 
-export default function CategoryItem(props) {
+export default function ImageItem(props) {
   return (
     <div className="image-container">
       <img
