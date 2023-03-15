@@ -1,6 +1,8 @@
 :root {
   /* Primary Colors */
   --primary-black: hsla(240, 3%, 6%, 1);
+  --primary-black-66: hsla(240, 3%, 6%, 0.66);
+  --primary-black-33: hsla(240, 3%, 6%, 0.33);
   --primary-dark-grey: hsla(0, 1%, 20%, 1);
   --primary-grey: hsla(0, 0%, 62%, 1);
   --primary-light-grey: hsla(240, 5%, 96%, 1);
