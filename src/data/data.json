@@ -1,6 +1,6 @@
 [
   {
-    "suggested_bg_color": "['#777777']",
+    "suggested_bg_color": "#777777",
     "artist": "['Asger Jorn']",
     "confidence": 0.7079334855,
     "index": 0,
@@ -8,7 +8,15 @@
     "titles": "[{'title': 'Grædeøjne'}]",
     "image_width": 5003.0,
     "object_number": "DEP595",
-    "colors": "['#335c2d', '#007a67', '#777777', '#111111', '#956830', '#81659b', '#795025']",
+    "colors": [
+      "#335c2d",
+      "#007a67",
+      "#777777",
+      "#111111",
+      "#956830",
+      "#81659b",
+      "#795025"
+    ],
     "label_name": "apple",
     "filename": "DEP595.png",
     "image_height": 6050.0,
