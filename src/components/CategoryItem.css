@@ -1,0 +1,17 @@
+img {
+    z-index: 100;
+}
+
+.img-container {
+    position: relative;
+    width: 50%;
+    z-index: 10;
+}
+
+.overlay:hover {
+    background-color: "black";
+    cursor: pointer;
+    transition: .5s ease;
+    position: absolute;
+    z-index: 101;
+}
