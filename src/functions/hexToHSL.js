@@ -15,7 +15,7 @@ export function hexToHSL(hex) {
   let h,
     s,
     l = (max + min) / 2;
-  if (max == min) {
+  if (max === min) {
     h = s = 0; // achromatic
   } else {
     let d = max - min;
@@ -30,12 +30,15 @@ export function hexToHSL(hex) {
       case b:
         h = (r - g) / d + 4;
         break;
+      default:
+        h = 0;
     }
     h /= 6;
   }
-  let HSL = new Object();
-  HSL["h"] = h;
-  HSL["s"] = s;
-  HSL["l"] = l;
-  return HSL;
+
+  return {
+    h: h,
+    s: s,
+    l: l,
+  };
 }

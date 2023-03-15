@@ -1,4 +1,4 @@
-import "./../index.css";
+import "./../../index.css";
 import ColorItem from "./ColorItem";
 import { hexToHSL } from "../../functions/hexToHSL";
 
