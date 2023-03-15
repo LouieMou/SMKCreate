@@ -10,7 +10,7 @@ export default function CategoryItem(props) {
         onClick={props.handleClick}
       />
       <div className="overlay">
-        <p className="text-overlay">{props.labelName}</p>
+        <p className="text-overlay">{props.title}</p>
       </div>
     </div>
   );
