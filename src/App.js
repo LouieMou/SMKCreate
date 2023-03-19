@@ -1,7 +1,7 @@
 import "./App.css";
 import { PersonComponent } from "./PersonComponent";
-import LabelButton from "./components/LabelButton";
-import FilterFrame from "./components/FilterFrame";
+import LabelButton from "./components/LabelButton/LabelButton";
+import FilterFrame from "./components/FilterComponent/FilterFrame";
 
 function App() {
   return (

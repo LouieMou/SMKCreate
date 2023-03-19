@@ -4,14 +4,14 @@ import "./LabelButton.css";
 function LabelButton({children}) {
   return (
     <div>
-      <button
+      <span
         className="label-button"
         onClick={() => {
           console.log("Button has been clicked");
         }}
       >
         <p className="label-text">{children}</p>
-      </button>
+      </span>
     
     </div>
   );

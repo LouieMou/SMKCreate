@@ -1,6 +1,6 @@
-@import url(../index.css);
+@import url(../../index.css);
 
-.label-button {
+.label-button{
   display: flex;
   align-items: center;
   justify-content: center;
@@ -21,8 +21,12 @@
 
 .label-button:hover {
   opacity: 0.8;
+
 }
 
 h1 {
   color: var(--primary-white);
 }
+
+
+
