@@ -1,7 +1,6 @@
 import React from 'react';
-import LabelButton from './LabelButton';
+import LabelButton from '../LabelButton/LabelButton';
 import './FilterFrame.css';
-import '../index.css';
 
 function FilterFrame(props) {
     return (
