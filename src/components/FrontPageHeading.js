@@ -6,7 +6,9 @@ export default function FrontPageHeading(props) {
   };
   return (
     <div className="heading-container" style={textColor}>
-      <h1>What would you like to explore?</h1>
+      <h1>
+        What would you <br /> like to explore?
+      </h1>
       <h2>Choose a category</h2>
     </div>
   );
