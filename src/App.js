@@ -1,10 +1,14 @@
 import "./App.css";
-import { PersonComponent } from "./PersonComponent";
+import Frame from "./components/Frame";
+import FrontPageHeading from "./components/FrontPageHeading";
+import CategoryItem from "./components/CategoryItem";
 
 function App() {
   return (
     <div>
-      <PersonComponent />
+      <Frame>
+        <FrontPageHeading />
+      </Frame>
     </div>
   );
 }
