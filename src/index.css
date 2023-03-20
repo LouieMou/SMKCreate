@@ -34,6 +34,7 @@ h1 {
   line-height: 65px;
   letter-spacing: -0.02em;
   text-align: left;
+  margin: 0px;
 }
 
 h2 {
@@ -52,6 +53,7 @@ h3 {
   line-height: 44px;
   letter-spacing: 0em;
   text-align: left;
+  margin: 0px;
 }
 
 h4 {
@@ -71,6 +73,7 @@ h5 {
   line-height: 27px;
   letter-spacing: -0.02em;
   text-align: left;
+  margin: 0px;
 }
 
 h6 {
@@ -89,7 +92,6 @@ h6 {
   line-height: 22px;
   letter-spacing: 0em;
   text-align: left;
-  color: var(--primary-white);
 }
 
 p {
