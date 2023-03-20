@@ -1,0 +1,32 @@
+@import url(../../index.css);
+
+.label-button{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-color: var(--primary-white);
+  background-color: transparent;
+  position: relative;
+  text-shadow: none;
+  cursor: pointer;
+  color: var(--primary-white);
+  box-shadow: none;
+  border: solid;
+  border-color: var(--primary-white);
+  border-width: 2px;
+  width: 125px;
+  height: 50px;
+  margin-bottom: 20px;
+}
+
+.label-button:hover {
+  opacity: 0.8;
+
+}
+
+h1 {
+  color: var(--primary-white);
+}
+
+
+

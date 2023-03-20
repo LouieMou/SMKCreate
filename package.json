@@ -9,8 +9,10 @@
     "parse": "^4.0.1",
     "parse-command": "^0.0.102",
     "react": "^18.2.0",
+    "react-custom-scroller": "^1.0.0",
     "react-dom": "^18.2.0",
     "react-scripts": "5.0.1",
+    "react-scrollbars-custom": "^4.1.1",
     "web-vitals": "^2.1.4"
   },
   "scripts": {
