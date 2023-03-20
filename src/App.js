@@ -1,13 +1,22 @@
+import React from "react";
+import { Route, Routes } from "react-router-dom";
+/* Screens */
+import HomeScreen from "./screens/HomeScreen";
+import SearchScreen from "./screens/SearchScreen";
+import PaintingScreen from "./screens/PaintingScreen";
+/* Styles */
 import "./App.css";
-import { PersonComponent } from "./PersonComponent";
-import FilterFrame from "./components/FilterComponent/FilterFrame";
 
 function App() {
   return (
-    <div>
-      <PersonComponent/>
-      <FilterFrame/>
-    </div>
+    <>
+      <Routes>
+        <Route path="/" element={<HomeScreen />} />
+        <Route path="/search" element={<SearchScreen />} />
+        <Route path="/search/:id" element={<SearchScreen />} />
+        <Route path="/painting" element={<PaintingScreen />} />
+      </Routes>
+    </>
   );
 }
 

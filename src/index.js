@@ -4,12 +4,13 @@ import "./index.css";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import Parse from "parse";
+import { BrowserRouter } from "react-router-dom";
 
 const PARSE_HOST_URL = "https://parseapi.back4app.com/";
 
 Parse.initialize(
- process.env.REACT_APP_APPLICATION_ID,
- process.env.REACT_APP_JAVASCRIPT_KEY
+  process.env.REACT_APP_APPLICATION_ID,
+  process.env.REACT_APP_JAVASCRIPT_KEY
 );
 
 Parse.serverURL = PARSE_HOST_URL;
@@ -17,7 +18,9 @@ Parse.serverURL = PARSE_HOST_URL;
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
-    <App />
+    <BrowserRouter>
+      <App />
+    </BrowserRouter>
   </React.StrictMode>
 );
 
