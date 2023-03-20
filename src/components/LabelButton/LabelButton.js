@@ -1,4 +1,5 @@
 import React from "react";
+/* Styles */
 import "./LabelButton.css";
 
 function LabelButton({children}) {

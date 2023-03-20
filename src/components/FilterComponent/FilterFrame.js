@@ -1,10 +1,12 @@
-import React from "react";
-import { useEffect, useState } from "react";
+import { React, useEffect, useState } from "react";
+/* Components */
+import CustomScroller from "react-custom-scroller";
 import LabelButton from "../LabelButton/LabelButton";
+/* Functions */
+import { readLabelList } from "../../database/Fruit";
+/* Styles */
 import "./FilterFrame.css";
 import "../../index.css";
-import { readLabelList } from "../../database/Fruit";
-import CustomScroller from "react-custom-scroller";
 
 function FilterFrame(props) {
   useEffect(() => {
