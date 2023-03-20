@@ -8,8 +8,8 @@ import Parse from "parse";
 const PARSE_HOST_URL = "https://parseapi.back4app.com/";
 
 Parse.initialize(
-  process.env.REACT_APP_APPLICATION_ID,
-  process.env.REACT_APP_JAVASCRIPT_KEY
+ process.env.REACT_APP_APPLICATION_ID,
+ process.env.REACT_APP_JAVASCRIPT_KEY
 );
 
 Parse.serverURL = PARSE_HOST_URL;
