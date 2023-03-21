@@ -1,6 +1,5 @@
 import { useEffect, useRef, useState } from "react";
 import ImageMapper from "react-img-mapper";
-import "./../../index.css";
 
 export default function FullScreenImage(props) {
   const myRef = useRef(null);
