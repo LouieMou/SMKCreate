@@ -6,6 +6,8 @@ export default function FullScreenImage(props) {
 
   const [coords, setCoords] = useState([]);
 
+  ("hej hej test");
+
   useEffect(() => {
     console.log("fullscreenImage", props.objects);
     const cc = props.objects.map((obj) => {
