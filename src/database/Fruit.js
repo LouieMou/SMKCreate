@@ -24,8 +24,6 @@ export async function readObjectsFromSamePainting(objectNumber) {
 
   try {
     let objectLabelsWithObjectNumber = await query.find();
-
-    console.log("Objectlabels are being parsed", objectLabelsWithObjectNumber);
     return objectLabelsWithObjectNumber;
   } catch (error) {}
 }

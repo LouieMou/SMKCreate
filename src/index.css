@@ -6,6 +6,8 @@
   --primary-dark-grey: hsla(0, 1%, 20%, 1);
   --primary-grey: hsla(0, 0%, 62%, 1);
   --primary-light-grey: hsla(240, 5%, 96%, 1);
+  --primary-white-33: hsla(120, 100%, 100%, 0.33);
+  --primary-white-66: hsla(120, 100%, 100%, 0.66);
   --primary-white: hsla(120, 100%, 100%, 1);
 
   /* Secondary Colors */
