@@ -20,7 +20,10 @@ export default function MetaData(props) {
         year={props.data.year}
         techniques={props.data.techniques}
       />
-      <LabelGrid objectNumber={props.data.object_number} />
+      <LabelGrid
+        objects={props.objects}
+        objectNumber={props.data.object_number}
+      />
       <ColorGrid colors={props.data.colors} />
     </div>
   );

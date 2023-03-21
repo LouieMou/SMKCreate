@@ -1,6 +1,6 @@
 @import url(../index.css);
 
-*, html,
-body {
-    background-color: var(--primary-white);
+.paintingScreen {
+    padding: 130px 60px 60px 60px;
+    display: flex;
 }

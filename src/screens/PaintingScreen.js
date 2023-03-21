@@ -1,17 +1,62 @@
-import React from 'react';
+import React from "react";
+import { useEffect, useState } from "react";
 /* Functions */
-import {setBackgroundColor} from '../functions/background';
+import { setBackgroundColor } from "../functions/background";
+import { readObjectsFromSamePainting } from "./../database/Fruit";
 /* Styles */
-import '../index.css'
+import "./../index.css";
+import "./PaintingScreen.css";
+/* Components */
+import MetaData from "./../components/Fullscreen/MetaData";
+import FullScreenImage from "../components/Fullscreen/FullScreenImage";
+
+import data from "./../data/data.json";
 
 function PaintingScreen(props) {
-    const yellow = getComputedStyle(document.documentElement).getPropertyValue('--SMK-blue')
-    setBackgroundColor(yellow);
-    return (
-        <div>
-            
-        </div>
+  const [objects, setObjects] = useState([]);
+
+  /* I'm missing the objectNumber I need from props from previous page */
+  /* props.objectNumber */
+  useEffect(() => {
+    async function fetchObjects() {
+      console.log("Fetching objects...");
+      try {
+        const objects = await readObjectsFromSamePainting(
+          data[2].object_number
+        );
+        console.log("Objects fetched:", objects);
+        setObjects(objects);
+      } catch (error) {
+        console.error(error);
+      }
+    }
+    fetchObjects();
+  }, []);
+
+  useEffect(() => {
+    const color = getComputedStyle(document.documentElement).getPropertyValue(
+      `${data[0].suggested_bg_color}` /* props.suggested_bg_color */
     );
+    console.log(color);
+    setBackgroundColor("cc", color);
+  }, []);
+
+  return (
+    <div className="paintingScreen">
+      {objects.length > 0 ? (
+        <>
+          <MetaData data={data[2]} objects={objects} />
+          <FullScreenImage
+            imgURL={data[2].image_thumbnail}
+            imgWidth={data[2].image_width}
+            objects={objects}
+          />
+        </>
+      ) : (
+        "Loading"
+      )}
+    </div>
+  );
 }
 
 export default PaintingScreen;
