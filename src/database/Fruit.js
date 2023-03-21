@@ -20,15 +20,10 @@ export async function readLabelList() {
 export async function readObjectsFromSamePainting(objectNumber) {
   const fruitObjects = Parse.Object.extend("Fruit");
   const query = new Parse.Query(fruitObjects);
+  query.equalTo("object_number", objectNumber);
 
   try {
-    let objects = await query.find();
-
-    let objectLabelsWithObjectNumber = objects.filter(
-      (object) => object.attributes.object_number === objectNumber
-    );
-
-    console.log("Objectlabels are being parsed", objectLabelsWithObjectNumber);
+    let objectLabelsWithObjectNumber = await query.find();
     return objectLabelsWithObjectNumber;
   } catch (error) {}
 }
