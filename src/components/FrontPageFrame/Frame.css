@@ -1,9 +1,12 @@
 .frame {
+  display: flex;
+  flex-direction: row;
   box-sizing: border-box;
   border: 10px solid #101011;
   position: fixed;
-  width: 1264px;
+  width: 1500px;
   height: 539px;
+  left: 75px;
   right: -1em;
   top: 121px;
 }
