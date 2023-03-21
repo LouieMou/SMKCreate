@@ -43,19 +43,16 @@ function SearchComponent(props) {
   return (
     <div>
       <div className="search-component-container">
+        <div className="sticky-container">
         <FilterFrame />
-        <div className="scroll-container">
-          <CustomScroller
-            className="scrollbar-vertical"
-            style={{ width: "1100px", height: "800px" }}
-          >
+        </div>
+        <div className="image-grid-container-padding">
             {objects && !useFilter ? <ImageGrid data={objects} /> : <></>}
             {filteredObjects && useFilter ? (
               <ImageGrid data={filteredObjects} />
             ) : (
               <></>
             )}
-          </CustomScroller>
         </div>
       </div>
     </div>
