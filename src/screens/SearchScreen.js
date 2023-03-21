@@ -1,22 +1,26 @@
-import React from 'react';
+import { React} from "react";
 /* Components */
-import FilterFrame from '../components/FilterComponent/FilterFrame';
+import SearchComponent from "../components/SearchComponent/SearchComponent";
 /* Functions */
-import {setBackgroundColor} from '../functions/background'
+import { setBackgroundColor } from "../functions/background";
 /* Styles */
-import './SearchScreen.css';
+import "./SearchScreen.css";
+/* Context */
+import { FilterContextProvider } from "../context/FilterContext";
 
 function SearchScreen(props) {
 
-    const yellow = getComputedStyle(document.documentElement).getPropertyValue('--secondary-yellow')
-    setBackgroundColor(yellow);
-    return (
-        <>
-        <div className='screen-container'>
-            <FilterFrame></FilterFrame>
-        </div>
-        </>
-    );
+  const yellow = getComputedStyle(document.documentElement).getPropertyValue(
+    "--secondary-yellow"
+  );
+  setBackgroundColor(yellow);
+  return (
+    <>
+      <FilterContextProvider>
+        <SearchComponent/>
+      </FilterContextProvider>
+    </>
+  );
 }
 
 export default SearchScreen;

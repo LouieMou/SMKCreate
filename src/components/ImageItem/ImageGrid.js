@@ -12,9 +12,9 @@ export default function ImageGrid(props) {
         return (
           <ImageItem
             key={index}
-            source={obj.object_url}
-            title={obj.label_name}
-            handleClick={() => onClickImage(obj.label_name)}
+            source={obj.attributes.object_url}
+            title={obj.attributes.label_text}
+            handleClick={() => onClickImage(obj.attributes.label_text)}
           />
         );
       })}

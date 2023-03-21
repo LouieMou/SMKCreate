@@ -1,11 +1,11 @@
-@import url(../index.css);
 
-.screen-container{
+
+.search-component-container {
     display: flex;
     flex-direction: row;
 }
 
-.scroll-container{
+.scroll-container {
     margin-left: 50px;
     margin-top: 20px;
 }
