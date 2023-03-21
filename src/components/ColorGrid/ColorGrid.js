@@ -6,7 +6,7 @@ export default function ColorGrid(props) {
     <>
       <h4>Colors</h4>
       {props.colors.map((c, index) => {
-        return <ColorItem color={c} key={index} />;
+        return <ColorItem color={c} key={index} colorMode={props.colorMode} />;
       })}
     </>
   );

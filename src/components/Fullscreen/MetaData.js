@@ -1,4 +1,5 @@
 import "./../../index.css";
+import "./MetaData.css";
 import { hexToHSL } from "../../functions/hexToHSL";
 import ColorGrid from "../ColorGrid/ColorGrid";
 import HeadingFullScreen from "../Headings/HeadingFullScreen";
@@ -13,7 +14,7 @@ export default function MetaData(props) {
     lightness > 0.5 ? "var(--primary-white)" : "var(--primary-black)";
 
   return (
-    <div style={{ color: colorMode }}>
+    <div className="metadata" style={{ color: colorMode }}>
       <HeadingFullScreen
         artist={props.data.artist}
         title={props.data.title}
@@ -24,7 +25,7 @@ export default function MetaData(props) {
         objects={props.objects}
         objectNumber={props.data.object_number}
       />
-      <ColorGrid colors={props.data.colors} />
+      <ColorGrid colors={props.data.colors} colorMode={colorMode} />
     </div>
   );
 }

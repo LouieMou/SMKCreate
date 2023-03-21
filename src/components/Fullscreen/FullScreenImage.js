@@ -6,8 +6,6 @@ export default function FullScreenImage(props) {
 
   const [coords, setCoords] = useState([]);
 
-  ("hej hej test");
-
   useEffect(() => {
     console.log("fullscreenImage", props.objects);
     const cc = props.objects.map((obj) => {
@@ -20,10 +18,6 @@ export default function FullScreenImage(props) {
   const MAP = {
     name: "my-map",
     areas: coords,
-  };
-
-  const handleClear = () => {
-    myRef.current.clearHighlightedArea();
   };
 
   const clicked = (area, i, e) => {
@@ -41,7 +35,6 @@ export default function FullScreenImage(props) {
         imgWidth={props.imgWidth}
         onClick={clicked}
       />
-      <button onClick={handleClear}>Clear</button>
     </>
   ) : (
     "Loading"

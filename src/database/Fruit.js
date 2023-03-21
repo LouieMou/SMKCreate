@@ -24,11 +24,8 @@ export async function readObjectsFromSamePainting(objectNumber) {
 
   try {
     let objectLabelsWithObjectNumber = await query.find();
-    var uniqueLabels = objectLabelsWithObjectNumber.filter(
-      (value, index, array) => array.indexOf(value) === index
-    );
 
-    console.log("Objectlabels are being parsed", uniqueLabels);
+    console.log("Objectlabels are being parsed", objectLabelsWithObjectNumber);
     return objectLabelsWithObjectNumber;
   } catch (error) {}
 }

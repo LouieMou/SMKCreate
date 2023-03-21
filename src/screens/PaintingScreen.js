@@ -33,16 +33,11 @@ function PaintingScreen(props) {
     fetchObjects();
   }, []);
 
-  useEffect(() => {
-    const color = getComputedStyle(document.documentElement).getPropertyValue(
-      `${data[0].suggested_bg_color}` /* props.suggested_bg_color */
-    );
-    console.log(color);
-    setBackgroundColor("cc", color);
-  }, []);
-
   return (
-    <div className="paintingScreen">
+    <div
+      className="paintingScreen"
+      style={{ backgroundColor: data[2].suggested_bg_color }}
+    >
       {objects.length > 0 ? (
         <>
           <MetaData data={data[2]} objects={objects} />
