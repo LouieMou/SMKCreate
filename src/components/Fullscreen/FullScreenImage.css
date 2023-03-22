@@ -1,0 +1,18 @@
+@import url(../../index.css);
+
+.image {
+     position: relative;
+}
+
+.hover-area {
+	position: absolute;
+    font-family: Open sans;
+    font-size: small;
+    font-weight: 500;
+    border-width: 2px;
+    border-style: solid;
+	padding: 10px;
+	transform: translate3d(-50%, -50%, 0);
+	cursor: pointer;
+	z-index: 1000;
+}

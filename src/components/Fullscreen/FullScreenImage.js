@@ -1,10 +1,15 @@
 import { useEffect, useRef, useState } from "react";
 import ImageMapper from "react-img-mapper";
+import { useNavigate } from "react-router-dom";
+
+import "./FullScreenImage.css";
 
 export default function FullScreenImage(props) {
   const myRef = useRef(null);
+  const navigate = useNavigate();
 
   const [coords, setCoords] = useState([]);
+  const [hoverArea, setHoverArea] = useState(null);
 
   useEffect(() => {
     console.log("fullscreenImage", props.objects);
@@ -24,8 +29,32 @@ export default function FullScreenImage(props) {
     areas: coords,
   };
 
-  const clicked = (area, i, e) => {
+  const enterArea = (area) => {
+    setHoverArea(area);
+  };
+
+  const clickOnObjectOnPainting = (area) => {
     console.log(`I clicked on a(n) ${area.label_text}`);
+    navigate("/search");
+  };
+
+  const getCenterPosition = (area) => {
+    let top = area.center[1];
+    let left = area.center[0];
+    return { top: `${top}px`, left: `${left}px` };
+  };
+
+  const getObjectPosition = (area) => {
+    let choords = area.scaledCoords;
+    console.log("hoverarea: ", choords);
+    let x1 = choords[0];
+    let y1 = choords[1];
+    let x2 = choords[2];
+    let y2 = choords[6];
+
+    return {
+      clipPath: `polygon(${x1} ${y1}, ${x2} ${y1}, ${x2} ${y2}, ${x1} ${y2});`,
+    };
   };
 
   let colorHover =
@@ -34,18 +63,36 @@ export default function FullScreenImage(props) {
       : "hsla(240, 3%, 6%, 0.66)";
 
   return coords ? (
-    <>
+    <div className="image">
       <ImageMapper
         containerRef={myRef}
         src={URL}
         map={MAP}
         width={500}
         imgWidth={props.imgWidth}
-        onClick={clicked}
-        fillColor={colorHover}
-        strokeColor={colorHover}
+        onClick={(area) => clickOnObjectOnPainting(area)}
+        onMouseEnter={(area) => enterArea(area)}
+        fillColor="transparent"
+        strokeColor="transparent"
       />
-    </>
+
+      {hoverArea && (
+        <span
+          onClick={() => {
+            clickOnObjectOnPainting(hoverArea);
+          }}
+          className="hover-area"
+          style={{
+            ...getCenterPosition(hoverArea),
+            color: { colorHover },
+            ...getObjectPosition(hoverArea),
+            borderColor: { colorHover },
+          }}
+        >
+          {hoverArea && hoverArea.label_text}
+        </span>
+      )}
+    </div>
   ) : (
     "Loading"
   );

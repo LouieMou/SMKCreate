@@ -4,6 +4,7 @@
     position: relative;
     display: inline-block;
     margin: 2.5px;
+    cursor: pointer;
   }
   
 .image {
