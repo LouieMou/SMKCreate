@@ -1,5 +1,6 @@
 import React from "react";
 import { useEffect, useState } from "react";
+import { useLocation } from 'react-router-dom';
 /* Functions */
 import { hexToHSL } from "./../functions/hexToHSL";
 import { readObjectsFromSamePainting } from "./../database/Fruit";
@@ -13,6 +14,11 @@ import FullScreenImage from "../components/Fullscreen/FullScreenImage";
 import data from "./../data/data.json";
 
 function PaintingScreen(props) {
+  const {state} = useLocation();
+    useEffect(() => {
+    console.log("Painting screen state has processed: ", state);
+  }, []);
+
   const [objects, setObjects] = useState([]);
 
   /* I'm missing the objectNumber I need from props from previous page */

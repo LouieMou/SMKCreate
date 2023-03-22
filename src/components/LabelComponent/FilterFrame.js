@@ -1,4 +1,5 @@
 import { React, useEffect, useState, useContext } from "react";
+import { useNavigate } from "react-router-dom";
 /* Components */
 import CustomScroller from "react-custom-scroller";
 import LabelButton from "../LabelButton/LabelButton";
@@ -16,6 +17,7 @@ function FilterFrame(props) {
   }, []);
 
   const [filter, setFilter ] = useContext(FilterContext)
+  const navigate = useNavigate();
   let [labelList, setLabelList] = useState([]);
 
   async function updateLabelList() {
@@ -28,6 +30,10 @@ function FilterFrame(props) {
   function updateFilter(object_label){
     setFilter(object_label)
     console.log("Filter has been updated", object_label)
+  }
+
+  function navigateToHome(){
+    navigate("/");
   }
 
   return (
@@ -45,7 +51,7 @@ function FilterFrame(props) {
             )}
           </CustomScroller>
         </div>
-        <LabelButton label_text="all categories"/>
+        <LabelButton handleClick={()=>navigateToHome()} label_text="all categories"/>
       </div>
     </div>
   );
