@@ -9,11 +9,11 @@ import "./HomeScreen.css";
 import data from "../data/data.json";
 
 function HomeScreen(props) {
-  const textColor = data[1].suggested_bg_color;
+  /*const textColor = data[1].suggested_bg_color;*/
   return (
     <div className="frontpage-container">
       <Frame>
-        <FrontPageHeading color={textColor} />
+        <FrontPageHeading /*color={textColor}*/ />
         <FrontPageGrid data={data} />
       </Frame>
     </div>
