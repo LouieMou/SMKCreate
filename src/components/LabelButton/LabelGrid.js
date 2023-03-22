@@ -1,32 +1,34 @@
-import "./../../index.css";
+import "./LabelGrid.css";
 import LabelButton from "./LabelButton";
 import { useEffect, useState } from "react";
-import { readObjectsFromSamePainting } from "./../../database/Fruit";
 
 export default function LabelGrid(props) {
+  const [uniqueLabels, setUniqueLabels] = useState([]);
+
   useEffect(() => {
-    findObjects().then(console.log("UseEffect has processed", objects));
+    checkUniqueLabels();
   }, []);
 
-  const [objects, setObjects] = useState([]);
-
-  async function findObjects() {
-    try {
-      let objects = await readObjectsFromSamePainting(props.objectNumber);
-      setObjects(objects);
-    } catch (error) {}
+  function checkUniqueLabels() {
+    const uniqueLabels = new Set();
+    props.objects.forEach((element) => {
+      let obj = element.attributes.label_text;
+      uniqueLabels.add(obj);
+    });
+    let uniqueLabelsArr = Array.from(uniqueLabels);
+    setUniqueLabels(uniqueLabelsArr);
   }
 
   return (
     <>
       <h4>Objects</h4>
-      {objects
-        ? objects.map((obj, index) => {
-            return (
-              <LabelButton key={index}>{obj.attributes.label_text}</LabelButton>
-            );
-          })
-        : "Loading"}
+      <div className="label-grid">
+        {uniqueLabels
+          ? uniqueLabels.map((obj, index) => {
+              return <LabelButton key={index}>{obj}</LabelButton>;
+            })
+          : "Loading"}
+      </div>
     </>
   );
 }

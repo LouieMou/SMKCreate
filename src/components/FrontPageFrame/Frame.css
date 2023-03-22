@@ -1,0 +1,9 @@
+.frame {
+  box-sizing: border-box;
+  border: 10px solid #101011;
+  position: fixed;
+  width: 1264px;
+  height: 539px;
+  right: -1em;
+  top: 121px;
+}
