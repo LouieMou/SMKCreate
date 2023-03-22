@@ -1,4 +1,6 @@
 import "./FrontPageHeading.css";
+import "./../../index.css";
+
 export default function FrontPageHeading(props) {
   const { color } = props;
   const textColor = {

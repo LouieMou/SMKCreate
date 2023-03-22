@@ -1,11 +1,9 @@
+@import url(../../index.css);
+
 .heading-container {
   margin: 50px 0px 0px 50px;
 }
 
-.h1 {
-  color: var(--primary-black);
-}
-
-.h2 {
-  color: var(--primary-black);
+h2 {
+  margin: 0px;
 }
