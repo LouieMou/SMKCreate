@@ -1,2 +1,11 @@
 @import url(../index.css);
 
+.screen-container{
+    display: flex;
+    flex-direction: row;
+}
+
+.scroll-container{
+    margin-left: 50px;
+    margin-top: 20px;
+}

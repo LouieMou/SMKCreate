@@ -11,10 +11,24 @@ export async function readLabelList() {
 
     labels.forEach((label) => {
       categoryArray.push(label);
-      console.log("Labels are being parsed", categoryArray);
     });
     return categoryArray;
   } catch (error) {}
+}
+
+export async function readObjectsBySearchFilter(){
+  const objectClass = Parse.Object.extend("Fruit");
+  const query = new Parse.Query(objectClass);
+  query.include("object_label");
+  query.include("object_url")
+
+  try {
+    let objects = query.find()
+    console.log("Objects are being parsed", objects);
+    return objects;
+  } catch (error) {
+    
+  }
 }
 
 export async function readObjectsFromSamePainting(objectNumber) {

@@ -1,9 +1,14 @@
+import { useNavigate } from "react-router-dom";
+/* Components */
 import ImageItem from "./ImageItem";
+/* Styles */
 import "./ImageGrid.css";
 
 export default function ImageGrid(props) {
-  function onClickImage(title) {
-    console.log(`I clicked on ${title}`);
+  const navigate = useNavigate()
+  function onClickImage(obj) {
+    navigate("/test", {state: {obj}});
+    console.log(`I clicked on the object`);
   }
 
   return (
@@ -12,9 +17,9 @@ export default function ImageGrid(props) {
         return (
           <ImageItem
             key={index}
-            source={obj.object_url}
-            title={obj.label_name}
-            handleClick={() => onClickImage(obj.label_name)}
+            source={obj.attributes.object_url}
+            title={obj.attributes.label_text}
+            handleClick={() => onClickImage(obj.attributes)}
           />
         );
       })}

@@ -10,12 +10,12 @@ import "../../index.css";
 
 function FilterFrame(props) {
   useEffect(() => {
-    updateList().then(console.log("UseEffect has processed", labelList));
+    updateLabelList().then(console.log("UseEffect has processed", labelList));
   }, []);
 
   let [labelList, setLabelList] = useState([]);
 
-  async function updateList() {
+  async function updateLabelList() {
     try {
       let labels = await readLabelList();
       setLabelList(labels);
@@ -30,16 +30,14 @@ function FilterFrame(props) {
           <CustomScroller className="scroller">
             {labelList ? (
               labelList.map((label) => (
-                <LabelButton key={label.id}>
-                  {label.attributes.object_label}
-                </LabelButton>
+                <LabelButton key={label.id} label_text={label.attributes.object_label}/>
               ))
             ) : (
               <></>
             )}
           </CustomScroller>
         </div>
-        <LabelButton>all categories</LabelButton>
+        <LabelButton label_text="all categories"/>
       </div>
     </div>
   );

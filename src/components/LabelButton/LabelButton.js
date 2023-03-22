@@ -1,17 +1,21 @@
-import React from "react";
+import {React, useContext} from "react";
 /* Styles */
 import "./LabelButton.css";
+/* Context */
+import {FilterContext} from '../../context/FilterContext';
 
-function LabelButton({children}) {
+function LabelButton(props) {
+  const [filter, setFilter ] = useContext(FilterContext)
+
   return (
     <div>
       <span
         className="label-button"
         onClick={() => {
-          console.log("Button has been clicked");
+          setFilter(props.label_text);
         }}
       >
-        <p className="label-text">{children}</p>
+        <p className="label-text">{props.label_text}</p>
       </span>
     
     </div>
