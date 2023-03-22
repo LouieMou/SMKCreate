@@ -1,4 +1,4 @@
-import { React, useEffect, useState } from "react";
+import { React, useEffect, useState, useContext } from "react";
 /* Components */
 import CustomScroller from "react-custom-scroller";
 import LabelButton from "../LabelButton/LabelButton";
@@ -7,12 +7,15 @@ import { readLabelList } from "../../database/Fruit";
 /* Styles */
 import "./FilterFrame.css";
 import "../../index.css";
+/* Context */
+import {FilterContext} from '../../context/FilterContext';
 
 function FilterFrame(props) {
   useEffect(() => {
     updateLabelList().then(console.log("UseEffect has processed", labelList));
   }, []);
 
+  const [filter, setFilter ] = useContext(FilterContext)
   let [labelList, setLabelList] = useState([]);
 
   async function updateLabelList() {
@@ -20,6 +23,11 @@ function FilterFrame(props) {
       let labels = await readLabelList();
       setLabelList(labels);
     } catch (error) {}
+  }
+
+  function updateFilter(object_label){
+    setFilter(object_label)
+    console.log("Filter has been updated", object_label)
   }
 
   return (
@@ -30,7 +38,7 @@ function FilterFrame(props) {
           <CustomScroller className="scroller">
             {labelList ? (
               labelList.map((label) => (
-                <LabelButton key={label.id} label_text={label.attributes.object_label}/>
+                <LabelButton key={label.id} handleClick={()=>updateFilter(label.attributes.object_label)} label_text={label.attributes.object_label}/>
               ))
             ) : (
               <></>
