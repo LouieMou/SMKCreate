@@ -7,7 +7,7 @@ import "./ImageGrid.css";
 export default function ImageGrid(props) {
   const navigate = useNavigate()
   function onClickImage(obj) {
-    navigate("/test", {state: {obj}});
+    navigate("/painting", {state: {obj}});
     console.log(`I clicked on the object`);
   }
 

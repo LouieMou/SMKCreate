@@ -9,7 +9,7 @@ function TestScreen(props) {
     const {state} = useLocation();
     useEffect(() => {
     console.log("Painting screen state has processed: ", state);
-  }, [state]);
+  }, []);
     const yellow = getComputedStyle(document.documentElement).getPropertyValue('--SMK-blue')
     setBackgroundColor(yellow);
     return (
