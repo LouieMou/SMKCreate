@@ -3,4 +3,5 @@
 .paintingScreen {
     padding: 130px 60px 60px 60px;
     display: flex;
+    height: 100vh;
 }
