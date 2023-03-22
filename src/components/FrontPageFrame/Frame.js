@@ -6,7 +6,7 @@ export default function Frame(props) {
       className="frame"
       initial={{ opacity: 0, scale: 0.5 }}
       animate={{ opacity: 1, scale: 1 }}
-      transition={{ duration: 1.3 }}
+      transition={{ duration: 1.0 }}
     >
       {props.children}
     </motion.div>
