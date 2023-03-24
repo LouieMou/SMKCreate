@@ -2,9 +2,8 @@ import { React, useState, useEffect, useContext } from "react";
 /* Components */
 import FilterFrame from "../LabelComponent/FilterFrame";
 import ImageGrid from "../ImageItem/ImageGrid";
-import CustomScroller from "react-custom-scroller";
 /* Functions */
-import { readObjectsBySearchFilter } from "../../database/Fruit";
+import { readObjectsByCategory } from "../../database/Object";
 /* Context */
 import { FilterContext } from "../../context/FilterContext";
 /* Styles */
@@ -28,7 +27,7 @@ function SearchComponent(props) {
   const [useFilter, setUseFilter] = useState(false);
   async function fecthObjects() {
     try {
-      let objects = await readObjectsBySearchFilter();
+      let objects = await readObjectsByCategory("VxxKEByL9P");
       setObjects(objects);
     } catch (error) {}
   }

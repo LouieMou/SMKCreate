@@ -5,6 +5,7 @@ import CustomScroller from "react-custom-scroller";
 import LabelButton from "../LabelButton/LabelButton";
 /* Functions */
 import { readLabelList } from "../../database/Fruit";
+import { readLabelsInCategory } from "../../database/Category";
 /* Styles */
 import "./FilterFrame.css";
 import "../../index.css";
@@ -13,16 +14,19 @@ import {FilterContext} from '../../context/FilterContext';
 
 function FilterFrame(props) {
   useEffect(() => {
-    updateLabelList().then(console.log("UseEffect has processed", labelList));
+    updateLabelList().then(console.log("Labels have been read", labelList));
   }, []);
 
   const [filter, setFilter ] = useContext(FilterContext)
+ 
   const navigate = useNavigate();
   let [labelList, setLabelList] = useState([]);
+  const [category, setCategory] = useState();
 
   async function updateLabelList() {
     try {
-      let labels = await readLabelList();
+      setCategory("Kitchen");
+      let labels = await readLabelsInCategory("Kitchen");
       setLabelList(labels);
     } catch (error) {}
   }
@@ -39,12 +43,12 @@ function FilterFrame(props) {
   return (
     <div>
       <div className="filter-frame-container">
-        <h1>Fruit</h1>
+        <h1>{category}</h1>
         <div className="filter-frame-button-container">
           <CustomScroller className="scroller">
             {labelList ? (
-              labelList.map((label) => (
-                <LabelButton key={label.id} handleClick={()=>updateFilter(label.attributes.object_label)} label_text={label.attributes.object_label}/>
+              labelList.map((label, index) => (
+                <LabelButton key={index} handleClick={()=>updateFilter(label.objectLabel)} label_text={label.objectLabel}/>
               ))
             ) : (
               <></>
