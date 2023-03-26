@@ -25,8 +25,8 @@ function FilterFrame(props) {
 
   async function updateLabelList() {
     try {
-      setCategory("Kitchen");
-      let labels = await readLabelsInCategory("Kitchen");
+      setCategory(props.category);
+      let labels = await readLabelsInCategory(props.category);
       setLabelList(labels);
     } catch (error) {}
   }

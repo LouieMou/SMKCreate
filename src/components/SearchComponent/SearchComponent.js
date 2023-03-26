@@ -27,7 +27,7 @@ function SearchComponent(props) {
   const [useFilter, setUseFilter] = useState(false);
   async function fecthObjects() {
     try {
-      let objects = await readObjectsByCategory("VxxKEByL9P");
+      let objects = await readObjectsByCategory(props.state.obj.id);
       setObjects(objects);
     } catch (error) {}
   }
@@ -43,7 +43,7 @@ function SearchComponent(props) {
     <div>
       <div className="search-component-container">
         <div className="sticky-container">
-        <FilterFrame />
+        <FilterFrame category={props.state.obj.name}/>
         </div>
         <div className="image-grid-container-padding">
             {objects && !useFilter ? <ImageGrid data={objects} /> : <></>}

@@ -1,4 +1,5 @@
 import { React} from "react";
+import { useLocation } from "react-router-dom";
 /* Components */
 import SearchComponent from "../components/SearchComponent/SearchComponent";
 /* Functions */
@@ -9,6 +10,7 @@ import "./SearchScreen.css";
 import { FilterContextProvider } from "../context/FilterContext";
 
 function SearchScreen(props) {
+  const { state } = useLocation();
 
   const yellow = getComputedStyle(document.documentElement).getPropertyValue(
     "--secondary-yellow"
@@ -17,7 +19,7 @@ function SearchScreen(props) {
   return (
     <>
       <FilterContextProvider>
-        <SearchComponent/>
+        <SearchComponent state={state}/>
       </FilterContextProvider>
     </>
   );
