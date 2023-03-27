@@ -33,7 +33,6 @@ function FilterFrame(props) {
 
   function updateFilter(object_label){
     setFilter(object_label)
-    console.log("Filter has been updated", object_label)
   }
 
   function navigateToHome(){

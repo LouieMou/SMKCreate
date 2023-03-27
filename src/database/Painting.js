@@ -14,13 +14,16 @@ export async function readPaintingById(paintingId) {
       image_thumbnail: painting[0].attributes.image_thumbnail,
       publication_year: painting[0].attributes.publication_year,
       object_labels: painting[0].attributes.object_labels,
+      image_width: painting[0].attributes.image_width,
     };
     return destructuredpainting;
   }
 
   try {
     let queryResult = await query.find();
-    let paintingResult = await deStructurePaintingObject(queryResult)
+    let paintingResult = deStructurePaintingObject(queryResult)
     return paintingResult;
   } catch (error) {}
 }
+
+

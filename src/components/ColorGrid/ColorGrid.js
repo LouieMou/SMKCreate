@@ -2,8 +2,10 @@ import "./../../index.css";
 import ColorItem from "./ColorItem";
 
 export default function ColorGrid(props) {
-
-  let colorArray =  Array.from(props.colors);
+  
+  const colorString = props.colors.replaceAll(`'`, `"`);
+  const colorArray =  JSON.parse(colorString);
+ 
   return (
     <>
       <h4>Colors</h4>

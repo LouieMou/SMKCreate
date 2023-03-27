@@ -13,7 +13,8 @@ function SearchComponent(props) {
   const [filter, setFilter] = useContext(FilterContext);
 
   useEffect(() => {
-    fecthObjects().then(console.log("UseEffect has processed", objects));
+    fecthObjects();
+    console.log("This is the state in search component ", props.state);
   }, []);
 
   useEffect(() => {
@@ -43,15 +44,19 @@ function SearchComponent(props) {
     <div>
       <div className="search-component-container">
         <div className="sticky-container">
-        <FilterFrame category={props.state.obj.name}/>
+          {props.state.obj ? (
+            <FilterFrame category={props.state.obj.name} />
+          ) : (
+            <></>
+          )}
         </div>
         <div className="image-grid-container-padding">
-            {objects && !useFilter ? <ImageGrid data={objects} /> : <></>}
-            {filteredObjects && useFilter ? (
-              <ImageGrid data={filteredObjects} />
-            ) : (
-              <></>
-            )}
+          {objects && !useFilter ? <ImageGrid data={objects} /> : <></>}
+          {filteredObjects && useFilter ? (
+            <ImageGrid data={filteredObjects} />
+          ) : (
+            <></>
+          )}
         </div>
       </div>
     </div>

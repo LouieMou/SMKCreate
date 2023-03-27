@@ -14,8 +14,8 @@ export default function LabelGrid(props) {
 
   function checkUniqueLabels() {
     const uniqueLabels = new Set();
-    props.objects.forEach((element) => {
-      let obj = element.attributes.label_text;
+    props.objects.forEach((o) => {
+      let obj = o;
       uniqueLabels.add(obj);
     });
     let uniqueLabelsArr = Array.from(uniqueLabels);
