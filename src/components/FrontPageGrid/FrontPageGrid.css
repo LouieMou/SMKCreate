@@ -1,8 +1,4 @@
 .frontpage-grid {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  grid-template-rows: repeat(3, 1fr);
-  gap: 10px;
-  align-items: center;
-  margin-left: 100px;
+  margin: 20px 150px 20px 10px;
+  text-align: center;
 }

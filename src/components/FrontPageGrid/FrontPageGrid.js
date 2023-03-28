@@ -5,15 +5,14 @@ import { useNavigate } from "react-router-dom";
 import "./FrontPageGrid.css";
 
 export default function FrontPageGrid(props) {
-
   useEffect(() => {
-    console.log(props.data)
+    console.log(props.data);
   }, []);
 
   const imagesToDisplay = props.data.slice(0, 9);
   const navigate = useNavigate();
   function onClickImage(obj) {
-    navigate("/search", {state: {obj}});
+    navigate("/search", { state: { obj } });
     console.log(`I clicked on the object`);
   }
   return (
@@ -24,7 +23,7 @@ export default function FrontPageGrid(props) {
             key={index}
             source={category.img_url}
             title={category.name}
-            handleClick={()=>onClickImage(category)}
+            handleClick={() => onClickImage(category)}
           />
         );
       })}
