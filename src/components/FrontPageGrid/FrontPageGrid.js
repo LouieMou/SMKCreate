@@ -1,24 +1,30 @@
+import { React, useEffect, useState } from "react";
 import ImageItem from "../ImageItem/ImageItem";
 import { useNavigate } from "react-router-dom";
 /* Styles */
 import "./FrontPageGrid.css";
 
 export default function FrontPageGrid(props) {
+
+  useEffect(() => {
+    console.log(props.data)
+  }, []);
+
   const imagesToDisplay = props.data.slice(0, 9);
   const navigate = useNavigate();
-  function onClickImage() {
-    navigate("/search");
+  function onClickImage(obj) {
+    navigate("/search", {state: {obj}});
     console.log(`I clicked on the object`);
   }
   return (
     <div className="frontpage-grid">
-      {imagesToDisplay.map((obj, index) => {
+      {imagesToDisplay.map((category, index) => {
         return (
           <ImageItem
             key={index}
-            source={obj.object_url}
-            title={obj.label_name}
-            handleClick={()=>onClickImage()}
+            source={category.img_url}
+            title={category.name}
+            handleClick={()=>onClickImage(category)}
           />
         );
       })}

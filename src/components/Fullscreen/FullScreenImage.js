@@ -12,15 +12,17 @@ export default function FullScreenImage(props) {
   const [hoverArea, setHoverArea] = useState(null);
 
   useEffect(() => {
-    console.log("fullscreenImage", props.objects);
     const cc = props.objects.map((obj) => {
       return {
         coords: obj.attributes.coords,
         shape: "poly",
+        id: obj.attributes.category_id,
+        name: obj.attributes.category_pointer.attributes.category_name,
         label_text: obj.attributes.label_text,
       };
     });
     setCoords(cc);
+    console.log(coords)
   }, []);
 
   const URL = props.imgURL;
@@ -30,12 +32,15 @@ export default function FullScreenImage(props) {
   };
 
   const enterArea = (area) => {
+    console.log("this is area", area)
     setHoverArea(area);
   };
 
   const clickOnObjectOnPainting = (area) => {
-    console.log(`I clicked on a(n) ${area.label_text}`);
-    navigate("/search");
+    console.log(`I clicked on a(n) ${area.id}`);
+    console.log("This is name",area.name );
+    let obj = area;
+    navigate("/search", {state: {obj}});
   };
 
   const getCenterPosition = (area) => {
@@ -69,14 +74,15 @@ export default function FullScreenImage(props) {
         src={URL}
         map={MAP}
         width={500}
-        imgWidth={props.imgWidth}
+        imgWidth={props.imgWidth > 1660 ? (1024) : props.imgWidth}
+        //natural={true}
         onClick={(area) => clickOnObjectOnPainting(area)}
         onMouseEnter={(area) => enterArea(area)}
         fillColor="transparent"
         strokeColor="transparent"
       />
 
-      {hoverArea && (
+     {hoverArea && (
         <span
           onClick={() => {
             clickOnObjectOnPainting(hoverArea);

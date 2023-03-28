@@ -2,9 +2,8 @@ import { React, useState, useEffect, useContext } from "react";
 /* Components */
 import FilterFrame from "../LabelComponent/FilterFrame";
 import ImageGrid from "../ImageItem/ImageGrid";
-import CustomScroller from "react-custom-scroller";
 /* Functions */
-import { readObjectsBySearchFilter } from "../../database/Fruit";
+import { readObjectsByCategory } from "../../database/Object";
 /* Context */
 import { FilterContext } from "../../context/FilterContext";
 /* Styles */
@@ -14,7 +13,8 @@ function SearchComponent(props) {
   const [filter, setFilter] = useContext(FilterContext);
 
   useEffect(() => {
-    fecthObjects().then(console.log("UseEffect has processed", objects));
+    fecthObjects();
+    console.log("This is the state in search component ", props.state);
   }, []);
 
   useEffect(() => {
@@ -28,7 +28,7 @@ function SearchComponent(props) {
   const [useFilter, setUseFilter] = useState(false);
   async function fecthObjects() {
     try {
-      let objects = await readObjectsBySearchFilter();
+      let objects = await readObjectsByCategory(props.state.obj.id);
       setObjects(objects);
     } catch (error) {}
   }
@@ -44,15 +44,19 @@ function SearchComponent(props) {
     <div>
       <div className="search-component-container">
         <div className="sticky-container">
-        <FilterFrame />
+          {props.state.obj ? (
+            <FilterFrame category={props.state.obj.name} />
+          ) : (
+            <></>
+          )}
         </div>
         <div className="image-grid-container-padding">
-            {objects && !useFilter ? <ImageGrid data={objects} /> : <></>}
-            {filteredObjects && useFilter ? (
-              <ImageGrid data={filteredObjects} />
-            ) : (
-              <></>
-            )}
+          {objects && !useFilter ? <ImageGrid data={objects} /> : <></>}
+          {filteredObjects && useFilter ? (
+            <ImageGrid data={filteredObjects} />
+          ) : (
+            <></>
+          )}
         </div>
       </div>
     </div>

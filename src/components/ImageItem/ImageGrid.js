@@ -7,8 +7,8 @@ import "./ImageGrid.css";
 export default function ImageGrid(props) {
   const navigate = useNavigate()
   function onClickImage(obj) {
-    navigate("/painting", {state: {obj}});
-    console.log(`I clicked on the object`);
+    navigate("/test", {state: {obj}});
+    console.log(`I clicked on the object`, obj);
   }
 
   return (
@@ -19,7 +19,7 @@ export default function ImageGrid(props) {
             key={index}
             source={obj.attributes.object_url}
             title={obj.attributes.label_text}
-            handleClick={() => onClickImage(obj.attributes)}
+            handleClick={() => onClickImage(obj.attributes.painting_pointer.id)}
           />
         );
       })}
