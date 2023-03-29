@@ -1,33 +1,18 @@
+.frame-container {
+  position: fixed;
+  width: 100%;
+  height: calc(100%-14.28572vw);
+}
+
 .frame {
   display: flex;
   flex-direction: row;
   box-sizing: border-box;
   border: 10px solid #101011;
-  position: fixed;
-  width: 1500px;
-  height: 539px;
-  left: 75px;
+  position: absolute;
+  height: 80vh;
+  width: 100vw;
+  left: 7.14286vw;
   right: -1em;
   top: 121px;
-}
-
-@media (max-width: 768px) {
-  .frame {
-    right: -30px;
-    bottom: -30px;
-  }
-}
-
-@media (max-width: 480px) {
-  .frame {
-    right: -10px;
-    bottom: -10px;
-  }
-}
-
-@media (min-width: 1024px) {
-  .frame {
-    right: -200px;
-    bottom: -100px;
-  }
 }
