@@ -48,7 +48,7 @@ function TestScreen(props) {
     }
   return (
     <>
-      {painting ? (
+      {painting && objects ? (
         <div
           className="paintingScreen"
           style={{ backgroundColor: painting.suggested_bg_color }}
@@ -56,16 +56,15 @@ function TestScreen(props) {
           <>
           <MetaData
             data={painting}
-            objects={painting.object_labels}
+            objects={objects}
             colorMode={colorMode}
           />
-          {objects ? <FullScreenImage
+          <FullScreenImage
             imgURL={painting.image_thumbnail}
             imgWidth={painting.image_width}
             objects={objects}
             colorMode={colorMode}
           />
-          : <></>}
           </>
         </div>
       ) : (
