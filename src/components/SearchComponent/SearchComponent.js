@@ -1,20 +1,28 @@
 import { React, useState, useEffect, useContext } from "react";
 /* Components */
-import FilterFrame from "../LabelComponent/FilterFrame";
-import ImageGrid from "../ImageItem/ImageGrid";
+import FilterFrame from "../FilterFrame/FilterFrame";
+import ImageGrid from "../ImageGrid/ImageGrid";
 /* Functions */
 import { readObjectsByCategory } from "../../database/Object";
 /* Context */
-import { FilterContext } from "../../context/FilterContext";
+import { SearchContext } from "../../context/SearchContext";
 /* Styles */
 import "./SearchComponent.css";
 
 function SearchComponent(props) {
-  const [filter, setFilter] = useContext(FilterContext);
+  const { search } = useContext(SearchContext);
+  const [filter, setFilter] = useState();
+  const [objects, setObjects] = useState();
+  const [filteredObjects, setFilteredObjects] = useState();
+  const [useFilter, setUseFilter] = useState(false);
 
   useEffect(() => {
-    fecthObjects();
-    console.log("This is the state in search component ", props.state);
+    if (search) {
+      fecthObjects(search);
+      if (search.filter_label) {
+        filterObjects(search.filter_label);
+      }
+    }
   }, []);
 
   useEffect(() => {
@@ -23,12 +31,9 @@ function SearchComponent(props) {
     }
   }, [filter]);
 
-  const [objects, setObjects] = useState();
-  const [filteredObjects, setFilteredObjects] = useState();
-  const [useFilter, setUseFilter] = useState(false);
-  async function fecthObjects() {
+  async function fecthObjects(searchObject) {
     try {
-      let objects = await readObjectsByCategory(props.state.obj.id);
+      let objects = await readObjectsByCategory(searchObject.category_id);
       setObjects(objects);
     } catch (error) {}
   }
@@ -44,8 +49,11 @@ function SearchComponent(props) {
     <div>
       <div className="search-component-container">
         <div className="sticky-container">
-          {props.state.obj ? (
-            <FilterFrame category={props.state.obj.name} />
+          {search ? (
+            <FilterFrame
+              category={search.category_name}
+              setFilter={setFilter}
+            />
           ) : (
             <></>
           )}

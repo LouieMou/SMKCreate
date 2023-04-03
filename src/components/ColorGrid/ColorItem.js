@@ -1,3 +1,4 @@
+/* Styles */
 import "./ColorItem.css";
 
 export default function ColorItem(props) {

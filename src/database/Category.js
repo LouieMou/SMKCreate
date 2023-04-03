@@ -8,7 +8,6 @@ export async function readLabelsInCategory(categoryName) {
 
   try {
     let categoryResult = await query.find();
-    console.log("Category object has been parse", categoryResult);
     let labelArray = categoryResult[0].attributes.labels;
 
     labelArray.forEach((label) => {
@@ -30,8 +29,6 @@ export async function getAllCategoriesWithImage() {
 
   try {
     let categories = await query.find();
-    console.log(categories);
-
     for (let c = 0; c < categories.length; c++) {
       switch (categories[c].attributes.category_name) {
         case "Things":
@@ -72,7 +69,6 @@ export async function getAllCategoriesWithImage() {
         default:
       }
     }
-    console.log("Checking the values", categoryAndImage)
     return categoryAndImage;
   } catch (error) {}
 }

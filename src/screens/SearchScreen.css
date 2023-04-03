@@ -1,6 +1,6 @@
 @import url(../index.css);
 
-.screen-container{
+/* .screen-container{
     display: flex;
     flex-direction: row;
 }
@@ -8,4 +8,23 @@
 .scroll-container{
     margin-left: 50px;
     margin-top: 20px;
+} */
+
+.search-component-container {
+    display: flex;
+    flex-direction: row;
+}
+
+.image-grid-container-padding {
+    margin-left: 50px;
+    margin-top: 100px;
+    width: 1100px;
+}
+
+.sticky-container {
+    position: -webkit-sticky;
+    position: sticky;
+    width: 300px;
+    height: 500px;
+    top: 0;
 }

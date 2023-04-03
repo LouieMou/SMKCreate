@@ -1,4 +1,6 @@
+/* Styles */
 import "./Frame.css";
+/* Animation */
 import { motion } from "framer-motion";
 export default function Frame(props) {
   return (
