@@ -11,7 +11,6 @@ export async function readObjectsByCategory(categoryId) {
 
   try {
     let objects = query.find();
-    console.log("Objects are being parsed", objects);
     return objects;
   } catch (error) {}
 }
@@ -21,18 +20,8 @@ export async function readObjectsByPaintingId(paintingPointer) {
   query.include("Object.category_pointer")
   query.equalTo("painting_id_back4app", paintingPointer);
 
-  /* function deStructureObject(object) {
-    const destructuredobject = {
-      coords: object[0].attributes.coords,
-      label_text: object[0].attributes.label_text,
-    };
-    return destructuredobject;
-  } */
-
   try {
     let objects = await query.find();
-    /* let destructredObjects = objects.map(deStructureObject)
-    console.log("these are the objects after destructuring", destructredObjects) */
     return objects;
   } catch (error) {}
 }

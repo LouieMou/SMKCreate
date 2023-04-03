@@ -1,19 +1,17 @@
-import {React, useEffect, useState} from "react";
+import { React, useEffect, useState } from "react";
 /* Component */
 import Frame from "../components/FrontPageFrame/Frame";
 import FrontPageHeading from "../components/Headings/FrontPageHeading";
 import FrontPageGrid from "../components/FrontPageGrid/FrontPageGrid";
 /* Functions */
 import { setBackgroundColor } from "../functions/background";
-import {getAllCategoriesWithImage} from "../database/Category";
+import { getAllCategoriesWithImage } from "../database/Category";
 /* Styles */
 import "./HomeScreen.css";
 
-import data from "../data/data.json";
-
 function HomeScreen(props) {
   useEffect(() => {
-    fectCategories().then(console.log(categories));
+    fectCategories();
   }, []);
 
   const [categories, setCategories] = useState();
@@ -22,8 +20,8 @@ function HomeScreen(props) {
     "--primary-white"
   );
 
-  async function fectCategories(){
-    let categoryResult = await getAllCategoriesWithImage()
+  async function fectCategories() {
+    let categoryResult = await getAllCategoriesWithImage();
     setCategories(categoryResult);
   }
 
@@ -32,9 +30,7 @@ function HomeScreen(props) {
     <div className="frontpage-container">
       <Frame>
         <FrontPageHeading /*color={textColor}*/ />
-        {categories ? 
-        <FrontPageGrid data={categories} />
-         : <></>}
+        {categories ? <FrontPageGrid data={categories} /> : <></>}
       </Frame>
     </div>
   );

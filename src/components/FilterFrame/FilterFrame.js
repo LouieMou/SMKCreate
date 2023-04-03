@@ -4,20 +4,16 @@ import { useNavigate } from "react-router-dom";
 import CustomScroller from "react-custom-scroller";
 import LabelButton from "../LabelButton/LabelButton";
 /* Functions */
-import { readLabelList } from "../../database/Fruit";
 import { readLabelsInCategory } from "../../database/Category";
 /* Styles */
 import "./FilterFrame.css";
 import "../../index.css";
 /* Context */
-import {FilterContext} from '../../context/FilterContext';
 
 function FilterFrame(props) {
   useEffect(() => {
-    updateLabelList().then(console.log("Labels have been read", labelList));
+    updateLabelList();
   }, []);
-
-  const [filter, setFilter ] = useContext(FilterContext)
  
   const navigate = useNavigate();
   let [labelList, setLabelList] = useState([]);
@@ -28,11 +24,12 @@ function FilterFrame(props) {
       setCategory(props.category);
       let labels = await readLabelsInCategory(props.category);
       setLabelList(labels);
+      console.log("This is the labelList: ", labelList);
     } catch (error) {}
   }
 
   function updateFilter(object_label){
-    setFilter(object_label)
+    props.setFilter(object_label)
   }
 
   function navigateToHome(){

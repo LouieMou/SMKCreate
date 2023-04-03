@@ -1,19 +1,18 @@
 import { useNavigate } from "react-router-dom";
 /* Components */
-import ImageItem from "./ImageItem";
+import ImageItem from "../ImageItem/ImageItem";
 /* Styles */
 import "./ImageGrid.css";
 
 export default function ImageGrid(props) {
   const navigate = useNavigate()
-  function onClickImage(obj) {
-    navigate("/test", {state: {obj}});
-    console.log(`I clicked on the object`, obj);
+  function onClickImage(paintingId) {
+    navigate("/test", {state: {paintingId}});
   }
 
   return (
     <div className="image-grid">
-      {props.data.map((obj, index) => {
+      {props.objects.map((obj, index) => {
         return (
           <ImageItem
             key={index}

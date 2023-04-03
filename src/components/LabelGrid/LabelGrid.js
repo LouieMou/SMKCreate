@@ -1,8 +1,9 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
-
 /* Components */
-import LabelButton from "./LabelButton";
+import LabelButton from "../LabelButton/LabelButton";
+/* Context */
+import { SearchContext } from "../../context/SearchContext";
 /* Functions */
 import {sortByUniqueObjectLabels} from "../../functions/reducing";
 /* Styles */
@@ -10,6 +11,7 @@ import "./LabelGrid.css";
 
 export default function LabelGrid(props) {
   const [uniqueLabels, setUniqueLabels] = useState([]);
+  const {setCategoryIdAndFilter} = useContext(SearchContext);
 
   const navigate = useNavigate()
 
@@ -29,12 +31,15 @@ export default function LabelGrid(props) {
   }
 
   function handleClick(object){
-    let obj = {
+    let category = {
       id: object.attributes.category_id,
-      name: object.attributes.category_pointer.attributes.category_name
+      name: object.attributes.category_pointer.attributes.category_name, 
     }
-
-    navigate("/search", {state: {obj}})
+    let filter = object.attributes.label_text;
+    
+    // Updating the SearchContext
+    setCategoryIdAndFilter(category, filter);
+    navigate("/search")
   }
 
   return (

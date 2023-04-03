@@ -8,8 +8,8 @@ import { readObjectsFromSamePainting } from "./../database/Fruit";
 import "./../index.css";
 import "./PaintingScreen.css";
 /* Components */
-import MetaData from "./../components/Fullscreen/MetaData";
-import FullScreenImage from "../components/Fullscreen/FullScreenImage";
+import MetaData from "../components/MetaData/MetaData";
+import FullScreenImage from "../components/FullScreenImage/FullScreenImage";
 
 import data from "./../data/data.json";
 

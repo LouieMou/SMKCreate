@@ -1,3 +1,4 @@
+/* Styles */
 import "./../../index.css";
 
 export default function HeadingFullScreen(props) {

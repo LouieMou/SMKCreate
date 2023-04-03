@@ -1,17 +1,31 @@
 import { useEffect, useRef, useState } from "react";
-import ImageMapper from "react-img-mapper";
 import { useNavigate } from "react-router-dom";
-
+/* Component */
+import ImageMapper from "react-img-mapper";
+/* Context */
+import { SearchContext } from "../../context/SearchContext";
+/* Styles */
 import "./FullScreenImage.css";
 
 export default function FullScreenImage(props) {
-  const myRef = useRef(null);
+  //const myRef = useRef(null);
   const navigate = useNavigate();
 
   const [coords, setCoords] = useState([]);
   const [hoverArea, setHoverArea] = useState(null);
 
   useEffect(() => {
+    updateAreaObject()
+
+  }, [props.objects]);
+
+  const URL = props.imgURL;
+  const MAP = {
+    name: "my-map",
+    areas: coords,
+  };
+
+  function updateAreaObject(){
     const cc = props.objects.map((obj) => {
       return {
         coords: obj.attributes.coords,
@@ -22,25 +36,19 @@ export default function FullScreenImage(props) {
       };
     });
     setCoords(cc);
-    console.log(coords)
-  }, []);
-
-  const URL = props.imgURL;
-  const MAP = {
-    name: "my-map",
-    areas: coords,
-  };
+    console.log(coords);
+  }
 
   const enterArea = (area) => {
-    console.log("this is area", area)
+    console.log("this is area", area);
     setHoverArea(area);
   };
 
   const clickOnObjectOnPainting = (area) => {
     console.log(`I clicked on a(n) ${area.id}`);
-    console.log("This is name",area.name );
+    console.log("This is name", area.name);
     let obj = area;
-    navigate("/search", {state: {obj}});
+    navigate("/search", { state: { obj } });
   };
 
   const getCenterPosition = (area) => {
@@ -65,24 +73,23 @@ export default function FullScreenImage(props) {
   let colorHover =
     props.colorMode === "var(--primary-white)"
       ? "hsla(120, 100%, 100%, 0.66)"
-      : "hsla(240, 3%, 6%, 0.66)";
+      : "hsla(240, 3%, 6%, 0.66)"
 
   return coords ? (
     <div className="image">
       <ImageMapper
-        containerRef={myRef}
+        //containerRef={myRef}
         src={URL}
         map={MAP}
         width={500}
-        imgWidth={props.imgWidth > 1660 ? (1024) : props.imgWidth}
-        //natural={true}
+        imgWidth={props.imgWidth > 1660 ? 1024 : props.imgWidth}
         onClick={(area) => clickOnObjectOnPainting(area)}
         onMouseEnter={(area) => enterArea(area)}
         fillColor="transparent"
         strokeColor="transparent"
       />
 
-     {hoverArea && (
+      {hoverArea && (
         <span
           onClick={() => {
             clickOnObjectOnPainting(hoverArea);

@@ -1,3 +1,4 @@
+/* Styles */
 import "./FrontPageHeading.css";
 import "./../../index.css";
 
