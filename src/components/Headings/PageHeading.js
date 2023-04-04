@@ -1,5 +1,5 @@
 /* Styles */
-import "./FrontPageHeading.css";
+import "./PageHeading.css";
 import "./../../index.css";
 
 export default function FrontPageHeading(props) {
@@ -9,8 +9,8 @@ export default function FrontPageHeading(props) {
   };
   return (
     <div className="heading-container" style={textColor}>
-      <h1>What would you like to explore?</h1>
-      <h2>Choose a category</h2>
+      <h1>{props.title}</h1>
+      <h2>{props.subtitle}</h2>
     </div>
   );
 }

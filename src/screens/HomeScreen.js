@@ -1,36 +1,32 @@
-import { React, useEffect, useState } from "react";
+import { React } from "react";
 /* Component */
 import Frame from "../components/FrontPageFrame/Frame";
-import FrontPageHeading from "../components/Headings/FrontPageHeading";
+import PageHeading from "../components/Headings/PageHeading";
 import FrontPageGrid from "../components/FrontPageGrid/FrontPageGrid";
 /* Functions */
 import { setBackgroundColor } from "../functions/background";
-import { getAllCategoriesWithImage } from "../database/Category";
 /* Styles */
 import "./HomeScreen.css";
 
 function HomeScreen(props) {
-  useEffect(() => {
-    fectCategories();
-  }, []);
-
-  const [categories, setCategories] = useState();
   /*const textColor = data[1].suggested_bg_color;*/
   const white = getComputedStyle(document.documentElement).getPropertyValue(
     "--primary-white"
   );
 
-  async function fectCategories() {
-    let categoryResult = await getAllCategoriesWithImage();
-    setCategories(categoryResult);
-  }
-
   setBackgroundColor(white);
   return (
     <div className="frontpage-container">
       <Frame>
-        <FrontPageHeading /*color={textColor}*/ />
-        {categories ? <FrontPageGrid data={categories} /> : <></>}
+        <PageHeading
+          title="What would you like to explore?"
+          subtitle="Choose a category" /*color={textColor}*/
+        />
+        {props.categories ? (
+          <FrontPageGrid data={props.categories.slice(0, 9)} />
+        ) : (
+          <></>
+        )}
       </Frame>
     </div>
   );

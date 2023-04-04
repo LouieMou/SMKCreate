@@ -8,19 +8,17 @@ import { SearchContext } from "../../context/SearchContext";
 import "./FrontPageGrid.css";
 
 export default function FrontPageGrid(props) {
-
-  const {setCategoryIdAndFilter} = useContext(SearchContext);
-  const imagesToDisplay = props.data.slice(0, 9);
+  const { setCategoryIdAndFilter } = useContext(SearchContext);
   const navigate = useNavigate();
 
   function handleClick(category) {
     navigate("/search");
-    setCategoryIdAndFilter(category, undefined)
+    setCategoryIdAndFilter(category, undefined);
   }
 
   return (
     <div className="frontpage-grid">
-      {imagesToDisplay.map((category, index) => {
+      {props.data.map((category, index) => {
         return (
           <ImageItem
             key={index}
