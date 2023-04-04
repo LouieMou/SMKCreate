@@ -5,14 +5,14 @@ import ImageItem from "../ImageItem/ImageItem";
 import "./ImageGrid.css";
 
 export default function ImageGrid(props) {
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   function onClickImage(paintingId) {
-    navigate("/test", {state: {paintingId}});
+    navigate("/test", { state: { paintingId } });
   }
 
   return (
     <div className="image-grid">
-      {props.objects.map((obj, index) => {
+      {props.list.map((obj, index) => {
         return (
           <ImageItem
             key={index}

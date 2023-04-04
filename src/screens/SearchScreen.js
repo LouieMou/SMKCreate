@@ -71,9 +71,9 @@ function SearchScreen(props) {
           )}
         </div>
         <div className="image-grid-container-padding">
-          {objects && !useFilter ? <ImageGrid objects={objects} /> : <></>}
+          {objects && !useFilter ? <ImageGrid list={objects} /> : <></>}
           {filteredObjects && useFilter ? (
-            <ImageGrid objects={filteredObjects} />
+            <ImageGrid list={filteredObjects} />
           ) : (
             <></>
           )}

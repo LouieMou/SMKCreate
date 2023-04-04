@@ -14,7 +14,7 @@ function FilterFrame(props) {
   useEffect(() => {
     updateLabelList();
   }, []);
- 
+
   const navigate = useNavigate();
   let [labelList, setLabelList] = useState([]);
   const [category, setCategory] = useState();
@@ -28,12 +28,12 @@ function FilterFrame(props) {
     } catch (error) {}
   }
 
-  function updateFilter(object_label){
-    props.setFilter(object_label)
+  function updateFilter(object_label) {
+    props.setFilter(object_label);
   }
 
-  function navigateToHome(){
-    navigate("/");
+  function navigateToAllCategories() {
+    navigate("/category");
   }
 
   return (
@@ -44,14 +44,21 @@ function FilterFrame(props) {
           <CustomScroller className="scroller">
             {labelList ? (
               labelList.map((label, index) => (
-                <LabelButton key={index} handleClick={()=>updateFilter(label.objectLabel)} label_text={label.objectLabel}/>
+                <LabelButton
+                  key={index}
+                  handleClick={() => updateFilter(label.objectLabel)}
+                  label_text={label.objectLabel}
+                />
               ))
             ) : (
               <></>
             )}
           </CustomScroller>
         </div>
-        <LabelButton handleClick={()=>navigateToHome()} label_text="all categories"/>
+        <LabelButton
+          handleClick={() => navigateToAllCategories()}
+          label_text="all categories"
+        />
       </div>
     </div>
   );
