@@ -7,7 +7,7 @@ export default function HeadingFullScreen(props) {
       <h3>{props.artist}</h3>
       <h1>{props.title}</h1>
       <h5>
-        {props.year}, {props.techniques}
+        {props.year ? props.year + "," : ""} {props.techniques}
       </h5>
     </>
   );

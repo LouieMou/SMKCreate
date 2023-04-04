@@ -1,4 +1,3 @@
-import { useEffect } from "react";
 /* Components */
 import PageHeading from "../components/Headings/PageHeading";
 import FrontPageGrid from "../components/FrontPageGrid/FrontPageGrid";
@@ -9,10 +8,6 @@ import "./../index.css";
 import { setBackgroundColor } from "../functions/background";
 
 export default function CategoryScreen(props) {
-  useEffect(() => {
-    console.log("categoryScreen", props.categories);
-  }, []);
-
   const blue = getComputedStyle(document.documentElement).getPropertyValue(
     "--SMK-blue"
   );
