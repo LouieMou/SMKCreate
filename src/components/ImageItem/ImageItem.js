@@ -23,10 +23,10 @@ export default function ImageItem(props) {
           onMouseLeave={()=>setFillHeart(!fillHeart)}
         >
           {fillHeart ? (
-            <img src="/icons/white_filled heart.svg"
+            <img src="/icons/heart_filled_white.svg"
             onClick={()=> handleSaveToFavorite(props.source)}></img>
           ) : (
-            <img src="/icons/white_unfilled heart.svg"
+            <img src="/icons/heart_unfilled_white.svg"
             onClick={()=> handleSaveToFavorite(props.source)}></img>
           )}
         </span>

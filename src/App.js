@@ -6,7 +6,10 @@ import SearchScreen from "./screens/SearchScreen";
 import PaintingScreen from "./screens/PaintingScreen";
 import TestScreen from "./screens/TestScreen";
 import CategoryScreen from "./screens/CategoryScreen";
+import ProfileScreen from "./screens/ProfileScreen";
+import CanvasScreen from "./screens/CanvasScreen";
 /* Components */
+import NavBar from "./components/NavBar/NavBar";
 import FavoriteBoard from "./components/FavoriteBoard/FavoriteBoard";
 /* Functions */
 import { getAllCategoriesWithImage } from "./database/Category";
@@ -35,6 +38,7 @@ function App() {
 
   return (
     <>
+      <NavBar />
       <SearchContextProvider>
         <FavoriteContextProvider>
           <Routes>
@@ -43,6 +47,8 @@ function App() {
             <Route path="/search/:id" element={<SearchScreen />} />
             <Route path="/painting" element={<PaintingScreen />} />
             <Route path="/test" element={<TestScreen />} />
+            <Route path="/canvas" element={<CanvasScreen />} />
+            <Route path="/profile" element={<ProfileScreen />} />
             <Route
               path="/category"
               element={<CategoryScreen categories={categories} />}
