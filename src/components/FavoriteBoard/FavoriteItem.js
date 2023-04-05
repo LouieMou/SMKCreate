@@ -5,7 +5,7 @@ export default function FavoriteItem(props) {
     <div className="favorite-container" onClick={props.handleClick}>
       <img
         className="favorite-image"
-        src="./cropped-images/KMS4267_cow286.png" /* {props.source} */
+        src={props.source}
         alt={`${props.title}`}
       />
 

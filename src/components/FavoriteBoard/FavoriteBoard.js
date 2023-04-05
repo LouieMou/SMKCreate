@@ -1,25 +1,18 @@
-import { useState } from "react";
 import "./FavoriteBoard.css";
 import FavoriteGrid from "./FavoriteGrid";
 
 export default function FavoriteBoard(props) {
-  const [visible, setVisible] = useState(false);
-
-  function closeFavoriteList() {
-    setVisible(false);
-  }
-
-  return visible ? (
+  return (
     <div className="favoriteBoard">
-      <img
-        className="cross"
-        src="./icons/cross_black.svg"
-        alt="close-icon"
-        onClick={closeFavoriteList}
-      />
-      <FavoriteGrid list={props.list} /> {/* list from useContext here */}
+      <div className="cross-container">
+        <img
+          className="cross"
+          src="./icons/cross_black.svg"
+          alt="close-icon"
+          onClick={props.closeFavoriteList}
+        />
+      </div>
+      <FavoriteGrid />
     </div>
-  ) : (
-    ""
   );
 }

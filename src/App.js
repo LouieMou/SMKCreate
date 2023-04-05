@@ -10,6 +10,7 @@ import ProfileScreen from "./screens/ProfileScreen";
 import CanvasScreen from "./screens/CanvasScreen";
 /* Components */
 import NavBar from "./components/NavBar/NavBar";
+import FavoriteBoard from "./components/FavoriteBoard/FavoriteBoard";
 /* Functions */
 import { getAllCategoriesWithImage } from "./database/Category";
 /* Context */
@@ -20,6 +21,7 @@ import "./App.css";
 
 function App() {
   const [categories, setCategories] = useState();
+  const [board, setBoard] = useState(true);
 
   useEffect(() => {
     fectCategories();
@@ -28,6 +30,10 @@ function App() {
   async function fectCategories() {
     let categoryResult = await getAllCategoriesWithImage();
     setCategories(categoryResult);
+  }
+
+  function closeFavoriteList() {
+    setBoard(false);
   }
 
   return (
@@ -48,6 +54,7 @@ function App() {
               element={<CategoryScreen categories={categories} />}
             />
           </Routes>
+          {board && <FavoriteBoard closeFavoriteList={closeFavoriteList} />}
         </FavoriteContextProvider>
       </SearchContextProvider>
     </>
