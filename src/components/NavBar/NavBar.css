@@ -1,0 +1,21 @@
+.navbar-container{
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    justify-content: space-between;
+    margin-top: 20px;
+}
+
+.rigt-side-icon-container{
+    margin-left: 40px;
+    width: 220px;
+}
+
+.left-side-icon-container{
+    display: flex;
+    flex-direction: row;
+    align-items: end;
+    align-self: flex-end;
+    justify-self: flex-end;
+    justify-content: end;
+}

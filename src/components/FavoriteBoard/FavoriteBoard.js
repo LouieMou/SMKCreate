@@ -3,7 +3,7 @@ import "./FavoriteBoard.css";
 import FavoriteGrid from "./FavoriteGrid";
 
 export default function FavoriteBoard(props) {
-  const [visible, setVisible] = useState(true);
+  const [visible, setVisible] = useState(false);
 
   function closeFavoriteList() {
     setVisible(false);
