@@ -1,16 +1,23 @@
-import React from 'react';
+import React from "react";
+/* Components */
+import PageHeading from "../components/Headings/PageHeading";
+/* Functions */
 import { setBackgroundColor } from "../functions/background";
 
 function ProfileScreen(props) {
-    const green = getComputedStyle(document.documentElement).getPropertyValue(
+  const green = getComputedStyle(document.documentElement).getPropertyValue(
     "--SMK-green"
   );
   setBackgroundColor(green);
-    return (
-        <div>
-            <p style={{marginLeft: 40}}>This is the Profile Screen</p>
-        </div>
-    );
+  return (
+    <div>
+      <PageHeading
+        title="This is the Profile Screen"
+        subtitle="Design and data will soon be updated"
+        color={`var(--primary-white)`}
+      />
+    </div>
+  );
 }
 
 export default ProfileScreen;
