@@ -1,4 +1,4 @@
-import { React } from "react";
+import { React, useContext, useEffect, useState } from "react";
 /* Component */
 import Frame from "../components/FrontPageFrame/Frame";
 import PageHeading from "../components/Headings/PageHeading";
@@ -8,8 +8,15 @@ import FavoriteBoard from "../components/FavoriteBoard/FavoriteBoard";
 import { setBackgroundColor } from "../functions/background";
 /* Styles */
 import "./HomeScreen.css";
+import { FavoriteContext } from "../context/FavoriteContext";
 
 function HomeScreen(props) {
+  const [board, setBoard] = useState(true);
+
+  function closeFavoriteList() {
+    setBoard(false);
+  }
+
   /*const textColor = data[1].suggested_bg_color;*/
   const white = getComputedStyle(document.documentElement).getPropertyValue(
     "--primary-white"
@@ -29,7 +36,7 @@ function HomeScreen(props) {
           <></>
         )}
       </Frame>
-      <FavoriteBoard list={[]} />
+      {board && <FavoriteBoard closeFavoriteList={closeFavoriteList} />}
     </div>
   );
 }
