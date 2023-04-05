@@ -3,6 +3,7 @@ import { React } from "react";
 import Frame from "../components/FrontPageFrame/Frame";
 import PageHeading from "../components/Headings/PageHeading";
 import FrontPageGrid from "../components/FrontPageGrid/FrontPageGrid";
+import FavoriteBoard from "../components/FavoriteBoard/FavoriteBoard";
 /* Functions */
 import { setBackgroundColor } from "../functions/background";
 /* Styles */
@@ -28,6 +29,7 @@ function HomeScreen(props) {
           <></>
         )}
       </Frame>
+      <FavoriteBoard list={[]} />
     </div>
   );
 }
