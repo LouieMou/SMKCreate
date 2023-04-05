@@ -20,10 +20,6 @@ function App() {
   const [categories, setCategories] = useState();
   const [board, setBoard] = useState(true);
 
-  function closeFavoriteList() {
-    setBoard(false);
-  }
-
   useEffect(() => {
     fectCategories();
   }, []);
@@ -31,6 +27,10 @@ function App() {
   async function fectCategories() {
     let categoryResult = await getAllCategoriesWithImage();
     setCategories(categoryResult);
+  }
+
+  function closeFavoriteList() {
+    setBoard(false);
   }
 
   return (
