@@ -1,5 +1,13 @@
 @import url(./index.css);
 
-body{
-   margin: 0;
+body {
+  margin: 0;
+}
+
+.navbar-container {
+  position: -webkit-sticky;
+  position: sticky;
+  width: 100%;
+  height: 70px;
+  top: 0;
 }

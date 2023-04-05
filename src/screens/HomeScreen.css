@@ -1,1 +1,10 @@
 @import url(../index.css);
+
+.heading-button-container{
+    display: flex;
+    flex-direction: column;
+}
+
+.homepage-button-container{
+    margin-left: 50px;
+}

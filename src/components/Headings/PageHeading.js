@@ -7,6 +7,8 @@ export default function FrontPageHeading(props) {
   const textColor = {
     color: color || "black",
   };
+
+
   return (
     <div className="heading-container" style={textColor}>
       <h1>{props.title}</h1>

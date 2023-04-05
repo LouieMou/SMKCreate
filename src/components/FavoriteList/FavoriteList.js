@@ -1,7 +1,9 @@
-import "./FavoriteBoard.css";
+/* Styles */
+import "./FavoriteList.css";
+/* Components */
 import FavoriteGrid from "./FavoriteGrid";
 
-export default function FavoriteBoard(props) {
+export default function FavoriteList(props) {
   return (
     <div className="favoriteBoard">
       <div className="cross-container">
