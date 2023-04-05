@@ -10,7 +10,7 @@ import ProfileScreen from "./screens/ProfileScreen";
 import CanvasScreen from "./screens/CanvasScreen";
 /* Components */
 import NavBar from "./components/NavBar/NavBar";
-import FavoriteBoard from "./components/FavoriteBoard/FavoriteBoard";
+import FavoriteList from "./components/FavoriteList/FavoriteList";
 /* Functions */
 import { getAllCategoriesWithImage } from "./database/Category";
 /* Context */
@@ -21,7 +21,7 @@ import "./App.css";
 
 function App() {
   const [categories, setCategories] = useState();
-  const [board, setBoard] = useState(true);
+  const [favoriteIsActive, setFavoriteIsActive] = useState(false);
 
   useEffect(() => {
     fectCategories();
@@ -32,15 +32,21 @@ function App() {
     setCategories(categoryResult);
   }
 
+  function openFavoriteList(){
+    setFavoriteIsActive(true);
+  }
+
   function closeFavoriteList() {
-    setBoard(false);
+    setFavoriteIsActive(false);
   }
 
   return (
     <>
-      <NavBar />
       <SearchContextProvider>
         <FavoriteContextProvider>
+          <div className="navbar-container">
+           <NavBar openFavoriteList={openFavoriteList}/>
+           </div>
           <Routes>
             <Route path="/" element={<HomeScreen categories={categories} />} />
             <Route path="/search" element={<SearchScreen />} />
@@ -50,11 +56,11 @@ function App() {
             <Route path="/canvas" element={<CanvasScreen />} />
             <Route path="/profile" element={<ProfileScreen />} />
             <Route
-              path="/category"
+              path="/categories"
               element={<CategoryScreen categories={categories} />}
             />
           </Routes>
-          {board && <FavoriteBoard closeFavoriteList={closeFavoriteList} />}
+          {favoriteIsActive && <FavoriteList closeFavoriteList={closeFavoriteList} />}
         </FavoriteContextProvider>
       </SearchContextProvider>
     </>

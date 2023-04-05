@@ -48,6 +48,7 @@ function FilterFrame(props) {
                   key={index}
                   handleClick={() => updateFilter(label.objectLabel)}
                   label_text={label.objectLabel}
+                  button_size={"standard"}
                 />
               ))
             ) : (
@@ -58,6 +59,7 @@ function FilterFrame(props) {
         <LabelButton
           handleClick={() => navigateToAllCategories()}
           label_text="all categories"
+          button_size={"standard"}
         />
       </div>
     </div>

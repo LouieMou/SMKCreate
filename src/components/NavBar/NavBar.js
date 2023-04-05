@@ -1,5 +1,5 @@
-import { useState } from "react";
-import { NavLink, useNavigate } from "react-router-dom";
+import { useState, useEffect } from "react";
+import { useNavigate, useLocation } from "react-router-dom";
 /* Components */
 import NavLinkIcon from "../NavBarIcon/NavLinkIcon";
 import NavIcon from "../NavBarIcon/NavIcon";
@@ -24,14 +24,20 @@ function NavBar(props) {
   const HeartUnfilledWhite = "./icons/heart_unfilled_white.svg";
   const HeartUnfilledBlack = "./icons/heart_unfilled_black.svg";
 
+  const location = useLocation();
+  const [navBarColor, setNavBarColor] = useState("black");
+
+  useEffect(() => {
+    if (location.pathname !== "/") {
+      setNavBarColor("white");
+    } else{
+      setNavBarColor("black")
+    }
+  });
   const navigate = useNavigate();
 
   function goBack() {
     navigate(-1);
-  }
-
-  function showFavoriteList() {
-    console.log("open favorite list");
   }
 
   function navigateTo(path) {
@@ -43,29 +49,29 @@ function NavBar(props) {
       <div className="rigt-side-icon-container">
         <NavIcon
           img_container_style={""}
-          src={LogoBlack}
+          src={`./icons/explore_logo_${navBarColor}.svg`}
           handleClick={() => navigateTo("/")}
         />
       </div>
       <div className="left-side-icon-container">
         <NavIcon
           img_container_style={"nav-img-container"}
-          src={BackArrowBlack}
+          src={`./icons/back_icon_${navBarColor}.svg`}
           handleClick={() => goBack()}
         />
         <NavIcon
           img_container_style={"nav-img-container"}
-          src={HeartUnfilledBlack}
-          handleClick={() => showFavoriteList}
+          src={`./icons/heart_unfilled_${navBarColor}.svg`}
+          handleClick={props.openFavoriteList}
         />
         <NavLinkIcon
-          filledIcon={CreateLogoFilledBlack}
-          unfilledIcon={CreateLogoUnfilledBlack}
+          filledIcon={`./icons/create_${navBarColor}_filled.svg`}
+          unfilledIcon={`./icons/create_${navBarColor}_unfilled.svg`}
           path="/canvas"
         />
         <NavLinkIcon
-          filledIcon={ProfileFilledBlack}
-          unfilledIcon={ProfileUnfilledBlack}
+          filledIcon={`./icons/profile_filled_${navBarColor}.svg`}
+          unfilledIcon={`./icons/profile_unfilled_${navBarColor}.svg`}
           path="/profile"
         />
       </div>

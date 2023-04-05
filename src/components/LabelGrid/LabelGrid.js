@@ -48,7 +48,7 @@ export default function LabelGrid(props) {
       <div className="label-grid">
         {uniqueLabels
           ? uniqueLabels.map((obj, index) => {
-              return <LabelButton key={index} label_text={obj.attributes.label_text} handleClick={()=>handleClick(obj)}></LabelButton>;
+              return <LabelButton key={index} label_text={obj.attributes.label_text} button_size={"standard"} handleClick={()=>handleClick(obj)}></LabelButton>;
             })
           : "Loading"}
       </div>

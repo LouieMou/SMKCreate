@@ -1,14 +1,14 @@
-import { React, useContext, useEffect, useState } from "react";
+import { React } from "react";
+import { useNavigate } from "react-router-dom";
 /* Component */
 import Frame from "../components/FrontPageFrame/Frame";
 import PageHeading from "../components/Headings/PageHeading";
 import FrontPageGrid from "../components/FrontPageGrid/FrontPageGrid";
-import FavoriteBoard from "../components/FavoriteBoard/FavoriteBoard";
+import LabelButton from "../components/LabelButton/LabelButton";
 /* Functions */
 import { setBackgroundColor } from "../functions/background";
 /* Styles */
 import "./HomeScreen.css";
-import { FavoriteContext } from "../context/FavoriteContext";
 
 function HomeScreen(props) {
   /*const textColor = data[1].suggested_bg_color;*/
@@ -17,13 +17,29 @@ function HomeScreen(props) {
   );
 
   setBackgroundColor(white);
+
+  const navigate = useNavigate();
+
+  function handleNavigation() {
+    navigate("/categories");
+  }
+
   return (
-    <div className="frontpage-container">
+    <div className="homepage-container">
       <Frame>
-        <PageHeading
-          title="What would you like to explore?"
-          subtitle="Choose a category" /*color={textColor}*/
-        />
+        <div className="heading-button-container">
+          <PageHeading
+            title="What would you like to explore?"
+            subtitle="Choose a category" /*color={textColor}*/
+          />
+          <div className="homepage-button-container">
+          <LabelButton
+            button_size={"large"}
+            label_text={"All Categories"}
+            handleClick={handleNavigation}
+          />
+          </div>
+        </div>
         {props.categories ? (
           <FrontPageGrid data={props.categories.slice(0, 9)} />
         ) : (
