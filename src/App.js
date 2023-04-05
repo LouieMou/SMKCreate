@@ -10,6 +10,7 @@ import CategoryScreen from "./screens/CategoryScreen";
 import { getAllCategoriesWithImage } from "./database/Category";
 /* Context */
 import { SearchContextProvider } from "./context/SearchContext";
+import { FavoriteContextProvider } from "./context/FavoriteContext";
 /* Styles */
 import "./App.css";
 
@@ -28,17 +29,19 @@ function App() {
   return (
     <>
       <SearchContextProvider>
-        <Routes>
-          <Route path="/" element={<HomeScreen categories={categories} />} />
-          <Route path="/search" element={<SearchScreen />} />
-          <Route path="/search/:id" element={<SearchScreen />} />
-          <Route path="/painting" element={<PaintingScreen />} />
-          <Route path="/test" element={<TestScreen />} />
-          <Route
-            path="/category"
-            element={<CategoryScreen categories={categories} />}
-          />
-        </Routes>
+        <FavoriteContextProvider>
+          <Routes>
+            <Route path="/" element={<HomeScreen categories={categories} />} />
+            <Route path="/search" element={<SearchScreen />} />
+            <Route path="/search/:id" element={<SearchScreen />} />
+            <Route path="/painting" element={<PaintingScreen />} />
+            <Route path="/test" element={<TestScreen />} />
+            <Route
+              path="/category"
+              element={<CategoryScreen categories={categories} />}
+            />
+          </Routes>
+        </FavoriteContextProvider>
       </SearchContextProvider>
     </>
   );

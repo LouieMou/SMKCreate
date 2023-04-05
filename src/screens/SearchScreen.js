@@ -19,13 +19,9 @@ function SearchScreen(props) {
 
   useEffect(() => {
     if (search) {
-      console.log("this is the search object: ", search);
       fecthObjects(search);
-      /*  if (search.filter_label && objects) {
-        filterObjects(search.filter_label);
-      } */
     }
-  }, []);
+  });
 
   useEffect(() => {
     if (filter) {
