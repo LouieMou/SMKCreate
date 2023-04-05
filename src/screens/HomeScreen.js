@@ -11,12 +11,6 @@ import "./HomeScreen.css";
 import { FavoriteContext } from "../context/FavoriteContext";
 
 function HomeScreen(props) {
-  const [board, setBoard] = useState(true);
-
-  function closeFavoriteList() {
-    setBoard(false);
-  }
-
   /*const textColor = data[1].suggested_bg_color;*/
   const white = getComputedStyle(document.documentElement).getPropertyValue(
     "--primary-white"
@@ -36,7 +30,6 @@ function HomeScreen(props) {
           <></>
         )}
       </Frame>
-      {board && <FavoriteBoard closeFavoriteList={closeFavoriteList} />}
     </div>
   );
 }
