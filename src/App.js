@@ -6,6 +6,8 @@ import SearchScreen from "./screens/SearchScreen";
 import PaintingScreen from "./screens/PaintingScreen";
 import TestScreen from "./screens/TestScreen";
 import CategoryScreen from "./screens/CategoryScreen";
+/* Components */
+import FavoriteBoard from "./components/FavoriteBoard/FavoriteBoard";
 /* Functions */
 import { getAllCategoriesWithImage } from "./database/Category";
 /* Context */
@@ -16,6 +18,7 @@ import "./App.css";
 
 function App() {
   const [categories, setCategories] = useState();
+  const [board, setBoard] = useState(true);
 
   useEffect(() => {
     fectCategories();
@@ -24,6 +27,10 @@ function App() {
   async function fectCategories() {
     let categoryResult = await getAllCategoriesWithImage();
     setCategories(categoryResult);
+  }
+
+  function closeFavoriteList() {
+    setBoard(false);
   }
 
   return (
@@ -41,6 +48,7 @@ function App() {
               element={<CategoryScreen categories={categories} />}
             />
           </Routes>
+          {board && <FavoriteBoard closeFavoriteList={closeFavoriteList} />}
         </FavoriteContextProvider>
       </SearchContextProvider>
     </>
