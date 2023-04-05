@@ -19,11 +19,11 @@ function TestScreen(props) {
       "This is the painting received in the full scren page: ",
       state.paintingId
     );
-  }, []);
+  }, [state.paintingId]);
 
   useEffect(() => {
     fetchObjects(state.paintingId);
-  }, []);
+  }, [state.paintingId]);
 
   const [painting, setPainting] = useState();
   const [objects, setObjects] = useState();

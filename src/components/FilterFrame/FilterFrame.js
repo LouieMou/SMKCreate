@@ -1,4 +1,4 @@
-import { React, useEffect, useState, useContext } from "react";
+import { React, useEffect, useState, useCallback } from "react";
 import { useNavigate } from "react-router-dom";
 /* Components */
 import CustomScroller from "react-custom-scroller";
@@ -11,22 +11,22 @@ import "../../index.css";
 /* Context */
 
 function FilterFrame(props) {
-  useEffect(() => {
-    updateLabelList();
-  }, []);
-
   const navigate = useNavigate();
   let [labelList, setLabelList] = useState([]);
   const [category, setCategory] = useState();
 
-  async function updateLabelList() {
+  const memoizedUpdateLabelList = useCallback(async () => {
     try {
       setCategory(props.category);
       let labels = await readLabelsInCategory(props.category);
       setLabelList(labels);
-      console.log("This is the labelList: ", labelList);
+      /* console.log("This is the labelList: ", labelList); */
     } catch (error) {}
-  }
+  }, [props.category]);
+
+  useEffect(() => {
+    memoizedUpdateLabelList();
+  }, [memoizedUpdateLabelList]);
 
   function updateFilter(object_label) {
     props.setFilter(object_label);
