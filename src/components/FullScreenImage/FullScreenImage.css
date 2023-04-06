@@ -4,15 +4,29 @@
      position: relative;
 }
 
-.hover-area {
-	position: absolute;
-    font-family: Open sans;
-    font-size: small;
-    font-weight: 500;
-    border-width: 2px;
-    border-style: solid;
-	padding: 10px;
+.object-hover {
+ 	position: absolute;
+	color: var(--primary-white);
 	transform: translate3d(-50%, -50%, 0);
-	cursor: pointer;
+ 	border-radius: 5px; 
+ 	pointer-events: none;
 	z-index: 1000;
+}
+
+.message {
+    color: var(--primary-white);
+}
+
+.object-hover p {
+    margin: 0;
+}
+
+
+.favorite-icon-fullscreen {
+    position: absolute;
+    cursor: pointer;
+    z-index:1001;
+    display: flex;
+    justify-content: right;
+    pointer-events: none; 
 }

@@ -1,16 +1,21 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 /* Component */
 import ImageMapper from "react-img-mapper";
 /* Styles */
 import "./FullScreenImage.css";
+/* Context */
+import { FavoriteContext } from "../../context/FavoriteContext";
 
 export default function FullScreenImage(props) {
-  const myRef = useRef(null);
   const navigate = useNavigate();
 
   const [coords, setCoords] = useState([]);
+  const [message, setMessage] = useState("");
   const [hoverArea, setHoverArea] = useState(null);
+  const [fillHeart, setFillHeart] = useState(false);
+
+  const { updateFavoriteList } = useContext(FavoriteContext);
 
   useEffect(() => {
     updateAreaObject();
@@ -30,78 +35,97 @@ export default function FullScreenImage(props) {
         id: obj.attributes.category_id,
         name: obj.attributes.category_pointer.attributes.category_name,
         label_text: obj.attributes.label_text,
+        fillColor: "hsla(240, 3%, 6%, 0.66)",
       };
     });
     setCoords(cc);
-    console.log(coords);
   }
 
+  const load = () => {
+    setMessage("Interact with image !");
+  };
+
   const enterArea = (area) => {
-    console.log("this is area", area);
     setHoverArea(area);
+    setMessage(`You entered ${area.shape} ${area.label_text} !`);
+  };
+
+  const leaveArea = (area) => {
+    setHoverArea(null);
+    setMessage("");
   };
 
   const clickOnObjectOnPainting = (area) => {
-    console.log(`I clicked on a(n) ${area.id}`);
-    console.log("This is name", area.name);
+    setMessage(`You clicked on ${area.shape} ${area.name}`);
     let obj = area;
-    navigate("/search", { state: { obj } });
+    /* navigate("/search", { state: { obj } }); */
   };
 
   const getCenterPosition = (area) => {
-    let top = area.center[1];
-    let left = area.center[0];
-    return { top: `${top}px`, left: `${left}px` };
-  };
-
-  const getObjectPosition = (area) => {
-    let c = area.coords;
-    console.log("hoverarea: ", c);
-    let x1 = c[0];
-    let y1 = c[1];
-    let x2 = c[2];
-    let y2 = c[6];
-
+    console.log("area", area);
     return {
-      poly: `polygon(${x1} ${y1}, ${x2} ${y1}, ${x2} ${y2}, ${x1} ${y2})`,
+      top: `${area.center[1]}px`,
+      left: `${area.center[0]}px`,
     };
   };
 
-  let colorHover =
-    props.colorMode === "var(--primary-white)"
-      ? "hsla(120, 100%, 100%, 1)"
-      : "hsla(240, 3%, 6%, 1)";
+  const getHeartPosition = (area) => {
+    console.log("area", area);
+    return {
+      top: `${area.scaledCoords[1] + 10}px`,
+      left: `${area.scaledCoords[2] - 38}px`,
+    };
+  };
+
+  function handleSaveToFavorite(imgSource) {
+    updateFavoriteList(imgSource);
+    setFillHeart(true);
+  }
 
   return coords ? (
     <div className="image">
       <ImageMapper
-        containerRef={myRef}
         src={URL}
         map={MAP}
         width={500}
         imgWidth={props.imgWidth > 1660 ? 1024 : props.imgWidth}
+        onLoad={() => load()}
         onClick={(area) => clickOnObjectOnPainting(area)}
         onMouseEnter={(area) => enterArea(area)}
+        onMouseLeave={(area) => leaveArea(area)}
         fillColor="transparent"
         strokeColor="transparent"
       />
 
       {hoverArea && (
-        <span
-          onClick={() => {
-            clickOnObjectOnPainting(hoverArea);
-          }}
-          className="hover-area"
-          style={{
-            ...getCenterPosition(hoverArea),
-            color: colorHover,
-            ...getObjectPosition(hoverArea),
-            borderColor: colorHover,
-          }}
-        >
-          {hoverArea && hoverArea.label_text}
-        </span>
+        <>
+          <div
+            className="object-hover"
+            style={{ ...getCenterPosition(hoverArea) }}
+          >
+            {hoverArea && <p>{hoverArea.label_text}</p>}
+          </div>
+
+          <div
+            className="favorite-icon-fullscreen"
+            style={{ ...getHeartPosition(hoverArea) }}
+          >
+            {fillHeart ? (
+              <img
+                src="/icons/heart_filled_white.svg"
+                onClick={() => handleSaveToFavorite(props.source)}
+              ></img>
+            ) : (
+              <img
+                src="/icons/heart_unfilled_white.svg"
+                onClick={() => handleSaveToFavorite(props.source)}
+              ></img>
+            )}
+          </div>
+        </>
       )}
+
+      <p className="message">{message ? message : ""}</p>
     </div>
   ) : (
     "Loading"
