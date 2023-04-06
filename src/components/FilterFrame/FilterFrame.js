@@ -33,7 +33,7 @@ function FilterFrame(props) {
   }
 
   function navigateToAllCategories() {
-    navigate("/category");
+    navigate("/categories");
   }
 
   return (
