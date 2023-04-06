@@ -2,21 +2,18 @@ import { useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 /* Component */
 import ImageMapper from "react-img-mapper";
-/* Context */
-import { SearchContext } from "../../context/SearchContext";
 /* Styles */
 import "./FullScreenImage.css";
 
 export default function FullScreenImage(props) {
-  //const myRef = useRef(null);
+  const myRef = useRef(null);
   const navigate = useNavigate();
 
   const [coords, setCoords] = useState([]);
   const [hoverArea, setHoverArea] = useState(null);
 
   useEffect(() => {
-    updateAreaObject()
-
+    updateAreaObject();
   }, [props.objects]);
 
   const URL = props.imgURL;
@@ -25,7 +22,7 @@ export default function FullScreenImage(props) {
     areas: coords,
   };
 
-  function updateAreaObject(){
+  function updateAreaObject() {
     const cc = props.objects.map((obj) => {
       return {
         coords: obj.attributes.coords,
@@ -58,27 +55,27 @@ export default function FullScreenImage(props) {
   };
 
   const getObjectPosition = (area) => {
-    let choords = area.scaledCoords;
-    console.log("hoverarea: ", choords);
-    let x1 = choords[0];
-    let y1 = choords[1];
-    let x2 = choords[2];
-    let y2 = choords[6];
+    let c = area.coords;
+    console.log("hoverarea: ", c);
+    let x1 = c[0];
+    let y1 = c[1];
+    let x2 = c[2];
+    let y2 = c[6];
 
     return {
-      clipPath: `polygon(${x1} ${y1}, ${x2} ${y1}, ${x2} ${y2}, ${x1} ${y2});`,
+      poly: `polygon(${x1} ${y1}, ${x2} ${y1}, ${x2} ${y2}, ${x1} ${y2})`,
     };
   };
 
   let colorHover =
     props.colorMode === "var(--primary-white)"
-      ? "hsla(120, 100%, 100%, 0.66)"
-      : "hsla(240, 3%, 6%, 0.66)"
+      ? "hsla(120, 100%, 100%, 1)"
+      : "hsla(240, 3%, 6%, 1)";
 
   return coords ? (
     <div className="image">
       <ImageMapper
-        //containerRef={myRef}
+        containerRef={myRef}
         src={URL}
         map={MAP}
         width={500}
@@ -97,9 +94,9 @@ export default function FullScreenImage(props) {
           className="hover-area"
           style={{
             ...getCenterPosition(hoverArea),
-            color: { colorHover },
+            color: colorHover,
             ...getObjectPosition(hoverArea),
-            borderColor: { colorHover },
+            borderColor: colorHover,
           }}
         >
           {hoverArea && hoverArea.label_text}
