@@ -1,22 +1,24 @@
-.navbar-container{
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    padding-top: 20px;
-    width: 100%;
-    height: 50px;
+.navbar-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding-top: 20px;
+  padding-bottom: 30px;
 }
 
-.rigt-side-icon-container{
-    margin-left: 40px;
-    width: 220px;
+.rigt-side-icon-container {
+  display: flex;
+  flex-direction: row;
+  align-items: end;
+  margin-left: 40px;
+  width: 150px;
 }
 
-.left-side-icon-container{
-    display: flex;
-    flex-direction: row;
-    align-items: end;
-    align-self: flex-end;
-    justify-self: flex-end;
-    justify-content: end;
+.left-side-icon-container {
+  display: flex;
+  flex-direction: row;
+  align-items: end;
+  align-self: flex-end;
+  justify-self: flex-end;
+  justify-content: end;
 }

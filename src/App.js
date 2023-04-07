@@ -51,7 +51,7 @@ function App() {
               <FavoriteList closeFavoriteList={closeFavoriteList} />
             </div>
           )}
-          <div className="navbar-app-container">
+          <div className="navbar-box">
             <NavBar openFavoriteList={openFavoriteList} />
           </div>
           <Routes>

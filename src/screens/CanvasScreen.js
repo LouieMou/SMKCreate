@@ -1,21 +1,49 @@
-import React from "react";
+import React, { useState } from "react";
+/*Styling*/
+import "./CanvasScreen.css";
 /* Components */
 import PageHeading from "../components/Headings/PageHeading";
+import TextBox from "../components/TextBox/TextBox";
+import LabelButton from "../components/LabelButton/LabelButton";
 /* Functions */
 import { setBackgroundColor } from "../functions/background";
 
 function CanvasScreen(props) {
-  const blue = getComputedStyle(document.documentElement).getPropertyValue(
-    "--SMK-blue"
+  const [userInput, setUserInput] = useState("");
+  const handleUserInput = (event) => {
+    setUserInput(event.target.value);
+    console.log(event);
+  };
+
+  const generateImage = () => {
+    if (userInput !== "") {
+      console.log(userInput);
+    } else {
+      console.log("I just clicked the button");
+    }
+  };
+  const white = getComputedStyle(document.documentElement).getPropertyValue(
+    "--primary-white"
   );
-  setBackgroundColor(blue);
+  setBackgroundColor(white);
   return (
-    <div>
+    <div className="canvas-screen-container">
       <PageHeading
         title="This is the Canvas Screen"
         subtitle="Design and data will soon be updated"
-        color={`var(--primary-white)`}
       />
+      <div className="generate-image-container">
+        <TextBox
+          placeholder="Write some text here to start generating an image"
+          value={userInput}
+          onChange={handleUserInput}
+        />
+        <LabelButton
+          button_size={"large"}
+          label_text={"Generate Image"}
+          handleClick={generateImage}
+        />
+      </div>
     </div>
   );
 }
