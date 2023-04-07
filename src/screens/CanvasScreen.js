@@ -22,6 +22,11 @@ function CanvasScreen(props) {
       console.log("I just clicked the button");
     }
   };
+
+  const downLoadImage = () => {
+    console.log("I downloaded my image");
+  };
+
   const white = getComputedStyle(document.documentElement).getPropertyValue(
     "--primary-white"
   );
@@ -32,17 +37,25 @@ function CanvasScreen(props) {
         title="This is the Canvas Screen"
         subtitle="Design and data will soon be updated"
       />
+
       <div className="generate-image-container">
         <TextBox
           placeholder="Write some text here to start generating an image"
           value={userInput}
           onChange={handleUserInput}
         />
-        <LabelButton
-          button_size={"large"}
-          label_text={"Generate Image"}
-          handleClick={generateImage}
-        />
+        <div className="label-buttons-container">
+          <LabelButton
+            button_size={"large"}
+            label_text={"Generate Image"}
+            handleClick={generateImage}
+          />
+          <LabelButton
+            button_size={"large"}
+            label_text={"Download"}
+            handleClick={downLoadImage}
+          />
+        </div>
       </div>
     </div>
   );

@@ -1,11 +1,10 @@
 @import url(../../index.css);
 .textbox-container {
-  position: absolute;
-  width: 300px;
+  width: 200px;
   height: 426px;
   left: 1075px;
   top: 125px;
-  border: solid 1px black;
+  border: solid 2px black;
   margin-top: 60px;
   box-sizing: border-box;
 }
