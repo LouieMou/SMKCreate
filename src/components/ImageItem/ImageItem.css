@@ -7,7 +7,7 @@
 }
 
 .image {
-  height: 150px;
+  max-height: 150px;
   vertical-align: top;
 }
 
