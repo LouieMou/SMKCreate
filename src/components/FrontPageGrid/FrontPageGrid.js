@@ -11,10 +11,6 @@ export default function FrontPageGrid(props) {
   const { setCategoryIdAndFilter } = useContext(SearchContext);
   const navigate = useNavigate();
 
-  useEffect(() => {
-    console.log("frontpageGrid", props.data);
-  }, []);
-
   function handleClick(category) {
     navigate("/search");
     setCategoryIdAndFilter(category, undefined);

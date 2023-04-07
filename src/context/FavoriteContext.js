@@ -6,9 +6,10 @@ export function FavoriteContextProvider({ children }) {
   const [favoriteList, setFavoriteList] = useState([]);
 
   function updateFavoriteList(object) {
-    /*     if (favoriteList.length === 0) {
-      setFavoriteList([object]);
-    } else { */
+    if (favoriteList.some((item) => item.id !== object.id)) {
+      console.log("Object already exists in favoriteList");
+      return;
+    }
     setFavoriteList([{ object }, ...favoriteList]);
 
     console.log("this is the favorite list: ", favoriteList);

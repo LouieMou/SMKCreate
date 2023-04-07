@@ -25,21 +25,11 @@ function App() {
 
   useEffect(() => {
     fecthCategoriesWithPointer();
-    if (categoriesAndObjects) {
-      console.log(
-        "This is the category and pointer result: ",
-        categoriesAndObjects
-      );
-    }
   }, []);
 
   async function fecthCategoriesWithPointer() {
     let categoriesAndObjectsResult = await getCategoriesWithPointer();
     setCategoriesAndObjects(categoriesAndObjectsResult);
-    console.log(
-      "This is the category and pointer result: ",
-      categoriesAndObjects
-    );
   }
 
   function openFavoriteList() {
