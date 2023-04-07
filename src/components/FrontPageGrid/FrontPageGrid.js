@@ -1,4 +1,4 @@
-import { React, useContext } from "react";
+import { React, useContext, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 /* Components */
 import ImageItem from "../ImageItem/ImageItem";
@@ -10,6 +10,10 @@ import "./FrontPageGrid.css";
 export default function FrontPageGrid(props) {
   const { setCategoryIdAndFilter } = useContext(SearchContext);
   const navigate = useNavigate();
+
+  useEffect(() => {
+    console.log("frontpageGrid", props.data);
+  }, []);
 
   function handleClick(category) {
     navigate("/search");
@@ -25,6 +29,7 @@ export default function FrontPageGrid(props) {
             source={item.object.object_url}
             title={item.category.name}
             handleClick={() => handleClick(item.category)}
+            object={item.object}
           />
         );
       })}
