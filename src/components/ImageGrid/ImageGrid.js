@@ -18,6 +18,7 @@ export default function ImageGrid(props) {
             key={index}
             source={obj.attributes.object_url}
             title={obj.attributes.label_text}
+            object={obj}
             handleClick={() => onClickImage(obj.attributes.painting_pointer.id)}
           />
         );

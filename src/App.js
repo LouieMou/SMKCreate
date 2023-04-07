@@ -13,6 +13,7 @@ import NavBar from "./components/NavBar/NavBar";
 import FavoriteList from "./components/FavoriteList/FavoriteList";
 /* Functions */
 import { getAllCategoriesWithImage } from "./database/Category";
+import {getCategoriesWithPointer} from "./database/Category";
 /* Context */
 import { SearchContextProvider } from "./context/SearchContext";
 import { FavoriteContextProvider } from "./context/FavoriteContext";
@@ -21,16 +22,32 @@ import "./App.css";
 
 function App() {
   const [categories, setCategories] = useState();
+  const [categoriesWithPointer, setCategoriesWithPointer] = useState();
   const [favoriteIsActive, setFavoriteIsActive] = useState(false);
 
   useEffect(() => {
     fectCategories();
   }, []);
 
+  useEffect(()=>{
+    fecthCategoriesWithPointer()
+    if(categoriesWithPointer){
+      console.log("This is the category and pointer result: ", categoriesWithPointer)
+
+    }
+  }, [])
+
   async function fectCategories() {
     let categoryResult = await getAllCategoriesWithImage();
     setCategories(categoryResult);
   }
+
+  async function fecthCategoriesWithPointer(){
+    let categoryWithPointerResult = await getCategoriesWithPointer();
+    setCategoriesWithPointer(categoryWithPointerResult);
+    console.log("This is the category and pointer result: ", categoriesWithPointer)
+  }
+
 
   function openFavoriteList(){
     console.log("Fave List is not True")
@@ -50,7 +67,7 @@ function App() {
            <NavBar openFavoriteList={openFavoriteList}/>
            </div>
           <Routes>
-            <Route path="/" element={<HomeScreen categories={categories} />} />
+            <Route path="/" element={<HomeScreen categories={categoriesWithPointer} />} />
             <Route path="/search" element={<SearchScreen />} />
             <Route path="/search/:id" element={<SearchScreen />} />
             <Route path="/painting" element={<PaintingScreen />} />

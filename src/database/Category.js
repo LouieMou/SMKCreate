@@ -21,6 +21,46 @@ export async function readLabelsInCategory(categoryName) {
   } catch (error) {}
 }
 
+export async function getCategoriesWithPointer() {
+  let categoryAndObject = [];
+  let categoryResult;
+  let query = new Parse.Query("Category");
+  query.select('category.id','category_name"', 'object_pointer.painting_id_back4app', 'object_pointer.label_text', 'object_pointer.object_url')
+ 
+  function destructureObject(object) {
+    let destructuredObject = {
+      id: object.id,
+      painting_id: object.attributes.painting_id_back4app,
+      label_text: object.attributes.label_text,
+      object_url: object.attributes.object_url,
+    };
+    return destructuredObject;
+  }
+
+  function destructureCategory(category){
+    let destructuredCategory = {
+      id: category.id,
+      name: category.attributes.category_name
+    }
+  return destructuredCategory;
+  }
+
+
+  try {
+    categoryResult = await query.find();
+    categoryResult.forEach((category) => {
+      //console.log("we are in the loop", categoryAndObject)
+      categoryAndObject.push({
+        category: destructureCategory(category),
+        object: destructureObject(category.get("object_pointer")),
+      });
+    });
+    
+    //console.log("This is from the database function; ", categoryAndObject);
+    return categoryAndObject;
+  } catch (error) {}
+}
+
 export async function getAllCategoriesWithImage() {
   let categoryAndImage = [];
   let query = new Parse.Query("Category");

@@ -18,13 +18,13 @@ export default function FrontPageGrid(props) {
 
   return (
     <div className="frontpage-grid">
-      {props.data.map((category, index) => {
+      {props.data.map((item, index) => {
         return (
           <ImageItem
             key={index}
-            source={category.img_url}
-            title={category.name}
-            handleClick={() => handleClick(category)}
+            source={item.object.object_url}
+            title={item.category.name}
+            handleClick={() => handleClick(item.category)}
           />
         );
       })}
