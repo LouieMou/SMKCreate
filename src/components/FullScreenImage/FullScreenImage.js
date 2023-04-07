@@ -1,22 +1,24 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 /* Component */
 import ImageMapper from "react-img-mapper";
-/* Context */
-import { SearchContext } from "../../context/SearchContext";
 /* Styles */
 import "./FullScreenImage.css";
+/* Context */
+import { FavoriteContext } from "../../context/FavoriteContext";
 
 export default function FullScreenImage(props) {
-  //const myRef = useRef(null);
   const navigate = useNavigate();
 
   const [coords, setCoords] = useState([]);
+  const [message, setMessage] = useState("");
   const [hoverArea, setHoverArea] = useState(null);
+  const [fillHeart, setFillHeart] = useState(false);
+
+  const { updateFavoriteList } = useContext(FavoriteContext);
 
   useEffect(() => {
-    updateAreaObject()
-
+    updateAreaObject();
   }, [props.objects]);
 
   const URL = props.imgURL;
@@ -25,86 +27,118 @@ export default function FullScreenImage(props) {
     areas: coords,
   };
 
-  function updateAreaObject(){
+  function updateAreaObject() {
     const cc = props.objects.map((obj) => {
       return {
+        key: obj.id,
+        object_id: obj.id,
         coords: obj.attributes.coords,
         shape: "poly",
-        id: obj.attributes.category_id,
+        category_id: obj.attributes.category_id,
         name: obj.attributes.category_pointer.attributes.category_name,
         label_text: obj.attributes.label_text,
+        fillColor: "hsla(240, 3%, 6%, 0.66)",
+        object_url: obj.attributes.object_url,
       };
     });
     setCoords(cc);
-    console.log(coords);
+    console.log("cc", cc);
   }
 
+  const load = () => {
+    setMessage("Interact with image !");
+  };
+
   const enterArea = (area) => {
-    console.log("this is area", area);
     setHoverArea(area);
+    setMessage(`You entered ${area.shape} ${area.label_text} !`);
+  };
+
+  const leaveArea = (area) => {
+    setHoverArea(null);
+    setMessage("");
   };
 
   const clickOnObjectOnPainting = (area) => {
-    console.log(`I clicked on a(n) ${area.id}`);
-    console.log("This is name", area.name);
+    setMessage(`You clicked on ${area.label_text}`);
     let obj = area;
-    navigate("/search", { state: { obj } });
+    /* navigate("/search", { state: { obj } }); */
   };
 
   const getCenterPosition = (area) => {
-    let top = area.center[1];
-    let left = area.center[0];
-    return { top: `${top}px`, left: `${left}px` };
-  };
-
-  const getObjectPosition = (area) => {
-    let choords = area.scaledCoords;
-    console.log("hoverarea: ", choords);
-    let x1 = choords[0];
-    let y1 = choords[1];
-    let x2 = choords[2];
-    let y2 = choords[6];
-
     return {
-      clipPath: `polygon(${x1} ${y1}, ${x2} ${y1}, ${x2} ${y2}, ${x1} ${y2});`,
+      top: `${area.center[1]}px`,
+      left: `${area.center[0]}px`,
     };
   };
 
-  let colorHover =
-    props.colorMode === "var(--primary-white)"
-      ? "hsla(120, 100%, 100%, 0.66)"
-      : "hsla(240, 3%, 6%, 0.66)"
+  const getHeartPosition = (area) => {
+    return {
+      top: `${area.scaledCoords[1] + 10}px`,
+      left: `${area.scaledCoords[2] - 38}px`,
+    };
+  };
+
+  function handleSaveToFavorite(area) {
+    setMessage(`You clicked on heart: ${area}`);
+    if (fillHeart) {
+      setFillHeart(false);
+    } else {
+      setFillHeart(true);
+      /* updateFavoriteList(area); */
+    }
+  }
 
   return coords ? (
     <div className="image">
       <ImageMapper
-        //containerRef={myRef}
         src={URL}
         map={MAP}
         width={500}
         imgWidth={props.imgWidth > 1660 ? 1024 : props.imgWidth}
+        onLoad={() => load()}
         onClick={(area) => clickOnObjectOnPainting(area)}
         onMouseEnter={(area) => enterArea(area)}
+        onMouseLeave={(area) => leaveArea(area)}
         fillColor="transparent"
         strokeColor="transparent"
       />
 
       {hoverArea && (
-        <span
-          onClick={() => {
-            clickOnObjectOnPainting(hoverArea);
-          }}
-          className="hover-area"
-          style={{
-            ...getCenterPosition(hoverArea),
-            color: { colorHover },
-            ...getObjectPosition(hoverArea),
-            borderColor: { colorHover },
-          }}
-        >
-          {hoverArea && hoverArea.label_text}
-        </span>
+        <>
+          <div
+            className="object-hover"
+            style={{ ...getCenterPosition(hoverArea) }}
+          >
+            {hoverArea && (
+              <p onClick={(hoverArea) => handleSaveToFavorite(hoverArea)}>
+                {hoverArea.label_text}
+              </p>
+            )}
+          </div>
+
+          <div
+            className="favorite-icon-fullscreen"
+            style={{ ...getHeartPosition(hoverArea) }}
+          >
+            {fillHeart ? (
+              <img
+                src="/icons/heart_filled_white.svg"
+                onClick={(hoverArea) => handleSaveToFavorite(hoverArea)}
+                /* style={{ pointerEvents: "auto" }} */
+              ></img>
+            ) : (
+              <img
+                src="/icons/heart_unfilled_white.svg"
+                onClick={(hoverArea) => handleSaveToFavorite(hoverArea)}
+                /* style={{ pointerEvents: "auto" }} */
+              ></img>
+            )}
+          </div>
+        </>
       )}
+
+      <p className="message">{message ? message : ""}</p>
     </div>
   ) : (
     "Loading"
