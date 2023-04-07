@@ -4,13 +4,11 @@ body {
   margin: 0;
 }
 
-.navbar-container {
+.navbar-box {
   position: -webkit-sticky;
   position: sticky;
   width: 100%;
   height: 70px;
   top: 0;
-  padding-top: 20px;
-  padding-bottom: 30px;
   z-index: 1;
 }
