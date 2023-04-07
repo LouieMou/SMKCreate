@@ -26,7 +26,7 @@ function NavBar(props) {
 
   const location = useLocation();
   const [navBarColor, setNavBarColor] = useState();
-  const [screenColor, setScreenColor] = useState(props.backgroundColor);
+  const [screenColor, setScreenColor] = useState();
 
   useEffect(() => {
     if (location.pathname !== "/canvas" && location.pathname !== "/") {
@@ -36,12 +36,12 @@ function NavBar(props) {
     }
   });
 
-  /* useEffect(() => {
+  useEffect(() => {
     const screenColor = getComputedStyle(document.body).getPropertyValue(
       "background-color"
     );
     setScreenColor(screenColor);
-  }, [location, screenColor]);*/
+  }, [location, screenColor]);
 
   const navigate = useNavigate();
 
