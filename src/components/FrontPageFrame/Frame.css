@@ -10,9 +10,9 @@
   box-sizing: border-box;
   border: 10px solid #101011;
   position: absolute;
-  height: 80vh;
+  height: 70vh;
   width: 100vw;
   left: 7.14286vw;
   right: -1em;
-  top: 121px;
+  top: 50px;
 }

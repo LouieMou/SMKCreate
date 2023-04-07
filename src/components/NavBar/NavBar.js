@@ -25,15 +25,24 @@ function NavBar(props) {
   const HeartUnfilledBlack = "./icons/heart_unfilled_black.svg";
 
   const location = useLocation();
-  const [navBarColor, setNavBarColor] = useState("black");
+  const [navBarColor, setNavBarColor] = useState();
+  const [screenColor, setScreenColor] = useState();
 
   useEffect(() => {
-    if (location.pathname !== "/") {
+    if (location.pathname !== "/canvas" && location.pathname !== "/") {
       setNavBarColor("white");
-    } else{
-      setNavBarColor("black")
+    } else {
+      setNavBarColor("black");
     }
   });
+
+  useEffect(() => {
+    const screenColor = getComputedStyle(document.body).getPropertyValue(
+      "background-color"
+    );
+    setScreenColor(screenColor);
+  }, [location, screenColor]);
+
   const navigate = useNavigate();
 
   function goBack() {
@@ -45,7 +54,7 @@ function NavBar(props) {
   }
 
   return (
-    <nav className="navbar-container">
+    <nav className="navbar-container" style={{ backgroundColor: screenColor }}>
       <div className="rigt-side-icon-container">
         <NavIcon
           img_container_style={""}

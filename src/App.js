@@ -48,14 +48,14 @@ function App() {
     console.log("This is the category and pointer result: ", categoriesWithPointer)
   }
 
-
   function openFavoriteList(){
     console.log("Fave List is not True")
+
     setFavoriteIsActive(true);
   }
 
   function closeFavoriteList() {
-    console.log("Fave List is not False")
+    console.log("Fave List is not False");
     setFavoriteIsActive(false);
   }
 
@@ -63,9 +63,14 @@ function App() {
     <>
       <SearchContextProvider>
         <FavoriteContextProvider>
-          <div className="navbar-container">
-           <NavBar openFavoriteList={openFavoriteList}/>
-           </div>
+          {favoriteIsActive && (
+            <div className="favorite-list-container">
+              <FavoriteList closeFavoriteList={closeFavoriteList} />
+            </div>
+          )}
+          <div className="navbar-box">
+            <NavBar openFavoriteList={openFavoriteList} />
+          </div>
           <Routes>
             <Route path="/" element={<HomeScreen categories={categoriesWithPointer} />} />
             <Route path="/search" element={<SearchScreen />} />
@@ -79,7 +84,6 @@ function App() {
               element={<CategoryScreen categories={categories} />}
             />
           </Routes>
-          {favoriteIsActive && <FavoriteList closeFavoriteList={closeFavoriteList} />}
         </FavoriteContextProvider>
       </SearchContextProvider>
     </>

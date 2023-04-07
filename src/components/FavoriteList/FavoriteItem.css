@@ -6,7 +6,8 @@
   }
   
 .favorite-image {
-    height: 80px;
+    max-height: 80px;
+    max-width: 250px;
     vertical-align: top;
   }
 
