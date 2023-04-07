@@ -25,3 +25,14 @@ export async function readObjectsByPaintingId(paintingPointer) {
     return objects;
   } catch (error) {}
 }
+
+export async function readObjectsByURL(object_url) {
+  let query = new Parse.Query("Object");
+  query.equalTo("object_url", object_url);
+
+  try {
+    let objects = await query.find();
+    return objects;
+  } catch (error) {}
+}
+
