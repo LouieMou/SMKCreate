@@ -12,8 +12,7 @@ import CanvasScreen from "./screens/CanvasScreen";
 import NavBar from "./components/NavBar/NavBar";
 import FavoriteList from "./components/FavoriteList/FavoriteList";
 /* Functions */
-import { getAllCategoriesWithImage } from "./database/Category";
-import {getCategoriesWithPointer} from "./database/Category";
+import { getCategoriesWithPointer } from "./database/Category";
 /* Context */
 import { SearchContextProvider } from "./context/SearchContext";
 import { FavoriteContextProvider } from "./context/FavoriteContext";
@@ -21,35 +20,30 @@ import { FavoriteContextProvider } from "./context/FavoriteContext";
 import "./App.css";
 
 function App() {
-  const [categories, setCategories] = useState();
-  const [categoriesWithPointer, setCategoriesWithPointer] = useState();
+  const [categoriesAndObjects, setCategoriesAndObjects] = useState();
   const [favoriteIsActive, setFavoriteIsActive] = useState(false);
 
   useEffect(() => {
-    fectCategories();
+    fecthCategoriesWithPointer();
+    if (categoriesAndObjects) {
+      console.log(
+        "This is the category and pointer result: ",
+        categoriesAndObjects
+      );
+    }
   }, []);
 
-  useEffect(()=>{
-    fecthCategoriesWithPointer()
-    if(categoriesWithPointer){
-      console.log("This is the category and pointer result: ", categoriesWithPointer)
-
-    }
-  }, [])
-
-  async function fectCategories() {
-    let categoryResult = await getAllCategoriesWithImage();
-    setCategories(categoryResult);
+  async function fecthCategoriesWithPointer() {
+    let categoriesAndObjectsResult = await getCategoriesWithPointer();
+    setCategoriesAndObjects(categoriesAndObjectsResult);
+    console.log(
+      "This is the category and pointer result: ",
+      categoriesAndObjects
+    );
   }
 
-  async function fecthCategoriesWithPointer(){
-    let categoryWithPointerResult = await getCategoriesWithPointer();
-    setCategoriesWithPointer(categoryWithPointerResult);
-    console.log("This is the category and pointer result: ", categoriesWithPointer)
-  }
-
-  function openFavoriteList(){
-    console.log("Fave List is not True")
+  function openFavoriteList() {
+    console.log("Fave List is not True");
 
     setFavoriteIsActive(true);
   }
@@ -71,19 +65,26 @@ function App() {
           <div className="navbar-box">
             <NavBar openFavoriteList={openFavoriteList} />
           </div>
-          <Routes>
-            <Route path="/" element={<HomeScreen categories={categoriesWithPointer} />} />
-            <Route path="/search" element={<SearchScreen />} />
-            <Route path="/search/:id" element={<SearchScreen />} />
-            <Route path="/painting" element={<PaintingScreen />} />
-            <Route path="/test" element={<TestScreen />} />
-            <Route path="/canvas" element={<CanvasScreen />} />
-            <Route path="/profile" element={<ProfileScreen />} />
-            <Route
-              path="/categories"
-              element={<CategoryScreen categories={categories} />}
-            />
-          </Routes>
+          {categoriesAndObjects ? (
+            <Routes>
+              <Route
+                path="/"
+                element={<HomeScreen categories={categoriesAndObjects} />}
+              />
+              <Route path="/search" element={<SearchScreen />} />
+              <Route path="/search/:id" element={<SearchScreen />} />
+              <Route path="/painting" element={<PaintingScreen />} />
+              <Route path="/test" element={<TestScreen />} />
+              <Route path="/canvas" element={<CanvasScreen />} />
+              <Route path="/profile" element={<ProfileScreen />} />
+              <Route
+                path="/categories"
+                element={<CategoryScreen categories={categoriesAndObjects} />}
+              />
+            </Routes>
+          ) : (
+            <></>
+          )}
         </FavoriteContextProvider>
       </SearchContextProvider>
     </>
