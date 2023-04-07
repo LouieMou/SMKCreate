@@ -2,13 +2,12 @@
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  margin-top: 20px;
-  width: 100%;
-  height: 50px;
-  position: fixed;
 }
 
 .rigt-side-icon-container {
+  display: flex;
+  flex-direction: row;
+  align-items: end;
   margin-left: 40px;
   width: 220px;
 }

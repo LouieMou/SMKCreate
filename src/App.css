@@ -10,4 +10,7 @@ body {
   width: 100%;
   height: 70px;
   top: 0;
+  padding-top: 20px;
+  padding-bottom: 30px;
+  z-index: 1;
 }
