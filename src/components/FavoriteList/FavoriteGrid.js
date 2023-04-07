@@ -34,7 +34,7 @@ export default function FavoriteGrid(props) {
             <FavoriteItem
               key={index}
               source={obj.object.object_url}
-              title="item"
+              title={obj.object.label_text}
               handleClick={onClickImage}
               removeItemFromFavoriteList={deleteItem}
             />
