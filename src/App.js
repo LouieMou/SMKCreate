@@ -13,7 +13,7 @@ import NavBar from "./components/NavBar/NavBar";
 import FavoriteList from "./components/FavoriteList/FavoriteList";
 /* Functions */
 import { getAllCategoriesWithImage } from "./database/Category";
-import {getCategoriesWithPointer} from "./database/Category";
+import { getCategoriesWithPointer } from "./database/Category";
 /* Context */
 import { SearchContextProvider } from "./context/SearchContext";
 import { FavoriteContextProvider } from "./context/FavoriteContext";
@@ -29,27 +29,32 @@ function App() {
     fectCategories();
   }, []);
 
-  useEffect(()=>{
-    fecthCategoriesWithPointer()
-    if(categoriesWithPointer){
-      console.log("This is the category and pointer result: ", categoriesWithPointer)
-
+  useEffect(() => {
+    fecthCategoriesWithPointer();
+    if (categoriesWithPointer) {
+      console.log(
+        "This is the category and pointer result: ",
+        categoriesWithPointer
+      );
     }
-  }, [])
+  }, []);
 
   async function fectCategories() {
     let categoryResult = await getAllCategoriesWithImage();
     setCategories(categoryResult);
   }
 
-  async function fecthCategoriesWithPointer(){
+  async function fecthCategoriesWithPointer() {
     let categoryWithPointerResult = await getCategoriesWithPointer();
     setCategoriesWithPointer(categoryWithPointerResult);
-    console.log("This is the category and pointer result: ", categoriesWithPointer)
+    console.log(
+      "This is the category and pointer result: ",
+      categoriesWithPointer
+    );
   }
 
-  function openFavoriteList(){
-    console.log("Fave List is not True")
+  function openFavoriteList() {
+    console.log("Fave List is not True");
 
     setFavoriteIsActive(true);
   }
@@ -72,7 +77,10 @@ function App() {
             <NavBar openFavoriteList={openFavoriteList} />
           </div>
           <Routes>
-            <Route path="/" element={<HomeScreen categories={categoriesWithPointer} />} />
+            <Route
+              path="/"
+              element={<HomeScreen categories={categoriesWithPointer} />}
+            />
             <Route path="/search" element={<SearchScreen />} />
             <Route path="/search/:id" element={<SearchScreen />} />
             <Route path="/painting" element={<PaintingScreen />} />
@@ -81,7 +89,7 @@ function App() {
             <Route path="/profile" element={<ProfileScreen />} />
             <Route
               path="/categories"
-              element={<CategoryScreen categories={categories} />}
+              element={<CategoryScreen categories={categoriesWithPointer} />}
             />
           </Routes>
         </FavoriteContextProvider>
