@@ -19,16 +19,14 @@ export default function ImageGrid(props) {
   return (
     <div className="image-grid">
       {props.list.map((obj, index) => {
-        if (obj.attributes.object_url !== "")
+        if (obj.object_url !== "")
           return (
             <ImageItem
               key={index}
-              source={obj.attributes.object_url}
-              title={obj.attributes.label_text}
-              object={obj.attributes}
-              handleClick={() =>
-                onClickImage(obj.attributes.painting_pointer.id)
-              }
+              source={obj.object_url}
+              title={obj.label_text}
+              object={obj}
+              handleClick={() => onClickImage(obj.painting_id)}
             />
           );
       })}

@@ -25,8 +25,14 @@ export async function getCategoriesWithPointer() {
   let categoryAndObject = [];
   let categoryResult;
   let query = new Parse.Query("Category");
-  query.select('category.id', 'category_name', 'object_pointer.painting_id_back4app', 'object_pointer.label_text', 'object_pointer.object_url')
- 
+  query.select(
+    "category.id",
+    "category_name",
+    "object_pointer.painting_id_back4app",
+    "object_pointer.label_text",
+    "object_pointer.object_url"
+  );
+
   function destructureObject(object) {
     let destructuredObject = {
       id: object.id,
@@ -37,18 +43,17 @@ export async function getCategoriesWithPointer() {
     return destructuredObject;
   }
 
-  function destructureCategory(category){
+  function destructureCategory(category) {
     let destructuredCategory = {
       id: category.id,
-      name: category.get("category_name")
-    }
-  return destructuredCategory;
+      name: category.get("category_name"),
+    };
+    return destructuredCategory;
   }
-
 
   try {
     categoryResult = await query.find();
-    console.log("This is the query result: ", categoryResult)
+    //console.log("This is the query result: ", categoryResult)
     categoryResult.forEach((category) => {
       //console.log("we are in the loop", categoryAndObject)
       categoryAndObject.push({
@@ -56,8 +61,8 @@ export async function getCategoriesWithPointer() {
         object: destructureObject(category.get("object_pointer")),
       });
     });
-    
-    console.log("This is from the database function; ", categoryAndObject);
+
+    //console.log("This is from the database function; ", categoryAndObject);
     return categoryAndObject;
   } catch (error) {}
 }

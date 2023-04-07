@@ -10,6 +10,7 @@ export default function ImageItem(props) {
   const { updateFavoriteList } = useContext(FavoriteContext);
 
   function handleSaveToFavorite(object) {
+    console.log("save", object);
     updateFavoriteList(object);
   }
 
