@@ -43,13 +43,10 @@ function App() {
   }
 
   function openFavoriteList() {
-    console.log("Fave List is not True");
-
     setFavoriteIsActive(true);
   }
 
   function closeFavoriteList() {
-    console.log("Fave List is not False");
     setFavoriteIsActive(false);
   }
 

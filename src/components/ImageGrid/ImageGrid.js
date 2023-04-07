@@ -3,9 +3,15 @@ import { useNavigate } from "react-router-dom";
 import ImageItem from "../ImageItem/ImageItem";
 /* Styles */
 import "./ImageGrid.css";
+import { useEffect } from "react";
 
 export default function ImageGrid(props) {
   const navigate = useNavigate();
+
+  useEffect(() => {
+    console.log("Imagegrid", props.list);
+  }, []);
+
   function onClickImage(paintingId) {
     navigate("/test", { state: { paintingId } });
   }
@@ -19,7 +25,7 @@ export default function ImageGrid(props) {
               key={index}
               source={obj.attributes.object_url}
               title={obj.attributes.label_text}
-              object={obj}
+              object={obj.attributes}
               handleClick={() =>
                 onClickImage(obj.attributes.painting_pointer.id)
               }

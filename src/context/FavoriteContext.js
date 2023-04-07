@@ -6,11 +6,11 @@ export function FavoriteContextProvider({ children }) {
   const [favoriteList, setFavoriteList] = useState([]);
 
   function updateFavoriteList(object) {
-    if (favoriteList.length === 0) {
+    /*     if (favoriteList.length === 0) {
       setFavoriteList([object]);
-    } else {
-      setFavoriteList([object, ...favoriteList]);
-    }
+    } else { */
+    setFavoriteList([{ object }, ...favoriteList]);
+
     console.log("this is the favorite list: ", favoriteList);
   }
 
