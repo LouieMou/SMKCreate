@@ -46,17 +46,24 @@ export default function FullScreenImage(props) {
   }
 
   const load = () => {
-    setMessage("Interact with image !");
+    setMessage("Hover the image to explore the objects!");
   };
 
   const enterArea = (area) => {
     setHoverArea(area);
-    setMessage(`You entered ${area.shape} ${area.label_text} !`);
+    let an = "an";
+    let a = "a"
+    setMessage(`You found ${startsWithVowel(area.label_text) ? an: a} ${area.label_text} !`);
   };
+
+  function startsWithVowel(word){
+   const vowels = ("aeiou"); 
+   return vowels.indexOf(word[0]) !== -1;
+}
 
   const leaveArea = (area) => {
     setHoverArea(null);
-    setMessage("");
+    setMessage("Hover the image to explore the objects!");
   };
 
   const clickOnObjectOnPainting = (area) => {
