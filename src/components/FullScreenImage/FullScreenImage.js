@@ -46,17 +46,24 @@ export default function FullScreenImage(props) {
   }
 
   const load = () => {
-    setMessage("Interact with image !");
+    setMessage("Hover the image to explore the objects!");
   };
 
   const enterArea = (area) => {
     setHoverArea(area);
-    setMessage(`You entered ${area.shape} ${area.label_text} !`);
+    let an = "an";
+    let a = "a"
+    setMessage(`You found ${startsWithVowel(area.label_text) ? an: a} ${area.label_text} !`);
   };
+
+  function startsWithVowel(word){
+   const vowels = ("aeiou"); 
+   return vowels.indexOf(word[0]) !== -1;
+}
 
   const leaveArea = (area) => {
     setHoverArea(null);
-    setMessage("");
+    setMessage("Hover the image to explore the objects!");
   };
 
   const clickOnObjectOnPainting = (area) => {
@@ -67,26 +74,21 @@ export default function FullScreenImage(props) {
 
   const getCenterPosition = (area) => {
     return {
-      top: `${area.center[1]}px`,
-      left: `${area.center[0]}px`,
+      top: `${area.center[1] - 14}px`,
+      left: `${area.center[0] - 12.5}px`,
     };
   };
 
-  const getHeartPosition = (area) => {
+ /*  const getHeartPosition = (area) => {
     return {
       top: `${area.scaledCoords[1] + 10}px`,
       left: `${area.scaledCoords[2] - 38}px`,
     };
-  };
+  }; */
 
   function handleSaveToFavorite(area) {
     setMessage(`You clicked on heart: ${area}`);
-    if (fillHeart) {
-      setFillHeart(false);
-    } else {
-      setFillHeart(true);
-      /* updateFavoriteList(area); */
-    }
+    setFillHeart(!fillHeart)
   }
 
   return coords ? (
@@ -97,7 +99,7 @@ export default function FullScreenImage(props) {
         width={500}
         imgWidth={props.imgWidth > 1660 ? 1024 : props.imgWidth}
         onLoad={() => load()}
-        onClick={(area) => clickOnObjectOnPainting(area)}
+        onClick={(area) => handleSaveToFavorite(area)}
         onMouseEnter={(area) => enterArea(area)}
         onMouseLeave={(area) => leaveArea(area)}
         fillColor="transparent"
@@ -106,7 +108,7 @@ export default function FullScreenImage(props) {
 
       {hoverArea && (
         <>
-          <div
+         {/*  <div
             className="object-hover"
             style={{ ...getCenterPosition(hoverArea) }}
           >
@@ -115,23 +117,19 @@ export default function FullScreenImage(props) {
                 {hoverArea.label_text}
               </p>
             )}
-          </div>
+          </div> */}
 
           <div
             className="favorite-icon-fullscreen"
-            style={{ ...getHeartPosition(hoverArea) }}
+            style={{ ...getCenterPosition(hoverArea) }}
           >
             {fillHeart ? (
               <img
                 src="/icons/heart_filled_white.svg"
-                onClick={(hoverArea) => handleSaveToFavorite(hoverArea)}
-                /* style={{ pointerEvents: "auto" }} */
               ></img>
             ) : (
               <img
                 src="/icons/heart_unfilled_white.svg"
-                onClick={(hoverArea) => handleSaveToFavorite(hoverArea)}
-                /* style={{ pointerEvents: "auto" }} */
               ></img>
             )}
           </div>
