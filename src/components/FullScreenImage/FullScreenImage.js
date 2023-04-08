@@ -1,5 +1,4 @@
 import { useEffect, useState, useContext } from "react";
-import { useNavigate } from "react-router-dom";
 /* Component */
 import ImageMapper from "react-img-mapper";
 /* Styles */
@@ -8,8 +7,6 @@ import "./FullScreenImage.css";
 import { FavoriteContext } from "../../context/FavoriteContext";
 
 export default function FullScreenImage(props) {
-  const navigate = useNavigate();
-
   const [coords, setCoords] = useState([]);
   const [message, setMessage] = useState("");
   const [hoverArea, setHoverArea] = useState(null);
@@ -52,24 +49,22 @@ export default function FullScreenImage(props) {
   const enterArea = (area) => {
     setHoverArea(area);
     let an = "an";
-    let a = "a"
-    setMessage(`You found ${startsWithVowel(area.label_text) ? an: a} ${area.label_text} !`);
+    let a = "a";
+    setMessage(
+      `You found ${startsWithVowel(area.label_text) ? an : a} ${
+        area.label_text
+      } !`
+    );
   };
 
-  function startsWithVowel(word){
-   const vowels = ("aeiou"); 
-   return vowels.indexOf(word[0]) !== -1;
-}
+  function startsWithVowel(word) {
+    const vowels = "aeiou";
+    return vowels.indexOf(word[0]) !== -1;
+  }
 
   const leaveArea = (area) => {
     setHoverArea(null);
     setMessage("Hover the image to explore the objects!");
-  };
-
-  const clickOnObjectOnPainting = (area) => {
-    setMessage(`You clicked on ${area.label_text}`);
-    let obj = area;
-    /* navigate("/search", { state: { obj } }); */
   };
 
   const getCenterPosition = (area) => {
@@ -79,16 +74,10 @@ export default function FullScreenImage(props) {
     };
   };
 
- /*  const getHeartPosition = (area) => {
-    return {
-      top: `${area.scaledCoords[1] + 10}px`,
-      left: `${area.scaledCoords[2] - 38}px`,
-    };
-  }; */
-
   function handleSaveToFavorite(area) {
     setMessage(`You clicked on heart: ${area}`);
-    setFillHeart(!fillHeart)
+    updateFavoriteList(area);
+    setFillHeart(!fillHeart);
   }
 
   return coords ? (
@@ -108,29 +97,14 @@ export default function FullScreenImage(props) {
 
       {hoverArea && (
         <>
-         {/*  <div
-            className="object-hover"
-            style={{ ...getCenterPosition(hoverArea) }}
-          >
-            {hoverArea && (
-              <p onClick={(hoverArea) => handleSaveToFavorite(hoverArea)}>
-                {hoverArea.label_text}
-              </p>
-            )}
-          </div> */}
-
           <div
             className="favorite-icon-fullscreen"
             style={{ ...getCenterPosition(hoverArea) }}
           >
             {fillHeart ? (
-              <img
-                src="/icons/heart_filled_white.svg"
-              ></img>
+              <img src="/icons/heart_filled_white.svg"></img>
             ) : (
-              <img
-                src="/icons/heart_unfilled_white.svg"
-              ></img>
+              <img src="/icons/heart_unfilled_white.svg"></img>
             )}
           </div>
         </>
