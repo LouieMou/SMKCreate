@@ -48,18 +48,18 @@ export default function FullScreenImage(props) {
 
   const enterArea = (area) => {
     setHoverArea(area);
-    let an = "an";
-    let a = "a";
     setMessage(
-      `You found ${startsWithVowel(area.label_text) ? an : a} ${
-        area.label_text
-      } !`
+      `You found ${startsWithVowel(area.label_text)} ${area.label_text} !`
     );
   };
 
   function startsWithVowel(word) {
     const vowels = "aeiou";
-    return vowels.indexOf(word[0]) !== -1;
+    if (vowels.indexOf(word[0]) !== -1) {
+      return "an";
+    } else {
+      return "a";
+    }
   }
 
   const leaveArea = (area) => {
@@ -75,9 +75,12 @@ export default function FullScreenImage(props) {
   };
 
   function handleSaveToFavorite(area) {
-    setMessage(`You clicked on heart: ${area}`);
+    setMessage(
+      `You saved ${startsWithVowel(area.label_text)} ${
+        area.label_text
+      } to your favorite list`
+    );
     updateFavoriteList(area);
-    setFillHeart(!fillHeart);
   }
 
   return coords ? (
