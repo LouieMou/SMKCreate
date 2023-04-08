@@ -49,7 +49,7 @@ export default function FullScreenImage(props) {
   const enterArea = (area) => {
     setHoverArea(area);
     setMessage(
-      `You found ${startsWithVowel(area.label_text)} ${area.label_text} !`
+      `You found ${startsWithVowel(area.label_text)} ${area.label_text}`
     );
   };
 
@@ -64,7 +64,7 @@ export default function FullScreenImage(props) {
 
   const leaveArea = (area) => {
     setHoverArea(null);
-    setMessage("Hover the image to explore the objects!");
+    setMessage("Hover the image to explore the objects");
   };
 
   const getCenterPosition = (area) => {
