@@ -19,6 +19,7 @@ export default function FavoriteGrid(props) {
 
   function onClickImage(paintingId) {
     navigate("/test", { state: { paintingId } });
+    props.closeFavoriteList();
   }
 
   return (
