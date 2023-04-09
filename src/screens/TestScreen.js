@@ -15,10 +15,6 @@ function TestScreen(props) {
   const { state } = useLocation();
   useEffect(() => {
     fetchPainting(state.paintingId);
-    console.log(
-      "This is the painting received in the full scren page: ",
-      state.paintingId
-    );
   }, [state.paintingId]);
 
   useEffect(() => {

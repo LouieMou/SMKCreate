@@ -1,4 +1,4 @@
-import { useState, useContext, useEffect } from "react";
+import { useState, useContext } from "react";
 /* Context */
 import { FavoriteContext } from "../../context/FavoriteContext";
 /* Styles */
@@ -10,7 +10,6 @@ export default function ImageItem(props) {
   const { updateFavoriteList } = useContext(FavoriteContext);
 
   function handleSaveToFavorite(object) {
-    console.log("save", object);
     updateFavoriteList(object);
   }
 

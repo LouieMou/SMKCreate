@@ -1,4 +1,5 @@
-import { useContext, useEffect } from "react";
+import { useContext } from "react";
+import { useNavigate } from "react-router-dom";
 /* Components */
 import FavoriteItem from "./FavoriteItem";
 /* Styles */
@@ -8,22 +9,17 @@ import "./../../index.css";
 import { FavoriteContext } from "../../context/FavoriteContext";
 
 export default function FavoriteGrid(props) {
-  const { favoriteList } = useContext(FavoriteContext);
+  const navigate = useNavigate();
+  const { favoriteList, removeFromFavoriteList } = useContext(FavoriteContext);
 
-  useEffect(() => {
-    if (favoriteList) {
-      console.log("my favoritegrid;", favoriteList);
-    }
-  }, [favoriteList]);
-
-  function deleteItem(e) {
-    console.log("clicked on remove");
+  function deleteItem(id, e) {
+    removeFromFavoriteList(id);
     e.stopPropagation(); // prevent an event from triggering on parent elements of a DOM tree.
   }
 
-  function onClickImage(obj) {
-    console.log("click on image");
-    /* obj.attributes.painting_pointer.id; */
+  function onClickImage(paintingId) {
+    navigate("/test", { state: { paintingId } });
+    props.closeFavoriteList();
   }
 
   return (
@@ -35,8 +31,8 @@ export default function FavoriteGrid(props) {
               key={index}
               source={obj.object.object_url}
               title={obj.object.label_text}
-              handleClick={onClickImage}
-              removeItemFromFavoriteList={deleteItem}
+              handleClick={() => onClickImage(obj.object.painting_id)}
+              removeItemFromFavoriteList={(e) => deleteItem(obj.object.id, e)}
             />
           );
         })

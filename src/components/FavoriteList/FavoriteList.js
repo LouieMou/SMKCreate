@@ -14,7 +14,7 @@ export default function FavoriteList(props) {
           onClick={props.closeFavoriteList}
         />
       </div>
-      <FavoriteGrid />
+      <FavoriteGrid closeFavoriteList={props.closeFavoriteList} />
     </div>
   );
 }
