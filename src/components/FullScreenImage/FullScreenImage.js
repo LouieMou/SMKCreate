@@ -39,7 +39,6 @@ export default function FullScreenImage(props) {
       };
     });
     setCoords(cc);
-    console.log("cc", cc);
   }
 
   const load = () => {
