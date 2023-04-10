@@ -21,7 +21,7 @@ function SearchScreen(props) {
     if (search) {
       fecthObjects(search);
     }
-  });
+  }, []);
 
   useEffect(() => {
     if (filter) {

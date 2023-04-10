@@ -1,10 +1,12 @@
 .canvas-screen-container {
   display: flex;
+  margin-left: 42px;
 }
 
 .generate-image-container {
   display: flex;
   flex-direction: column;
+  margin-left: 32px;
 }
 
 .label-button-container {
