@@ -18,11 +18,11 @@ export default function FullScreenImage(props) {
     updateAreaObject();
   }, []);
 
-  useEffect(()=>{
-    if(savedObject){
-      saveToFavoriteList(savedObject)
+  useEffect(() => {
+    if (savedObject) {
+      saveToFavoriteList(savedObject);
     }
-  }, [savedObject])
+  }, [savedObject]);
 
   const URL = props.imgURL;
   const MAP = {
@@ -42,7 +42,7 @@ export default function FullScreenImage(props) {
         fillColor: "hsla(240, 3%, 6%, 0.66)",
         object_url: obj.attributes.object_url,
         fillHeart: false,
-        painting_id: props.painting_id
+        painting_id: props.painting_id,
       };
     });
     setCoords(cc);
@@ -80,14 +80,14 @@ export default function FullScreenImage(props) {
     };
   };
 
-  function saveToFavoriteList(savedObject){
+  function saveToFavoriteList(savedObject) {
     let object = {
-      id: savedObject.key, 
-      label_text: savedObject.label_text, 
-      object_url: savedObject.object_url, 
-      painting_id: savedObject.painting_id
-    }
-    if(hoverArea){
+      id: savedObject.key,
+      label_text: savedObject.label_text,
+      object_url: savedObject.object_url,
+      painting_id: savedObject.painting_id,
+    };
+    if (hoverArea) {
       hoverArea.fillHeart = true;
     }
     setMessage(
@@ -96,7 +96,6 @@ export default function FullScreenImage(props) {
       } to your favorite list`
     );
     updateFavoriteList(object);
-
   }
 
   return coords ? (
@@ -106,7 +105,7 @@ export default function FullScreenImage(props) {
         map={MAP}
         width={500}
         imgWidth={props.imgWidth > 1660 ? 1024 : props.imgWidth}
-        onClick={(area)=> setSavedObject(area)}
+        onClick={(area) => setSavedObject(area)}
         onLoad={() => load()}
         onMouseEnter={(area) => enterArea(area)}
         onMouseLeave={(area) => leaveArea(area)}
