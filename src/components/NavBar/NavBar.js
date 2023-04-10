@@ -27,6 +27,7 @@ function NavBar(props) {
   const location = useLocation();
   const [navBarColor, setNavBarColor] = useState();
   const [screenColor, setScreenColor] = useState();
+  const [SMKlogoSize, setSMKlogoSize] = useState("");
 
   useEffect(() => {
     if (location.pathname !== "/canvas" && location.pathname !== "/") {
@@ -35,6 +36,21 @@ function NavBar(props) {
       setNavBarColor("black");
     }
   });
+
+  useEffect(() => {
+    if (
+      location.pathname === "/canvas" ||
+      location.pathname === "/profile" ||
+      location.pathname === "/categories" ||
+      location.pathname === "/search" ||
+      location.pathname === "/test" ||
+      location.pathname === "/painting"
+    ) {
+      setSMKlogoSize("small");
+    } else {
+      setSMKlogoSize("large");
+    }
+  }, [location.pathname]);
 
   useEffect(() => {
     const screenColor = getComputedStyle(document.body).getPropertyValue(
@@ -55,21 +71,27 @@ function NavBar(props) {
 
   return (
     <nav className="navbar-container" style={{ backgroundColor: screenColor }}>
-      <div className="rigt-side-icon-container">
+      {SMKlogoSize === "small" ? (
         <NavIcon
-          img_container_style={""}
+          src={`./icons/explore_logo_${navBarColor}.svg`}
+          handleClick={() => navigateTo("/")}
+          iconWidth="118px"
+        />
+      ) : (
+        <NavIcon
           src={`./icons/explore_logo_${navBarColor}.svg`}
           handleClick={() => navigateTo("/")}
         />
-      </div>
-      <div className="left-side-icon-container">
+      )}
+
+      <div className="rightside-icons">
         <NavIcon
-          img_container_style={"nav-img-container"}
+          img_container_style={"nav-icon-img"}
           src={`./icons/back_icon_${navBarColor}.svg`}
           handleClick={() => goBack()}
         />
         <NavIcon
-          img_container_style={"nav-img-container"}
+          img_container_style={"nav-icon-img"}
           src={`./icons/heart_unfilled_${navBarColor}.svg`}
           handleClick={props.openFavoriteList}
         />

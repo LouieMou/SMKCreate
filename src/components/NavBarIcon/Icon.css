@@ -1,19 +1,8 @@
-.nav-icon-container {
-  height: 50px;
-  min-width: 40px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.nav-icon-container:hover {
-  cursor: pointer;
-}
-
 .nav-icon-img {
   margin: auto;
   max-width: 100%;
   max-height: 100%;
+  margin-left: 30px;
 }
 
 .nav-img-container {
@@ -21,4 +10,10 @@
   padding: 15px 12px;
   box-sizing: border-box;
   height: 100px;
+}
+
+a {
+  display:flex;
+  justify-content: center;
+  margin-top: -1px;
 }

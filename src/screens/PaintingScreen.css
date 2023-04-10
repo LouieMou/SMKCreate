@@ -1,7 +1,7 @@
 @import url(../index.css);
 
 .paintingScreen {
-    padding: 130px 60px 60px 60px;
+    padding: 0px 0px 60px 89px;
     display: flex;
     height: 100vh;
 }
