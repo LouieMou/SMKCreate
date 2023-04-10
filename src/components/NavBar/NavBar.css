@@ -4,7 +4,7 @@
   height: 125px;
   top: 0;
   z-index: 15;
-  padding-left: 90px;
+  padding-left: 62px;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -28,7 +28,7 @@ align-items: center;
   height: 125px;
   top: 0;
   z-index: 15;
-  padding-left: 92px;
+  padding-left: 62px;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
