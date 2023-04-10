@@ -39,11 +39,8 @@ function NavBar(props) {
 
   useEffect(() => {
     if (
-      location.pathname === "/canvas" ||
-      location.pathname === "/profile" ||
       location.pathname === "/categories" ||
       location.pathname === "/search" ||
-      location.pathname === "/test" ||
       location.pathname === "/painting"
     ) {
       setSMKlogoSize("small");
