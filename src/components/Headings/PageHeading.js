@@ -2,12 +2,11 @@
 import "./PageHeading.css";
 import "./../../index.css";
 
-export default function FrontPageHeading(props) {
+export default function PageHeading(props) {
   const { color } = props;
   const textColor = {
     color: color || "black",
   };
-
 
   return (
     <div className="heading-container" style={textColor}>

@@ -1,4 +1,4 @@
-import { React, useEffect, useState } from "react";
+import { React } from "react";
 import { useNavigate } from "react-router-dom";
 /* Component */
 import Frame from "../components/FrontPageFrame/Frame";
@@ -33,11 +33,11 @@ function HomeScreen(props) {
             subtitle="Choose a category" /*color={textColor}*/
           />
           <div className="homepage-button-container">
-          <LabelButton
-            button_size={"large"}
-            label_text={"All Categories"}
-            handleClick={handleNavigation}
-          />
+            <LabelButton
+              button_size={"large"}
+              label_text={"All Categories"}
+              handleClick={handleNavigation}
+            />
           </div>
         </div>
         {props.categories ? (

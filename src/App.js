@@ -8,6 +8,7 @@ import TestScreen from "./screens/TestScreen";
 import CategoryScreen from "./screens/CategoryScreen";
 import ProfileScreen from "./screens/ProfileScreen";
 import CanvasScreen from "./screens/CanvasScreen";
+import LoginScreen from "./screens/LoginScreen";
 /* Components */
 import NavBar from "./components/NavBar/NavBar";
 import FavoriteList from "./components/FavoriteList/FavoriteList";
@@ -22,6 +23,7 @@ import "./App.css";
 function App() {
   const [categoriesAndObjects, setCategoriesAndObjects] = useState();
   const [favoriteIsActive, setFavoriteIsActive] = useState(false);
+  const [currentUser, setCurrentUser] = useState(null);
 
   useEffect(() => {
     fecthCategoriesWithPointer();
@@ -64,6 +66,10 @@ function App() {
               <Route path="/test" element={<TestScreen />} />
               <Route path="/canvas" element={<CanvasScreen />} />
               <Route path="/profile" element={<ProfileScreen />} />
+              <Route
+                path="/login"
+                element={<LoginScreen setCurrentUser={setCurrentUser} />}
+              />
               <Route
                 path="/categories"
                 element={<CategoryScreen categories={categoriesAndObjects} />}
