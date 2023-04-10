@@ -24,6 +24,7 @@ export default function FullScreenImage(props) {
     }
   }, [savedObject]);
 
+
   const URL = props.imgURL;
   const MAP = {
     name: "my-map",

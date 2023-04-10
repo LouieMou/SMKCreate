@@ -1,18 +1,37 @@
 .navbar-container {
+  position: -webkit-sticky;
+  position: sticky;
+  height: 125px;
+  top: 0;
+  z-index: 15;
+  padding-left: 90px;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  padding-top: 20px;
-  padding-bottom: 30px;
   margin-right: 42px;
+  align-items: center;
 }
 
-.rigt-side-icon-container {
+.rightside-icons {
+display: flex;
+align-items: center;
+}
+
+.navbar-container-plain {
   display: flex;
   flex-direction: row;
-  align-items: end;
-  margin-left: 40px;
-  width: 150px;
+  justify-content: left;
+  height: 100%;
+  align-items: center;
+  position: -webkit-sticky;
+  position: sticky;
+  height: 125px;
+  top: 0;
+  z-index: 15;
+  padding-left: 92px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
 }
 
 .left-side-icon-container {
@@ -22,4 +41,8 @@
   align-self: flex-end;
   justify-self: flex-end;
   justify-content: end;
+}
+
+.SMK-logo-small {
+  width: 10px;
 }
