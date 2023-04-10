@@ -7,6 +7,14 @@
   flex-direction: column;
 }
 
-.label-buttons-container {
+.label-button-container {
   margin-top: 30px;
+}
+
+.download-image-button-container {
+  margin-top: 11px;
+}
+
+.clear-canvas-button {
+  margin-top: 60px;
 }
