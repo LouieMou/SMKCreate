@@ -10,13 +10,20 @@ export default function FullScreenImage(props) {
   const [coords, setCoords] = useState([]);
   const [message, setMessage] = useState("");
   const [hoverArea, setHoverArea] = useState(null);
-  const [fillHeart, setFillHeart] = useState(false);
+  const [savedObject, setSavedObject] = useState();
 
   const { updateFavoriteList } = useContext(FavoriteContext);
 
   useEffect(() => {
     updateAreaObject();
   }, []);
+
+  useEffect(() => {
+    if (savedObject) {
+      saveToFavoriteList(savedObject);
+    }
+  }, [savedObject]);
+
 
   const URL = props.imgURL;
   const MAP = {
@@ -28,7 +35,6 @@ export default function FullScreenImage(props) {
     const cc = props.objects.map((obj) => {
       return {
         key: obj.id,
-        object_id: obj.id,
         coords: obj.attributes.coords,
         shape: "poly",
         category_id: obj.attributes.category_id,
@@ -36,6 +42,8 @@ export default function FullScreenImage(props) {
         label_text: obj.attributes.label_text,
         fillColor: "hsla(240, 3%, 6%, 0.66)",
         object_url: obj.attributes.object_url,
+        fillHeart: false,
+        painting_id: props.painting_id,
       };
     });
     setCoords(cc);
@@ -73,13 +81,22 @@ export default function FullScreenImage(props) {
     };
   };
 
-  function handleSaveToFavorite(area) {
+  function saveToFavoriteList(savedObject) {
+    let object = {
+      id: savedObject.key,
+      label_text: savedObject.label_text,
+      object_url: savedObject.object_url,
+      painting_id: savedObject.painting_id,
+    };
+    if (hoverArea) {
+      hoverArea.fillHeart = true;
+    }
     setMessage(
-      `You saved ${startsWithVowel(area.label_text)} ${
-        area.label_text
+      `You saved ${startsWithVowel(savedObject.label_text)} ${
+        savedObject.label_text
       } to your favorite list`
     );
-    updateFavoriteList(area);
+    updateFavoriteList(object);
   }
 
   return coords ? (
@@ -89,8 +106,8 @@ export default function FullScreenImage(props) {
         map={MAP}
         width={500}
         imgWidth={props.imgWidth > 1660 ? 1024 : props.imgWidth}
+        onClick={(area) => setSavedObject(area)}
         onLoad={() => load()}
-        onClick={(area) => handleSaveToFavorite(area)}
         onMouseEnter={(area) => enterArea(area)}
         onMouseLeave={(area) => leaveArea(area)}
         fillColor="transparent"
@@ -103,7 +120,7 @@ export default function FullScreenImage(props) {
             className="favorite-icon-fullscreen"
             style={{ ...getCenterPosition(hoverArea) }}
           >
-            {fillHeart ? (
+            {hoverArea.fillHeart ? (
               <img src="/icons/heart_filled_white.svg"></img>
             ) : (
               <img src="/icons/heart_unfilled_white.svg"></img>

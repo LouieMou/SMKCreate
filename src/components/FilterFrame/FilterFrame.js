@@ -20,7 +20,6 @@ function FilterFrame(props) {
       setCategory(props.category);
       let labels = await readLabelsInCategory(props.category);
       setLabelList(labels);
-      /* console.log("This is the labelList: ", labelList); */
     } catch (error) {}
   }, [props.category]);
 
@@ -56,6 +55,11 @@ function FilterFrame(props) {
             )}
           </CustomScroller>
         </div>
+        <LabelButton
+          handleClick={() => props.showAllObjectsInCategory()}
+          label_text={"all "+ props.category.toLowerCase()}
+          button_size={"standard"}
+        />
         <LabelButton
           handleClick={() => navigateToAllCategories()}
           label_text="all categories"

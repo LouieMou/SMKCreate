@@ -1,62 +1,78 @@
-import React from "react";
-import { useEffect, useState } from "react";
+import { React, useEffect, useState } from "react";
+import { useLocation } from "react-router-dom";
 /* Functions */
-import { hexToHSL } from "./../functions/hexToHSL";
-import { readObjectsFromSamePainting } from "./../database/Fruit";
-/* Styles */
-import "./../index.css";
-import "./PaintingScreen.css";
+import { setBackgroundColor } from "../functions/background";
+import { readPaintingById } from "../database/Painting";
+import { readObjectsByPaintingId } from "../database/Object";
 /* Components */
 import MetaData from "../components/MetaData/MetaData";
 import FullScreenImage from "../components/FullScreenImage/FullScreenImage";
+/* Styles */
+import "../index.css";
+import "./PaintingScreen.css";
 
-import data from "./../data/data.json";
-
-function PaintingScreen(props) {
-  const [objects, setObjects] = useState([]);
-
-  /* I'm missing the objectNumber I need from props from previous page */
-  /* props.objectNumber */
+function TestScreen(props) {
+  const { state } = useLocation();
   useEffect(() => {
-    async function fetchObjects() {
-      try {
-        const objects = await readObjectsFromSamePainting(
-          data[2].object_number
-        );
-        setObjects(objects);
-      } catch (error) {
-        console.error(error);
-      }
-    }
-    fetchObjects();
+    fetchPainting(state.paintingId);
   }, []);
 
-  let hslColor = hexToHSL(data[2].suggested_bg_color);
-  let lightness = hslColor.l;
+  useEffect(() => {
+    fetchObjects(state.paintingId);
+  }, []);
 
-  let colorMode =
-    lightness > 0.5 ? "var(--primary-white)" : "var(--primary-black)";
+  const [painting, setPainting] = useState();
+  const [objects, setObjects] = useState();
 
+  const yellow = getComputedStyle(document.documentElement).getPropertyValue(
+    "--SMK-blue"
+  );
+  setBackgroundColor(yellow);
+
+  let colorMode = "var(--primary-white)";
+
+  async function fetchPainting(paintingId) {
+    //let painting = desctructurePainting(state.painting)
+    let painting = await readPaintingById(paintingId);
+    setPainting(painting);
+    console.log("This is the painting: ", painting)
+  }
+
+  async function fetchObjects(paintingId) {
+    try {
+      const objects = await readObjectsByPaintingId(paintingId);
+      setObjects(objects);
+    } catch (error) {
+      console.error(error);
+    }
+  }
   return (
-    <div
-      className="paintingScreen"
-      style={{ backgroundColor: data[2].suggested_bg_color }}
-    >
-      {objects.length > 0 ? (
-        <>
-          <MetaData data={data[2]} objects={objects} colorMode={colorMode} />
-          <FullScreenImage
-            imgURL={data[2].image_thumbnail}
-            imgWidth={data[2].image_width}
-            objects={objects}
-            colorMode={colorMode}
-          />
-        </>
+    <>
+      {painting && objects ? (
+        <div
+          className="paintingScreen"
+          style={{ backgroundColor: painting.suggested_bg_color }}
+        >
+          <>
+            <MetaData
+              painting={painting}
+              objects={objects}
+              colorMode={colorMode}
+            />
+            <FullScreenImage
+              imgURL={painting.image_thumbnail}
+              imgWidth={painting.image_width}
+              objects={objects}
+              colorMode={colorMode}
+              painting_id= {painting.id}
+            />
+          </>
+        </div>
       ) : (
         "Loading"
       )}
-    </div>
+    </>
   );
 }
 
-export default PaintingScreen;
+export default TestScreen;

@@ -6,6 +6,7 @@ export async function readPaintingById(paintingId) {
 
   function deStructurePaintingObject(painting) {
     const destructuredpainting = {
+      id: painting[0].id,
       artist: painting[0].attributes.artist,
       techniques: painting[0].attributes.techniques,
       suggested_bg_color: painting[0].attributes.suggested_bg_color,

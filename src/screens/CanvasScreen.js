@@ -1,31 +1,47 @@
-import React, { useState } from "react";
+import React, { useState, useRef, useEffect } from "react";
 /*Styling*/
 import "./CanvasScreen.css";
 /* Components */
-import PageHeading from "../components/Headings/PageHeading";
 import TextBox from "../components/TextBox/TextBox";
 import LabelButton from "../components/LabelButton/LabelButton";
+import Canvas from "../components/Canvas/Canvas";
 /* Functions */
 import { setBackgroundColor } from "../functions/background";
 
 function CanvasScreen(props) {
+  const canvasRef = useRef(null);
   const [userInput, setUserInput] = useState("");
+
   const handleUserInput = (event) => {
     setUserInput(event.target.value);
     console.log(event);
   };
 
-  const generateImage = () => {
-    if (userInput !== "") {
-      console.log(userInput);
-    } else {
-      console.log("I just clicked the button");
-    }
-  };
+  function generateImage() {
+    const canvas = canvasRef.current;
+    const context = canvas.getContext("2d");
+    canvas.style.width = "100%";
+    canvas.style.height = "100%";
+    canvas.width = canvas.offsetWidth;
+    canvas.height = canvas.offsetHeight;
+    context.fillStyle = "red";
+    context.fillRect(0, 0, canvas.width, canvas.height);
+    console.log(canvas);
+  }
 
   const downLoadImage = () => {
     console.log("I downloaded my image");
   };
+
+  function clearCanvas() {
+    const canvas = canvasRef.current;
+    const context = canvas.getContext("2d");
+    context.clearRect(0, 0, canvas.width, canvas.height);
+  }
+
+  function openFavoriteList() {
+    console.log("Open favorite list");
+  }
 
   const white = getComputedStyle(document.documentElement).getPropertyValue(
     "--primary-white"
@@ -33,27 +49,41 @@ function CanvasScreen(props) {
   setBackgroundColor(white);
   return (
     <div className="canvas-screen-container">
-      <PageHeading
-        title="This is the Canvas Screen"
-        subtitle="Design and data will soon be updated"
-      />
+      <Canvas id="canvas" canvasRef={canvasRef}>
+        <div className="favoriteList-button-container">
+          <LabelButton
+            button_size={"large"}
+            label_text={"Open Favorite List"}
+            handleClick={() => openFavoriteList()}
+          />
+        </div>
+      </Canvas>
 
       <div className="generate-image-container">
         <TextBox
-          placeholder="Write some text here to start generating an image"
+          placeholder="Write some text here to help generate an image"
           value={userInput}
           onChange={handleUserInput}
         />
-        <div className="label-buttons-container">
+        <div className="label-button-container">
           <LabelButton
             button_size={"large"}
             label_text={"Generate Image"}
-            handleClick={generateImage}
+            handleClick={() => generateImage()}
           />
+        </div>
+        <div className="download-image-button-container">
           <LabelButton
             button_size={"large"}
             label_text={"Download"}
-            handleClick={downLoadImage}
+            handleClick={() => downLoadImage()}
+          />
+        </div>
+        <div className="clear-canvas-button">
+          <LabelButton
+            button_size={"large"}
+            label_text={"Clear Canvas"}
+            handleClick={() => clearCanvas()}
           />
         </div>
       </div>

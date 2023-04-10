@@ -3,17 +3,12 @@ import { useNavigate } from "react-router-dom";
 import ImageItem from "../ImageItem/ImageItem";
 /* Styles */
 import "./ImageGrid.css";
-import { useEffect } from "react";
 
 export default function ImageGrid(props) {
   const navigate = useNavigate();
 
-  useEffect(() => {
-    console.log("Imagegrid", props.list);
-  }, []);
-
   function onClickImage(paintingId) {
-    navigate("/test", { state: { paintingId } });
+    navigate("/painting", { state: { paintingId } });
   }
 
   return (

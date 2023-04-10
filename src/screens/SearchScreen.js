@@ -44,9 +44,14 @@ function SearchScreen(props) {
   function filterObjects(searchFilter) {
     setUseFilter(true);
     let objectsFiltered = objects.filter(
-      (object) => object.attributes.label_text === searchFilter
+      (object) => object.label_text === searchFilter
     );
     setFilteredObjects(objectsFiltered);
+  }
+
+  function showAllObjectsInCategory(){
+    console.log("Remove search filter")
+    setUseFilter(false);
   }
 
   const yellow = getComputedStyle(document.documentElement).getPropertyValue(
@@ -61,6 +66,7 @@ function SearchScreen(props) {
             <FilterFrame
               category={search.category_name}
               setFilter={setFilter}
+              showAllObjectsInCategory={showAllObjectsInCategory}
             />
           ) : (
             <></>
