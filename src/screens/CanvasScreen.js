@@ -1,4 +1,4 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
 /*Styling*/
 import "./CanvasScreen.css";
 /* Components */
@@ -10,9 +10,6 @@ import { setBackgroundColor } from "../functions/background";
 
 function CanvasScreen(props) {
   const canvasRef = useRef(null);
-  const canvas = canvasRef.current;
-  const context = canvas.getContext("2d");
-
   const [userInput, setUserInput] = useState("");
 
   const handleUserInput = (event) => {
@@ -20,7 +17,9 @@ function CanvasScreen(props) {
     console.log(event);
   };
 
-  const generateImage = () => {
+  function generateImage() {
+    const canvas = canvasRef.current;
+    const context = canvas.getContext("2d");
     canvas.style.width = "100%";
     canvas.style.height = "100%";
     canvas.width = canvas.offsetWidth;
@@ -28,15 +27,21 @@ function CanvasScreen(props) {
     context.fillStyle = "red";
     context.fillRect(0, 0, canvas.width, canvas.height);
     console.log(canvas);
-  };
+  }
 
   const downLoadImage = () => {
     console.log("I downloaded my image");
   };
 
-  const clearCanvas = () => {
+  function clearCanvas() {
+    const canvas = canvasRef.current;
+    const context = canvas.getContext("2d");
     context.clearRect(0, 0, canvas.width, canvas.height);
-  };
+  }
+
+  function openFavoriteList() {
+    console.log("Open favorite list");
+  }
 
   const white = getComputedStyle(document.documentElement).getPropertyValue(
     "--primary-white"
@@ -49,7 +54,7 @@ function CanvasScreen(props) {
           <LabelButton
             button_size={"large"}
             label_text={"Open Favorite List"}
-            handleClick={downLoadImage}
+            handleClick={() => openFavoriteList()}
           />
         </div>
       </Canvas>
@@ -64,21 +69,21 @@ function CanvasScreen(props) {
           <LabelButton
             button_size={"large"}
             label_text={"Generate Image"}
-            handleClick={generateImage}
+            handleClick={() => generateImage()}
           />
         </div>
         <div className="download-image-button-container">
           <LabelButton
             button_size={"large"}
             label_text={"Download"}
-            handleClick={downLoadImage}
+            handleClick={() => downLoadImage()}
           />
         </div>
         <div className="clear-canvas-button">
           <LabelButton
             button_size={"large"}
             label_text={"Clear Canvas"}
-            handleClick={clearCanvas}
+            handleClick={() => clearCanvas()}
           />
         </div>
       </div>
