@@ -4,7 +4,6 @@ import { Route, Routes } from "react-router-dom";
 import HomeScreen from "./screens/HomeScreen";
 import SearchScreen from "./screens/SearchScreen";
 import PaintingScreen from "./screens/PaintingScreen";
-import TestScreen from "./screens/TestScreen";
 import CategoryScreen from "./screens/CategoryScreen";
 import ProfileScreen from "./screens/ProfileScreen";
 import CanvasScreen from "./screens/CanvasScreen";
@@ -61,7 +60,6 @@ function App() {
               <Route path="/search" element={<SearchScreen />} />
               <Route path="/search/:id" element={<SearchScreen />} />
               <Route path="/painting" element={<PaintingScreen />} />
-              <Route path="/test" element={<TestScreen />} />
               <Route path="/canvas" element={<CanvasScreen />} />
               <Route path="/profile" element={<ProfileScreen />} />
               <Route
