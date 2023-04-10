@@ -5,12 +5,14 @@ import { FavoriteContext } from "../../context/FavoriteContext";
 import "./ImageItem.css";
 
 export default function ImageItem(props) {
-  const [fillHeart, setFillHeart] = useState(false);
 
   const { updateFavoriteList } = useContext(FavoriteContext);
 
   function handleSaveToFavorite(object) {
+    console.log("this is the object being saved from imageGrid: ", object)
+    object.saved = true;
     updateFavoriteList(object);
+    
   }
 
   return (
@@ -19,13 +21,11 @@ export default function ImageItem(props) {
       <div className="overlay">
         <span
           className="favorite-icon-container"
-          onMouseEnter={() => setFillHeart(!fillHeart)}
-          onMouseLeave={() => setFillHeart(!fillHeart)}
         >
-          {fillHeart ? (
+          {props.object.saved ? (
             <img
               src="/icons/heart_filled_white.svg"
-              onClick={() => handleSaveToFavorite(props.object)}
+              /* onClick={() => handleSaveToFavorite(props.object)} */
             ></img>
           ) : (
             <img

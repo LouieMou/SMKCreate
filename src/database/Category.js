@@ -39,6 +39,7 @@ export async function getCategoriesWithPointer() {
       painting_id: object.attributes.painting_id_back4app,
       label_text: object.attributes.label_text,
       object_url: object.attributes.object_url,
+      saved: false
     };
     return destructuredObject;
   }

@@ -16,6 +16,7 @@ export async function readObjectsByCategory(categoryId) {
       object_url: object.attributes.object_url,
       painting_id: object.attributes.painting_pointer.id,
       category_id: object.attributes.category_id,
+      saved: false
     };
 
     return destructuredObject;
