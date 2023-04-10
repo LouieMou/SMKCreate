@@ -27,6 +27,10 @@ function CanvasScreen(props) {
     console.log("I downloaded my image");
   };
 
+  const clearCanvas = () => {
+    console.log("I cleared the canvas");
+  };
+
   const white = getComputedStyle(document.documentElement).getPropertyValue(
     "--primary-white"
   );
@@ -44,16 +48,25 @@ function CanvasScreen(props) {
           value={userInput}
           onChange={handleUserInput}
         />
-        <div className="label-buttons-container">
+        <div className="label-button-container">
           <LabelButton
             button_size={"large"}
             label_text={"Generate Image"}
             handleClick={generateImage}
           />
+        </div>
+        <div className="download-image-button-container">
           <LabelButton
             button_size={"large"}
             label_text={"Download"}
             handleClick={downLoadImage}
+          />
+        </div>
+        <div className="clear-canvas-button">
+          <LabelButton
+            button_size={"large"}
+            label_text={"Clear Canvas"}
+            handleClick={clearCanvas}
           />
         </div>
       </div>
