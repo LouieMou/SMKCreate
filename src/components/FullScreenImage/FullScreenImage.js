@@ -16,7 +16,7 @@ export default function FullScreenImage(props) {
 
   useEffect(() => {
     updateAreaObject();
-  }, [props.objects]);
+  }, []);
 
   const URL = props.imgURL;
   const MAP = {
