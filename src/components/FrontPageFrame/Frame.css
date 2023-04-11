@@ -1,17 +1,14 @@
 .frame-container {
   position: fixed;
   width: 100%;
-  height: calc(100%-14.28572vw);
 }
 
 .frame {
   display: flex;
   flex-direction: row;
-  box-sizing: border-box;
   border: 10px solid #101011;
   position: absolute;
   height: 70vh;
   width: 100vw;
-  left: 5.14286vw;
-  right: -1em;
+  right: -5em;
 }

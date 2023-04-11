@@ -26,8 +26,8 @@ function App() {
   const [currentUser, setCurrentUser] = useState(null);
 
   useEffect(() => {
-    if(currentUser){
-    fecthCategoriesWithPointer();
+    if (currentUser) {
+      fecthCategoriesWithPointer();
     }
   }, [currentUser]);
 
@@ -67,7 +67,7 @@ function App() {
             )}
 
             <NavBar openFavoriteList={openFavoriteList} />
-            
+
             {categoriesAndObjects ? (
               <Routes>
                 <Route
@@ -78,7 +78,15 @@ function App() {
                 {/* <Route path="/search/:id" element={<SearchScreen />} /> */}
                 <Route path="/painting" element={<PaintingScreen/>} />
                 <Route path="/canvas" element={<CanvasScreen />} />
-                <Route path="/profile" element={<ProfileScreen />} />
+                <Route
+                  path="/profile"
+                  element={
+                    <ProfileScreen
+                      currentUser={currentUser}
+                      setCurrentUser={setCurrentUser}
+                    />
+                  }
+                />
                 <Route
                   path="/categories"
                   element={<CategoryScreen categories={categoriesAndObjects} />}

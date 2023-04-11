@@ -3,11 +3,11 @@
 .heading-button-container {
   display: flex;
   flex-direction: column;
+  margin: 50px;
 }
 
 .homepage-button-container {
   margin-top: 50px;
-  margin-left: 50px;
   margin-bottom: 20px;
   margin-right: 15px;
 }

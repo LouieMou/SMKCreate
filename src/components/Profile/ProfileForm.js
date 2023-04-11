@@ -11,15 +11,19 @@ export default function ProfileForm(props) {
         className="label-text"
         type="email"
         onChange={(event) => props.setUsername(event.target.value)}
+        defaultValue={props.username}
         autoCapitalize="none"
+        required
       />
       <label className="label-text">Password</label>
       <input
         className="label-text"
         type="password"
         autoCapitalize="none"
-        secureTextEntry
+        curetextentry="true"
         onChange={(event) => props.setPassword(event.target.value)}
+        defaultValue={props.password}
+        required
       />
       <div className="submit-button">
         <LabelButton
