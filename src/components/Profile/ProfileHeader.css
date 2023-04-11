@@ -3,11 +3,12 @@
     display: flex;
     flex-direction: row;
     margin-bottom: 20px;
+    align-items: center;
 }
 
  .profile-circle {
-    width: 95px;
-    height: 95px;
+    width: 95px; 
+    height: 95px; 
     border-radius: 50%;
     background-color: black;
     display: flex;
@@ -25,7 +26,7 @@
 .profile-name {
     display: flex;
     align-items: center;
-    margin-left: 38px;
+    margin-left: 28px;
     border: none;
     font-family: "Open Sans", "Inter", "Roboto", "Nunito Sans", sans-serif;
     font-size: 48px;
@@ -46,3 +47,27 @@
     height: auto;
     outline: none;
 }
+
+
+
+/* Media query for responsiveness */
+@media screen and (min-height: 600px) {
+    .profile-header {
+        flex-direction: row;
+        margin-bottom: 27px
+    }
+    .profile-circle {
+        width: 60px; 
+        height: 60px;
+    }
+    .profile-name {
+        margin-top: 0px;
+        text-align: left;
+        margin-left: 20px;
+    }
+
+    .firstLetter {
+        font-size: 35px;
+    }
+}
+
