@@ -3,7 +3,7 @@ import { React, useState, useEffect, useContext } from "react";
 import FilterFrame from "../components/FilterFrame/FilterFrame";
 import ImageGrid from "../components/ImageGrid/ImageGrid";
 /* Functions */
-import { setBackgroundColor } from "../functions/background";
+import { randomizeBackground } from "../functions/background";
 import { readObjectsByCategory } from "../database/Object";
 /* Styles */
 import "./SearchScreen.css";
@@ -17,7 +17,9 @@ function SearchScreen(props) {
   const [filteredObjects, setFilteredObjects] = useState();
   const [useFilter, setUseFilter] = useState(false);
 
+  
   useEffect(() => {
+    props.setBackgroundColor(randomizeBackground());
     if (search) {
       fecthObjects(search);
     }
@@ -47,17 +49,15 @@ function SearchScreen(props) {
       (object) => object.label_text === searchFilter
     );
     setFilteredObjects(objectsFiltered);
+    props.setBackgroundColor(randomizeBackground());
   }
 
   function showAllObjectsInCategory(){
     console.log("Remove search filter")
+    props.setBackgroundColor(randomizeBackground());
     setUseFilter(false);
   }
 
-  const yellow = getComputedStyle(document.documentElement).getPropertyValue(
-    "--secondary-yellow"
-  );
-  setBackgroundColor(yellow);
   return (
     <>
       <div className="search-component-container">

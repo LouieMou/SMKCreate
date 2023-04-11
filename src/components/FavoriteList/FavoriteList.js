@@ -9,7 +9,7 @@ export default function FavoriteList(props) {
       <div className="cross-container">
         <img
           className="cross"
-          src="./icons/cross_black.svg"
+          src="/icons/cross_black.svg"
           alt="close-icon"
           onClick={props.closeFavoriteList}
         />
