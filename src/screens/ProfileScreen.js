@@ -5,7 +5,6 @@ import ProfileHeader from "../components/Profile/ProfileHeader";
 import Frame from "../components/FrontPageFrame/Frame";
 /* Functions */
 import { setBackgroundColor } from "../functions/background";
-import { getCurrentUser } from "../database/User";
 import ProfileForm from "../components/Profile/ProfileForm";
 /* Styles */
 import "./ProfileScreen.css";
@@ -40,7 +39,7 @@ function ProfileScreen(props) {
       await User.save();
       // Success
       alert("Success! To-do updated!");
-      getCurrentUser(props.setCurrentUser);
+      getCurrentUser();
       return true;
     } catch (error) {
       // Error can be caused by lack of Internet connection
@@ -48,6 +47,13 @@ function ProfileScreen(props) {
       return false;
     }
   }
+
+  const getCurrentUser = async function () {
+    const currentUser = await Parse.User.current();
+    // Update state variable holding current user
+    props.setCurrentUser(currentUser);
+    return currentUser;
+  };
 
   return (
     <Frame>
