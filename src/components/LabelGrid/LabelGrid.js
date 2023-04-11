@@ -1,5 +1,5 @@
 import { useEffect, useState, useContext } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, generatePath } from "react-router-dom";
 /* Components */
 import LabelButton from "../LabelButton/LabelButton";
 /* Context */
@@ -20,12 +20,6 @@ export default function LabelGrid(props) {
   }, []);
 
   function checkUniqueLabels() {
-   /*  const uniqueLabels = new Set();
-    props.objects.forEach((o) => {
-      let obj = o;
-      uniqueLabels.add(obj);
-    });
-    let uniqueLabelsArr = Array.from(uniqueLabels); */
     let uniqueLabelsArr = sortByUniqueObjectLabels(props.objects)
     setUniqueLabels(uniqueLabelsArr);
   }
@@ -39,7 +33,8 @@ export default function LabelGrid(props) {
     
     // Updating the SearchContext
     setCategoryIdAndFilter(category, filter);
-    navigate("/search")
+    const path = generatePath("/search/:id", { id: category.name.toLowerCase()});
+    navigate(path, {state: {filter}})
   }
 
   return (

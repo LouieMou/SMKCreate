@@ -6,12 +6,14 @@ import TextBox from "../components/TextBox/TextBox";
 import LabelButton from "../components/LabelButton/LabelButton";
 import Canvas from "../components/Canvas/Canvas";
 /* Functions */
-import { setBackgroundColor } from "../functions/background";
+import { setWhiteBackground } from "../functions/background";
 
 function CanvasScreen(props) {
   const canvasRef = useRef(null);
   const [userInput, setUserInput] = useState("");
 
+  setWhiteBackground();
+  
   const handleUserInput = (event) => {
     setUserInput(event.target.value);
     console.log(event);
@@ -43,10 +45,6 @@ function CanvasScreen(props) {
     console.log("Open favorite list");
   }
 
-  const white = getComputedStyle(document.documentElement).getPropertyValue(
-    "--primary-white"
-  );
-  setBackgroundColor(white);
   return (
     <div className="canvas-screen-container">
       <Canvas id="canvas" canvasRef={canvasRef}>

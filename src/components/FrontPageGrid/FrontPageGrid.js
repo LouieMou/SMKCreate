@@ -1,5 +1,5 @@
 import { React, useContext, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, generatePath } from "react-router-dom";
 /* Components */
 import ImageItem from "../ImageItem/ImageItem";
 /* Context */
@@ -12,8 +12,9 @@ export default function FrontPageGrid(props) {
   const navigate = useNavigate();
 
   function handleClick(category) {
-    navigate("/search");
     setCategoryIdAndFilter(category, undefined);
+    const path = generatePath("/search/:id", { id: category.name.toLowerCase()});
+    navigate(path);
   }
 
   return (

@@ -74,9 +74,9 @@ function App() {
                   path="/"
                   element={<HomeScreen categories={categoriesAndObjects} />}
                 />
-                <Route path="/search" element={<SearchScreen />} />
-                <Route path="/search/:id" element={<SearchScreen />} />
-                <Route path="/painting" element={<PaintingScreen />} />
+                <Route exact path="/search/:id" element={<SearchScreen/>} />
+                {/* <Route path="/search/:id" element={<SearchScreen />} /> */}
+                <Route path="/painting" element={<PaintingScreen/>} />
                 <Route path="/canvas" element={<CanvasScreen />} />
                 <Route
                   path="/profile"
@@ -87,7 +87,6 @@ function App() {
                     />
                   }
                 />
-
                 <Route
                   path="/categories"
                   element={<CategoryScreen categories={categoriesAndObjects} />}
