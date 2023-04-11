@@ -34,6 +34,15 @@ export function setBackgroundColor(color) {
 
 export function randomizeBackground(){
     const randomColor = colorArray[Math.floor(Math.random()*colorArray.length)]
-    setBackgroundColor(randomColor)
+    setBackgroundColor(randomColor);
+    return randomColor;
 }
+
+export function setWhiteBackground(){
+  const white = getComputedStyle(document.documentElement).getPropertyValue(
+    "--primary-white"
+  );
+  setBackgroundColor(white);
+}
+
 

@@ -16,10 +16,9 @@ function SearchScreen(props) {
   const [objects, setObjects] = useState();
   const [filteredObjects, setFilteredObjects] = useState();
   const [useFilter, setUseFilter] = useState(false);
+  const [color, setColor] = useState()
 
-  
   useEffect(() => {
-    props.setBackgroundColor(randomizeBackground());
     if (search) {
       fecthObjects(search);
     }
@@ -32,13 +31,14 @@ function SearchScreen(props) {
   }, [filter]);
 
   async function fecthObjects(searchObject) {
+      updateSearchScreenColor()
     try {
       let objects = await readObjectsByCategory(searchObject.category_id);
       if (searchObject.filter_label) {
         setObjects(objects);
         setFilter(searchObject.filter_label);
       } else {
-        setObjects(objects);
+        setObjects(objects); 
       }
     } catch (error) {}
   }
@@ -49,13 +49,18 @@ function SearchScreen(props) {
       (object) => object.label_text === searchFilter
     );
     setFilteredObjects(objectsFiltered);
-    props.setBackgroundColor(randomizeBackground());
+    updateSearchScreenColor()
   }
 
   function showAllObjectsInCategory(){
     console.log("Remove search filter")
-    props.setBackgroundColor(randomizeBackground());
+    updateSearchScreenColor()
     setUseFilter(false);
+  }
+
+  function updateSearchScreenColor(){
+    randomizeBackground()
+    setColor(randomizeBackground())
   }
 
   return (
@@ -67,6 +72,7 @@ function SearchScreen(props) {
               category={search.category_name}
               setFilter={setFilter}
               showAllObjectsInCategory={showAllObjectsInCategory}
+              label_text_color={color}
             />
           ) : (
             <></>

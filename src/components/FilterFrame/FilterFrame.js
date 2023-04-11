@@ -1,5 +1,5 @@
 import { React, useEffect, useState, useCallback } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 /* Components */
 import CustomScroller from "react-custom-scroller";
 import LabelButton from "../LabelButton/LabelButton";
@@ -8,12 +8,13 @@ import { readLabelsInCategory } from "../../database/Category";
 /* Styles */
 import "./FilterFrame.css";
 import "../../index.css";
-/* Context */
 
 function FilterFrame(props) {
+  const { state } = useLocation();
   const navigate = useNavigate();
   let [labelList, setLabelList] = useState([]);
   const [category, setCategory] = useState();
+  const [selectedLabelButton, setSelectedLabelButton] = useState(null);
 
   const memoizedUpdateLabelList = useCallback(async () => {
     try {
@@ -27,12 +28,24 @@ function FilterFrame(props) {
     memoizedUpdateLabelList();
   }, [memoizedUpdateLabelList]);
 
-  function updateFilter(object_label) {
-    props.setFilter(object_label);
+  useEffect(()=>{
+    if(state){
+      setSelectedLabelButton(state.filter)
+    }
+  }, [])
+
+  function updateFilter(label_text) {
+    props.setFilter(label_text);
+    setSelectedLabelButton(label_text);
   }
 
   function navigateToAllCategories() {
     navigate("/categories");
+  }
+
+  function resetFilter(){
+    props.showAllObjectsInCategory()
+    setSelectedLabelButton("all");
   }
 
   return (
@@ -43,12 +56,13 @@ function FilterFrame(props) {
           <CustomScroller className="scroller">
             {labelList ? (
               labelList.map((label, index) => (
-                <LabelButton
-                  key={index}
-                  handleClick={() => updateFilter(label.objectLabel)}
-                  label_text={label.objectLabel}
-                  button_size={"standard"}
-                />
+                    <LabelButton
+                      key={index}
+                      handleClick={() => updateFilter(label.objectLabel)}
+                      label_text={label.objectLabel}
+                      button_size={label.objectLabel === selectedLabelButton ? "selected": "standard"}
+                      text_color={label.objectLabel === selectedLabelButton ? props.label_text_color: "white"}
+                    />
               ))
             ) : (
               <></>
@@ -56,9 +70,10 @@ function FilterFrame(props) {
           </CustomScroller>
         </div>
         <LabelButton
-          handleClick={() => props.showAllObjectsInCategory()}
-          label_text={"all "+ props.category.toLowerCase()}
-          button_size={"standard"}
+          handleClick={() => resetFilter()}
+          label_text={"all " + props.category.toLowerCase()}
+          button_size={"all" === selectedLabelButton ? "selected": "standard"}
+          text_color={"all" === selectedLabelButton ? props.label_text_color: "white"}
         />
         <LabelButton
           handleClick={() => navigateToAllCategories()}

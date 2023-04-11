@@ -41,7 +41,7 @@ function NavBar(props) {
   }
 
   return (
-    <nav className="navbar-container" style={{ backgroundColor: props.color }}>
+    <nav className="navbar-container">
       {SMKlogoSize === "small" ? (
         <NavIcon
           src={`/icons/explore_logo_${navBarColor}.svg`}

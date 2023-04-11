@@ -24,11 +24,12 @@ function App() {
   const [categoriesAndObjects, setCategoriesAndObjects] = useState();
   const [favoriteIsActive, setFavoriteIsActive] = useState(false);
   const [currentUser, setCurrentUser] = useState(null);
-  const [backgroundColor, setBackgroundColor] = useState();
 
   useEffect(() => {
+    if(currentUser){
     fecthCategoriesWithPointer();
-  }, []);
+    }
+  }, [currentUser]);
 
   async function fecthCategoriesWithPointer() {
     let categoriesAndObjectsResult = await getCategoriesWithPointer();
@@ -65,7 +66,7 @@ function App() {
               </div>
             )}
 
-            <NavBar openFavoriteList={openFavoriteList} color={backgroundColor}/>
+            <NavBar openFavoriteList={openFavoriteList} />
             
             {categoriesAndObjects ? (
               <Routes>
@@ -73,12 +74,11 @@ function App() {
                   path="/"
                   element={<HomeScreen categories={categoriesAndObjects} />}
                 />
-                <Route exact path="/search/:id" element={<SearchScreen setBackgroundColor={setBackgroundColor}/>} />
+                <Route exact path="/search/:id" element={<SearchScreen/>} />
                 {/* <Route path="/search/:id" element={<SearchScreen />} /> */}
-                <Route path="/painting" element={<PaintingScreen />} />
+                <Route path="/painting" element={<PaintingScreen/>} />
                 <Route path="/canvas" element={<CanvasScreen />} />
                 <Route path="/profile" element={<ProfileScreen />} />
-
                 <Route
                   path="/categories"
                   element={<CategoryScreen categories={categoriesAndObjects} />}
