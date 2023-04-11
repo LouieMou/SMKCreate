@@ -30,10 +30,14 @@ function NavBar(props) {
   const [SMKlogoSize, setSMKlogoSize] = useState("");
 
   useEffect(() => {
-    if (location.pathname !== "/canvas" && location.pathname !== "/") {
-      setNavBarColor("white");
-    } else {
+    if (
+      location.pathname === "/canvas" ||
+      location.pathname === "/" ||
+      location.pathname === "/profile"
+    ) {
       setNavBarColor("black");
+    } else {
+      setNavBarColor("white");
     }
   });
 

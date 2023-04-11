@@ -1,5 +1,5 @@
-.loginScreen {
+.profile-page {
+    display: flex;
     flex-direction: column;
-    width: 100vw;
     margin: 50px;
 }

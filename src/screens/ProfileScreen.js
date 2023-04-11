@@ -1,22 +1,27 @@
 import React from "react";
 /* Components */
-import PageHeading from "../components/Headings/PageHeading";
+import ProfileHeader from "../components/Profile/ProfileHeader";
+import Frame from "../components/FrontPageFrame/Frame";
 /* Functions */
 import { setBackgroundColor } from "../functions/background";
+import ProfileForm from "../components/Profile/ProfileForm";
+/* Styles */
+import "./ProfileScreen.css";
 
 function ProfileScreen(props) {
-  const green = getComputedStyle(document.documentElement).getPropertyValue(
-    "--SMK-green"
+  const white = getComputedStyle(document.documentElement).getPropertyValue(
+    "--primary-white"
   );
-  setBackgroundColor(green);
+  setBackgroundColor(white);
+
   return (
-    <div>
-      <PageHeading
-        title="This is the Profile Screen"
-        subtitle="Design and data will soon be updated"
-        color={`var(--primary-white)`}
-      />
-    </div>
+    <Frame>
+      <div className="profile-page">
+        <ProfileHeader name={props.name} />
+        <h4>Login information</h4>
+        <ProfileForm label_text={"Save changes"} />
+      </div>
+    </Frame>
   );
 }
 
