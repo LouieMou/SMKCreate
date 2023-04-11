@@ -17,7 +17,7 @@ function ProfileScreen(props) {
   return (
     <Frame>
       <div className="profile-page">
-        <ProfileHeader name={props.name} />
+        <ProfileHeader name="Anita" />
         <h4>Login information</h4>
         <ProfileForm label_text={"Save changes"} />
       </div>
