@@ -10,17 +10,16 @@ input {
     border-width: 2px;
     height: 45px;
     margin-bottom: 25px;
-    min-width:445px;
 }
 
 form {
     display: flex;
     flex-direction: column;
     justify-content: left;
-    max-width: 445px;
     cursor:text;
     margin-bottom: 25px;
-    width: 100%;
+    width: 70%;
+    max-width: 445px;
 }
 
 .submit-button{
