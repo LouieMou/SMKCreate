@@ -26,8 +26,10 @@ function App() {
   const [currentUser, setCurrentUser] = useState(null);
 
   useEffect(() => {
-    fecthCategoriesWithPointer();
-  }, []);
+    if (currentUser) {
+      fecthCategoriesWithPointer();
+    }
+  }, [currentUser]);
 
   async function fecthCategoriesWithPointer() {
     let categoriesAndObjectsResult = await getCategoriesWithPointer();
@@ -65,7 +67,7 @@ function App() {
             )}
 
             <NavBar openFavoriteList={openFavoriteList} />
-            
+
             {categoriesAndObjects ? (
               <Routes>
                 <Route

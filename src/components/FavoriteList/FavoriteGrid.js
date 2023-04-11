@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { useContext, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 /* Components */
 import FavoriteItem from "./FavoriteItem";
@@ -11,6 +11,7 @@ import { FavoriteContext } from "../../context/FavoriteContext";
 export default function FavoriteGrid(props) {
   const navigate = useNavigate();
   const { favoriteList, removeFromFavoriteList } = useContext(FavoriteContext);
+  const dragURL = useRef();
 
   function deleteItem(id, e) {
     removeFromFavoriteList(id);
@@ -33,6 +34,10 @@ export default function FavoriteGrid(props) {
               title={obj.object.label_text}
               handleClick={() => onClickImage(obj.object.painting_id)}
               removeItemFromFavoriteList={(e) => deleteItem(obj.object.id, e)}
+              onDragStart={(e) => {
+                dragURL.current = e.target.source;
+              }}
+              draggable={true}
             />
           );
         })

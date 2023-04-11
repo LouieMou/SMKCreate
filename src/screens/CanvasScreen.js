@@ -5,43 +5,21 @@ import "./CanvasScreen.css";
 import TextBox from "../components/TextBox/TextBox";
 import LabelButton from "../components/LabelButton/LabelButton";
 import Canvas from "../components/Canvas/Canvas";
+import Konva from "../components/Canvas/Konva";
 /* Functions */
 import { setBackgroundColor } from "../functions/background";
 
 function CanvasScreen(props) {
-  const canvasRef = useRef(null);
   const [userInput, setUserInput] = useState("");
+  const stageRef = useRef(null);
+  const layerRef = useRef(null);
+  const dragUrl = useRef();
+  const [images, setImages] = useState([]);
 
   const handleUserInput = (event) => {
     setUserInput(event.target.value);
     console.log(event);
   };
-
-  function generateImage() {
-    const canvas = canvasRef.current;
-    const context = canvas.getContext("2d");
-    canvas.style.width = "100%";
-    canvas.style.height = "100%";
-    canvas.width = canvas.offsetWidth;
-    canvas.height = canvas.offsetHeight;
-    context.fillStyle = "red";
-    context.fillRect(0, 0, canvas.width, canvas.height);
-    console.log(canvas);
-  }
-
-  const downLoadImage = () => {
-    console.log("I downloaded my image");
-  };
-
-  function clearCanvas() {
-    const canvas = canvasRef.current;
-    const context = canvas.getContext("2d");
-    context.clearRect(0, 0, canvas.width, canvas.height);
-  }
-
-  function openFavoriteList() {
-    console.log("Open favorite list");
-  }
 
   const white = getComputedStyle(document.documentElement).getPropertyValue(
     "--primary-white"
@@ -49,15 +27,7 @@ function CanvasScreen(props) {
   setBackgroundColor(white);
   return (
     <div className="canvas-screen-container">
-      <Canvas id="canvas" canvasRef={canvasRef}>
-        <div className="favoriteList-button-container">
-          <LabelButton
-            button_size={"large"}
-            label_text={"Open Favorite List"}
-            handleClick={() => openFavoriteList()}
-          />
-        </div>
-      </Canvas>
+      <Konva stageRef={stageRef} layerRef={layerRef}></Konva>
 
       <div className="generate-image-container">
         <TextBox
@@ -69,21 +39,21 @@ function CanvasScreen(props) {
           <LabelButton
             button_size={"large"}
             label_text={"Generate Image"}
-            handleClick={() => generateImage()}
+            // handleClick={() => generateImage()}
           />
         </div>
         <div className="download-image-button-container">
           <LabelButton
             button_size={"large"}
             label_text={"Download"}
-            handleClick={() => downLoadImage()}
+            //handleClick={() => downLoadImage()}
           />
         </div>
         <div className="clear-canvas-button">
           <LabelButton
             button_size={"large"}
             label_text={"Clear Canvas"}
-            handleClick={() => clearCanvas()}
+            //handleClick={() => clearCanvas()}
           />
         </div>
       </div>
