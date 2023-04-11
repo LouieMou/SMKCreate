@@ -4,7 +4,6 @@ import "./CanvasScreen.css";
 /* Components */
 import TextBox from "../components/TextBox/TextBox";
 import LabelButton from "../components/LabelButton/LabelButton";
-import Canvas from "../components/Canvas/Canvas";
 import Konva from "../components/Canvas/Konva";
 /* Functions */
 import { setBackgroundColor } from "../functions/background";
@@ -28,7 +27,6 @@ function CanvasScreen(props) {
   return (
     <div className="canvas-screen-container">
       <Konva stageRef={stageRef} layerRef={layerRef}></Konva>
-
       <div className="generate-image-container">
         <TextBox
           placeholder="Write some text here to help generate an image"

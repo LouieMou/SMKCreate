@@ -1,9 +1,6 @@
 import "./FavoriteItem.css";
 
 export default function FavoriteItem(props) {
-  function handleDragStart(event) {
-    props.onDragStart(event.target.src);
-  }
   return (
     <div className="favorite-container" onClick={props.handleClick}>
       <img
@@ -11,10 +8,10 @@ export default function FavoriteItem(props) {
         src={props.source}
         alt={`${props.title}`}
         draggable="true"
-        onDragStart={handleDragStart}
+        onDragStart={props.handleDragStart}
       />
 
-      <div className="favorite-overlay">
+      {/* <div className="favorite-overlay">
         <img
           className="favorite-delete"
           src="./icons/delete_favoriteItem_white.svg"
@@ -22,7 +19,7 @@ export default function FavoriteItem(props) {
           onClick={props.removeItemFromFavoriteList}
         />
         <p className="favorite-title-overlay">{props.title}</p>
-      </div>
+      </div> */}
     </div>
   );
 }

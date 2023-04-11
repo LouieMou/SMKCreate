@@ -23,6 +23,11 @@ export default function FavoriteGrid(props) {
     props.closeFavoriteList();
   }
 
+  function handleDragStart(obj) {
+    dragURL.current = obj;
+    console.log("ondragstart: ", obj);
+  }
+
   return (
     <div className="favorite-grid">
       {favoriteList.length > 0 ? (
@@ -34,9 +39,7 @@ export default function FavoriteGrid(props) {
               title={obj.object.label_text}
               handleClick={() => onClickImage(obj.object.painting_id)}
               removeItemFromFavoriteList={(e) => deleteItem(obj.object.id, e)}
-              onDragStart={(e) => {
-                dragURL.current = e.target.source;
-              }}
+              handleDragStart={() => handleDragStart(obj.object.object_url)}
               draggable={true}
             />
           );
