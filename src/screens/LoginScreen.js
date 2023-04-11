@@ -6,17 +6,12 @@ import ProfileForm from "../components/Profile/ProfileForm";
 import Frame from "../components/FrontPageFrame/Frame";
 import "./LoginScreen.css";
 
-import { getCurrentUser } from "../database/User";
-
 export default function LoginScreen(props) {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
 
   const loginHandler = async function (e) {
     e.preventDefault();
-    /*     console.log("Clicked on submit");
-    console.log("email: ", username);
-    console.log("password: ", password); */
 
     // Note that these values come from state variables that we've declared before
     const usernameValue = username;
@@ -43,6 +38,13 @@ export default function LoginScreen(props) {
       alert(`Error! ${error.message}`);
       return false;
     }
+  };
+
+  const getCurrentUser = async function () {
+    const currentUser = await Parse.User.current();
+    // Update state variable holding current user
+    props.setCurrentUser(currentUser);
+    return currentUser;
   };
 
   return (
