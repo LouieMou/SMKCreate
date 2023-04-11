@@ -6,12 +6,13 @@ import ProfileForm from "../components/Profile/ProfileForm";
 import Frame from "../components/FrontPageFrame/Frame";
 import "./LoginScreen.css";
 
+import { getCurrentUser } from "../database/User";
+
 export default function LoginScreen(props) {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
 
-  /* From back4app documentation */
-  const submitHandler = async function (e) {
+  const loginHandler = async function (e) {
     e.preventDefault();
     /*     console.log("Clicked on submit");
     console.log("email: ", username);
@@ -35,7 +36,7 @@ export default function LoginScreen(props) {
       setUsername("");
       setPassword("");
       // Update state variable holding current user
-      getCurrentUser();
+      getCurrentUser(props.setCurrentUser);
       return true;
     } catch (error) {
       // Error can be caused by wrong parameters or lack of Internet connection
@@ -44,20 +45,13 @@ export default function LoginScreen(props) {
     }
   };
 
-  const getCurrentUser = async function () {
-    const currentUser = await Parse.User.current();
-    // Update state variable holding current user
-    props.setCurrentUser(currentUser);
-    return currentUser;
-  };
-
   return (
     <Frame>
       <div className="loginScreen">
         <FrontPageHeading title="Login" />
         <ProfileForm
           label_text={"Login"}
-          onSubmit={submitHandler}
+          onSubmit={loginHandler}
           setUsername={setUsername}
           setPassword={setPassword}
         />

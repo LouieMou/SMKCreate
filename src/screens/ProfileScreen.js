@@ -1,22 +1,69 @@
-import React from "react";
+import React, { useState } from "react";
+import Parse from "parse";
 /* Components */
-import PageHeading from "../components/Headings/PageHeading";
+import ProfileHeader from "../components/Profile/ProfileHeader";
+import Frame from "../components/FrontPageFrame/Frame";
 /* Functions */
 import { setBackgroundColor } from "../functions/background";
+import { getCurrentUser } from "../database/User";
+import ProfileForm from "../components/Profile/ProfileForm";
+/* Styles */
+import "./ProfileScreen.css";
 
 function ProfileScreen(props) {
-  const green = getComputedStyle(document.documentElement).getPropertyValue(
-    "--SMK-green"
+  const initialName =
+    props.currentUser === null ? "" : props.currentUser.attributes.name;
+  const initialUsername =
+    props.currentUser === null ? "" : props.currentUser.attributes.username;
+  const initialPassword =
+    props.currentUser === null ? "" : props.currentUser.attributes.password;
+
+  const [name, setName] = useState(initialName);
+  const [username, setUsername] = useState(initialUsername);
+  const [password, setPassword] = useState(initialPassword);
+
+  const white = getComputedStyle(document.documentElement).getPropertyValue(
+    "--primary-white"
   );
-  setBackgroundColor(green);
+  setBackgroundColor(white);
+
+  async function saveChangesToProfile(e) {
+    e.preventDefault();
+    // Create a new Todo parse object instance and set todo id
+    let User = new Parse.Object("_User");
+    User.set("objectId", props.currentUser.id);
+    // Set new done value and save Parse Object changes
+    User.set("name", name);
+    User.set("username", username);
+    User.set("password", password);
+    try {
+      await User.save();
+      // Success
+      alert("Success! To-do updated!");
+      getCurrentUser(props.setCurrentUser);
+      return true;
+    } catch (error) {
+      // Error can be caused by lack of Internet connection
+      alert(`Error! ${error.message}`);
+      return false;
+    }
+  }
+
   return (
-    <div>
-      <PageHeading
-        title="This is the Profile Screen"
-        subtitle="Design and data will soon be updated"
-        color={`var(--primary-white)`}
-      />
-    </div>
+    <Frame>
+      <div className="profile-page">
+        <ProfileHeader name={name} setName={setName} />
+        <h4>Login information</h4>
+        <ProfileForm
+          label_text={"Save changes"}
+          onSubmit={saveChangesToProfile}
+          setUsername={setUsername}
+          setPassword={setPassword}
+          username={username}
+          password={password}
+        />
+      </div>
+    </Frame>
   );
 }
 
