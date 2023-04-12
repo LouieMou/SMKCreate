@@ -1,4 +1,4 @@
-import { useState, useContext } from "react";
+import { useState, useContext, useEffect } from "react";
 /* Context */
 import { FavoriteContext } from "../../context/FavoriteContext";
 /* Styles */
@@ -6,18 +6,21 @@ import "./ImageItem.css";
 
 export default function ImageItem(props) {
 
-  const { updateFavoriteList } = useContext(FavoriteContext);
+  const { updateFavoriteList, removeFromFavoriteList } = useContext(FavoriteContext);
 
   function handleSaveToFavorite(object) {
-    console.log("this is the object being saved from imageGrid: ", object)
     object.saved = true;
     updateFavoriteList(object);
-    
+  }
+
+  function handleRemoveFromFavorite(object){
+    object.saved = false;
+    removeFromFavoriteList(object.id);
   }
 
   return (
     <div className="image-container">
-      <img className="image" src={props.source} alt={`${props.title}`} />
+      <img className="image" src={`/${props.source}`} alt={`${props.title}`} />
       <div className="overlay">
         <span
           className="favorite-icon-container"
@@ -25,7 +28,7 @@ export default function ImageItem(props) {
           {props.object.saved ? (
             <img
               src="/icons/heart_filled_white.svg"
-              /* onClick={() => handleSaveToFavorite(props.object)} */
+              onClick={() => handleRemoveFromFavorite(props.object)}
             ></img>
           ) : (
             <img

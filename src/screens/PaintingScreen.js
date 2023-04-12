@@ -14,7 +14,7 @@ import "./PaintingScreen.css";
 function TestScreen(props) {
   const { state } = useLocation();
   useEffect(() => {
-    fetchPainting(state.paintingId);
+    fetchPainting(state.paintingId)
   }, []);
 
   useEffect(() => {
@@ -24,17 +24,12 @@ function TestScreen(props) {
   const [painting, setPainting] = useState();
   const [objects, setObjects] = useState();
 
-  const yellow = getComputedStyle(document.documentElement).getPropertyValue(
-    "--SMK-blue"
-  );
-  setBackgroundColor(yellow);
-
   let colorMode = "var(--primary-white)";
 
   async function fetchPainting(paintingId) {
-    //let painting = desctructurePainting(state.painting)
     let painting = await readPaintingById(paintingId);
     setPainting(painting);
+    setBackgroundColor(painting.suggested_bg_color)
     console.log("This is the painting: ", painting)
   }
 
@@ -42,6 +37,7 @@ function TestScreen(props) {
     try {
       const objects = await readObjectsByPaintingId(paintingId);
       setObjects(objects);
+      console.log("these are the objects in painting screen; ", objects)
     } catch (error) {
       console.error(error);
     }
@@ -51,7 +47,6 @@ function TestScreen(props) {
       {painting && objects ? (
         <div
           className="paintingScreen"
-          style={{ backgroundColor: painting.suggested_bg_color }}
         >
           <>
             <MetaData
@@ -69,7 +64,7 @@ function TestScreen(props) {
           </>
         </div>
       ) : (
-        "Loading"
+        <></>
       )}
     </>
   );

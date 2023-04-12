@@ -5,16 +5,13 @@ import "./CategoryScreen.css";
 /* Styles */
 import "./../index.css";
 /* Functions */
-import { setBackgroundColor } from "../functions/background";
+import { randomizeBackground } from "../functions/background";
 
 export default function CategoryScreen(props) {
-  const blue = getComputedStyle(document.documentElement).getPropertyValue(
-    "--SMK-blue"
-  );
-  setBackgroundColor(blue);
+  randomizeBackground()
 
   return (
-    <div className="categoryScreen" style={{ backgroundColor: blue }}>
+    <div className="categoryScreen">
       <PageHeading
         title="All categories"
         subtitle="Choose one to begin your exploration"

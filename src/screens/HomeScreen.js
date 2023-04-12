@@ -6,20 +6,16 @@ import PageHeading from "../components/Headings/PageHeading";
 import FrontPageGrid from "../components/FrontPageGrid/FrontPageGrid";
 import LabelButton from "../components/LabelButton/LabelButton";
 /* Functions */
-import { setBackgroundColor } from "../functions/background";
+import { setWhiteBackground } from "../functions/background";
 /* Styles */
 import "./HomeScreen.css";
 
 function HomeScreen(props) {
-  /*const textColor = data[1].suggested_bg_color;*/
-  const white = getComputedStyle(document.documentElement).getPropertyValue(
-    "--primary-white"
-  );
-
-  setBackgroundColor(white);
-
+  
   const navigate = useNavigate();
-
+  
+  setWhiteBackground();
+  
   function handleNavigation() {
     navigate("/categories");
   }

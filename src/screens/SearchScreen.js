@@ -3,7 +3,7 @@ import { React, useState, useEffect, useContext } from "react";
 import FilterFrame from "../components/FilterFrame/FilterFrame";
 import ImageGrid from "../components/ImageGrid/ImageGrid";
 /* Functions */
-import { setBackgroundColor } from "../functions/background";
+import { randomizeBackground } from "../functions/background";
 import { readObjectsByCategory } from "../database/Object";
 /* Styles */
 import "./SearchScreen.css";
@@ -16,6 +16,7 @@ function SearchScreen(props) {
   const [objects, setObjects] = useState();
   const [filteredObjects, setFilteredObjects] = useState();
   const [useFilter, setUseFilter] = useState(false);
+  const [color, setColor] = useState()
 
   useEffect(() => {
     if (search) {
@@ -30,13 +31,14 @@ function SearchScreen(props) {
   }, [filter]);
 
   async function fecthObjects(searchObject) {
+      updateSearchScreenColor()
     try {
       let objects = await readObjectsByCategory(searchObject.category_id);
       if (searchObject.filter_label) {
         setObjects(objects);
         setFilter(searchObject.filter_label);
       } else {
-        setObjects(objects);
+        setObjects(objects); 
       }
     } catch (error) {}
   }
@@ -47,17 +49,20 @@ function SearchScreen(props) {
       (object) => object.label_text === searchFilter
     );
     setFilteredObjects(objectsFiltered);
+    updateSearchScreenColor()
   }
 
   function showAllObjectsInCategory(){
     console.log("Remove search filter")
+    updateSearchScreenColor()
     setUseFilter(false);
   }
 
-  const yellow = getComputedStyle(document.documentElement).getPropertyValue(
-    "--secondary-yellow"
-  );
-  setBackgroundColor(yellow);
+  function updateSearchScreenColor(){
+    randomizeBackground()
+    setColor(randomizeBackground())
+  }
+
   return (
     <>
       <div className="search-component-container">
@@ -67,6 +72,7 @@ function SearchScreen(props) {
               category={search.category_name}
               setFilter={setFilter}
               showAllObjectsInCategory={showAllObjectsInCategory}
+              label_text_color={color}
             />
           ) : (
             <></>

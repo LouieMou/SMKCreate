@@ -27,10 +27,6 @@ function App() {
   const dragURL = useRef();
 
   useEffect(() => {
-    console.log("this is the dragURL", dragURL);
-  }, [dragURL]);
-
-  useEffect(() => {
     if (currentUser) {
       fecthCategoriesWithPointer();
     }
@@ -82,15 +78,20 @@ function App() {
                   path="/"
                   element={<HomeScreen categories={categoriesAndObjects} />}
                 />
-                <Route path="/search" element={<SearchScreen />} />
-                <Route path="/search/:id" element={<SearchScreen />} />
-                <Route path="/painting" element={<PaintingScreen />} />
-                <Route
-                  path="/canvas"
-                  element={<CanvasScreen dragURL={dragURL} />}
-                />
-                <Route path="/profile" element={<ProfileScreen />} />
 
+                <Route exact path="/search/:id" element={<SearchScreen/>} />
+                {/* <Route path="/search/:id" element={<SearchScreen />} /> */}
+                <Route path="/painting" element={<PaintingScreen/>} />
+                <Route path="/canvas" element={<CanvasScreen dragURL={dragURL}/>} />
+                <Route
+                  path="/profile"
+                  element={
+                    <ProfileScreen
+                      currentUser={currentUser}
+                      setCurrentUser={setCurrentUser}
+                    />
+                  }
+                />
                 <Route
                   path="/categories"
                   element={<CategoryScreen categories={categoriesAndObjects} />}

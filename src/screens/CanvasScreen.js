@@ -6,20 +6,51 @@ import TextBox from "../components/TextBox/TextBox";
 import LabelButton from "../components/LabelButton/LabelButton";
 import Konva from "../components/Canvas/Konva";
 /* Functions */
-import { setBackgroundColor } from "../functions/background";
+import { setWhiteBackground } from "../functions/background";
 
 function CanvasScreen(props) {
   const [userInput, setUserInput] = useState("");
 
+  setWhiteBackground();
+  
   const handleUserInput = (event) => {
     setUserInput(event.target.value);
     console.log(event);
   };
 
+
   const white = getComputedStyle(document.documentElement).getPropertyValue(
     "--primary-white"
   );
   setBackgroundColor(white);
+
+  function generateImage() {
+    const canvas = canvasRef.current;
+    const context = canvas.getContext("2d");
+    canvas.style.width = "100%";
+    canvas.style.height = "100%";
+    canvas.width = canvas.offsetWidth;
+    canvas.height = canvas.offsetHeight;
+    context.fillStyle = "red";
+    context.fillRect(0, 0, canvas.width, canvas.height);
+    console.log(canvas);
+  }
+
+  const downLoadImage = () => {
+    console.log("I downloaded my image");
+  };
+
+  function clearCanvas() {
+    const canvas = canvasRef.current;
+    const context = canvas.getContext("2d");
+    context.clearRect(0, 0, canvas.width, canvas.height);
+  }
+
+  function openFavoriteList() {
+    console.log("Open favorite list");
+  }
+
+
   return (
     <div className="canvas-screen-container">
       <Konva dragURL={props.dragURL} />

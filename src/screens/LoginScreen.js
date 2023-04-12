@@ -10,12 +10,8 @@ export default function LoginScreen(props) {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
 
-  /* From back4app documentation */
-  const submitHandler = async function (e) {
+  const loginHandler = async function (e) {
     e.preventDefault();
-    /*     console.log("Clicked on submit");
-    console.log("email: ", username);
-    console.log("password: ", password); */
 
     // Note that these values come from state variables that we've declared before
     const usernameValue = username;
@@ -35,7 +31,7 @@ export default function LoginScreen(props) {
       setUsername("");
       setPassword("");
       // Update state variable holding current user
-      getCurrentUser();
+      getCurrentUser(props.setCurrentUser);
       return true;
     } catch (error) {
       // Error can be caused by wrong parameters or lack of Internet connection
@@ -57,7 +53,7 @@ export default function LoginScreen(props) {
         <FrontPageHeading title="Login" />
         <ProfileForm
           label_text={"Login"}
-          onSubmit={submitHandler}
+          onSubmit={loginHandler}
           setUsername={setUsername}
           setPassword={setPassword}
         />
