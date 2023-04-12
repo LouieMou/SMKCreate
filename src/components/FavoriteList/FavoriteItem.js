@@ -7,7 +7,7 @@ export default function FavoriteItem(props) {
       onClick={props.handleClick}
       draggable="true"
       onDragStart={() => {
-        props.dragURL.current = `http://localhost:3000/${props.source}`;
+        props.dragURL.current = `/${props.source}`;
       }}
     >
       <img
