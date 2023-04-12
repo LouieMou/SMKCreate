@@ -10,10 +10,6 @@ import { setBackgroundColor } from "../functions/background";
 
 function CanvasScreen(props) {
   const [userInput, setUserInput] = useState("");
-  const stageRef = useRef(null);
-  const layerRef = useRef(null);
-  const dragUrl = useRef();
-  const [images, setImages] = useState([]);
 
   const handleUserInput = (event) => {
     setUserInput(event.target.value);
@@ -26,7 +22,7 @@ function CanvasScreen(props) {
   setBackgroundColor(white);
   return (
     <div className="canvas-screen-container">
-      <Konva stageRef={stageRef} layerRef={layerRef}></Konva>
+      <Konva dragURL={props.dragURL} />
       <div className="generate-image-container">
         <TextBox
           placeholder="Write some text here to help generate an image"

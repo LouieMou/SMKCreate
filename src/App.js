@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { Route, Routes } from "react-router-dom";
 /* Screens */
 import HomeScreen from "./screens/HomeScreen";
@@ -24,6 +24,11 @@ function App() {
   const [categoriesAndObjects, setCategoriesAndObjects] = useState();
   const [favoriteIsActive, setFavoriteIsActive] = useState(false);
   const [currentUser, setCurrentUser] = useState(null);
+  const dragURL = useRef();
+
+  useEffect(() => {
+    console.log("this is the dragURL", dragURL);
+  }, [dragURL]);
 
   useEffect(() => {
     if (currentUser) {
@@ -62,7 +67,10 @@ function App() {
           <FavoriteContextProvider>
             {favoriteIsActive && (
               <div className="favorite-list-container">
-                <FavoriteList closeFavoriteList={closeFavoriteList} />
+                <FavoriteList
+                  closeFavoriteList={closeFavoriteList}
+                  dragURL={dragURL}
+                />
               </div>
             )}
 
@@ -77,7 +85,10 @@ function App() {
                 <Route path="/search" element={<SearchScreen />} />
                 <Route path="/search/:id" element={<SearchScreen />} />
                 <Route path="/painting" element={<PaintingScreen />} />
-                <Route path="/canvas" element={<CanvasScreen />} />
+                <Route
+                  path="/canvas"
+                  element={<CanvasScreen dragURL={dragURL} />}
+                />
                 <Route path="/profile" element={<ProfileScreen />} />
 
                 <Route

@@ -11,7 +11,6 @@ import { FavoriteContext } from "../../context/FavoriteContext";
 export default function FavoriteGrid(props) {
   const navigate = useNavigate();
   const { favoriteList, removeFromFavoriteList } = useContext(FavoriteContext);
-  const dragURL = useRef();
 
   function deleteItem(id, e) {
     removeFromFavoriteList(id);
@@ -21,11 +20,6 @@ export default function FavoriteGrid(props) {
   function onClickImage(paintingId) {
     navigate("/painting", { state: { paintingId } });
     props.closeFavoriteList();
-  }
-
-  function handleDragStart(obj) {
-    dragURL.current = obj;
-    console.log("ondragstart: ", obj);
   }
 
   return (
@@ -39,8 +33,7 @@ export default function FavoriteGrid(props) {
               title={obj.object.label_text}
               handleClick={() => onClickImage(obj.object.painting_id)}
               removeItemFromFavoriteList={(e) => deleteItem(obj.object.id, e)}
-              handleDragStart={() => handleDragStart(obj.object.object_url)}
-              draggable={true}
+              dragURL={props.dragURL}
             />
           );
         })

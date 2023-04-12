@@ -8,7 +8,9 @@ export default function FavoriteItem(props) {
         src={props.source}
         alt={`${props.title}`}
         draggable="true"
-        onDragStart={props.handleDragStart}
+        onDragStart={(e) => {
+          props.dragURL.current = e.target.src;
+        }}
       />
 
       {/* <div className="favorite-overlay">
