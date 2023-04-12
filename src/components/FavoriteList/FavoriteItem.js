@@ -8,9 +8,13 @@ export default function FavoriteItem(props) {
         className="favorite-image"
         src={`/${props.source}`}
         alt={`${props.title}`}
+        draggable="true"
+        onDragStart={(e) => {
+          props.dragURL.current = e.target.src;
+        }}
       />
 
-      <div className="favorite-overlay">
+      {/* <div className="favorite-overlay">
         <img
           className="favorite-delete"
           src={`/icons/delete_favoriteItem_white.svg`}
@@ -18,7 +22,7 @@ export default function FavoriteItem(props) {
           onClick={props.removeItemFromFavoriteList}
         />
         <p className="favorite-title-overlay">{props.title}</p>
-      </div>
+      </div> */}
     </div>
   );
 }

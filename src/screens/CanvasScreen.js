@@ -4,12 +4,11 @@ import "./CanvasScreen.css";
 /* Components */
 import TextBox from "../components/TextBox/TextBox";
 import LabelButton from "../components/LabelButton/LabelButton";
-import Canvas from "../components/Canvas/Canvas";
+import Konva from "../components/Canvas/Konva";
 /* Functions */
 import { setWhiteBackground } from "../functions/background";
 
 function CanvasScreen(props) {
-  const canvasRef = useRef(null);
   const [userInput, setUserInput] = useState("");
 
   setWhiteBackground();
@@ -18,6 +17,12 @@ function CanvasScreen(props) {
     setUserInput(event.target.value);
     console.log(event);
   };
+
+
+  const white = getComputedStyle(document.documentElement).getPropertyValue(
+    "--primary-white"
+  );
+  setBackgroundColor(white);
 
   function generateImage() {
     const canvas = canvasRef.current;
@@ -45,18 +50,10 @@ function CanvasScreen(props) {
     console.log("Open favorite list");
   }
 
+
   return (
     <div className="canvas-screen-container">
-      <Canvas id="canvas" canvasRef={canvasRef}>
-        <div className="favoriteList-button-container">
-          <LabelButton
-            button_size={"large"}
-            label_text={"Open Favorite List"}
-            handleClick={() => openFavoriteList()}
-          />
-        </div>
-      </Canvas>
-
+      <Konva dragURL={props.dragURL} />
       <div className="generate-image-container">
         <TextBox
           placeholder="Write some text here to help generate an image"
@@ -67,21 +64,21 @@ function CanvasScreen(props) {
           <LabelButton
             button_size={"large"}
             label_text={"Generate Image"}
-            handleClick={() => generateImage()}
+            // handleClick={() => generateImage()}
           />
         </div>
         <div className="download-image-button-container">
           <LabelButton
             button_size={"large"}
             label_text={"Download"}
-            handleClick={() => downLoadImage()}
+            //handleClick={() => downLoadImage()}
           />
         </div>
         <div className="clear-canvas-button">
           <LabelButton
             button_size={"large"}
             label_text={"Clear Canvas"}
-            handleClick={() => clearCanvas()}
+            //handleClick={() => clearCanvas()}
           />
         </div>
       </div>
