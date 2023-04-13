@@ -9,6 +9,7 @@
 .image {
   max-height: 150px;
   min-height: 150px;
+  max-width: 100%;
   vertical-align: top;
 }
 
