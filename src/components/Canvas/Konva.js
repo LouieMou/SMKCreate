@@ -6,6 +6,30 @@ export default function Konva(props) {
   const stageRef = useRef(null);
   const [imagesOnLayer, setImagesOnLayer] = useState([]);
 
+  const handleOnCanvasDragStart = (e) => {
+    const id = e.target.id();
+    e.preventDefault();
+    setImagesOnLayer(
+      imagesOnLayer.map((image) => {
+        return {
+          ...image,
+          draggable: image.index === id,
+        };
+      })
+    );
+  };
+  const handleOnCanvasDragEnd = (e) => {
+    e.preventDefault();
+    setImagesOnLayer(
+      imagesOnLayer.map((image) => {
+        return {
+          ...image,
+          draggable: false,
+        };
+      })
+    );
+  };
+
   const URLImage = ({ image }) => {
     const [img] = useImage(image.src);
     return (
@@ -15,9 +39,13 @@ export default function Konva(props) {
         y={image.y}
         offsetX={img ? img.width / 2 : 0}
         offsetY={img ? img.height / 2 : 0}
+        onDragStart={handleOnCanvasDragStart}
+        onDrop={handleOnCanvasDragEnd}
+        draggable
       />
     );
   };
+
   return (
     <div>
       <div
