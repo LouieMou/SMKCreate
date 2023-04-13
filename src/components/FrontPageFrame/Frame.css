@@ -10,9 +10,9 @@
   border: 10px solid #101011;
   position: absolute;
   height: 80%;
-  width: calc(100% - 62px);
+  width: calc(100% - 50px);
   border-right-width: 0;
-  margin-left: 62px;
+  margin-left: 50px;
 }
 
 

@@ -4,11 +4,10 @@
   height: 125px;
   top: 0;
   z-index: 15;
-  padding-left: 62px;
+  padding: 0 50px 0 50px;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  margin-right: 42px;
   align-items: center;
 }
 
@@ -24,7 +23,7 @@ align-items: center;
   height: 125px;
   top: 0;
   z-index: 15;
-  padding-left: 62px;
+  padding: 0 50px 0 50px;
   display: flex;
   flex-direction: row;
   justify-content: space-between;

@@ -5,11 +5,10 @@
   flex-direction: row;
 }
 
-
 .left-heading-container {
   display: flex;
   flex-direction: column;
-  margin: 50px;
+  padding: 50px;
   min-width: 445px;
 }
 

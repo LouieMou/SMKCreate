@@ -1,6 +1,6 @@
 .canvas-screen-container {
   display: flex;
-  margin-left: 63px;
+  padding: 0 50px 0 50px;
 }
 
 .generate-image-container {
