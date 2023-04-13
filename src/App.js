@@ -79,10 +79,13 @@ function App() {
                   element={<HomeScreen categories={categoriesAndObjects} />}
                 />
 
-                <Route exact path="/search/:id" element={<SearchScreen/>} />
+                <Route exact path="/search/:id" element={<SearchScreen />} />
                 {/* <Route path="/search/:id" element={<SearchScreen />} /> */}
-                <Route path="/painting" element={<PaintingScreen/>} />
-                <Route path="/canvas" element={<CanvasScreen dragURL={dragURL}/>} />
+                <Route path="/painting" element={<PaintingScreen />} />
+                <Route
+                  path="/canvas"
+                  element={<CanvasScreen dragURL={dragURL} />}
+                />
                 <Route
                   path="/profile"
                   element={

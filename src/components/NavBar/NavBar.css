@@ -18,10 +18,6 @@ align-items: center;
 }
 
 .navbar-container-plain {
-  display: flex;
-  flex-direction: row;
-  justify-content: left;
-  height: 100%;
   align-items: center;
   position: -webkit-sticky;
   position: sticky;
@@ -46,3 +42,12 @@ align-items: center;
 .SMK-logo-small {
   width: 10px;
 }
+
+
+@media (max-width: 500px) {
+  .navbar-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+  }
+} 

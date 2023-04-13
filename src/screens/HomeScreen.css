@@ -1,9 +1,16 @@
 @import url(../index.css);
 
-.heading-button-container {
+.homescreen {
+  display: flex;
+  flex-direction: row;
+}
+
+
+.left-heading-container {
   display: flex;
   flex-direction: column;
   margin: 50px;
+  min-width: 445px;
 }
 
 .homepage-button-container {
@@ -11,3 +18,67 @@
   margin-bottom: 20px;
   margin-right: 15px;
 }
+
+
+ @media (max-width: 1400px) and (min-height: 1000px){
+  .homescreen {
+    display: flex;
+    flex-direction: column;
+  }
+}
+
+@media (max-width: 540px) {
+  .left-heading-container{
+    min-width: 0;
+  }
+}
+
+@media (max-width: 493px) {
+  .left-heading-container{
+    min-width: 0;
+  }
+
+  h1 {
+    font-size: 45px;
+    line-height: normal;
+  }
+
+  h2 {
+    font-size: 30px;
+    line-height: normal;
+  }
+}
+
+@media (max-width: 430px) {
+  .left-heading-container{
+    min-width: 0;
+  }
+
+  h1 {
+    font-size: 40px;
+    line-height: normal;
+  }
+
+  h2 {
+    font-size: 28px;
+    line-height: normal;
+  }
+}
+
+@media (max-width: 400px) {
+  .left-heading-container{
+    min-width: 0;
+  }
+
+  h1 {
+    font-size: 35px;
+    line-height: normal;
+  }
+
+  h2 {
+    font-size: 25px;
+    line-height: normal;
+  }
+}
+
+

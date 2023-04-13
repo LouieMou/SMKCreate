@@ -1,5 +1,8 @@
 .loginScreen {
-    flex-direction: column;
-    width: 100vw;
+    max-width: 445px;
     margin: 50px;
+    width:100%;
+/*     overflow: auto; */
 }
+
+

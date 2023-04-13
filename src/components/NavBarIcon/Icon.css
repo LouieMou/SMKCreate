@@ -3,6 +3,8 @@
   max-width: 100%;
   max-height: 100%;
   margin-left: 30px;
+  display:flex;
+  justify-content: center;
 }
 
 .nav-img-container {
@@ -17,3 +19,11 @@ a {
   justify-content: center;
   margin-top: -1px;
 }
+
+
+@media (max-width: 550px) {
+  .nav-icon-img {
+    margin-left: 10px;
+  }
+} 
+

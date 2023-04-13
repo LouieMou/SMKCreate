@@ -1,9 +1,16 @@
 @import url(../../index.css);
 
 .heading-container {
-  margin: 0px 0px 30px 0px;
+  margin-bottom: 30px;
 }
 
 h2 {
   margin: 0px;
+}
+
+@media (max-width: 422px) {
+  .heading-container{
+    margin-bottom: 0px;
+  }
+
 }

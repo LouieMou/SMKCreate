@@ -1,5 +1,19 @@
 .frontpage-grid {
-  margin: 20px 150px 20px 10px;
+  margin: 50px 50px 50px 0px;
   text-align: center;
   position: relative;
+/*   flex-wrap: wrap; */
+ /* white-space: nowrap;   Prevents content from wrapping  */
+}
+
+@media (max-width: 1000px) {
+  .frontpage-grid {
+    display: none;
+  }
+}
+
+@media (max-height: 780px) {
+  .frontpage-grid {
+    display: none;
+  }
 }
