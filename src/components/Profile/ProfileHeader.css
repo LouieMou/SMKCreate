@@ -79,7 +79,23 @@
         margin-bottom: 30px;
         margin-top: -10px;
         width: calc(100vw - 150px);
-        background-color: aquamarine;
+    }
+
+    .profile-name {
+        margin-top: 0px;
+        text-align: center;
+        font-size: 40px;
+        margin-left: 0;
+    }
+    
+}
+
+@media (max-width: 400px) {
+    .profile-name {
+        margin-top: 0px;
+        text-align: center;
+        font-size: 30px;
+        margin-left: 0;
     }
 }
 
