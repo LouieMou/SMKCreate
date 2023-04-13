@@ -3,7 +3,7 @@
 .image-container {
   position: relative;
   display: inline-block;
-  margin: 2.5px;
+  margin: 0px 2.5px 5px 2.5px;
 }
 
 .image {

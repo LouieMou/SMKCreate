@@ -16,7 +16,7 @@ function SearchScreen(props) {
   const [objects, setObjects] = useState();
   const [filteredObjects, setFilteredObjects] = useState();
   const [useFilter, setUseFilter] = useState(false);
-  const [color, setColor] = useState()
+  const [color, setColor] = useState();
 
   useEffect(() => {
     if (search) {
@@ -31,14 +31,14 @@ function SearchScreen(props) {
   }, [filter]);
 
   async function fecthObjects(searchObject) {
-      updateSearchScreenColor()
+    updateSearchScreenColor();
     try {
       let objects = await readObjectsByCategory(searchObject.category_id);
       if (searchObject.filter_label) {
         setObjects(objects);
         setFilter(searchObject.filter_label);
       } else {
-        setObjects(objects); 
+        setObjects(objects);
       }
     } catch (error) {}
   }
@@ -49,45 +49,43 @@ function SearchScreen(props) {
       (object) => object.label_text === searchFilter
     );
     setFilteredObjects(objectsFiltered);
-    updateSearchScreenColor()
+    updateSearchScreenColor();
   }
 
-  function showAllObjectsInCategory(){
-    console.log("Remove search filter")
-    updateSearchScreenColor()
+  function showAllObjectsInCategory() {
+    console.log("Remove search filter");
+    updateSearchScreenColor();
     setUseFilter(false);
   }
 
-  function updateSearchScreenColor(){
-    randomizeBackground()
-    setColor(randomizeBackground())
+  function updateSearchScreenColor() {
+    randomizeBackground();
+    setColor(randomizeBackground());
   }
 
   return (
-    <>
-      <div className="search-component-container">
-        <div className="sticky-container">
-          {search ? (
-            <FilterFrame
-              category={search.category_name}
-              setFilter={setFilter}
-              showAllObjectsInCategory={showAllObjectsInCategory}
-              label_text_color={color}
-            />
-          ) : (
-            <></>
-          )}
-        </div>
-        <div className="image-grid-container-padding">
-          {objects && !useFilter ? <ImageGrid list={objects} /> : <></>}
-          {filteredObjects && useFilter ? (
-            <ImageGrid list={filteredObjects} />
-          ) : (
-            <></>
-          )}
-        </div>
+    <div className="search-screen">
+      <div className="search-screen-left">
+        {search ? (
+          <FilterFrame
+            category={search.category_name}
+            setFilter={setFilter}
+            showAllObjectsInCategory={showAllObjectsInCategory}
+            label_text_color={color}
+          />
+        ) : (
+          <></>
+        )}
       </div>
-    </>
+      <div className="search-screen-right">
+        {objects && !useFilter ? <ImageGrid list={objects} /> : <></>}
+        {filteredObjects && useFilter ? (
+          <ImageGrid list={filteredObjects} />
+        ) : (
+          <></>
+        )}
+      </div>
+    </div>
   );
 }
 
