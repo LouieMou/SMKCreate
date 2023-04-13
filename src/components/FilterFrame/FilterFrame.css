@@ -4,30 +4,29 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-  height: 536px;
   width: 300px;
   border: solid;
   border-width: 10px;
   border-left-width: 0px;
   color: var(--primary-white);
   border-color: var(--primary-white);
-  margin-left: -10px;
+  padding: 50px 10px 50px 10px;
+  height: calc(100vh - 300px)
 }
 
 .filter-frame-button-container {
   display: flex;
   flex-direction: column;
   align-items: center;
-  height: 210px;
   width: 150px;
-  padding-left: 16px;
-  padding-top: 20px;
+  margin-top: 20px;
+  overflow: auto;
 }
 
-.scroller {
-  max-width: 450px;
-  height: 210px;
-  text-align: justify;
-  padding: 0 16px 0 0;
+.filter-frame-container h1 {
+  text-align: center;
+}
+
+.filter-frame-allbuttons-container {
+  margin-top: 50px;
 }
