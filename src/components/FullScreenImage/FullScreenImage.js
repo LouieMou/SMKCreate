@@ -99,7 +99,7 @@ export default function FullScreenImage(props) {
   }
 
   const widthImage =
-    props.imgWidth > 700 ? window.innerWidth * 0.3 : window.innerWidth * 0.8;
+    props.imgWidth > 700 ? window.innerWidth * 0.6 : window.innerWidth * 0.8;
 
   return coords ? (
     <div className="image-fullscreen-container">

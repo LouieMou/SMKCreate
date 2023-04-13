@@ -16,7 +16,7 @@ export default function MetaData(props) {
         techniques={props.painting.techniques}
       />
       <LabelGrid objects={props.objects} />
-      <ColorGrid colors={props.painting.colors} colorMode={props.colorMode} />ª
+      <ColorGrid colors={props.painting.colors} colorMode={props.colorMode} />
     </div>
   );
 }
