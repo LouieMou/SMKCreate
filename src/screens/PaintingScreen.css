@@ -3,4 +3,6 @@
 .paintingScreen {
     padding: 0 50px 0 50px;
     display: flex;
+    flex-direction: row;
+    justify-content: space-between;
 }
