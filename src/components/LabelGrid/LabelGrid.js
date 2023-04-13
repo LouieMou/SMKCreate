@@ -40,7 +40,7 @@ export default function LabelGrid(props) {
   }
 
   return (
-    <>
+    <div className="label-grid-container">
       <h4>Objects</h4>
       <div className="label-grid">
         {uniqueLabels
@@ -58,6 +58,6 @@ export default function LabelGrid(props) {
             })
           : "Loading"}
       </div>
-    </>
+    </div>
   );
 }

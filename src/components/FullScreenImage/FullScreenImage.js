@@ -24,7 +24,6 @@ export default function FullScreenImage(props) {
     }
   }, [savedObject]);
 
-
   const URL = props.imgURL;
   const MAP = {
     name: "my-map",
@@ -100,11 +99,11 @@ export default function FullScreenImage(props) {
   }
 
   return coords ? (
-    <div className="image">
+    <div className="image-fullscreen-container">
       <ImageMapper
         src={URL}
         map={MAP}
-        width={500}
+        width={700}
         imgWidth={props.imgWidth > 1660 ? 1024 : props.imgWidth}
         onClick={(area) => setSavedObject(area)}
         onLoad={() => load()}
