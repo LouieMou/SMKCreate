@@ -59,15 +59,17 @@ function ProfileScreen(props) {
     <Frame>
       <div className="profile-page">
         <ProfileHeader name={name} setName={setName} />
-        <h4>Login information</h4>
-        <ProfileForm
-          label_text={"Save changes"}
-          onSubmit={saveChangesToProfile}
-          setUsername={setUsername}
-          setPassword={setPassword}
-          username={username}
-          password={password}
-        />
+        <div className="login-info">
+          <h4>Login information</h4>
+          <ProfileForm
+            label_text={"Save changes"}
+            onSubmit={saveChangesToProfile}
+            setUsername={setUsername}
+            setPassword={setPassword}
+            username={username}
+            password={password}
+          />
+        </div>
       </div>
     </Frame>
   );

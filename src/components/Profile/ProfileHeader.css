@@ -72,3 +72,14 @@
     }
 }
 
+@media (max-width: 600px) {
+    .profile-header {
+        flex-direction: column;
+        justify-content: center;
+        margin-bottom: 30px;
+        margin-top: -10px;
+        width: calc(100vw - 150px);
+        background-color: aquamarine;
+    }
+}
+
