@@ -46,7 +46,7 @@ function SearchScreen(props) {
   function filterObjects(searchFilter) {
     setUseFilter(true);
     let objectsFiltered = objects.filter(
-      (object) => object.label_text === searchFilter
+      (object) => object.label_text === searchFilter.toLowerCase()
     );
     setFilteredObjects(objectsFiltered);
     updateSearchScreenColor()
