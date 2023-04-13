@@ -80,4 +80,16 @@
   }
 }
 
+@media (max-width: 1000px) {
+  .homescreen .frontpage-grid {
+    display: none;
+  }
+}
+
+@media (max-height: 780px) {
+  .homescreen .frontpage-grid {
+    display: none;
+  }
+}
+
 

@@ -27,3 +27,16 @@ a {
   }
 } 
 
+@media (max-width: 500px) {
+  .nav-icon-img {
+    margin-left: 15px;
+    margin-right: 15px;
+  }
+} 
+
+@media (max-width: 330px) {
+  .nav-icon-img {
+    margin-left: 10px;
+    margin-right: 10px;
+  }
+} 

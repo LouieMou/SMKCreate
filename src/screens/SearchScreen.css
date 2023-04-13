@@ -1,12 +1,16 @@
 @import url(../index.css);
 
-
-
 .search-screen-left {
   position: fixed;
-
 }
 
 .search-screen-right {
-margin-left: 300px;
+margin-left: 340px;
+}
+
+@media (max-width: 750px) {
+  .search-screen {
+    display: flex;
+    flex-direction: column;
+  }
 }
