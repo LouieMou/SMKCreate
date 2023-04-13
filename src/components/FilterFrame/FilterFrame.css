@@ -64,7 +64,7 @@
 }
 }
 
-@media (max-height: 400px) {
+@media (max-height: 400px) and (max-height: 700px) {
   .filter-frame-container{
     padding: 30px 10px 30px 10px;
     height: calc(100vh - 250px);
