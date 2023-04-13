@@ -65,7 +65,7 @@ function SearchScreen(props) {
 
   return (
     <div className="search-screen">
-      <div className="search-screen-left">
+      <div className="search-screen-left" style={{ backgroundColor: color }}>
         {search ? (
           <FilterFrame
             category={search.category_name}

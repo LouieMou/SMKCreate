@@ -2,15 +2,22 @@
 
 .search-screen-left {
   position: fixed;
+  z-index: 15;
 }
 
 .search-screen-right {
 margin-left: 340px;
 }
 
-@media (max-width: 750px) {
+@media (max-width: 500px) {
   .search-screen {
     display: flex;
     flex-direction: column;
+
   }
+
+  .search-screen-right {
+    margin-top: 300px;
+    margin-left: 0;
+    }
 }

@@ -11,7 +11,8 @@
   color: var(--primary-white);
   border-color: var(--primary-white);
   padding: 50px 10px 50px 10px;
-  height: calc(100vh - 300px)
+  height: calc(100vh - 300px);
+  z-index: 15
 }
 
 .filter-frame-button-container {
@@ -29,4 +30,36 @@
 
 .filter-frame-allbuttons-container {
   margin-top: 50px;
+}
+
+@media (max-width: 500px) {
+  .filter-frame-container {
+    display: flex;
+    flex-direction: column;
+    width: 90vw;
+    height: auto;
+    overflow: hidden;
+    padding: 10px 10px 10px 10px;
+  }
+
+  .filter-frame-button-container {
+    display: flex;
+    flex-direction: row;
+    width: 98%;
+  }
+
+  .filter-frame-allbuttons-container {
+    margin-top: 0px;    
+    display: flex;
+    flex-direction: row;
+  }
+  .filter-frame-button-container .label-button-standard {
+  margin-right: 10px;
+  margin-left: 10px;
+}
+
+.filter-frame-allbuttons-container .label-button-standard  {
+  margin-right: 10px;
+  margin-left: 10px;
+}
 }

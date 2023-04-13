@@ -86,7 +86,7 @@
   }
 }
 
-@media (max-height: 780px) {
+@media (max-height: 600px) {
   .homescreen .frontpage-grid {
     display: none;
   }

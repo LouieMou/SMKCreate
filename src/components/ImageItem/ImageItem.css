@@ -50,3 +50,9 @@
   min-width: 28px;
   cursor: pointer;
 }
+
+@media (max-width: 500px) {
+  .image {
+  max-width: 100vw;
+  }
+}
