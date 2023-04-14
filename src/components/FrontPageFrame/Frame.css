@@ -1,14 +1,26 @@
-.frame-container {
-  position: fixed;
-  width: 100%;
-}
 
 .frame {
   display: flex;
   flex-direction: row;
   border: 10px solid #101011;
   position: absolute;
-  height: 70vh;
-  width: 100vw;
-  right: -5em;
+  height: 80%;
+  width: calc(100% - 50px);
+  border-right-width: 0;
+  margin-left: 50px;
 }
+
+
+@media (max-height: 800px) {
+  .frame {
+    height: 70%; 
+    overflow-x: auto;
+  }
+}
+
+@media (max-width: 635px) {
+  .frame {
+    overflow-x: hidden;
+  }
+}
+

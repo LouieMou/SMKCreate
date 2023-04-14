@@ -24,7 +24,6 @@ export default function FullScreenImage(props) {
     }
   }, [savedObject]);
 
-
   const URL = props.imgURL;
   const MAP = {
     name: "my-map",
@@ -99,12 +98,15 @@ export default function FullScreenImage(props) {
     updateFavoriteList(object);
   }
 
+  const widthImage =
+    props.imgWidth > 700 ? window.innerWidth * 0.6 : window.innerWidth * 0.8;
+
   return coords ? (
-    <div className="image">
+    <div className="image-fullscreen-container">
       <ImageMapper
         src={URL}
         map={MAP}
-        width={500}
+        width={widthImage}
         imgWidth={props.imgWidth > 1660 ? 1024 : props.imgWidth}
         onClick={(area) => setSavedObject(area)}
         onLoad={() => load()}

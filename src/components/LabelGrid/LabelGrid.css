@@ -1,4 +1,13 @@
+.label-grid-container {
+    margin-top: 80px;
+}
+
+
 .label-grid {
     display: flex;
     max-width: 200px;
+}
+
+.label-grid-space {
+    margin-right: 15px;
 }

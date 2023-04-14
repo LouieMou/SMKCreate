@@ -1,29 +1,23 @@
 @import url(../index.css);
 
-/* .screen-container{
+.search-screen-left {
+  position: fixed;
+  z-index: 15;
+}
+
+.search-screen-right {
+margin-left: 300px;
+margin-right: 10px;
+}
+
+@media (max-width: 600px) {
+  .search-screen {
     display: flex;
-    flex-direction: row;
-}
+    flex-direction: column;
+  }
 
-.scroll-container{
-    margin-left: 50px;
-    margin-top: 20px;
-} */
-
-.search-component-container {
-  display: flex;
-  flex-direction: row;
-}
-
-.image-grid-container-padding {
-  margin-left: 50px;
-  width: 1100px;
-}
-
-.sticky-container {
-  position: -webkit-sticky;
-  position: sticky;
-  width: 300px;
-  height: 500px;
-  top: 0;
+  .search-screen-right {
+    margin-top: 300px;
+    margin-left: 0;
+    }
 }

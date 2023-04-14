@@ -11,19 +11,18 @@ import { setWhiteBackground } from "../functions/background";
 import "./HomeScreen.css";
 
 function HomeScreen(props) {
-  
   const navigate = useNavigate();
-  
+
   setWhiteBackground();
-  
+
   function handleNavigation() {
     navigate("/categories");
   }
 
   return (
-    <div className="homepage-container">
-      <Frame>
-        <div className="heading-button-container">
+    <Frame>
+      <div className="homescreen">
+        <div className="left-heading-container">
           <PageHeading
             title="What would you like to explore?"
             subtitle="Choose a category" /*color={textColor}*/
@@ -41,8 +40,8 @@ function HomeScreen(props) {
         ) : (
           <></>
         )}
-      </Frame>
-    </div>
+      </div>
+    </Frame>
   );
 }
 

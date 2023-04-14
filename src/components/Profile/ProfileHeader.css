@@ -2,7 +2,7 @@
 .profile-header {
     display: flex;
     flex-direction: row;
-    margin-bottom: 20px;
+    margin-bottom: 50px;
     align-items: center;
 }
 
@@ -36,7 +36,7 @@
     text-align: left;
     margin: 0px;
     height: auto;
-    margin-left: 38px;
+    margin-left: 30px;
 /*     border: 2px solid transparent; */
 }
 
@@ -50,11 +50,12 @@
 
 
 
-/* Media query for responsiveness */
-@media screen and (min-height: 600px) {
+
+@media (max-height: 750px) {
     .profile-header {
         flex-direction: row;
-        margin-bottom: 27px
+        margin-bottom: 30px;
+        margin-top: -10px;
     }
     .profile-circle {
         width: 60px; 
@@ -68,6 +69,33 @@
 
     .firstLetter {
         font-size: 35px;
+    }
+}
+
+@media (max-width: 600px) {
+    .profile-header {
+        flex-direction: column;
+        justify-content: center;
+        margin-bottom: 30px;
+        margin-top: -10px;
+        width: calc(100vw - 150px);
+    }
+
+    .profile-name {
+        margin-top: 0px;
+        text-align: center;
+        font-size: 40px;
+        margin-left: 0;
+    }
+    
+}
+
+@media (max-width: 400px) {
+    .profile-name {
+        margin-top: 0px;
+        text-align: center;
+        font-size: 30px;
+        margin-left: 0;
     }
 }
 
