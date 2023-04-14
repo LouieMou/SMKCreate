@@ -6,44 +6,54 @@ export default function Konva(props) {
   const stageRef = useRef(null);
   const [imagesOnLayer, setImagesOnLayer] = useState([]);
 
-  const handleOnCanvasDragStart = (e) => {
-    console.log("here is an image e", e);
-    e.evt.preventDefault();
-    e.cancelBubble = true;
+  const handleOnCanvasDragStart = (image) => {
+    console.log("x dragstart: ", image.x);
+    console.log("y dragstart: ", image.y);
+    const id = image.id;
+    setImagesOnLayer(
+      imagesOnLayer.map((image) => {
+        return {
+          ...image,
+          isDragging: image.id === id,
+        };
+      })
+    );
 
-    setImagesOnLayer(
-      imagesOnLayer.map((image) => {
-        return {
-          ...image,
-          draggable: false,
-        };
-      })
-    );
-    //console.log("image in handle", image);
-    const id = e.target.id;
-    setImagesOnLayer(
-      imagesOnLayer.map((image) => {
-        return {
-          ...image,
-          draggable: image.id === id,
-        };
-      })
-    );
+    console.log("here is imagesOnLayer in DragStart:", imagesOnLayer);
   };
 
-  const handleOnCanvasDragEnd = (e) => {
-    console.log();
-    e.preventDefault();
-    console.log(e);
-    const draggableImage = imagesOnLayer.find((image) => image.draggable);
+  const handleOnCanvasDragMove = (e, image) => {
+    const id = image.id;
+    console.log("x dragmove: ", image.x);
+    console.log("y dragmove: ", image.y);
+    setImagesOnLayer((prevImages) => {
+      return prevImages.map((image) => {
+        if (image.id === id) {
+          return {
+            ...image,
+            x: image.x + e.evt.layerX,
+            y: image.y + e.evt.layerY,
+          };
+        } else {
+          return image;
+        }
+      });
+    });
+  };
+
+  const handleOnCanvasDragEnd = (image) => {
+    console.log("DragEnd image: ", image);
+    console.log("x DragEnd: ", image.x);
+    console.log("y DragEnd: ", image.y);
+    const draggableImage = imagesOnLayer.find((image) => image.isDragging);
     if (draggableImage) {
       const newImagesOnLayer = imagesOnLayer.map((image) => {
         if (image.id === draggableImage.id) {
           return {
             ...image,
-            draggable: false,
-            x: image.x + e.target.x(),
-            y: image.y + e.target.y(),
+            isDragging: false,
+            x: image.x,
+            y: image.y,
           };
         } else {
           return image;
@@ -56,7 +66,9 @@ export default function Konva(props) {
 
   const URLImage = ({ image }) => {
     const [img] = useImage(image.src);
-    console.log("iiimage", image);
+    /*     console.log("URLImage id", image.id); */
+    console.log("start x", image.x);
+    console.log("start y", image.y);
     return (
       <Image
         id={image.id}
@@ -65,9 +77,10 @@ export default function Konva(props) {
         y={image.y}
         offsetX={img ? img.width / 2 : 0}
         offsetY={img ? img.height / 2 : 0}
-        onDragStart={handleOnCanvasDragStart}
-        onDrop={handleOnCanvasDragEnd}
-        onDragOver={(e) => e.preventDefault()}
+        onDragStart={() => handleOnCanvasDragStart(image)}
+        onDragMove={(e) => handleOnCanvasDragMove(e, image)}
+        onDragEnd={() => handleOnCanvasDragEnd(image)}
+        isDragging={false}
         draggable
       />
     );
@@ -84,7 +97,7 @@ export default function Konva(props) {
             {
               ...stageRef.current.getPointerPosition(),
               src: props.dragURL.current.url,
-              id: props.dragURL.current.id + imagesOnLayer.length,
+              id: props.dragURL.current.id + "_" + Date.now(),
             },
           ]);
         }}
