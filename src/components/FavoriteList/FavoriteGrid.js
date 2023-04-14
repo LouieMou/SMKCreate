@@ -34,6 +34,7 @@ export default function FavoriteGrid(props) {
               handleClick={() => onClickImage(obj.object.painting_id)}
               removeItemFromFavoriteList={(e) => deleteItem(obj.object.id, e)}
               dragURL={props.dragURL}
+              id={obj.object.id}
             />
           );
         })

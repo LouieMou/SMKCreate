@@ -10,7 +10,7 @@ export default function FavoriteItem(props) {
         alt={`${props.title}`}
         draggable="true"
         onDragStart={(e) => {
-          props.dragURL.current = e.target.src;
+          props.dragURL.current = { url: e.target.src, id: props.id };
         }}
       />
 
