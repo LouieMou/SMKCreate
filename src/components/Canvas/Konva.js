@@ -1,9 +1,9 @@
+import { useState } from "react";
 import "./Konva.css";
 import { Stage, Layer, Text, Image } from "react-konva";
-import { useRef, useState } from "react";
 import useImage from "use-image";
+
 export default function Konva(props) {
-  const stageRef = useRef(null);
   const [imagesOnLayer, setImagesOnLayer] = useState([]);
 
   const URLImage = ({ image }) => {
@@ -23,11 +23,11 @@ export default function Konva(props) {
       <div
         onDrop={(e) => {
           e.preventDefault();
-          stageRef.current.setPointersPositions(e);
+          props.stageRef.current.setPointersPositions(e);
           setImagesOnLayer(
             imagesOnLayer.concat([
               {
-                ...stageRef.current.getPointerPosition(),
+                ...props.stageRef.current.getPointerPosition(),
                 src: props.dragURL.current,
               },
             ])
@@ -37,7 +37,7 @@ export default function Konva(props) {
       >
         <Stage
           className="konva-container"
-          ref={stageRef}
+          ref={props.stageRef}
           width={window.innerWidth}
           height={window.innerHeight}
         >

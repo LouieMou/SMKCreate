@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from "react";
+import React, { useState, useRef } from "react";
 /*Styling*/
 import "./CanvasScreen.css";
 /* Components */
@@ -10,6 +10,7 @@ import { setBackgroundColor } from "../functions/background";
 
 function CanvasScreen(props) {
   const [userInput, setUserInput] = useState("");
+  const stageRef = useRef(null);
 
   const handleUserInput = (event) => {
     setUserInput(event.target.value);
@@ -22,15 +23,9 @@ function CanvasScreen(props) {
   setBackgroundColor(white);
 
   function generateImage() {
-    /*     const canvas = canvasRef.current;
-    const context = canvas.getContext("2d");
-    canvas.style.width = "100%";
-    canvas.style.height = "100%";
-    canvas.width = canvas.offsetWidth;
-    canvas.height = canvas.offsetHeight;
-    context.fillStyle = "red";
-    context.fillRect(0, 0, canvas.width, canvas.height);
-    console.log(canvas); */
+    console.log("generate Image");
+    const png = stageRef.current.toDataURL();
+    console.log("I think a png: ", png);
   }
 
   const downLoadImage = () => {
@@ -49,7 +44,7 @@ function CanvasScreen(props) {
 
   return (
     <div className="canvas-screen-container">
-      <Konva dragURL={props.dragURL} />
+      <Konva dragURL={props.dragURL} stageRef={stageRef} />
       <div className="generate-image-container">
         <TextBox
           placeholder="Write some text here to help generate an image"
@@ -60,7 +55,7 @@ function CanvasScreen(props) {
           <LabelButton
             button_size={"large"}
             label_text={"Generate Image"}
-            // handleClick={() => generateImage()}
+            handleClick={generateImage}
           />
         </div>
         <div className="download-image-button-container">
