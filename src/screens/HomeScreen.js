@@ -16,7 +16,7 @@ function HomeScreen(props) {
   setWhiteBackground();
 
   function handleNavigation() {
-    navigate("/categories");
+    navigate("/test");
   }
 
   return (

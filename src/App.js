@@ -8,6 +8,8 @@ import CategoryScreen from "./screens/CategoryScreen";
 import ProfileScreen from "./screens/ProfileScreen";
 import CanvasScreen from "./screens/CanvasScreen";
 import LoginScreen from "./screens/LoginScreen";
+import DallE from "./screens/TestScreen";
+import GeneretiveAI from "./screens/GeneretiveAI";
 /* Components */
 import NavBar from "./components/NavBar/NavBar";
 import NavBarPlain from "./components/NavBar/NavBarPlain";
@@ -99,6 +101,8 @@ function App() {
                   path="/categories"
                   element={<CategoryScreen categories={categoriesAndObjects} />}
                 />
+                <Route path="/test" element={<DallE/>}/>
+                <Route path="ai" element={<GeneretiveAI/>}/>
               </Routes>
             ) : (
               <></>
