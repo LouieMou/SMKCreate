@@ -10,6 +10,7 @@ import { setBackgroundColor } from "../functions/background";
 
 function CanvasScreen(props) {
   const [userInput, setUserInput] = useState("");
+  const [generatedImage, setGeneratedImage] = useState();
   const stageRef = useRef(null);
 
   const handleUserInput = (event) => {
@@ -26,6 +27,11 @@ function CanvasScreen(props) {
     console.log("generate Image");
     const png = stageRef.current.toDataURL();
     console.log("I think a png: ", png);
+
+    /* get some data from the server */
+    fetch("/api")
+      .then((res) => res.json())
+      .then((data) => setGeneratedImage(data.message));
   }
 
   const downLoadImage = () => {
@@ -45,6 +51,7 @@ function CanvasScreen(props) {
   return (
     <div className="canvas-screen-container">
       <Konva dragURL={props.dragURL} stageRef={stageRef} />
+      <p>{!generatedImage ? "Loading..." : generatedImage}</p>
       <div className="generate-image-container">
         <TextBox
           placeholder="Write some text here to help generate an image"

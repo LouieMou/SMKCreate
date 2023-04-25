@@ -21,7 +21,7 @@ function NavBar(props) {
     } else {
       setNavBarColor("white");
     }
-  });
+  }, [location.pathname]);
 
   useEffect(() => {
     if (
