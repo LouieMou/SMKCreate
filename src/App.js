@@ -63,10 +63,7 @@ function App() {
           <FavoriteContextProvider>
             {favoriteIsActive && (
               <div className="favorite-list-container">
-                <FavoriteList
-                  closeFavoriteList={closeFavoriteList}
-                  dragURL={dragURL}
-                />
+                <FavoriteList closeFavoriteList={closeFavoriteList} />
               </div>
             )}
 

@@ -3,7 +3,7 @@ import "./TextBox.css";
 export default function TextBox(props) {
   return (
     <div className="textbox-container">
-      <input
+      <textarea
         type="text"
         className="input-text"
         placeholder={props.placeholder}

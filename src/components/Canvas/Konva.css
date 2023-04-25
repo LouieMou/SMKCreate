@@ -1,9 +1,11 @@
 .konva-container {
   display: flex;
+  align-items: center;
   flex-direction: row;
   box-sizing: border-box;
-  width: 945px;
-  height: 554px;
+  width: 539px;
+  height: 539px;
   top: 125px;
   border: 10px solid #101011;
+  z-index: 100px;
 }

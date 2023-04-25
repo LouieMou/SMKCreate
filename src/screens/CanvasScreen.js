@@ -7,6 +7,7 @@ import LabelButton from "../components/LabelButton/LabelButton";
 import Konva from "../components/Canvas/Konva";
 /* Functions */
 import { setBackgroundColor } from "../functions/background";
+import FavoriteGrid from "../components/FavoriteList/FavoriteGrid";
 
 function CanvasScreen(props) {
   const [userInput, setUserInput] = useState("");
@@ -49,6 +50,9 @@ function CanvasScreen(props) {
 
   return (
     <div className="canvas-screen-container">
+      <div className="fav-grid-container">
+        <FavoriteGrid dragURL={props.dragURL} />
+      </div>
       <Konva dragURL={props.dragURL} />
       <div className="generate-image-container">
         <TextBox
