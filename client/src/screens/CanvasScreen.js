@@ -23,20 +23,57 @@ function CanvasScreen(props) {
   );
   setBackgroundColor(white);
 
-  function generateImage() {
-    console.log("generate Image");
-    const png = stageRef.current.toDataURL();
-    console.log("I think a png: ", png);
-
-    /* get some data from the server */
+  function generateText() {
     fetch("/api")
       .then((res) => res.json())
       .then((data) => setGeneratedImage(data.message));
   }
 
-  const downLoadImage = () => {
-    /*     console.log("I downloaded my image"); */
-  };
+  async function generateImage() {
+    console.log("generate Image");
+    const png = stageRef.current.toDataURL();
+    //console.log("I think a png: ", png);
+
+    //console.log(png_Manuel);
+    /* say to the server that it should sent a request to dall-e and send back the answer*/
+    /*  fetch("/api")
+      .then((res) => res.json())
+      .then((data) => setGeneratedImage(data.message)); 
+      */
+
+    const response = await fetch("/generate", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        prompt: "Make a background of bananas",
+      }),
+    });
+
+    if (response.ok) {
+      const responseData = await response.json();
+      console.log("response: ", responseData);
+      setGeneratedImage(responseData);
+      /* stageRef.current = responseData.resultImage; */
+    } else {
+      console.log("Failed to generate image: ", response.status);
+    }
+  }
+
+  function downloadURI(uri, name) {
+    var link = document.createElement("a");
+    link.download = name;
+    link.href = uri;
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  }
+
+  function downloadImage() {
+    const png = stageRef.current.toDataURL();
+    downloadURI(png, "stage.png");
+  }
 
   function clearCanvas() {
     /*     const canvas = canvasRef.current;
@@ -51,7 +88,11 @@ function CanvasScreen(props) {
   return (
     <div className="canvas-screen-container">
       <Konva dragURL={props.dragURL} stageRef={stageRef} />
-      <p>{!generatedImage ? "Loading..." : generatedImage}</p>
+      {!generatedImage ? (
+        "Loading..."
+      ) : (
+        <img src={generatedImage} style={{ height: "auto" }} />
+      )}
       <div className="generate-image-container">
         <TextBox
           placeholder="Write some text here to help generate an image"
@@ -69,7 +110,7 @@ function CanvasScreen(props) {
           <LabelButton
             button_size={"large"}
             label_text={"Download"}
-            //handleClick={() => downLoadImage()}
+            handleClick={downloadImage}
           />
         </div>
         <div className="clear-canvas-button">
