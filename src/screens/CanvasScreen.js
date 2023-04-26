@@ -8,14 +8,23 @@ import Konva from "../components/Canvas/Konva";
 /* Functions */
 import { setBackgroundColor } from "../functions/background";
 import { Configuration, OpenAIApi } from "openai";
+/* import * as fs from "fs"; */
 
 function CanvasScreen(props) {
   const [userInput, setUserInput] = useState("");
+  const [dataURL, setDataURL] = useState("");
   const stageRef = useRef(null);
   const [generatedImage, setGeneratedImage] = useState("");
 
+  class CustomFormData extends FormData {
+    getHeaders() {
+      return {};
+    }
+  }
+
   const configuration = new Configuration({
     apiKey: process.env.REACT_APP_OPENAI_KEY,
+    formDataCtor: CustomFormData,
   });
 
   const openai = new OpenAIApi(configuration);
@@ -32,22 +41,83 @@ function CanvasScreen(props) {
 
   async function generateImage() {
     console.log("inside generateImage function");
+    console.log("userinput", userInput);
 
     if (userInput === "") {
       alert("You need to write a text in the input field");
     }
 
+    const konvaWithObjects = stageRef.current.toDataURL();
+
+    /*   const imageParameters = new CustomFormData();
+    imageParameters.append("image", "/dalle/collage.png");
+    imageParameters.append("prompt", userInput);
+    imageParameters.append("n", 1);
+    imageParameters.append("size", "512x512"); */
+
+    /*     const imageParameters = {
+      image: fs.createReadStream("/dalle/collage.png"),
+      prompt: userInput,
+      n: 1,
+      size: "512x512",
+    }; */
+
+    /*       image: "/dalle/collage.png", */
+
+    const stream = `ReadStream {
+      _readableState: ReadableState {
+        objectMode: false,
+        highWaterMark: 65536,
+        buffer: BufferList { length: 0 },
+        length: 0,
+        pipes: null,
+        pipesCount: 0,
+        flowing: null,
+        ended: false,
+        endEmitted: false,
+        reading: false,
+        sync: true,
+        needReadable: false,
+        emittedReadable: false,
+        readableListening: false,
+        resumeScheduled: false,
+        paused: true,
+        emitClose: true,
+        autoDestroy: false,
+        destroyed: false,
+        defaultEncoding: 'utf8',
+        awaitDrain: 0,
+        readingMore: false,
+        decoder: null,
+        encoding: null
+      },
+      _events: [Object: null prototype] { end: [Function: onReadableStreamEnd] },
+      _eventsCount: 1,
+      _maxListeners: undefined,
+      path: '/dalle/collage.png',
+      fd: null,
+      flags: 'r',
+      mode: 438,
+      start: undefined,
+      end: Infinity,
+      autoClose: true,
+      pos: undefined,
+      bytesRead: 0,
+      closed: false
+    }`;
+
     const imageParameters = {
+      image: stream,
       prompt: userInput,
       n: 1,
       size: "512x512",
     };
 
     const response = await openai.createImage(imageParameters);
-    const urlData = response.data.data[0].url;
-    console.log(urlData);
-    setGeneratedImage(urlData);
-    stageRef.current = urlData;
+    const imageFromOpenAI = response.data.data[0].url;
+    console.log(imageFromOpenAI);
+    setGeneratedImage(imageFromOpenAI);
+    stageRef.current = imageFromOpenAI;
   }
 
   function downloadURI(uri, name) {
@@ -61,7 +131,7 @@ function CanvasScreen(props) {
 
   function downloadImage() {
     const png = stageRef.current.toDataURL();
-    downloadURI(png, "stage.png");
+    downloadURI(png, "KonvaWithObjects.png");
   }
 
   function clearCanvas() {
@@ -76,6 +146,11 @@ function CanvasScreen(props) {
 
   return (
     <div className="canvas-screen-container">
+      {/*       <img
+        src="/dalle/collage.png"
+        style={{ width: "512px", height: "512px" }}
+        alt="generatedImage"
+      /> */}
       {generatedImage ? (
         <img
           src={generatedImage}
