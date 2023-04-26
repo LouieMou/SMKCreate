@@ -30,6 +30,7 @@ function CanvasScreen(props) {
 
   async function generateImage() {
     console.log("generate Image");
+    console.log("send prompt: ", userInput);
 
     if (userInput === "") {
       alert("You need to write something in the user input");

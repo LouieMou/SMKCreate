@@ -36,13 +36,13 @@ app.get("/api", (req, res) => {
 });
 
 app.post("/generate", async (req, res) => {
-  //console.log("generate here", req.body.prompt);
+  const text = req.body.prompt;
+  console.log("generate here - prompt: ", text);
   //console.log("generate here", req.body.image);
   //const image = req.body.image;
-  const text = req.body.prompt;
 
   try {
-    /*     if (prompt == null) {
+    /*     if (prompt == "") {
       throw new Error("Uh oh, no prompt was provided");
     } */
 
@@ -67,7 +67,11 @@ app.post("/generate", async (req, res) => {
       "512x512"
     ); */
 
-    const OpenAIres = await openai.createImage({
+    /*      image: fs.createReadStream("images/test.png"), */
+
+    const OpenAIres = await openai.createImageEdit({
+      image: fs.createReadStream("images/test.png"),
+      mask: fs.createReadStream("images/test2.png"),
       prompt: text,
       n: 1,
       size: "512x512",
