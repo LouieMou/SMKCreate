@@ -2,8 +2,8 @@
   display: flex;
   flex-direction: row;
   box-sizing: border-box;
-  width: 945px;
-  height: 554px;
+  width: 512px;
+  height: 512px;
   top: 125px;
   border: 10px solid #101011;
 }
