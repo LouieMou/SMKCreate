@@ -5,10 +5,8 @@ WE NEED TO RESTART THE SERVER!
 
 require("dotenv").config(); // configure dotenv (needed to access the .env-file)
 const express = require("express");
-const axios = require("axios");
 const bodyParser = require("body-parser");
 const fs = require("fs");
-const path = require("path");
 
 const { Configuration, OpenAIApi } = require("openai");
 
@@ -54,7 +52,7 @@ app.post("/generate", async (req, res) => {
 
     // Create a temporary file path
     //const tempFilePath = path.join(__dirname, "temp", "image.png");
-    const path = "/temp/image.png";
+    //const path = "/temp/image.png";
 
     // Write the base64 encoded image data to the temporary file
     //fs.writeFileSync(tempFilePath, image, "base64");
@@ -69,15 +67,11 @@ app.post("/generate", async (req, res) => {
       "512x512"
     ); */
 
-    const OpenAIres = await axios.post(
-      "https://api.openai.com/v1/images/generations",
-      {
-        prompt: "make a background of pineapples",
-        size: "512x512",
-        response_format: "b64_json",
-      },
-      config
-    );
+    const OpenAIres = await openai.createImage({
+      prompt: "A background of bananas",
+      n: 1,
+      size: "512x512",
+    });
 
     const generatedImage = OpenAIres.data.data[0].url;
 

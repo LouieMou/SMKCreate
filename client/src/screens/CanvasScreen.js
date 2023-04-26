@@ -53,8 +53,8 @@ function CanvasScreen(props) {
 
     if (response.ok) {
       const responseData = await response.json();
-      console.log("response: ", responseData);
-      setGeneratedImage(responseData);
+      console.log("response: ", responseData.generatedImage);
+      setGeneratedImage(responseData.generatedImage);
       /* stageRef.current = responseData.resultImage; */
     } else {
       console.log("Failed to generate image: ", response.status);
@@ -87,12 +87,17 @@ function CanvasScreen(props) {
 
   return (
     <div className="canvas-screen-container">
-      <Konva dragURL={props.dragURL} stageRef={stageRef} />
-      {!generatedImage ? (
-        "Loading..."
+      {generatedImage ? (
+        <img
+          src={generatedImage}
+          style={{ height: "512px", width: "512px" }}
+          alt="generatedImage"
+        />
       ) : (
-        <img src={generatedImage} style={{ height: "auto" }} />
+        <></>
       )}
+      <Konva dragURL={props.dragURL} stageRef={stageRef} />
+
       <div className="generate-image-container">
         <TextBox
           placeholder="Write some text here to help generate an image"
