@@ -39,7 +39,7 @@ app.post("/generate", async (req, res) => {
   //console.log("generate here", req.body.prompt);
   //console.log("generate here", req.body.image);
   //const image = req.body.image;
-  //const prompt = req.body.prompt;
+  const text = req.body.prompt;
 
   try {
     /*     if (prompt == null) {
@@ -68,7 +68,7 @@ app.post("/generate", async (req, res) => {
     ); */
 
     const OpenAIres = await openai.createImage({
-      prompt: "A background of bananas",
+      prompt: text,
       n: 1,
       size: "512x512",
     });

@@ -15,7 +15,6 @@ function CanvasScreen(props) {
 
   const handleUserInput = (event) => {
     setUserInput(event.target.value);
-    console.log(event);
   };
 
   const white = getComputedStyle(document.documentElement).getPropertyValue(
@@ -31,33 +30,38 @@ function CanvasScreen(props) {
 
   async function generateImage() {
     console.log("generate Image");
-    const png = stageRef.current.toDataURL();
-    //console.log("I think a png: ", png);
 
-    //console.log(png_Manuel);
-    /* say to the server that it should sent a request to dall-e and send back the answer*/
-    /*  fetch("/api")
-      .then((res) => res.json())
-      .then((data) => setGeneratedImage(data.message)); 
-      */
-
-    const response = await fetch("/generate", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        prompt: "Make a background of bananas",
-      }),
-    });
-
-    if (response.ok) {
-      const responseData = await response.json();
-      console.log("response: ", responseData.generatedImage);
-      setGeneratedImage(responseData.generatedImage);
-      /* stageRef.current = responseData.resultImage; */
+    if (userInput === "") {
+      alert("You need to write something in the user input");
     } else {
-      console.log("Failed to generate image: ", response.status);
+      const png = stageRef.current.toDataURL();
+      //console.log("I think a png: ", png);
+
+      //console.log(png_Manuel);
+      /* say to the server that it should sent a request to dall-e and send back the answer*/
+      /*  fetch("/api")
+        .then((res) => res.json())
+        .then((data) => setGeneratedImage(data.message)); 
+        */
+
+      const response = await fetch("/generate", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          prompt: userInput,
+        }),
+      });
+
+      if (response.ok) {
+        const responseData = await response.json();
+        console.log("response: ", responseData.generatedImage);
+        setGeneratedImage(responseData.generatedImage);
+        /* stageRef.current = responseData.resultImage; */
+      } else {
+        console.log("Failed to generate image: ", response.status);
+      }
     }
   }
 

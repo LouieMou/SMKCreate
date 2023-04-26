@@ -54,8 +54,8 @@ export default function Konva(props) {
         <Stage
           className="konva-container"
           ref={props.stageRef}
-          width={window.innerWidth}
-          height={window.innerHeight}
+          width={dimensions.width}
+          height={dimensions.height}
         >
           <Layer>
             {imagesOnLayer.map((image, index) => {
