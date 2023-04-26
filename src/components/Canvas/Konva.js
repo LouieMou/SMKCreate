@@ -12,6 +12,29 @@ export default function Konva(props) {
     height: 0,
   });
 
+  const handleDragEnd = (e) => {
+    const id = e.target.id;
+    const newX = e.target.x();
+    const newY = e.target.y();
+
+    setImagesOnLayer((imagesOnLayer) =>
+      imagesOnLayer.map((image) => {
+        if (image.id === id) {
+          return { ...image, x: newX, y: newY };
+        } else {
+          return image;
+        }
+      })
+    );
+  };
+
+  useEffect(() => {
+    console.log(
+      "This is the id: ",
+      imagesOnLayer[imagesOnLayer.length - 1]?.id
+    );
+  }, [imagesOnLayer]);
+
   useEffect(() => {
     if (divRef.current?.offsetHeight && divRef.current?.offsetWidth) {
       setDimensions({
@@ -31,7 +54,7 @@ export default function Konva(props) {
         offsetX={img ? img.width / 2 : 0}
         offsetY={img ? img.height / 2 : 0}
         draggable
-        //onDragEnd={handleDragEnd}
+        onDragEnd={handleDragEnd}
       />
     );
   };
@@ -47,6 +70,10 @@ export default function Konva(props) {
               {
                 ...stageRef.current.getPointerPosition(),
                 src: props.dragURL.current,
+                id:
+                  props.dragURL.current.toString() +
+                  "_" +
+                  Date.now().toString(),
               },
             ])
           );

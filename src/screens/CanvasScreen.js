@@ -11,6 +11,7 @@ import FavoriteGrid from "../components/FavoriteList/FavoriteGrid";
 
 function CanvasScreen(props) {
   const [userInput, setUserInput] = useState("");
+  const dragURL = useRef();
 
   const handleUserInput = (event) => {
     setUserInput(event.target.value);
@@ -51,9 +52,9 @@ function CanvasScreen(props) {
   return (
     <div className="canvas-screen-container">
       <div className="fav-grid-container">
-        <FavoriteGrid dragURL={props.dragURL} />
+        <FavoriteGrid dragURL={dragURL} />
       </div>
-      <Konva dragURL={props.dragURL} />
+      <Konva dragURL={dragURL} />
       <div className="generate-image-container">
         <TextBox
           placeholder="Write some text here to help generate an image"
