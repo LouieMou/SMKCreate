@@ -19,6 +19,8 @@ export default function Konva(props) {
     }
   }, []);
 
+  useEffect(() => {}, [props.stageRef]);
+
   const URLImage = ({ image }) => {
     const [img] = useImage(image.src);
     return (

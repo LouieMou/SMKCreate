@@ -32,6 +32,11 @@ function CanvasScreen(props) {
 
   async function generateImage() {
     console.log("inside generateImage function");
+
+    if (userInput === "") {
+      alert("You need to write a text in the input field");
+    }
+
     const imageParameters = {
       prompt: userInput,
       n: 1,
@@ -42,6 +47,7 @@ function CanvasScreen(props) {
     const urlData = response.data.data[0].url;
     console.log(urlData);
     setGeneratedImage(urlData);
+    stageRef.current = urlData;
   }
 
   function downloadURI(uri, name) {
@@ -70,6 +76,16 @@ function CanvasScreen(props) {
 
   return (
     <div className="canvas-screen-container">
+      {generatedImage ? (
+        <img
+          src={generatedImage}
+          style={{ width: "512px", height: "512px" }}
+          alt="generatedImage"
+        />
+      ) : (
+        <></>
+      )}
+
       <Konva dragURL={props.dragURL} stageRef={stageRef} />
       <div className="generate-image-container">
         <TextBox
