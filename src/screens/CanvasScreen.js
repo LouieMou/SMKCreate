@@ -92,10 +92,6 @@ function CanvasScreen(props) {
     context.clearRect(0, 0, canvas.width, canvas.height); */
   }
 
-  function openFavoriteList() {
-    /*     console.log("Open favorite list"); */
-  }
-
   return (
     <div className="canvas-screen-container">
       {generatedImage ? (
