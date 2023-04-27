@@ -1,10 +1,25 @@
 import "./Konva.css";
-import { Stage, Layer, Text, Image } from "react-konva";
-import { useRef, useState } from "react";
+import { Stage, Layer, Image } from "react-konva";
+import { useRef, useState, useEffect } from "react";
 import useImage from "use-image";
 export default function Konva(props) {
-  const stageRef = useRef(null);
+  const divRef = useRef();
   const [imagesOnLayer, setImagesOnLayer] = useState([]);
+  const [dimensions, setDimensions] = useState({
+    width: 0,
+    height: 0,
+  });
+
+  useEffect(() => {
+    if (divRef.current?.offsetHeight && divRef.current?.offsetWidth) {
+      setDimensions({
+        width: divRef.current.offsetWidth,
+        height: divRef.current.offsetHeight,
+      });
+    }
+  }, []);
+
+  useEffect(() => {}, [props.stageRef]);
 
   const URLImage = ({ image }) => {
     const [img] = useImage(image.src);
@@ -21,13 +36,14 @@ export default function Konva(props) {
   return (
     <div>
       <div
+        ref={divRef}
         onDrop={(e) => {
           e.preventDefault();
-          stageRef.current.setPointersPositions(e);
+          props.stageRef.current.setPointersPositions(e);
           setImagesOnLayer(
             imagesOnLayer.concat([
               {
-                ...stageRef.current.getPointerPosition(),
+                ...props.stageRef.current.getPointerPosition(),
                 src: props.dragURL.current,
               },
             ])
@@ -37,9 +53,9 @@ export default function Konva(props) {
       >
         <Stage
           className="konva-container"
-          ref={stageRef}
-          width={window.innerWidth}
-          height={window.innerHeight}
+          ref={props.stageRef}
+          width={dimensions.width}
+          height={dimensions.height}
         >
           <Layer>
             {imagesOnLayer.map((image, index) => {
