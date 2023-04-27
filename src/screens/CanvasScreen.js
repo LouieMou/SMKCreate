@@ -8,8 +8,7 @@ import LabelButton from "../components/LabelButton/LabelButton";
 import Konva from "../components/Canvas/Konva";
 /* Functions */
 import { setBackgroundColor } from "../functions/background";
-import { Buffer } from "buffer";
-import FormData from "form-data";
+import FormData from "form-data"; //imported from the openai library (needed)
 
 function CanvasScreen(props) {
   const [userInput, setUserInput] = useState("");
