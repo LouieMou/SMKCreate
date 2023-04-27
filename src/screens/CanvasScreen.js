@@ -29,7 +29,7 @@ function CanvasScreen(props) {
     console.log("inside generateImage function");
 
     let hasUserInput = userInput !== "";
-    // this will never be empty (needs to be fixed)
+    // this will never be empty (needs to be fixed) -> needs to listen to imagesOnLayer-array
     let hasCanvasContent = stageRef.current.toDataURL() !== "";
 
     if (!hasUserInput) {
