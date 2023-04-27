@@ -1,10 +1,12 @@
 import "./Konva.css";
-import { Stage, Layer, Image } from "react-konva";
+import { Stage, Layer } from "react-konva";
 import { useRef, useState, useEffect } from "react";
-import useImage from "use-image";
+import KonvaImage from "./KonvaImage";
+import KonvaText from "./KonvaText";
+
 export default function Konva(props) {
   const divRef = useRef();
-  const [imagesOnLayer, setImagesOnLayer] = useState([]);
+
   const [dimensions, setDimensions] = useState({
     width: 0,
     height: 0,
@@ -23,8 +25,8 @@ export default function Konva(props) {
     e.preventDefault();
     let objectId = props.dragURL.current + "_" + Date.now().toString();
     props.stageRef.current.setPointersPositions(e);
-    setImagesOnLayer(
-      imagesOnLayer.concat([
+    props.setImagesOnLayer(
+      props.imagesOnLayer.concat([
         {
           ...props.stageRef.current.getPointerPosition(),
           src: props.dragURL.current,
@@ -34,38 +36,6 @@ export default function Konva(props) {
     );
   };
 
-  const handleDragEnd = (e) => {
-    let id = e.target.id();
-    const newX = e.target.x();
-    const newY = e.target.y();
-
-    setImagesOnLayer((imagesOnLayer) =>
-      imagesOnLayer.map((image) => {
-        if (image.id === id) {
-          return { ...image, x: newX, y: newY };
-        } else {
-          return image;
-        }
-      })
-    );
-  };
-
-  const URLImage = ({ image }) => {
-    const [img] = useImage(image.src);
-    let imgId = image.id;
-    return (
-      <Image
-        image={img}
-        id={imgId}
-        x={image.x}
-        y={image.y}
-        offsetX={img ? img.width / 2 : 0}
-        offsetY={img ? img.height / 2 : 0}
-        draggable
-        onDragEnd={handleDragEnd}
-      />
-    );
-  };
   return (
     <div>
       <div
@@ -80,9 +50,19 @@ export default function Konva(props) {
           height={dimensions.height}
         >
           <Layer>
-            {imagesOnLayer.map((image, index) => {
-              return <URLImage key={index} image={image} />;
-            })}
+            {props.imagesOnLayer.length === 0 ? (
+              <KonvaText dimensions={dimensions} />
+            ) : (
+              props.imagesOnLayer.map((image, index) => {
+                return (
+                  <KonvaImage
+                    key={index}
+                    image={image}
+                    setImagesOnLayer={props.setImagesOnLayer}
+                  />
+                );
+              })
+            )}
           </Layer>
         </Stage>
       </div>
