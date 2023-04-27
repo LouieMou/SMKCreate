@@ -27,43 +27,48 @@ function CanvasScreen(props) {
 
   async function generateImage() {
     console.log("inside generateImage function");
-    console.log("userinput", userInput);
 
-    if (userInput === "") {
+    let hasUserInput = userInput !== "";
+    // this will never be empty (needs to be fixed)
+    let hasCanvasContent = stageRef.current.toDataURL() !== "";
+
+    if (!hasUserInput) {
       alert("You need to write a text in the input field");
     }
 
-    const konvaDataURL = stageRef.current.toDataURL();
-    const response = await fetch(konvaDataURL);
-    const blob = await response.blob();
+    if (!hasCanvasContent) {
+      alert("You need to add some objects to the canvas");
+    }
 
-    try {
-      const binaryData = Buffer.from(
-        konvaDataURL.replace(/^data:image\/\w+;base64,/, ""),
-        "base64"
-      );
-      const form = new FormData();
-      form.append("image", blob, "image.png");
-      form.append("prompt", userInput);
-      form.append("n", "1");
-      form.append("size", "512x512");
+    if (hasUserInput && hasCanvasContent) {
+      const konvaDataURL = stageRef.current.toDataURL();
+      const response = await fetch(konvaDataURL);
+      const blob = await response.blob();
 
-      const response = await axios.post(
-        "https://api.openai.com/v1/images/edits",
-        form,
-        {
-          headers: {
-            Authorization: `Bearer ${process.env.REACT_APP_OPENAI_KEY}`,
-          },
-        }
-      );
+      try {
+        const form = new FormData();
+        form.append("image", blob, "image.png");
+        form.append("prompt", userInput);
+        form.append("n", "1");
+        form.append("size", "512x512");
 
-      const generatedImage = response.data.data[0].url;
-      console.log(generatedImage);
-      setGeneratedImage(generatedImage);
-      //stageRef.current = generatedImage;
-    } catch (error) {
-      console.log("Error in the generate:", error.message);
+        const response = await axios.post(
+          "https://api.openai.com/v1/images/edits",
+          form,
+          {
+            headers: {
+              Authorization: `Bearer ${process.env.REACT_APP_OPENAI_KEY}`,
+            },
+          }
+        );
+
+        const generatedImage = response.data.data[0].url;
+        console.log(generatedImage);
+        setGeneratedImage(generatedImage);
+        stageRef.current = generatedImage;
+      } catch (error) {
+        console.log("Error in the generate:", error.message);
+      }
     }
   }
 
