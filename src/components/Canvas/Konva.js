@@ -1,5 +1,5 @@
 import "./Konva.css";
-import { Stage, Layer, Text, Image } from "react-konva";
+import { Stage, Layer, Image } from "react-konva";
 import { useRef, useState, useEffect } from "react";
 import useImage from "use-image";
 export default function Konva(props) {
@@ -12,8 +12,23 @@ export default function Konva(props) {
     height: 0,
   });
 
+  const handleOnDrop = (e) => {
+    e.preventDefault();
+    let objectId = props.dragURL.current + "_" + Date.now().toString();
+    stageRef.current.setPointersPositions(e);
+    setImagesOnLayer(
+      imagesOnLayer.concat([
+        {
+          ...stageRef.current.getPointerPosition(),
+          src: props.dragURL.current,
+          id: objectId,
+        },
+      ])
+    );
+  };
+
   const handleDragEnd = (e) => {
-    const id = e.target.id;
+    let id = e.target.id();
     const newX = e.target.x();
     const newY = e.target.y();
 
@@ -29,13 +44,6 @@ export default function Konva(props) {
   };
 
   useEffect(() => {
-    console.log(
-      "This is the id: ",
-      imagesOnLayer[imagesOnLayer.length - 1]?.id
-    );
-  }, [imagesOnLayer]);
-
-  useEffect(() => {
     if (divRef.current?.offsetHeight && divRef.current?.offsetWidth) {
       setDimensions({
         width: divRef.current.offsetWidth,
@@ -46,9 +54,11 @@ export default function Konva(props) {
 
   const URLImage = ({ image }) => {
     const [img] = useImage(image.src);
+    let imgId = image.id;
     return (
       <Image
         image={img}
+        id={imgId}
         x={image.x}
         y={image.y}
         offsetX={img ? img.width / 2 : 0}
@@ -62,23 +72,8 @@ export default function Konva(props) {
     <div>
       <div
         ref={divRef}
-        onDrop={(e) => {
-          e.preventDefault();
-          stageRef.current.setPointersPositions(e);
-          setImagesOnLayer(
-            imagesOnLayer.concat([
-              {
-                ...stageRef.current.getPointerPosition(),
-                src: props.dragURL.current,
-                id:
-                  props.dragURL.current.toString() +
-                  "_" +
-                  Date.now().toString(),
-              },
-            ])
-          );
-        }}
         onDragOver={(e) => e.preventDefault()}
+        onDrop={handleOnDrop}
       >
         <Stage
           className="konva-container"
