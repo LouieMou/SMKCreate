@@ -36,14 +36,6 @@ function CanvasScreen(props) {
       alert("You need to write something in the user input");
     } else {
       const png = stageRef.current.toDataURL();
-      //console.log("I think a png: ", png);
-
-      //console.log(png_Manuel);
-      /* say to the server that it should sent a request to dall-e and send back the answer*/
-      /*  fetch("/api")
-        .then((res) => res.json())
-        .then((data) => setGeneratedImage(data.message)); 
-        */
 
       const response = await fetch("/generate", {
         method: "POST",
@@ -52,6 +44,7 @@ function CanvasScreen(props) {
         },
         body: JSON.stringify({
           prompt: userInput,
+          image: png,
         }),
       });
 

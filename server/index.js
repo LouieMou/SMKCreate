@@ -20,12 +20,23 @@ const PORT = process.env.PORT || 8000;
 /* REQUEST TO DALL-E OPENAI */
 app.post("/generate", async (req, res) => {
   const text = req.body.prompt;
+  const image = req.body.image;
   console.log("generate here - prompt: ", text);
 
   try {
+    const binaryData = Buffer.from(
+      image.replace(/^data:image\/\w+;base64,/, ""),
+      "base64"
+    );
     const form = new FormData();
-    form.append("image", fs.createReadStream("images/test.png"));
-    form.append("mask", fs.createReadStream("images/test2.png"));
+    form.append("image", binaryData, {
+      filename: "image.png",
+      contentType: "image/png",
+    });
+    form.append("mask", binaryData, {
+      filename: "mask.png",
+      contentType: "image/png",
+    });
     form.append("prompt", text);
     form.append("n", "1");
     form.append("size", "512x512");
