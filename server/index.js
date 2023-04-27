@@ -6,7 +6,7 @@ WE NEED TO RESTART THE SERVER!
 require("dotenv").config(); // configure dotenv (needed to access the .env-file)
 const express = require("express");
 const bodyParser = require("body-parser");
-const FormData = require("form-data");
+const FormData = require("form-data"); //imported from the openai library (needed)
 const axios = require("axios");
 
 const app = express();
