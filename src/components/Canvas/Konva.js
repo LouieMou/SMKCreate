@@ -3,7 +3,6 @@ import { Stage, Layer, Image } from "react-konva";
 import { useRef, useState, useEffect } from "react";
 import useImage from "use-image";
 export default function Konva(props) {
-
   const divRef = useRef();
   const [imagesOnLayer, setImagesOnLayer] = useState([]);
   const [dimensions, setDimensions] = useState({
@@ -21,12 +20,6 @@ export default function Konva(props) {
   }, []);
 
   useEffect(() => {}, [props.stageRef]);
-
-  const divRef = useRef();
-  const [dimensions, setDimensions] = useState({
-    width: 0,
-    height: 0,
-  });
 
   const handleOnDrop = (e) => {
     e.preventDefault();
