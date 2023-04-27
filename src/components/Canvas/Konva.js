@@ -2,6 +2,7 @@ import "./Konva.css";
 import { Stage, Layer } from "react-konva";
 import { useRef, useState, useEffect } from "react";
 import KonvaImage from "./KonvaImage";
+import KonvaText from "./KonvaText";
 
 export default function Konva(props) {
   const divRef = useRef();
@@ -49,15 +50,19 @@ export default function Konva(props) {
           height={dimensions.height}
         >
           <Layer>
-            {props.imagesOnLayer.map((image, index) => {
-              return (
-                <KonvaImage
-                  key={index}
-                  image={image}
-                  setImagesOnLayer={props.setImagesOnLayer}
-                />
-              );
-            })}
+            {props.imagesOnLayer.length === 0 ? (
+              <KonvaText dimensions={dimensions} />
+            ) : (
+              props.imagesOnLayer.map((image, index) => {
+                return (
+                  <KonvaImage
+                    key={index}
+                    image={image}
+                    setImagesOnLayer={props.setImagesOnLayer}
+                  />
+                );
+              })
+            )}
           </Layer>
         </Stage>
       </div>
