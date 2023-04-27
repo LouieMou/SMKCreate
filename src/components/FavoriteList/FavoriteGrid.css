@@ -2,7 +2,7 @@
     margin: 20px;
     overflow: auto;
     width: 250px;
-    height: 560px;
+    max-height: calc(100vh - 120px);
 }
 
 .label-text-bold {

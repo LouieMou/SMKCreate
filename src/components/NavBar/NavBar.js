@@ -12,26 +12,19 @@ function NavBar(props) {
   const [SMKlogoSize, setSMKlogoSize] = useState("");
 
   useEffect(() => {
-    if (
-      location.pathname === "/canvas" ||
-      location.pathname === "/" ||
-      location.pathname === "/profile"
-    ) {
+    if (location.pathname === "/" || location.pathname === "/profile") {
       setNavBarColor("black");
-    } else {
-      setNavBarColor("white");
-    }
-  });
-
-  useEffect(() => {
-    if (
-      location.pathname === "/" ||
-      location.pathname === "/canvas" ||
-      location.pathname === "/profile"
-    ) {
       setSMKlogoSize("large");
     } else {
+      setNavBarColor("white");
       setSMKlogoSize("small");
+    }
+  }, [location.pathname]);
+
+  useEffect(() => {
+    if (location.pathname === "/canvas") {
+      setNavBarColor("black");
+      setSMKlogoSize("large");
     }
   }, [location.pathname]);
 
@@ -66,16 +59,25 @@ function NavBar(props) {
           src={`/icons/back_icon_${navBarColor}.svg`}
           handleClick={() => goBack()}
         />
-        <NavIcon
-          img_container_style={"nav-icon-img"}
-          src={`/icons/heart_unfilled_${navBarColor}.svg`}
-          handleClick={props.openFavoriteList}
-        />
+        {location.pathname === "/canvas" ? (
+          <NavIcon
+            img_container_style={"nav-icon-img"}
+            src={`/icons/heart_filled_${navBarColor}.svg`}
+          />
+        ) : (
+          <NavIcon
+            img_container_style={"nav-icon-img"}
+            src={`/icons/heart_unfilled_${navBarColor}.svg`}
+            handleClick={props.openFavoriteList}
+          />
+        )}
+
         <NavLinkIcon
           filledIcon={`/icons/create_${navBarColor}_filled.svg`}
           unfilledIcon={`/icons/create_${navBarColor}_unfilled.svg`}
           path="/canvas"
         />
+
         <NavLinkIcon
           filledIcon={`/icons/profile_filled_${navBarColor}.svg`}
           unfilledIcon={`/icons/profile_unfilled_${navBarColor}.svg`}

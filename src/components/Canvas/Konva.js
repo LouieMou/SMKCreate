@@ -19,8 +19,6 @@ export default function Konva(props) {
     }
   }, []);
 
-  useEffect(() => {}, [props.stageRef]);
-
   const handleOnDrop = (e) => {
     e.preventDefault();
     let objectId = props.dragURL.current + "_" + Date.now().toString();
@@ -51,15 +49,6 @@ export default function Konva(props) {
       })
     );
   };
-
-  useEffect(() => {
-    if (divRef.current?.offsetHeight && divRef.current?.offsetWidth) {
-      setDimensions({
-        width: divRef.current.offsetWidth,
-        height: divRef.current.offsetHeight,
-      });
-    }
-  }, []);
 
   const URLImage = ({ image }) => {
     const [img] = useImage(image.src);
