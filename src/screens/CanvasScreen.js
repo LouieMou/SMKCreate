@@ -11,9 +11,9 @@ import FavoriteGrid from "../components/FavoriteList/FavoriteGrid";
 import { setBackgroundColor } from "../functions/background";
 import FormData from "form-data"; //imported from the openai library (needed)
 
-
 function CanvasScreen(props) {
   const [userInput, setUserInput] = useState("");
+  const [imagesOnLayer, setImagesOnLayer] = useState([]);
   const [generatedImage, setGeneratedImage] = useState("");
   const stageRef = useRef(null);
   const dragURL = useRef();
@@ -85,22 +85,27 @@ function CanvasScreen(props) {
 
   function downloadImage() {
     const png = stageRef.current.toDataURL();
-    downloadURI(png, "KonvaWithObjects.png");
+    downloadURI(png, `image.png`);
   }
 
   function clearCanvas() {
-    /*     const canvas = canvasRef.current;
-    const context = canvas.getContext("2d");
-    context.clearRect(0, 0, canvas.width, canvas.height); */
+    setImagesOnLayer([]);
   }
 
   return (
     <div className="canvas-screen-container">
-
       <div className="fav-grid-container">
-        <FavoriteGrid dragURL={dragURL} />
+        <FavoriteGrid
+          closeFavoriteList={props.closeFavoriteList}
+          dragURL={dragURL}
+        />
       </div>
-      <Konva dragURL={dragURL} stageRef={stageRef} />
+      <Konva
+        dragURL={dragURL}
+        stageRef={stageRef}
+        imagesOnLayer={imagesOnLayer}
+        setImagesOnLayer={setImagesOnLayer}
+      />
       {generatedImage ? (
         <img
           src={generatedImage}
@@ -134,7 +139,7 @@ function CanvasScreen(props) {
           <LabelButton
             button_size={"large"}
             label_text={"Clear Canvas"}
-            //handleClick={() => clearCanvas()}
+            handleClick={clearCanvas}
           />
         </div>
       </div>

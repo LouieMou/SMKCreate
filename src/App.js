@@ -78,7 +78,12 @@ function App() {
                 <Route exact path="/search/:id" element={<SearchScreen />} />
                 {/* <Route path="/search/:id" element={<SearchScreen />} /> */}
                 <Route path="/painting" element={<PaintingScreen />} />
-                <Route path="/canvas" element={<CanvasScreen />} />
+                <Route
+                  path="/canvas"
+                  element={
+                    <CanvasScreen closeFavoriteList={closeFavoriteList} />
+                  }
+                />
                 <Route
                   path="/profile"
                   element={
