@@ -24,7 +24,6 @@ function App() {
   const [categoriesAndObjects, setCategoriesAndObjects] = useState();
   const [favoriteIsActive, setFavoriteIsActive] = useState(false);
   const [currentUser, setCurrentUser] = useState(null);
-  const dragURL = useRef();
 
   useEffect(() => {
     if (currentUser) {
@@ -63,10 +62,7 @@ function App() {
           <FavoriteContextProvider>
             {favoriteIsActive && (
               <div className="favorite-list-container">
-                <FavoriteList
-                  closeFavoriteList={closeFavoriteList}
-                  dragURL={dragURL}
-                />
+                <FavoriteList closeFavoriteList={closeFavoriteList} />
               </div>
             )}
 
@@ -82,10 +78,7 @@ function App() {
                 <Route exact path="/search/:id" element={<SearchScreen />} />
                 {/* <Route path="/search/:id" element={<SearchScreen />} /> */}
                 <Route path="/painting" element={<PaintingScreen />} />
-                <Route
-                  path="/canvas"
-                  element={<CanvasScreen dragURL={dragURL} />}
-                />
+                <Route path="/canvas" element={<CanvasScreen />} />
                 <Route
                   path="/profile"
                   element={

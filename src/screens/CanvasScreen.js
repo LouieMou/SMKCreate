@@ -6,14 +6,17 @@ import "./CanvasScreen.css";
 import TextBox from "../components/TextBox/TextBox";
 import LabelButton from "../components/LabelButton/LabelButton";
 import Konva from "../components/Canvas/Konva";
+import FavoriteGrid from "../components/FavoriteList/FavoriteGrid";
 /* Functions */
 import { setBackgroundColor } from "../functions/background";
 import FormData from "form-data"; //imported from the openai library (needed)
+
 
 function CanvasScreen(props) {
   const [userInput, setUserInput] = useState("");
   const [generatedImage, setGeneratedImage] = useState("");
   const stageRef = useRef(null);
+  const dragURL = useRef();
 
   const handleUserInput = (event) => {
     setUserInput(event.target.value);
@@ -93,6 +96,11 @@ function CanvasScreen(props) {
 
   return (
     <div className="canvas-screen-container">
+
+      <div className="fav-grid-container">
+        <FavoriteGrid dragURL={dragURL} />
+      </div>
+      <Konva dragURL={dragURL} stageRef={stageRef} />
       {generatedImage ? (
         <img
           src={generatedImage}
@@ -102,8 +110,6 @@ function CanvasScreen(props) {
       ) : (
         <></>
       )}
-
-      <Konva dragURL={props.dragURL} stageRef={stageRef} />
       <div className="generate-image-container">
         <TextBox
           placeholder="Write some text here to help generate an image"

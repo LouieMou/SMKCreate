@@ -1,4 +1,4 @@
-import { useContext, useRef } from "react";
+import { useContext } from "react";
 import { useNavigate } from "react-router-dom";
 /* Components */
 import FavoriteItem from "./FavoriteItem";
