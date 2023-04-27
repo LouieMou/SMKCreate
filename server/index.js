@@ -6,7 +6,6 @@ WE NEED TO RESTART THE SERVER!
 require("dotenv").config(); // configure dotenv (needed to access the .env-file)
 const express = require("express");
 const bodyParser = require("body-parser");
-const fs = require("fs");
 const FormData = require("form-data");
 const axios = require("axios");
 
@@ -21,7 +20,7 @@ const PORT = process.env.PORT || 8000;
 app.post("/generate", async (req, res) => {
   const text = req.body.prompt;
   const image = req.body.image;
-  console.log("generate here in server called");
+  console.log("generate in server called");
 
   try {
     const binaryData = Buffer.from(
