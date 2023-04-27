@@ -7,6 +7,8 @@ require("dotenv").config(); // configure dotenv (needed to access the .env-file)
 const express = require("express");
 const bodyParser = require("body-parser");
 const fs = require("fs");
+const FormData = require("form-data");
+const axios = require("axios");
 
 const { Configuration, OpenAIApi } = require("openai");
 
@@ -38,6 +40,56 @@ app.get("/api", (req, res) => {
 app.post("/generate", async (req, res) => {
   const text = req.body.prompt;
   console.log("generate here - prompt: ", text);
+
+  try {
+    const form = new FormData();
+    form.append("image", fs.createReadStream("images/test.png"));
+    form.append("mask", fs.createReadStream("images/test2.png"));
+    form.append("prompt", text);
+    form.append("n", "1");
+    form.append("size", "512x512");
+
+    const response = await axios.post(
+      "https://api.openai.com/v1/images/edits",
+      form,
+      {
+        headers: {
+          ...form.getHeaders(),
+          Authorization: `Bearer ${process.env.OPENAI_API_KEY}`,
+        },
+      }
+    );
+
+    const generatedImage = response.data.data[0].url;
+
+    return res.status(200).json({
+      generatedImage: generatedImage,
+    });
+  } catch (error) {
+    console.log("Error in the generate:", error.message);
+    return res.status(500).json({
+      error: error.message,
+    });
+  }
+});
+
+/* const form = new FormData();
+form.append("image", fs.createReadStream(originalImageFile), {
+  filename: originalImageFileName,
+  contentType: "image/png",
+});
+form.append("mask", fs.createReadStream(maskedImageFile), {
+  filename: maskedImageFileName,
+  contentType: "image/png",
+});
+form.append("prompt", prompt);
+form.append("n", "1");
+form.append("size", size);
+form.append("response_format", "url"); */
+
+app.post("/generate", async (req, res) => {
+  const text = req.body.prompt;
+  console.log("generate here - prompt: ", text);
   //console.log("generate here", req.body.image);
   //const image = req.body.image;
 
@@ -50,29 +102,10 @@ app.post("/generate", async (req, res) => {
       throw new Error("Uh oh, no image was provided");
     } */
 
-    // Create a temporary file path
-    //const tempFilePath = path.join(__dirname, "temp", "image.png");
-    //const path = "/temp/image.png";
-
-    // Write the base64 encoded image data to the temporary file
-    //fs.writeFileSync(tempFilePath, image, "base64");
-
-    // Create a read stream from the temporary file
-    //const imageStream = fs.createReadStream(tempFilePath);
-    /* 
-    const OpenAIres = await openai.createImageEdit(
-      fs.createReadStream(path),
-      prompt,
-      1,
-      "512x512"
-    ); */
-
-    /*      image: fs.createReadStream("images/test.png"), */
-
     const OpenAIres = await openai.createImageEdit({
       image: fs.createReadStream("images/test.png"),
-      mask: fs.createReadStream("images/test2.png"),
       prompt: text,
+      mask: fs.createReadStream("images/test2.png"),
       n: 1,
       size: "512x512",
     });
