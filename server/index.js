@@ -21,7 +21,7 @@ const PORT = process.env.PORT || 8000;
 app.post("/generate", async (req, res) => {
   const text = req.body.prompt;
   const image = req.body.image;
-  console.log("generate here - prompt: ", text);
+  console.log("generate here in server called");
 
   try {
     const binaryData = Buffer.from(
@@ -31,10 +31,6 @@ app.post("/generate", async (req, res) => {
     const form = new FormData();
     form.append("image", binaryData, {
       filename: "image.png",
-      contentType: "image/png",
-    });
-    form.append("mask", binaryData, {
-      filename: "mask.png",
       contentType: "image/png",
     });
     form.append("prompt", text);
