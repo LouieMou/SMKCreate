@@ -3,8 +3,24 @@ import { Stage, Layer, Image } from "react-konva";
 import { useRef, useState, useEffect } from "react";
 import useImage from "use-image";
 export default function Konva(props) {
-  const stageRef = useRef();
+
+  const divRef = useRef();
   const [imagesOnLayer, setImagesOnLayer] = useState([]);
+  const [dimensions, setDimensions] = useState({
+    width: 0,
+    height: 0,
+  });
+
+  useEffect(() => {
+    if (divRef.current?.offsetHeight && divRef.current?.offsetWidth) {
+      setDimensions({
+        width: divRef.current.offsetWidth,
+        height: divRef.current.offsetHeight,
+      });
+    }
+  }, []);
+
+  useEffect(() => {}, [props.stageRef]);
 
   const divRef = useRef();
   const [dimensions, setDimensions] = useState({
@@ -15,11 +31,11 @@ export default function Konva(props) {
   const handleOnDrop = (e) => {
     e.preventDefault();
     let objectId = props.dragURL.current + "_" + Date.now().toString();
-    stageRef.current.setPointersPositions(e);
+    props.stageRef.current.setPointersPositions(e);
     setImagesOnLayer(
       imagesOnLayer.concat([
         {
-          ...stageRef.current.getPointerPosition(),
+          ...props.stageRef.current.getPointerPosition(),
           src: props.dragURL.current,
           id: objectId,
         },
@@ -77,7 +93,7 @@ export default function Konva(props) {
       >
         <Stage
           className="konva-container"
-          ref={stageRef}
+          ref={props.stageRef}
           width={dimensions.width}
           height={dimensions.height}
         >
