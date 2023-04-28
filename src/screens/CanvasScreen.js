@@ -14,7 +14,6 @@ import FormData from "form-data"; //imported from the openai library (needed)
 function CanvasScreen(props) {
   const [userInput, setUserInput] = useState("");
   const [imagesOnLayer, setImagesOnLayer] = useState([]);
-  const [generatedImage, setGeneratedImage] = useState("");
   const stageRef = useRef(null);
   const dragURL = useRef();
 
@@ -64,10 +63,16 @@ function CanvasScreen(props) {
           }
         );
 
-        const generatedImage = response.data.data[0].url;
-        console.log(generatedImage);
-        setGeneratedImage(generatedImage);
-        stageRef.current = generatedImage;
+        const generatedImageURL = response.data.data[0].url;
+
+        setImagesOnLayer([
+          {
+            x: 256,
+            y: 256,
+            src: generatedImageURL,
+            id: Date.now().toString(),
+          },
+        ]);
       } catch (error) {
         console.log("Error in the generate:", error.message);
       }
@@ -83,7 +88,31 @@ function CanvasScreen(props) {
     document.body.removeChild(link);
   }
 
+  function downloadURL(url) {
+    fetch(url)
+      .then((response) => {
+        const filename = response.headers
+          .get("content-disposition")
+          .split("=")[1];
+        return response.blob().then((blob) => {
+          const url = window.URL.createObjectURL(new Blob([blob]));
+          const link = document.createElement("a");
+          link.href = url;
+          link.setAttribute("download", filename);
+          document.body.appendChild(link);
+          link.click();
+          link.parentNode.removeChild(link);
+        });
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  }
+
   function downloadImage() {
+    /*     if (generatedImageURL !== "") {
+      downloadURL(generatedImageURL);
+    } else { */
     const png = stageRef.current.toDataURL();
     downloadURI(png, `image.png`);
   }
@@ -106,15 +135,6 @@ function CanvasScreen(props) {
         imagesOnLayer={imagesOnLayer}
         setImagesOnLayer={setImagesOnLayer}
       />
-      {generatedImage ? (
-        <img
-          src={generatedImage}
-          style={{ width: "512px", height: "512px" }}
-          alt="generatedImage"
-        />
-      ) : (
-        <></>
-      )}
       <div className="generate-image-container">
         <TextBox
           placeholder="Write some text here to help generate an image"
