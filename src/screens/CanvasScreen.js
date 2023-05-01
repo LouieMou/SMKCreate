@@ -14,6 +14,7 @@ import FormData from "form-data"; //imported from the openai library (needed)
 function CanvasScreen(props) {
   const [userInput, setUserInput] = useState("");
   const [imagesOnLayer, setImagesOnLayer] = useState([]);
+  const [metaDataOnLayer, setMetaDataOnLayer] = useState([]);
   const [dimensions, setDimensions] = useState({
     width: 0,
     height: 0,
@@ -31,8 +32,11 @@ function CanvasScreen(props) {
         height: divRef.current.offsetHeight - 20,
       });
     }
-    console.log("this is dimentions:", dimensions);
   }, []);
+
+  useEffect(() => {
+    console.log("metaDataOnLayer: ", metaDataOnLayer);
+  }, [metaDataOnLayer]);
 
   const handleUserInput = (event) => {
     setUserInput(event.target.value);
@@ -159,6 +163,8 @@ function CanvasScreen(props) {
         <FavoriteGrid
           closeFavoriteList={props.closeFavoriteList}
           dragURL={dragURL}
+          setMetaDataOnLayer={setMetaDataOnLayer}
+          metaDataOnLayer={metaDataOnLayer}
         />
       </div>
       <Konva
@@ -170,6 +176,14 @@ function CanvasScreen(props) {
         setImagesOnLayer={setImagesOnLayer}
         loading={loading}
       />
+      {metaDataOnLayer.length !== 0 ? (
+        metaDataOnLayer.map((object, index) => {
+          <p key={index}>{object.label_text}</p>;
+        })
+      ) : (
+        <></>
+      )}
+
       <div className="generate-image-container">
         <TextBox
           placeholder="Write some text here to help generate an image"

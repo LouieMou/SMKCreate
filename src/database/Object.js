@@ -7,16 +7,20 @@ export async function readObjectsByCategory(categoryId) {
   query.include("labels");
   query.include("label_text");
   query.include("object_url");
+  query.include("painting_pointer");
   query.equalTo("category_id", categoryId);
 
   function destructureObject(object) {
+    let paintingPointer = object.get("painting_pointer");
     let destructuredObject = {
       id: object.id,
       label_text: object.attributes.label_text,
       object_url: object.attributes.object_url,
       painting_id: object.attributes.painting_pointer.id,
       category_id: object.attributes.category_id,
-      saved: false
+      artist: paintingPointer.get("artist"),
+      title: paintingPointer.get("title"),
+      saved: false,
     };
 
     return destructuredObject;
@@ -35,6 +39,7 @@ export async function readObjectsByPaintingId(paintingPointer) {
   let query = new Parse.Query("Object");
   query.include("Object.category_pointer");
   query.equalTo("painting_id_back4app", paintingPointer);
+  query.include("painting_pointer");
 
   try {
     let objects = await query.find();

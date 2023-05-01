@@ -4,10 +4,17 @@ import { Stage, Layer } from "react-konva";
 import KonvaImage from "./KonvaImage";
 import KonvaText from "./KonvaText";
 import KonvaAnimation from "./KonvaAnimation";
+import { useEffect } from "react";
 
 export default function Konva(props) {
+  /*  */
+  useEffect(() => {
+    console.log("i drag this object", props.dragURL);
+  }, []);
+
   const handleOnDrop = (e) => {
     e.preventDefault();
+
     let objectId = props.dragURL.current + "_" + Date.now().toString();
     props.stageRef.current.setPointersPositions(e);
     props.setImagesOnLayer(

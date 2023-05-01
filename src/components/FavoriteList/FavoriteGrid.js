@@ -29,11 +29,12 @@ export default function FavoriteGrid(props) {
           return (
             <FavoriteItem
               key={index}
-              source={obj.object.object_url}
-              title={obj.object.label_text}
+              object={obj.object}
               handleClick={() => onClickImage(obj.object.painting_id)}
               removeItemFromFavoriteList={(e) => deleteItem(obj.object.id, e)}
               dragURL={props.dragURL}
+              setMetaDataOnLayer={props.setMetaDataOnLayer}
+              metaDataOnLayer={props.metaDataOnLayer}
             />
           );
         })

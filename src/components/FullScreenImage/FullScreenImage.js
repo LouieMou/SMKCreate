@@ -21,6 +21,7 @@ export default function FullScreenImage(props) {
   useEffect(() => {
     if (savedObject) {
       saveToFavoriteList(savedObject);
+      console.log("savedObject", savedObject);
     }
   }, [savedObject]);
 
@@ -43,6 +44,8 @@ export default function FullScreenImage(props) {
         object_url: obj.attributes.object_url,
         fillHeart: false,
         painting_id: props.painting_id,
+        artist: obj.attributes.painting_pointer.attributes.artist,
+        title: obj.attributes.painting_pointer.attributes.title,
       };
     });
     setCoords(cc);
@@ -86,6 +89,8 @@ export default function FullScreenImage(props) {
       label_text: savedObject.label_text,
       object_url: savedObject.object_url,
       painting_id: savedObject.painting_id,
+      artist: savedObject.artist,
+      title: savedObject.title,
     };
     if (hoverArea) {
       hoverArea.fillHeart = true;
