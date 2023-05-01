@@ -1,7 +1,7 @@
 .canvas-screen-container {
   display: flex;
   margin: 0 50px 50px 50px;
-  height: calc(100vh - 170px)
+  /* height: calc(100vh - 170px) */
 }
 
 .fav-grid-container {
@@ -9,12 +9,14 @@
   justify-content: center;
   border: solid 2px black;
   margin-right: 50px;
+  height: 530px;
 }
 
 .generate-image-container {
   display: flex;
   flex-direction: column;
   margin-left: 50px;
+  height: 530px;
 }
 
 .label-button-container {
@@ -27,4 +29,14 @@
 
 .clear-canvas-button {
   margin-top: 60px;
+}
+
+@media screen and (min-height: 1024px) {
+  .fav-grid-container {
+   height: 1042px;
+  }
+
+  .generate-image-container {
+    height: 1042px;
+  }
 }
