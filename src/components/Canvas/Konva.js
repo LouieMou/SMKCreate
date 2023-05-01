@@ -1,7 +1,9 @@
 import "./Konva.css";
 import { Stage, Layer } from "react-konva";
+
 import KonvaImage from "./KonvaImage";
 import KonvaText from "./KonvaText";
+import KonvaAnimation from "./KonvaAnimation";
 
 export default function Konva(props) {
   const handleOnDrop = (e) => {
@@ -34,18 +36,27 @@ export default function Konva(props) {
           height={props.dimensions.height}
         >
           <Layer>
-            {props.imagesOnLayer.length === 0 ? (
-              <KonvaText dimensions={props.dimensions} />
+            {props.loading ? (
+              <KonvaAnimation
+                dimensions={props.dimensions}
+                loading={props.loading}
+              />
             ) : (
-              props.imagesOnLayer.map((image, index) => {
-                return (
-                  <KonvaImage
-                    key={index}
-                    image={image}
-                    setImagesOnLayer={props.setImagesOnLayer}
-                  />
-                );
-              })
+              <>
+                {props.imagesOnLayer.length === 0 ? (
+                  <KonvaText dimensions={props.dimensions} />
+                ) : (
+                  props.imagesOnLayer.map((image, index) => {
+                    return (
+                      <KonvaImage
+                        key={index}
+                        image={image}
+                        setImagesOnLayer={props.setImagesOnLayer}
+                      />
+                    );
+                  })
+                )}
+              </>
             )}
           </Layer>
         </Stage>

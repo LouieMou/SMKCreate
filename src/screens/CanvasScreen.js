@@ -18,6 +18,7 @@ function CanvasScreen(props) {
     width: 0,
     height: 0,
   });
+  const [loading, setLoading] = useState(false);
   const stageRef = useRef(null);
   const dragURL = useRef();
   const divRef = useRef();
@@ -60,6 +61,7 @@ function CanvasScreen(props) {
       const konvaDataURL = stageRef.current.toDataURL();
       const response = await fetch(konvaDataURL);
       const blob = await response.blob();
+      setLoading(true);
 
       try {
         const form = new FormData();
@@ -99,6 +101,7 @@ function CanvasScreen(props) {
             id: Date.now().toString(),
           },
         ]);
+        setLoading(false);
       } catch (error) {
         console.log("Error in the generate:", error.message);
       }
@@ -162,6 +165,7 @@ function CanvasScreen(props) {
         dimensions={dimensions}
         imagesOnLayer={imagesOnLayer}
         setImagesOnLayer={setImagesOnLayer}
+        loading={loading}
       />
       <div className="generate-image-container">
         <TextBox

@@ -2,6 +2,7 @@
   display: flex;
   margin: 0 50px 50px 50px;
   /* height: calc(100vh - 170px) */
+  justify-content: space-between;
 }
 
 .fav-grid-container {
