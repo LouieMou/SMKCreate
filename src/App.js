@@ -8,6 +8,7 @@ import CategoryScreen from "./screens/CategoryScreen";
 import ProfileScreen from "./screens/ProfileScreen";
 import CanvasScreen from "./screens/CanvasScreen";
 import LoginScreen from "./screens/LoginScreen";
+import TestScreen from "./screens/TestScreen";
 /* Components */
 import NavBar from "./components/NavBar/NavBar";
 import NavBarPlain from "./components/NavBar/NavBarPlain";
@@ -98,7 +99,12 @@ function App() {
                   path="/categories"
                   element={<CategoryScreen categories={categoriesAndObjects} />}
                 />
+                <Route
+                  path="/test"
+                  element={<TestScreen />}
+                />
               </Routes>
+              
             ) : (
               <></>
             )}
