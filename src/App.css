@@ -1,0 +1,17 @@
+@import url(./index.css);
+
+.screens {
+padding: 50px;
+background-color: aqua;
+}
+
+.favorite-list-container {
+  position: fixed; /* set position to fixed */
+  display: flex;
+  justify-content: flex-end;
+  left: auto;
+  right: 0;
+  bottom: 0;
+  width: fit-content;
+  z-index: 20; /* set z-index to a higher value than the other components */
+}

@@ -1,13 +1,135 @@
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+:root {
+  /* Primary Colors */
+  --primary-black: hsla(240, 3%, 6%, 1);
+  --primary-black-66: hsla(240, 3%, 6%, 0.66);
+  --primary-black-33: hsla(240, 3%, 6%, 0.33);
+  --primary-dark-grey: hsla(0, 1%, 20%, 1);
+  --primary-grey: hsla(0, 0%, 62%, 1);
+  --primary-light-grey: hsla(240, 5%, 96%, 1);
+  --primary-white-33: hsla(120, 100%, 100%, 0.33);
+  --primary-white-66: hsla(120, 100%, 100%, 0.66);
+  --primary-white: hsla(120, 100%, 100%, 1);
+
+  /* Secondary Colors */
+  --secondary-yellow: hsla(40, 81%, 53%, 1);
+  --secondary-yellow-66: hsla(40, 81%, 53%, 0.66);
+  --secondary-yellow-33: hsla(40, 81%, 53%, 0.33);
+
+  /* Accented Colors */
+  --accented-turquoise: hsla(188, 31%, 71%, 1);
+  --accented-turquoise-66: hsla(188, 31%, 71%, 0.66);
+  --accented-turquoise-33: hsla(188, 31%, 71%, 0.33);
+
+  /* SMK Colors */
+  --SMK-brown: hsla(11, 48%, 17%, 1);
+  --SMK-blue: hsla(199, 80%, 29%, 1);
+  --SMK-green: hsla(75, 26%, 15%, 1);
+  --SMK-dark-blue: hsla(228, 54%, 30%, 1);
+  --SMK-dusty-blue: hsla(194, 100%, 14%, 1);
+
+  /* Background Color*/
+  --background-color: var(--primary-white);
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+html,
+body {
+  width: 100%;
+  height: 100%;
+  background-color: var(--background-color);
+  margin: 0;
+}
+
+/* Text Styles */
+h1 {
+  font-family: "Open Sans", "Inter", "Roboto", "Nunito Sans", sans-serif;
+  font-size: 48px;
+  font-weight: 700;
+  line-height: 65px;
+  letter-spacing: -0.02em;
+  text-align: left;
+  margin: 0px;
+}
+
+h2 {
+  font-family: "Open Sans", "Inter", "Roboto", "Nunito Sans", sans-serif;
+  font-size: 40px;
+  font-weight: 300;
+  line-height: 54px;
+  letter-spacing: 0em;
+  text-align: left;
+}
+
+h3 {
+  font-family: "Open Sans", "Inter", "Roboto", "Nunito Sans", sans-serif;
+  font-size: 32px;
+  font-weight: 500;
+  line-height: 44px;
+  letter-spacing: 0em;
+  text-align: left;
+  margin: 0px;
+}
+
+h4 {
+  font-family: "Open Sans", "Inter", "Roboto", "Nunito Sans", sans-serif;
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 27px;
+  letter-spacing: 0em;
+  text-align: left;
+  margin-bottom: 20px;
+  margin-top: 0px;
+}
+
+h5 {
+  font-family: "Open Sans", "Inter", "Roboto", "Nunito Sans", sans-serif;
+  font-size: 20px;
+  font-weight: 500;
+  line-height: 27px;
+  letter-spacing: -0.02em;
+  text-align: left;
+  margin: 0px;
+}
+
+h6 {
+  font-family: "Open Sans", "Inter", "Roboto", "Nunito Sans", sans-serif;
+  font-size: 20px;
+  font-weight: 300;
+  line-height: 27px;
+  letter-spacing: 0em;
+  text-align: left;
+}
+
+.label-text {
+  font-family: "Open Sans", "Inter", "Roboto", "Nunito Sans", sans-serif;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 22px;
+  letter-spacing: 0em;
+  text-align: left;
+}
+
+.label-text-selected{
+  font-family: "Open Sans", "Inter", "Roboto", "Nunito Sans", sans-serif;
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 22px;
+  letter-spacing: 0em;
+  text-align: left;
+}
+
+p {
+  font-family: "Open Sans", "Inter", "Roboto", "Nunito Sans", sans-serif;
+  font-size: 18px;
+  font-weight: 500;
+  line-height: 25px;
+  letter-spacing: 0em;
+  text-align: left;
+}
+
+.input-text {
+  font-family: "Open Sans", "Inter", "Roboto", "Nunito Sans", sans-serif;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 22px;
+  letter-spacing: 0em;
 }

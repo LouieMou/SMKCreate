@@ -1,0 +1,23 @@
+@import url(../index.css);
+
+.search-screen-left {
+  position: fixed;
+  z-index: 15;
+}
+
+.search-screen-right {
+margin-left: 300px;
+margin-right: 10px;
+}
+
+@media (max-width: 600px) {
+  .search-screen {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .search-screen-right {
+    margin-top: 300px;
+    margin-left: 0;
+    }
+}

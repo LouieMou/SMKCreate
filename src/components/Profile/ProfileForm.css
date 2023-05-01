@@ -1,0 +1,28 @@
+@import url(../../index.css);
+
+.label-text {
+    text-align: left;
+}
+
+input {
+    box-shadow: none;
+    border: solid;
+    border-width: 2px;
+    height: 45px;
+    margin-bottom: 25px;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    justify-content: left;
+    cursor:text;
+    margin-bottom: 25px;
+    max-width: 445px;
+}
+
+.submit-button{
+    margin-top: 15px;
+    display: flex;
+    justify-content: right;
+}

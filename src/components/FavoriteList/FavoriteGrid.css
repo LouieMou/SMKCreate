@@ -1,0 +1,20 @@
+.favorite-grid {
+    margin: 20px;
+    overflow: auto;
+    width: 250px;
+    max-height: calc(100vh - 120px);
+}
+
+.label-text-bold {
+    font-weight: 700;
+    text-align: center;
+}
+
+.label-text-favorite {
+    text-align: center;
+}
+
+.text-container {
+    margin: 50px auto 0;
+    width: 208px;
+}

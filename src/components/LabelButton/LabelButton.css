@@ -1,0 +1,65 @@
+@import url(../../index.css);
+
+.label-button-standard {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: transparent;
+  position: relative;
+  text-shadow: none;
+  cursor: pointer;
+  box-shadow: none;
+  border: solid;
+  border-color: var(--primary-white);
+  border-width: 2px;
+  width: 125px;
+  height: 50px;
+  margin-bottom: 20px;
+  color: var(--primary-white);
+}
+
+.label-button-standard:hover {
+  background-color: var(--primary-white-33);
+}
+
+.label-button-selected{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--primary-white);
+    position: relative;
+    text-shadow: none;
+    cursor: pointer;
+    box-shadow: none;
+    border: solid;
+    border-width: 2px;
+    border-color: var(--primary-white);
+    width: 125px;
+    height: 50px;
+    margin-bottom: 20px;
+}
+
+.label-button:hover {
+  opacity: 0.8;
+}
+
+.label-button-large {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: transparent;
+  position: relative;
+  text-shadow: none;
+  cursor: pointer;
+  box-shadow: none;
+  border: solid;
+  border-width: 2px;
+  width: 200px;
+  height: 50px;
+}
+
+.label-button-large:hover {
+  background-color: var(--primary-black);
+  color: var(--primary-white);
+  border: solid;
+}

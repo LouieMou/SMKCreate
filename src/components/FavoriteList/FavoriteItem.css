@@ -1,0 +1,49 @@
+.favorite-container {
+    position: relative;
+    display: inline-block;
+    margin: 2.5px;
+    cursor: pointer;
+  }
+  
+.favorite-image {
+    max-height: 80px;
+    max-width: 250px;
+    vertical-align: top;
+  }
+
+.favorite-overlay {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    background-color: var(--primary-black-66);
+  }
+
+.favorite-container:hover .favorite-overlay  {
+    opacity: 1;
+  }
+
+.favorite-delete {
+    position: absolute;
+    width: 12px;
+    height: 11px;
+    margin: 4px;
+    top: 0;
+    right: 0;
+  }
+
+  .favorite-title-overlay {
+    color: var(--primary-white);
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    -webkit-transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    text-align: center;
+    margin: 0;
+    font-size: small;
+}  

@@ -1,0 +1,16 @@
+.konva-container {
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+  box-sizing: border-box;
+  width: 512px;
+  height: 512px;
+  border: 10px solid #101011;
+}
+
+@media (min-height: 1024px) {
+  .konva-container {
+    width: 1024px;
+    height: 1024px;
+  }
+}

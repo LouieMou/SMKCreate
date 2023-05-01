@@ -1,0 +1,11 @@
+.profile-page {
+    display: flex;
+    flex-direction: column;
+    margin: 50px 0px 0px 50px;
+}
+
+.login-info {
+    max-width: 445px;
+    margin: 0;
+    width:100%;
+}

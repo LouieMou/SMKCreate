@@ -1,0 +1,42 @@
+.nav-icon-img {
+  margin: auto;
+  max-width: 100%;
+  max-height: 100%;
+  margin-left: 30px;
+  display:flex;
+  justify-content: center;
+}
+
+.nav-img-container {
+  display: flex;
+  padding: 15px 12px;
+  box-sizing: border-box;
+  height: 100px;
+}
+
+a {
+  display:flex;
+  justify-content: center;
+  margin-top: -1px;
+}
+
+
+@media (max-width: 550px) {
+  .nav-icon-img {
+    margin-left: 10px;
+  }
+} 
+
+@media (max-width: 500px) {
+  .nav-icon-img {
+    margin-left: 15px;
+    margin-right: 15px;
+  }
+} 
+
+@media (max-width: 330px) {
+  .nav-icon-img {
+    margin-left: 10px;
+    margin-right: 10px;
+  }
+} 

@@ -1,0 +1,21 @@
+.favoriteBoard {
+  background-color: var(--primary-white);
+  width: 300px;
+  position: sticky;
+  height: calc(100vh - 50px);
+  left: calc(100vw - 300px);
+  padding-top: 50px;
+  box-shadow: -5px 0px 5px 0px rgba(0, 0, 0, 0.25);
+}
+
+.cross-container {
+  display: flex;
+  justify-content: flex-end;
+  margin-right: 30px;
+}
+
+.cross {
+  width: 25;
+  height: 25;
+  cursor: pointer;
+}
