@@ -1,26 +1,9 @@
 import "./Konva.css";
 import { Stage, Layer } from "react-konva";
-import { useRef, useState, useEffect } from "react";
 import KonvaImage from "./KonvaImage";
 import KonvaText from "./KonvaText";
 
 export default function Konva(props) {
-  const divRef = useRef();
-
-  const [dimensions, setDimensions] = useState({
-    width: 0,
-    height: 0,
-  });
-
-  useEffect(() => {
-    if (divRef.current?.offsetHeight && divRef.current?.offsetWidth) {
-      setDimensions({
-        width: divRef.current.offsetWidth,
-        height: divRef.current.offsetHeight,
-      });
-    }
-  }, []);
-
   const handleOnDrop = (e) => {
     e.preventDefault();
     let objectId = props.dragURL.current + "_" + Date.now().toString();
@@ -39,7 +22,7 @@ export default function Konva(props) {
   return (
     <div>
       <div
-        ref={divRef}
+        ref={props.divRef}
         onDragOver={(e) => e.preventDefault()}
         onDrop={handleOnDrop}
         className="konva-frame"
@@ -47,12 +30,12 @@ export default function Konva(props) {
         <Stage
           className="konva-container"
           ref={props.stageRef}
-          width={dimensions.width}
-          height={dimensions.height}
+          width={props.dimensions.width}
+          height={props.dimensions.height}
         >
           <Layer>
             {props.imagesOnLayer.length === 0 ? (
-              <KonvaText dimensions={dimensions} />
+              <KonvaText dimensions={props.dimensions} />
             ) : (
               props.imagesOnLayer.map((image, index) => {
                 return (

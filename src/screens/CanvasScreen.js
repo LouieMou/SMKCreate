@@ -1,4 +1,4 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import axios from "axios";
 /*Styling*/
 import "./CanvasScreen.css";
@@ -14,8 +14,23 @@ import FormData from "form-data"; //imported from the openai library (needed)
 function CanvasScreen(props) {
   const [userInput, setUserInput] = useState("");
   const [imagesOnLayer, setImagesOnLayer] = useState([]);
+  const [dimensions, setDimensions] = useState({
+    width: 0,
+    height: 0,
+  });
   const stageRef = useRef(null);
   const dragURL = useRef();
+  const divRef = useRef();
+
+  useEffect(() => {
+    if (divRef.current?.offsetHeight && divRef.current?.offsetWidth) {
+      setDimensions({
+        width: divRef.current.offsetWidth - 20,
+        height: divRef.current.offsetHeight - 20,
+      });
+    }
+    console.log("this is dimentions:", dimensions);
+  }, []);
 
   const handleUserInput = (event) => {
     setUserInput(event.target.value);
@@ -51,7 +66,7 @@ function CanvasScreen(props) {
         form.append("image", blob, "image.png");
         form.append("prompt", userInput);
         form.append("n", "1");
-        form.append("size", "512x512");
+        form.append("size", `${dimensions.width}x${dimensions.height}`);
 
         const response = await axios.post(
           "https://api.openai.com/v1/images/edits",
@@ -64,11 +79,22 @@ function CanvasScreen(props) {
         );
 
         const generatedImageURL = response.data.data[0].url;
+        console.log("response: ", generatedImageURL);
+
+        let centerX;
+        let centerY;
+        if (dimensions.width === 1024) {
+          centerX = 512;
+          centerY = 512;
+        } else {
+          centerX = 256;
+          centerY = 256;
+        }
 
         setImagesOnLayer([
           {
-            x: 256,
-            y: 256,
+            x: centerX,
+            y: centerY,
             src: generatedImageURL,
             id: Date.now().toString(),
           },
@@ -132,6 +158,8 @@ function CanvasScreen(props) {
       <Konva
         dragURL={dragURL}
         stageRef={stageRef}
+        divRef={divRef}
+        dimensions={dimensions}
         imagesOnLayer={imagesOnLayer}
         setImagesOnLayer={setImagesOnLayer}
       />
