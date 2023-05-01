@@ -42,6 +42,7 @@ export default function Konva(props) {
         ref={divRef}
         onDragOver={(e) => e.preventDefault()}
         onDrop={handleOnDrop}
+        className="konva-frame"
       >
         <Stage
           className="konva-container"
