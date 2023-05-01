@@ -20,7 +20,7 @@ function CanvasScreen(props) {
     height: 0,
   });
   const [loading, setLoading] = useState(false);
-  const [count, setCount] = useState(0);
+  const [referencesIsShown, setReferencesIsShown] = useState(false);
   const stageRef = useRef(null);
   const dragURL = useRef();
   const divRef = useRef();
@@ -40,7 +40,6 @@ function CanvasScreen(props) {
 
   const handleUserInput = (event) => {
     setUserInput(event.target.value);
-    setCount(event.target.value.length);
   };
 
   const white = getComputedStyle(document.documentElement).getPropertyValue(
@@ -106,11 +105,11 @@ function CanvasScreen(props) {
             id: Date.now().toString(),
           },
         ]);
+        setReferencesIsShown(true);
       } catch (error) {
         console.log("Error in the generate:", error.message);
       } finally {
         setLoading(false);
-        setCount(0);
       }
     }
   }
@@ -155,6 +154,8 @@ function CanvasScreen(props) {
 
   function clearCanvas() {
     setImagesOnLayer([]);
+    setReferencesIsShown(false);
+    setUserInput("");
   }
 
   return (
@@ -176,41 +177,44 @@ function CanvasScreen(props) {
         setImagesOnLayer={setImagesOnLayer}
         loading={loading}
       />
-      {metaDataOnLayer.length !== 0 ? (
-        metaDataOnLayer.map((object, index) => {
-          <p key={index}>{object.label_text}</p>;
-        })
-      ) : (
-        <></>
-      )}
-
       <div className="generate-image-container">
         <TextBox
           placeholder="Write some text here to help generate an image"
           value={userInput}
           onChange={handleUserInput}
-          count={count}
         />
-        <div className="label-button-container">
+        {referencesIsShown && (
+          <div className="references">
+            <p className="references-title">
+              This artwork is generated using the following object(s):
+            </p>
+            {metaDataOnLayer.map((obj, index) => (
+              <p key={index} className="artist-and-title-references">
+                {obj.label_text}, {obj.artist}, {obj.title},
+              </p>
+            ))}
+          </div>
+        )}
+        <div className="all-canvas-buttons-container">
           <LabelButton
-            button_size={"large"}
+            button_size={"canvas"}
             label_text={"Generate Image"}
             handleClick={generateImage}
           />
-        </div>
-        <div className="download-image-button-container">
-          <LabelButton
-            button_size={"large"}
-            label_text={"Download"}
-            handleClick={downloadImage}
-          />
-        </div>
-        <div className="clear-canvas-button">
-          <LabelButton
-            button_size={"large"}
-            label_text={"Clear Canvas"}
-            handleClick={clearCanvas}
-          />
+
+          <div className="small-canvas-buttons-container">
+            <LabelButton
+              button_size={"canvas-small"}
+              label_text={"Download"}
+              handleClick={downloadImage}
+            />
+
+            <LabelButton
+              button_size={"canvas-small"}
+              label_text={"Clear Canvas"}
+              handleClick={clearCanvas}
+            />
+          </div>
         </div>
       </div>
     </div>
