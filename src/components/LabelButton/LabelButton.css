@@ -62,4 +62,6 @@
   background-color: var(--primary-black);
   color: var(--primary-white);
   border: solid;
+  border-width: 2px;
+  border-color: var(--primary-black);
 }
