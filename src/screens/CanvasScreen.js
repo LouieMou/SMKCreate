@@ -19,6 +19,7 @@ function CanvasScreen(props) {
     height: 0,
   });
   const [loading, setLoading] = useState(false);
+  const [count, setCount] = useState(0);
   const stageRef = useRef(null);
   const dragURL = useRef();
   const divRef = useRef();
@@ -35,6 +36,7 @@ function CanvasScreen(props) {
 
   const handleUserInput = (event) => {
     setUserInput(event.target.value);
+    setCount(event.target.value.length);
   };
 
   const white = getComputedStyle(document.documentElement).getPropertyValue(
@@ -46,22 +48,21 @@ function CanvasScreen(props) {
     console.log("inside generateImage function");
 
     let hasUserInput = userInput !== "";
-    // this will never be empty (needs to be fixed) -> needs to listen to imagesOnLayer-array
-    let hasCanvasContent = stageRef.current.toDataURL() !== "";
+    let hasCanvasContent = imagesOnLayer.length !== 0;
 
     if (!hasUserInput) {
       alert("You need to write a text in the input field");
     }
 
     if (!hasCanvasContent) {
-      alert("You need to add some objects to the canvas");
+      alert("You need to drag some objects to the canvas");
     }
 
     if (hasUserInput && hasCanvasContent) {
+      setLoading(true);
       const konvaDataURL = stageRef.current.toDataURL();
       const response = await fetch(konvaDataURL);
       const blob = await response.blob();
-      setLoading(true);
 
       try {
         const form = new FormData();
@@ -101,9 +102,11 @@ function CanvasScreen(props) {
             id: Date.now().toString(),
           },
         ]);
-        setLoading(false);
       } catch (error) {
         console.log("Error in the generate:", error.message);
+      } finally {
+        setLoading(false);
+        setCount(0);
       }
     }
   }
@@ -172,6 +175,7 @@ function CanvasScreen(props) {
           placeholder="Write some text here to help generate an image"
           value={userInput}
           onChange={handleUserInput}
+          count={count}
         />
         <div className="label-button-container">
           <LabelButton

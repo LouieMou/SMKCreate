@@ -24,3 +24,11 @@
 .input-text::placeholder {
   box-sizing: border-box;
 }
+
+.small-text {
+  width: 100%;
+  font-size: x-small;
+  display: flex;
+  justify-content: flex-end;
+  margin-top: -5px;
+}

@@ -8,7 +8,9 @@ export default function TextBox(props) {
         placeholder={props.placeholder}
         value={props.value}
         onChange={props.onChange}
+        maxLength={1000}
       />
+      <p className="small-text">{props.count} / 1000</p>
     </div>
   );
 }
