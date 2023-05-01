@@ -31,5 +31,3 @@ export async function readPaintingById(paintingId) {
     return paintingResult;
   } catch (error) {}
 }
-
-

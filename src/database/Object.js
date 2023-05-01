@@ -2,7 +2,7 @@ import Parse from "parse";
 
 export async function readObjectsByCategory(categoryId) {
   let destrucutredObjects = [];
-  let query = new Parse.Query("Object");
+  let query = new Parse.Query("Object").limit(1000);
 
   query.include("labels");
   query.include("label_text");
@@ -24,6 +24,7 @@ export async function readObjectsByCategory(categoryId) {
 
   try {
     let objects = await query.find();
+    //console.log("this is the length of the object array", objects.length())
     objects.forEach((object) => {
       destrucutredObjects.push(destructureObject(object));
     });

@@ -3,17 +3,17 @@ import Parse from "parse";
 export async function readLabelsInCategory(categoryName) {
   let labelsAndCategoryId = [];
   let query = new Parse.Query("Category");
-  query.include("labels");
+  query.include("object_labels");
   query.equalTo("category_name", categoryName);
 
   try {
     let categoryResult = await query.find();
-    let labelArray = categoryResult[0].attributes.labels;
+    let labelArray = categoryResult[0].attributes.object_labels;
 
     labelArray.forEach((label) => {
       labelsAndCategoryId.push({
         objectLabel: label,
-        categoryId: categoryResult[0].get("id"),
+        categoryId: categoryResult.id,
         categoryName: categoryResult[0].attributes.category_name,
       });
     });
@@ -67,3 +67,4 @@ export async function getCategoriesWithPointer() {
     return categoryAndObject;
   } catch (error) {}
 }
+
