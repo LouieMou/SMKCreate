@@ -55,8 +55,8 @@ function FilterFrame(props) {
           labelList.map((label, index) => (
             <LabelButton
               key={index}
-              handleClick={() => updateFilter(label.objectLabel)}
-              label_text={label.objectLabel}
+              handleClick={() => updateFilter(label.objectLabel.toLowerCase())}
+              label_text={label.objectLabel.toLowerCase()}
               button_size={
                 label.objectLabel === selectedLabelButton
                   ? "selected"
