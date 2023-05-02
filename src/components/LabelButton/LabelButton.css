@@ -62,4 +62,54 @@
   background-color: var(--primary-black);
   color: var(--primary-white);
   border: solid;
+  border-width: 2px;
+  border-color: var(--primary-black);
 }
+
+.label-button-canvas {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: transparent;
+  position: relative;
+  text-shadow: none;
+  cursor: pointer;
+  box-shadow: none;
+  border: solid;
+  border-width: 2px;
+  width: 100%;
+  height: 50px;
+}
+
+.label-button-canvas-small {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: transparent;
+  position: relative;
+  text-shadow: none;
+  cursor: pointer;
+  box-shadow: none;
+  border: solid;
+  border-width: 2px;
+  width: 120px;
+  height: 50px;
+}
+
+.label-button-canvas:hover {
+  background-color: var(--primary-black);
+  color: var(--primary-white);
+  border: solid;
+  border-width: 2px;
+  border-color: var(--primary-black);
+}
+
+.label-button-canvas-small:hover {
+  background-color: var(--primary-black);
+  color: var(--primary-white);
+  border: solid;
+  border-width: 2px;
+  border-color: var(--primary-black);
+}
+
+

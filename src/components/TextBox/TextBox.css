@@ -1,26 +1,18 @@
 @import url(../../index.css);
-.textbox-container {
-  width: 200px;
-  height: 289px;
-  left: 1075px;
-  top: 125px;
-  border: solid 2px black;
-  box-sizing: border-box;
-}
 
-.input-text {
-  height: 100%;
-  width: 100%;
+textarea {
   box-sizing: border-box;
   white-space: normal;
   width: 100%;
-  height: 100%;
-  border: 0;
-  box-sizing: border-box;
+  height: 140px;
   padding: 10px;
   overflow-wrap: break-word;
+  border: solid 2px black;
+  font-family: 'Open sans';
+  font-size: 16px;
 }
 
-.input-text::placeholder {
-  box-sizing: border-box;
+textarea::placeholder {
+  font-family: 'Open sans';
+  font-size: 16px;
 }
