@@ -2,7 +2,6 @@
   display: flex;
   margin: 0 50px 50px 50px;
   /* height: calc(100vh - 170px) */
-  background-color: red;
 }
 
 .fav-grid-container {
@@ -12,7 +11,6 @@
   border: solid 2px black;
   margin-right: 30px;
   height: 528px;
-  background-color: aqua;
 }
 
 .generate-image-container {
@@ -20,7 +18,6 @@
   flex-direction: column;
   margin-left: 30px;
   width: 250px;
-  background-color: blueviolet;
 }
 
 .all-canvas-buttons-container {
@@ -39,16 +36,17 @@
 
 .references-title {
   font-weight: bold;
-  font-size: 16px;
+  font-size: 13px;
   margin-top: 20px;
   margin-bottom: 0px;
+  line-height: 20px;
 }
 
 .artist-and-title-references {
-  font-size: 13px;
+  font-size: 11px;
   margin-top: 0px;
   margin-bottom: 0px;
-  line-height: 21px;
+  line-height: 15px;
 }
 
 @media screen and (min-height: 1024px) {

@@ -133,7 +133,7 @@ function CanvasScreen(props) {
           const url = window.URL.createObjectURL(new Blob([blob]));
           const link = document.createElement("a");
           link.href = url;
-          link.setAttribute("download", filename);
+          link.setAttribute(`${userInput}`, filename);
           document.body.appendChild(link);
           link.click();
           link.parentNode.removeChild(link);
@@ -186,11 +186,15 @@ function CanvasScreen(props) {
         {referencesIsShown && (
           <div className="references">
             <p className="references-title">
-              This artwork is generated using the following object(s):
+              {metaDataOnLayer.length > 1
+                ? "This artwork is generated using the following objects:"
+                : "This artwork is generated using the following object:"}
             </p>
             {metaDataOnLayer.map((obj, index) => (
               <p key={index} className="artist-and-title-references">
-                {obj.label_text}, {obj.artist}, {obj.title},
+                <span style={{ fontWeight: "bold" }}>{obj.label_text}</span>{" "}
+                from <span style={{ fontStyle: "italic" }}>{obj.title}</span> by{" "}
+                {obj.artist}
               </p>
             ))}
           </div>
@@ -205,14 +209,13 @@ function CanvasScreen(props) {
           <div className="small-canvas-buttons-container">
             <LabelButton
               button_size={"canvas-small"}
-              label_text={"Download"}
-              handleClick={downloadImage}
+              label_text={"Clear"}
+              handleClick={clearCanvas}
             />
-
             <LabelButton
               button_size={"canvas-small"}
-              label_text={"Clear Canvas"}
-              handleClick={clearCanvas}
+              label_text={"Download"}
+              handleClick={downloadImage}
             />
           </div>
         </div>
