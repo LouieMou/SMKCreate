@@ -30,6 +30,7 @@ export default function PaintingScreen(props) {
     let painting = await readPaintingById(paintingId);
     setPainting(painting);
     setBackgroundColor(painting.suggested_bg_color);
+    props.setBgColor(painting.suggested_bg_color);
     console.log("This is the painting: ", painting);
   }
 

@@ -5,10 +5,13 @@ import "./CategoryScreen.css";
 import "./../index.css";
 /* Functions */
 import { randomizeBackground } from "../functions/background";
+import { setBackgroundColor } from "../functions/background";
 import CategoryGrid from "../components/CategoryGrid/CategoryGrid";
 
 export default function CategoryScreen(props) {
-  randomizeBackground();
+  const color = randomizeBackground();
+  setBackgroundColor(color);
+  props.setBgColor(color);
 
   return (
     <div className="categoryScreen">
