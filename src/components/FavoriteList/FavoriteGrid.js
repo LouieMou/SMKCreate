@@ -44,9 +44,8 @@ export default function FavoriteGrid(props) {
             Your favorite objects <br /> will be saved here
           </p>
           <p className="label-text-favorite">
-            Explore the collection and discover the objects that inspire you the
-            most. Don't forget to save your favorites for later, so you can use
-            them as inspiration for your own creative artwork. <br />
+            Explore the collection and save your favorites here. <br /> <br />{" "}
+            The objects can be used to creating your own artwork. <br />
             <br />
             Happy exploring!
           </p>
