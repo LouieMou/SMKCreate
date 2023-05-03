@@ -1,12 +1,12 @@
 /* Components */
 import PageHeading from "../components/Headings/PageHeading";
+import CategoryGrid from "../components/CategoryGrid/CategoryGrid";
 import "./CategoryScreen.css";
 /* Styles */
 import "./../index.css";
 /* Functions */
 import { randomizeBackground } from "../functions/background";
 import { setBackgroundColor } from "../functions/background";
-import CategoryGrid from "../components/CategoryGrid/CategoryGrid";
 
 export default function CategoryScreen(props) {
   const color = randomizeBackground();
