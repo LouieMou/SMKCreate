@@ -49,7 +49,11 @@ function FilterFrame(props) {
 
   return (
     <div className="filter-frame-container">
-      <h1>{category}</h1>
+      {category && category.length > 10 ? (
+        <h1 style={{ fontSize: "33px" }}>{category}</h1>
+      ) : (
+        <h1>{category}</h1>
+      )}
       <div className="filter-frame-button-container">
         {labelList ? (
           labelList.map((label, index) => (

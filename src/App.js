@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect } from "react";
 import { Route, Routes } from "react-router-dom";
 /* Screens */
 import HomeScreen from "./screens/HomeScreen";
@@ -24,6 +24,7 @@ function App() {
   const [categoriesAndObjects, setCategoriesAndObjects] = useState();
   const [favoriteIsActive, setFavoriteIsActive] = useState(false);
   const [currentUser, setCurrentUser] = useState(null);
+  const [bgColor, setBgColor] = useState();
 
   useEffect(() => {
     if (currentUser) {
@@ -34,7 +35,10 @@ function App() {
   async function fecthCategoriesWithPointer() {
     let categoriesAndObjectsResult = await getCategoriesWithPointer();
     setCategoriesAndObjects(categoriesAndObjectsResult);
-    console.log("This are the categories and objects", categoriesAndObjectsResult)
+    console.log(
+      "This are the categories and objects",
+      categoriesAndObjectsResult
+    );
   }
 
   function openFavoriteList() {
@@ -67,22 +71,39 @@ function App() {
               </div>
             )}
 
-            <NavBar openFavoriteList={openFavoriteList} />
+            <NavBar openFavoriteList={openFavoriteList} bgColor={bgColor} />
 
             {categoriesAndObjects ? (
               <Routes>
                 <Route
                   path="/"
-                  element={<HomeScreen categories={categoriesAndObjects} />}
+                  element={
+                    <HomeScreen
+                      categories={categoriesAndObjects}
+                      setBgColor={setBgColor}
+                    />
+                  }
                 />
 
-                <Route exact path="/search/:id" element={<SearchScreen />} />
+                <Route
+                  exact
+                  path="/search/:id"
+                  element={
+                    <SearchScreen setBgColor={setBgColor} bgColor={bgColor} />
+                  }
+                />
                 {/* <Route path="/search/:id" element={<SearchScreen />} /> */}
-                <Route path="/painting" element={<PaintingScreen />} />
+                <Route
+                  path="/painting"
+                  element={<PaintingScreen setBgColor={setBgColor} />}
+                />
                 <Route
                   path="/canvas"
                   element={
-                    <CanvasScreen closeFavoriteList={closeFavoriteList} />
+                    <CanvasScreen
+                      closeFavoriteList={closeFavoriteList}
+                      setBgColor={setBgColor}
+                    />
                   }
                 />
                 <Route
@@ -91,12 +112,18 @@ function App() {
                     <ProfileScreen
                       currentUser={currentUser}
                       setCurrentUser={setCurrentUser}
+                      setBgColor={setBgColor}
                     />
                   }
                 />
                 <Route
                   path="/categories"
-                  element={<CategoryScreen categories={categoriesAndObjects} />}
+                  element={
+                    <CategoryScreen
+                      categories={categoriesAndObjects}
+                      setBgColor={setBgColor}
+                    />
+                  }
                 />
               </Routes>
             ) : (

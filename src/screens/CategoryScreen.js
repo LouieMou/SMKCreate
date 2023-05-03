@@ -5,10 +5,13 @@ import "./CategoryScreen.css";
 import "./../index.css";
 /* Functions */
 import { randomizeBackground } from "../functions/background";
-import FrontPageGrid from "../components/FrontPageGrid/FrontPageGrid";
+import { setBackgroundColor } from "../functions/background";
+import CategoryGrid from "../components/CategoryGrid/CategoryGrid";
 
 export default function CategoryScreen(props) {
-  randomizeBackground();
+  const color = randomizeBackground();
+  setBackgroundColor(color);
+  props.setBgColor(color);
 
   return (
     <div className="categoryScreen">
@@ -17,7 +20,7 @@ export default function CategoryScreen(props) {
         subtitle="Choose one to begin your exploration"
         color={`var(--primary-white)`}
       />
-      {props.categories ? <FrontPageGrid data={props.categories} /> : <></>}
+      {props.categories ? <CategoryGrid data={props.categories} /> : <></>}
     </div>
   );
 }

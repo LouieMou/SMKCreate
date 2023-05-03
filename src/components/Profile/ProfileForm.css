@@ -1,9 +1,5 @@
 @import url(../../index.css);
 
-.label-text {
-    text-align: left;
-}
-
 input {
     box-shadow: none;
     border: solid;

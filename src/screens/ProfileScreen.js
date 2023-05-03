@@ -25,6 +25,7 @@ function ProfileScreen(props) {
     "--primary-white"
   );
   setBackgroundColor(white);
+  props.setBgColor(white);
 
   async function saveChangesToProfile(e) {
     e.preventDefault();

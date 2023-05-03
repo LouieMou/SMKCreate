@@ -46,6 +46,7 @@ function CanvasScreen(props) {
     "--primary-white"
   );
   setBackgroundColor(white);
+  props.setBgColor(white);
 
   async function generateImage() {
     console.log("inside generateImage function");
