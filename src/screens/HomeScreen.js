@@ -35,11 +35,7 @@ function HomeScreen(props) {
             />
           </div>
         </div>
-        {props.categories ? (
-          <FrontPageGrid data={props.categories.slice(0, 9)} />
-        ) : (
-          <></>
-        )}
+        {props.categories ? <FrontPageGrid data={props.categories} /> : <></>}
       </div>
     </Frame>
   );
