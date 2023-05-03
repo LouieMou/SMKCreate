@@ -156,6 +156,7 @@ function CanvasScreen(props) {
     setImagesOnLayer([]);
     setReferencesIsShown(false);
     setUserInput("");
+    setMetaDataOnLayer([]);
   }
 
   return (

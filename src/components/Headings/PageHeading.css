@@ -8,9 +8,20 @@ h2 {
   margin: 0px;
 }
 
+h1 {
+  line-height: 45px;
+  margin-bottom: 10px;
+}
+
 @media (max-width: 422px) {
   .heading-container{
     margin-bottom: 0px;
   }
 
+}
+
+@media (max-height: 800px) {
+  h2 {
+    font-size: 35px;
+  }
 }
