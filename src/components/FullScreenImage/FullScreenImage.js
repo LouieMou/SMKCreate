@@ -104,9 +104,7 @@ export default function FullScreenImage(props) {
 
   const heightImage = props.imgHeight;
   const maxImageHeight = window.innerHeight - 125 - 70;
-
   const procentSmaller = (maxImageHeight / heightImage) * 100;
-
   const scaledWidthImage = (procentSmaller * props.imgWidth) / 100;
 
   return coords ? (
