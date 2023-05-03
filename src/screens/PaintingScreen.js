@@ -38,7 +38,6 @@ export default function PaintingScreen(props) {
     try {
       const objects = await readObjectsByPaintingId(paintingId);
       setObjects(objects);
-      console.log("these are the objects in painting screen; ", objects);
     } catch (error) {
       console.error(error);
     }
@@ -56,6 +55,7 @@ export default function PaintingScreen(props) {
             <FullScreenImage
               imgURL={painting.image_thumbnail}
               imgWidth={painting.image_width}
+              imgHeight={painting.image_height}
               objects={objects}
               colorMode={colorMode}
               painting_id={painting.id}

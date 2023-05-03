@@ -21,7 +21,6 @@ export default function FullScreenImage(props) {
   useEffect(() => {
     if (savedObject) {
       saveToFavoriteList(savedObject);
-      console.log("savedObject", savedObject);
     }
   }, [savedObject]);
 
@@ -103,15 +102,19 @@ export default function FullScreenImage(props) {
     updateFavoriteList(object);
   }
 
-  const widthImage =
-    props.imgWidth > 700 ? window.innerWidth * 0.6 : window.innerWidth * 0.8;
+  const heightImage = props.imgHeight;
+  const maxImageHeight = window.innerHeight - 125 - 70;
+
+  const procentSmaller = (maxImageHeight / heightImage) * 100;
+
+  const scaledWidthImage = (procentSmaller * props.imgWidth) / 100;
 
   return coords ? (
     <div className="image-fullscreen-container">
       <ImageMapper
         src={URL}
         map={MAP}
-        width={widthImage}
+        width={scaledWidthImage}
         imgWidth={props.imgWidth > 1660 ? 1024 : props.imgWidth}
         onClick={(area) => setSavedObject(area)}
         onLoad={() => load()}
