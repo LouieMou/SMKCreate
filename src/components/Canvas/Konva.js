@@ -7,7 +7,6 @@ import KonvaAnimation from "./KonvaAnimation";
 import { useEffect } from "react";
 
 export default function Konva(props) {
-  /*  */
   useEffect(() => {
     console.log("i drag this object", props.dragURL);
   }, []);
@@ -23,6 +22,8 @@ export default function Konva(props) {
           ...props.stageRef.current.getPointerPosition(),
           src: props.dragURL.current,
           id: objectId,
+          scaleX: 10,
+          scaleY: 10,
         },
       ])
     );
