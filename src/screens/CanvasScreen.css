@@ -13,6 +13,11 @@
   height: 528px;
 }
 
+.references {
+  overflow: scroll;
+  flex: 1;
+}
+
 .generate-image-container {
   display: flex;
   flex-direction: column;
@@ -23,8 +28,6 @@
 .all-canvas-buttons-container {
   display: flex;
   flex-direction: column;
-  justify-content: end;
-  height: 100%;
 }
 
 .small-canvas-buttons-container {
@@ -47,6 +50,11 @@
   margin-top: 0px;
   margin-bottom: 0px;
   line-height: 15px;
+}
+
+.steps {
+margin-top: 20px;
+flex: 1;
 }
 
 @media screen and (min-height: 1024px) {

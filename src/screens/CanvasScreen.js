@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from "react";
+import React, { useState, useRef, useEffect, useContext } from "react";
 import axios from "axios";
 /*Styling*/
 import "./CanvasScreen.css";
@@ -7,8 +7,10 @@ import TextBox from "../components/TextBox/TextBox";
 import LabelButton from "../components/LabelButton/LabelButton";
 import Konva from "../components/Canvas/Konva";
 import FavoriteGrid from "../components/FavoriteList/FavoriteGrid";
+import Step from "../components/Step/Step";
 /* Functions */
 import { setBackgroundColor } from "../functions/background";
+import { FavoriteContext } from "../context/FavoriteContext";
 import FormData from "form-data"; //imported from the openai library (needed)
 
 function CanvasScreen(props) {
@@ -21,9 +23,12 @@ function CanvasScreen(props) {
   });
   const [loading, setLoading] = useState(false);
   const [referencesIsShown, setReferencesIsShown] = useState(false);
+  const [generatedImage, setGeneratedImage] = useState(false);
   const stageRef = useRef(null);
   const dragURL = useRef();
   const divRef = useRef();
+
+  const { favoriteList } = useContext(FavoriteContext);
 
   useEffect(() => {
     if (divRef.current?.offsetHeight && divRef.current?.offsetWidth) {
@@ -64,6 +69,7 @@ function CanvasScreen(props) {
 
     if (hasUserInput && hasCanvasContent) {
       setLoading(true);
+      setGeneratedImage(true);
       const konvaDataURL = stageRef.current.toDataURL();
       const response = await fetch(konvaDataURL);
       const blob = await response.blob();
@@ -158,6 +164,7 @@ function CanvasScreen(props) {
     setReferencesIsShown(false);
     setUserInput("");
     setMetaDataOnLayer([]);
+    setGeneratedImage(false);
   }
 
   return (
@@ -185,7 +192,7 @@ function CanvasScreen(props) {
           value={userInput}
           onChange={handleUserInput}
         />
-        {referencesIsShown && (
+        {referencesIsShown ? (
           <div className="references">
             <p className="references-title">
               {metaDataOnLayer.length > 1
@@ -199,6 +206,29 @@ function CanvasScreen(props) {
                 {obj.artist}
               </p>
             ))}
+          </div>
+        ) : (
+          <div className="steps">
+            <Step
+              number={"1"}
+              text="Collect objects and add to your favorite list."
+              isCompleted={favoriteList.length > 0}
+            />
+            <Step
+              number={"2"}
+              text="Drag objects to the canvas from your favorite list."
+              isCompleted={imagesOnLayer.length > 0}
+            />
+            <Step
+              number={3}
+              text="Write a text to help generate your full image."
+              isCompleted={userInput.length > 0}
+            />
+            <Step
+              number={4}
+              text="Click 'Generate Image' to generate your own artwork with the help of AI."
+              isCompleted={generatedImage}
+            />
           </div>
         )}
         <div className="all-canvas-buttons-container">
