@@ -1,5 +1,5 @@
 import useImage from "use-image";
-import React from "react";
+import useRef from "react";
 import { Image, Transformer } from "react-konva";
 
 export default function KonvaImage({ image, setImagesOnLayer }) {
@@ -38,7 +38,7 @@ export default function KonvaImage({ image, setImagesOnLayer }) {
 
   const [img] = useImage(image.src);
   let imgId = image.id;
-  const transformerRef = React.useRef(null);
+  const transformerRef = useRef(null);
 
   const handleSelect = (e) => {
     const clickedId = e.target.id();
