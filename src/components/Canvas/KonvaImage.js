@@ -28,27 +28,6 @@ export default function KonvaImage({
     );
   };
 
-  const handleTransform = (e) => {
-    console.log("inside Transform e:", e);
-    console.log("Transformerref", transformerRef);
-
-    const id = e.target.parent.id();
-    let newWidth = transformerRef.current.width();
-    let newHeight = transformerRef.current.height();
-    console.log("newWidth", newWidth);
-    console.log("newHeight", newHeight);
-
-    setImagesOnLayer((imageOnLayer) =>
-      imageOnLayer.map((image) => {
-        if (image.id === id) {
-          return { ...image, width: newWidth, height: newHeight };
-        } else {
-          return image;
-        }
-      })
-    );
-  };
-
   const handleSelect = (e) => {
     const clickedId = e.target.id();
     const isSelected = transformerRef.current
@@ -65,11 +44,7 @@ export default function KonvaImage({
   };
 
   const handleDelete = (e) => {
-    console.log("handleDelete clicked: e", e);
-
     const id = e.target.parent.id();
-    console.log("handleDelete clickded: id: ", id);
-
     setImagesOnLayer((imageOnLayer) =>
       imageOnLayer.filter((image) => image.id !== id)
     );
@@ -102,7 +77,7 @@ export default function KonvaImage({
             fill="black"
           />
           <Text
-            x={image.x + (img ? image.width : 0) - 5}
+            x={image.x + (img ? image.width : 0) - 4}
             y={image.y - (img ? image.height : 0) - 5}
             text="X"
             fill="white"
@@ -116,7 +91,6 @@ export default function KonvaImage({
         rotationEnabled={false}
         keepRatio={false}
         ref={transformerRef}
-        onTransformEnd={handleTransform}
       />
     </>
   );
