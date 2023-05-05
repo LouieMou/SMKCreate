@@ -1,8 +1,12 @@
 import useImage from "use-image";
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import { Image, Transformer, Group, Text, Rect } from "react-konva";
 
-export default function KonvaImage({ image, setImagesOnLayer }) {
+export default function KonvaImage({
+  image,
+  setImagesOnLayer,
+  setMetaDataOnLayer,
+}) {
   const [img] = useImage(image.src);
   const [showDeleteButton, setShowDeleteButton] = useState(false);
   const imgId = image.id;
@@ -25,15 +29,19 @@ export default function KonvaImage({ image, setImagesOnLayer }) {
   };
 
   const handleTransform = (e) => {
+    console.log("inside Transform e:", e);
+    console.log("Transformerref", transformerRef);
+
     const id = e.target.parent.id();
-    const node = e.target.parent;
-    const scaleX = node.scaleX();
-    const scaleY = node.scaleY();
+    let newWidth = transformerRef.current.width();
+    let newHeight = transformerRef.current.height();
+    console.log("newWidth", newWidth);
+    console.log("newHeight", newHeight);
 
     setImagesOnLayer((imageOnLayer) =>
       imageOnLayer.map((image) => {
         if (image.id === id) {
-          return { ...image, scaleX: scaleX, scaleY: scaleY };
+          return { ...image, width: newWidth, height: newHeight };
         } else {
           return image;
         }
@@ -57,13 +65,17 @@ export default function KonvaImage({ image, setImagesOnLayer }) {
   };
 
   const handleDelete = (e) => {
-    console.log("handleDelete clickded");
+    console.log("handleDelete clicked: e", e);
 
     const id = e.target.parent.id();
     console.log("handleDelete clickded: id: ", id);
 
     setImagesOnLayer((imageOnLayer) =>
       imageOnLayer.filter((image) => image.id !== id)
+    );
+
+    setMetaDataOnLayer((metaDataOnLayer) =>
+      metaDataOnLayer.filter((image) => image.id !== id)
     );
   };
 
@@ -83,23 +95,23 @@ export default function KonvaImage({ image, setImagesOnLayer }) {
       {showDeleteButton && (
         <Group id={imgId} onClick={handleDelete}>
           <Rect
-            x={image.x + (img ? img.width / 2 : 0) - 25}
-            y={image.y - (img ? img.height / 2 : 0) + 5}
+            x={image.x + (img ? image.width : 0) - 10}
+            y={image.y - (img ? image.height : 0) - 10}
             width={20}
             height={20}
             fill="black"
           />
           <Text
-            x={image.x + (img ? img.width / 2 : 0) - 19}
-            y={image.y - (img ? img.height / 2 : 0) + 10}
+            x={image.x + (img ? image.width : 0) - 5}
+            y={image.y - (img ? image.height : 0) - 5}
             text="X"
             fill="white"
           />
         </Group>
       )}
       <Transformer
-        anchorSize={10}
-        borderDash={[6, 2]}
+        anchorSize={5}
+        borderDash={[2, 2]}
         borderEnabled
         rotationEnabled={false}
         keepRatio={false}

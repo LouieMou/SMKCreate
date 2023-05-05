@@ -8,7 +8,14 @@ export default function FavoriteItem(props) {
       draggable="true"
       onDragStart={() => {
         props.dragURL.current = `/${props.object.object_url}`;
-        props.setMetaDataOnLayer([...props.metaDataOnLayer, props.object]);
+        props.dragId.current = props.object.id + "_" + Date.now().toString();
+        props.setMetaDataOnLayer([
+          ...props.metaDataOnLayer,
+          {
+            ...props.object,
+            id: props.dragId.current,
+          },
+        ]);
       }}
     >
       <img
