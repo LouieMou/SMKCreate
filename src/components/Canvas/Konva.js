@@ -7,11 +7,6 @@ import KonvaAnimation from "./KonvaAnimation";
 import { useEffect } from "react";
 
 export default function Konva(props) {
-  /*  */
-  useEffect(() => {
-    console.log("i drag this object", props.dragURL);
-  }, []);
-
   const handleOnDrop = (e) => {
     e.preventDefault();
 

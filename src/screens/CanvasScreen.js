@@ -41,8 +41,8 @@ function CanvasScreen(props) {
   }, []);
 
   useEffect(() => {
-    console.log("metaDataOnLayer: ", metaDataOnLayer);
-  }, [metaDataOnLayer]);
+    console.log("imagesOnLayer: ", imagesOnLayer);
+  }, [imagesOnLayer]);
 
   const handleUserInput = (event) => {
     setUserInput(event.target.value);
