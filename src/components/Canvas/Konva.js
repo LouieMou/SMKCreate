@@ -23,6 +23,8 @@ export default function Konva(props) {
           ...props.stageRef.current.getPointerPosition(),
           src: props.dragURL.current,
           id: objectId,
+          scaleX: 0,
+          scaleY: 0,
         },
       ])
     );
