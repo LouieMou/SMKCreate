@@ -7,22 +7,18 @@ import KonvaAnimation from "./KonvaAnimation";
 import { useEffect } from "react";
 
 export default function Konva(props) {
-  /*  */
-  useEffect(() => {
-    console.log("i drag this object", props.dragURL);
-  }, []);
-
   const handleOnDrop = (e) => {
     e.preventDefault();
 
-    let objectId = props.dragURL.current + "_" + Date.now().toString();
     props.stageRef.current.setPointersPositions(e);
     props.setImagesOnLayer(
       props.imagesOnLayer.concat([
         {
           ...props.stageRef.current.getPointerPosition(),
           src: props.dragURL.current,
-          id: objectId,
+          id: props.dragId.current,
+          width: 0,
+          height: 0,
         },
       ])
     );
@@ -59,6 +55,7 @@ export default function Konva(props) {
                         key={index}
                         image={image}
                         setImagesOnLayer={props.setImagesOnLayer}
+                        setMetaDataOnLayer={props.setMetaDataOnLayer}
                       />
                     );
                   })

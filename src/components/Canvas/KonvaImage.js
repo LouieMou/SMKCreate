@@ -1,10 +1,19 @@
 import useImage from "use-image";
-import React from "react";
-import { Image, Transformer } from "react-konva";
+import React, { useState, useRef, useEffect } from "react";
+import { Image, Transformer, Group, Text, Rect } from "react-konva";
 
-export default function KonvaImage({ image, setImagesOnLayer }) {
+export default function KonvaImage({
+  image,
+  setImagesOnLayer,
+  setMetaDataOnLayer,
+}) {
+  const [img] = useImage(image.src);
+  const [showDeleteButton, setShowDeleteButton] = useState(false);
+  const imgId = image.id;
+  const transformerRef = useRef(null);
+
   const handleDragEnd = (e) => {
-    let id = e.target.id();
+    const id = e.target.id();
     const newX = e.target.x();
     const newY = e.target.y();
 
@@ -19,28 +28,6 @@ export default function KonvaImage({ image, setImagesOnLayer }) {
     );
   };
 
-  const handleTransform = (e) => {
-    let id = e.target.parent.id();
-    const node = e.target.parent;
-    const scaleX = node.scaleX();
-    const scaleY = node.scaleY();
-
-    setImagesOnLayer((imageOnLayer) =>
-      imageOnLayer.map((image) => {
-        if (image.id === id) {
-          return { ...image, scaleX: scaleX, scaleY: scaleY };
-        } else {
-          return image;
-        }
-      })
-    );
-  };
-
-  const [img] = useImage(image.src);
-  let imgId = image.id;
-  const transformerRef = React.useRef(null);
-  console.log("transformerRef:", transformerRef);
-
   const handleSelect = (e) => {
     const clickedId = e.target.id();
     const isSelected = transformerRef.current
@@ -52,6 +39,19 @@ export default function KonvaImage({ image, setImagesOnLayer }) {
     } else {
       transformerRef.current.nodes([e.target]);
     }
+
+    setShowDeleteButton(!isSelected);
+  };
+
+  const handleDelete = (e) => {
+    const id = e.target.parent.id();
+    setImagesOnLayer((imageOnLayer) =>
+      imageOnLayer.filter((image) => image.id !== id)
+    );
+
+    setMetaDataOnLayer((metaDataOnLayer) =>
+      metaDataOnLayer.filter((image) => image.id !== id)
+    );
   };
 
   return (
@@ -67,14 +67,30 @@ export default function KonvaImage({ image, setImagesOnLayer }) {
         onDragEnd={handleDragEnd}
         onClick={handleSelect}
       />
+      {showDeleteButton && (
+        <Group id={imgId} onClick={handleDelete}>
+          <Rect
+            x={image.x + (img ? image.width : 0) - 10}
+            y={image.y - (img ? image.height : 0) - 10}
+            width={20}
+            height={20}
+            fill="black"
+          />
+          <Text
+            x={image.x + (img ? image.width : 0) - 4}
+            y={image.y - (img ? image.height : 0) - 5}
+            text="X"
+            fill="white"
+          />
+        </Group>
+      )}
       <Transformer
-        anchorSize={10}
-        borderDash={[6, 2]}
+        anchorSize={5}
+        borderDash={[2, 2]}
         borderEnabled
         rotationEnabled={false}
         keepRatio={false}
         ref={transformerRef}
-        onTransformEnd={handleTransform}
       />
     </>
   );

@@ -5,15 +5,15 @@ import { FavoriteContext } from "../../context/FavoriteContext";
 import "./ImageItem.css";
 
 export default function ImageItem(props) {
-
-  const { updateFavoriteList, removeFromFavoriteList } = useContext(FavoriteContext);
+  const { updateFavoriteList, removeFromFavoriteList } =
+    useContext(FavoriteContext);
 
   function handleSaveToFavorite(object) {
     object.saved = true;
     updateFavoriteList(object);
   }
 
-  function handleRemoveFromFavorite(object){
+  function handleRemoveFromFavorite(object) {
     object.saved = false;
     removeFromFavoriteList(object.id);
   }
@@ -21,10 +21,16 @@ export default function ImageItem(props) {
   return (
     <div className="image-container">
       <img className="image" src={`/${props.source}`} alt={`${props.title}`} />
+      <span className="favorite-icon-container">
+        {props.object.saved && (
+          <img
+            src="/icons/heart_filled_white.svg"
+            onClick={() => handleRemoveFromFavorite(props.object)}
+          ></img>
+        )}
+      </span>
       <div className="overlay">
-        <span
-          className="favorite-icon-container"
-        >
+        <span className="favorite-icon-container">
           {props.object.saved ? (
             <img
               src="/icons/heart_filled_white.svg"

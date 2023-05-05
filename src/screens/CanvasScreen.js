@@ -26,6 +26,7 @@ function CanvasScreen(props) {
   const [generatedImage, setGeneratedImage] = useState(false);
   const stageRef = useRef(null);
   const dragURL = useRef();
+  const dragId = useRef();
   const divRef = useRef();
 
   const { favoriteList } = useContext(FavoriteContext);
@@ -40,8 +41,9 @@ function CanvasScreen(props) {
   }, []);
 
   useEffect(() => {
+    console.log("imagesOnLayer: ", imagesOnLayer);
     console.log("metaDataOnLayer: ", metaDataOnLayer);
-  }, [metaDataOnLayer]);
+  }, [imagesOnLayer, metaDataOnLayer]);
 
   const handleUserInput = (event) => {
     setUserInput(event.target.value);
@@ -173,17 +175,20 @@ function CanvasScreen(props) {
         <FavoriteGrid
           closeFavoriteList={props.closeFavoriteList}
           dragURL={dragURL}
+          dragId={dragId}
           setMetaDataOnLayer={setMetaDataOnLayer}
           metaDataOnLayer={metaDataOnLayer}
         />
       </div>
       <Konva
         dragURL={dragURL}
+        dragId={dragId}
         stageRef={stageRef}
         divRef={divRef}
         dimensions={dimensions}
         imagesOnLayer={imagesOnLayer}
         setImagesOnLayer={setImagesOnLayer}
+        setMetaDataOnLayer={setMetaDataOnLayer}
         loading={loading}
       />
       <div className="generate-image-container">
