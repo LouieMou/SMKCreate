@@ -112,6 +112,8 @@ function CanvasScreen(props) {
             y: centerY,
             src: generatedImageURL,
             id: Date.now().toString(),
+            width: 0,
+            height: 0,
           },
         ]);
         setReferencesIsShown(true);
