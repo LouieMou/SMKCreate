@@ -191,6 +191,8 @@ function CanvasScreen(props) {
         imagesOnLayer={imagesOnLayer}
         setImagesOnLayer={setImagesOnLayer}
         setMetaDataOnLayer={setMetaDataOnLayer}
+        generatedImage={generatedImage}
+        clearCanvas={clearCanvas}
         loading={loading}
       />
       <div className="generate-image-container">

@@ -56,6 +56,8 @@ export default function Konva(props) {
                         image={image}
                         setImagesOnLayer={props.setImagesOnLayer}
                         setMetaDataOnLayer={props.setMetaDataOnLayer}
+                        generatedImage={props.generatedImage}
+                        clearCanvas={props.clearCanvas}
                       />
                     );
                   })
