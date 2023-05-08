@@ -1,4 +1,4 @@
-import { React } from "react";
+import { useContext } from "react";
 import { useNavigate, generatePath } from "react-router-dom";
 /* Component */
 import Frame from "../components/FrontPageFrame/Frame";
@@ -7,10 +7,13 @@ import ImageSlider from "../components/Slider/ImageSlider";
 import LabelButton from "../components/LabelButton/LabelButton";
 /* Functions */
 import { setBackgroundColor } from "../functions/background";
+/* Context */
+import { SearchContext } from "../context/SearchContext";
 /* Styles */
 import "./HomeScreen.css";
 
 function HomeScreen(props) {
+  const { setCategoryIdAndFilter } = useContext(SearchContext);
   const navigate = useNavigate();
 
   const white = getComputedStyle(document.documentElement).getPropertyValue(
@@ -24,9 +27,8 @@ function HomeScreen(props) {
   }
 
   const handleSliderClick = (link) => {
-    console.log("slider clicked");
-
     if (link === "food") {
+      setCategoryIdAndFilter({ id: "D5UWgmXGQk", name: "Food" }, undefined);
       const path = generatePath("/search/:id", {
         id: "food",
       });
