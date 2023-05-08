@@ -6,6 +6,8 @@ export default function KonvaImage({
   image,
   setImagesOnLayer,
   setMetaDataOnLayer,
+  generatedImage,
+  clearCanvas,
 }) {
   const [img] = useImage(image.src);
   const [showDeleteButton, setShowDeleteButton] = useState(false);
@@ -52,6 +54,10 @@ export default function KonvaImage({
     setMetaDataOnLayer((metaDataOnLayer) =>
       metaDataOnLayer.filter((image) => image.id !== id)
     );
+
+    if (generatedImage) {
+      clearCanvas();
+    }
   };
 
   return (

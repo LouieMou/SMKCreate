@@ -191,11 +191,13 @@ function CanvasScreen(props) {
         imagesOnLayer={imagesOnLayer}
         setImagesOnLayer={setImagesOnLayer}
         setMetaDataOnLayer={setMetaDataOnLayer}
+        generatedImage={generatedImage}
+        clearCanvas={clearCanvas}
         loading={loading}
       />
       <div className="generate-image-container">
         <TextBox
-          placeholder="Write some text here to help generate an image"
+          placeholder='Write some text here to help generate an image e.g. "two cats drinking coffee in the sunset on Mars"'
           value={userInput}
           onChange={handleUserInput}
         />
