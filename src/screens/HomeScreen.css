@@ -3,13 +3,14 @@
 .homescreen {
   display: flex;
   flex-direction: row;
+  width: calc(100vw - 60px);
+  padding: 50px;
 }
 
 .left-heading-container {
   display: flex;
   flex-direction: column;
-  padding: 50px;
-  min-width: 445px;
+  max-width: 400px;
 }
 
 .homepage-button-container {

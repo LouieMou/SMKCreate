@@ -1,9 +1,9 @@
 import { React } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, generatePath } from "react-router-dom";
 /* Component */
 import Frame from "../components/FrontPageFrame/Frame";
 import PageHeading from "../components/Headings/PageHeading";
-import FrontPageGrid from "../components/FrontPageGrid/FrontPageGrid";
+import ImageSlider from "../components/Slider/ImageSlider";
 import LabelButton from "../components/LabelButton/LabelButton";
 /* Functions */
 import { setBackgroundColor } from "../functions/background";
@@ -23,6 +23,37 @@ function HomeScreen(props) {
     navigate("/categories");
   }
 
+  const handleSliderClick = (link) => {
+    console.log("slider clicked");
+
+    if (link === "food") {
+      const path = generatePath("/search/:id", {
+        id: "food",
+      });
+      navigate(path);
+    } else {
+      navigate(link);
+    }
+  };
+
+  const content = [
+    {
+      src: "/slider/1.png",
+      alt: "Link to Canvas-page",
+      link: "/canvas",
+    },
+    {
+      src: "/slider/2.png",
+      alt: "Link to Categories",
+      link: "/categories",
+    },
+    {
+      src: "/slider/3.png",
+      alt: "Link to Food-page",
+      link: "food",
+    },
+  ];
+
   return (
     <Frame>
       <div className="homescreen">
@@ -39,7 +70,7 @@ function HomeScreen(props) {
             />
           </div>
         </div>
-        {props.categories ? <FrontPageGrid data={props.categories} /> : <></>}
+        <ImageSlider handleSliderClick={handleSliderClick} content={content} />
       </div>
     </Frame>
   );
