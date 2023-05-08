@@ -14,16 +14,11 @@ import { FavoriteContext } from "../context/FavoriteContext";
 import FormData from "form-data"; //imported from the openai library (needed)
 
 function CanvasScreen(props) {
-  const [userInput, setUserInput] = useState("");
-  const [imagesOnLayer, setImagesOnLayer] = useState([]);
-  const [metaDataOnLayer, setMetaDataOnLayer] = useState([]);
   const [dimensions, setDimensions] = useState({
     width: 0,
     height: 0,
   });
   const [loading, setLoading] = useState(false);
-  const [referencesIsShown, setReferencesIsShown] = useState(false);
-  const [generatedImage, setGeneratedImage] = useState(false);
   const stageRef = useRef(null);
   const dragURL = useRef();
   const dragId = useRef();
@@ -41,12 +36,12 @@ function CanvasScreen(props) {
   }, []);
 
   useEffect(() => {
-    console.log("imagesOnLayer: ", imagesOnLayer);
-    console.log("metaDataOnLayer: ", metaDataOnLayer);
-  }, [imagesOnLayer, metaDataOnLayer]);
+    console.log("imagesOnLayer: ", props.imagesOnLayer);
+    console.log("metaDataOnLayer: ", props.metaDataOnLayer);
+  }, [props.imagesOnLayer, props.metaDataOnLayer]);
 
   const handleUserInput = (event) => {
-    setUserInput(event.target.value);
+    props.setUserInput(event.target.value);
   };
 
   const white = getComputedStyle(document.documentElement).getPropertyValue(
@@ -58,8 +53,8 @@ function CanvasScreen(props) {
   async function generateImage() {
     console.log("inside generateImage function");
 
-    let hasUserInput = userInput !== "";
-    let hasCanvasContent = imagesOnLayer.length !== 0;
+    let hasUserInput = props.userInput !== "";
+    let hasCanvasContent = props.imagesOnLayer.length !== 0;
 
     if (!hasUserInput) {
       alert("You need to write a text in the input field");
@@ -71,7 +66,7 @@ function CanvasScreen(props) {
 
     if (hasUserInput && hasCanvasContent) {
       setLoading(true);
-      setGeneratedImage(true);
+      props.setGeneratedImage(true);
       const konvaDataURL = stageRef.current.toDataURL();
       const response = await fetch(konvaDataURL);
       const blob = await response.blob();
@@ -79,7 +74,7 @@ function CanvasScreen(props) {
       try {
         const form = new FormData();
         form.append("image", blob, "image.png");
-        form.append("prompt", userInput);
+        form.append("prompt", props.userInput);
         form.append("n", "1");
         form.append("size", `${dimensions.width}x${dimensions.height}`);
 
@@ -106,7 +101,7 @@ function CanvasScreen(props) {
           centerY = 256;
         }
 
-        setImagesOnLayer([
+        props.setImagesOnLayer([
           {
             x: centerX,
             y: centerY,
@@ -116,7 +111,7 @@ function CanvasScreen(props) {
             height: 0,
           },
         ]);
-        setReferencesIsShown(true);
+        props.setReferencesIsShown(true);
       } catch (error) {
         console.log("Error in the generate:", error.message);
       } finally {
@@ -144,7 +139,7 @@ function CanvasScreen(props) {
           const url = window.URL.createObjectURL(new Blob([blob]));
           const link = document.createElement("a");
           link.href = url;
-          link.setAttribute(`${userInput}`, filename);
+          link.setAttribute(`${props.userInput}`, filename);
           document.body.appendChild(link);
           link.click();
           link.parentNode.removeChild(link);
@@ -164,11 +159,11 @@ function CanvasScreen(props) {
   }
 
   function clearCanvas() {
-    setImagesOnLayer([]);
-    setReferencesIsShown(false);
-    setUserInput("");
-    setMetaDataOnLayer([]);
-    setGeneratedImage(false);
+    props.setImagesOnLayer([]);
+    props.setReferencesIsShown(false);
+    props.setUserInput("");
+    props.setMetaDataOnLayer([]);
+    props.setGeneratedImage(false);
   }
 
   return (
@@ -178,8 +173,8 @@ function CanvasScreen(props) {
           closeFavoriteList={props.closeFavoriteList}
           dragURL={dragURL}
           dragId={dragId}
-          setMetaDataOnLayer={setMetaDataOnLayer}
-          metaDataOnLayer={metaDataOnLayer}
+          setMetaDataOnLayer={props.setMetaDataOnLayer}
+          metaDataOnLayer={props.metaDataOnLayer}
         />
       </div>
       <Konva
@@ -188,27 +183,27 @@ function CanvasScreen(props) {
         stageRef={stageRef}
         divRef={divRef}
         dimensions={dimensions}
-        imagesOnLayer={imagesOnLayer}
-        setImagesOnLayer={setImagesOnLayer}
-        setMetaDataOnLayer={setMetaDataOnLayer}
-        generatedImage={generatedImage}
+        imagesOnLayer={props.imagesOnLayer}
+        setImagesOnLayer={props.setImagesOnLayer}
+        setMetaDataOnLayer={props.setMetaDataOnLayer}
+        generatedImage={props.generatedImage}
         clearCanvas={clearCanvas}
         loading={loading}
       />
       <div className="generate-image-container">
         <TextBox
           placeholder='Write some text here to help generate an image e.g. "two cats drinking coffee in the sunset on Mars"'
-          value={userInput}
+          value={props.userInput}
           onChange={handleUserInput}
         />
-        {referencesIsShown ? (
+        {props.referencesIsShown ? (
           <div className="references">
             <p className="references-title">
-              {metaDataOnLayer.length > 1
+              {props.metaDataOnLayer.length > 1
                 ? "This artwork is generated using the following objects:"
                 : "This artwork is generated using the following object:"}
             </p>
-            {metaDataOnLayer.map((obj, index) => (
+            {props.metaDataOnLayer.map((obj, index) => (
               <p key={index} className="artist-and-title-references">
                 <span style={{ fontWeight: "bold" }}>{obj.label_text}</span>{" "}
                 from <span style={{ fontStyle: "italic" }}>{obj.title}</span> by{" "}
@@ -226,17 +221,17 @@ function CanvasScreen(props) {
             <Step
               number={"2"}
               text="Drag objects to the canvas from your favorite list."
-              isCompleted={imagesOnLayer.length > 0}
+              isCompleted={props.imagesOnLayer.length > 0}
             />
             <Step
               number={3}
               text="Write a text to help generate your full image."
-              isCompleted={userInput.length > 0}
+              isCompleted={props.userInput.length > 0}
             />
             <Step
               number={4}
               text="Click 'Generate Image' to generate your own artwork with the help of AI."
-              isCompleted={generatedImage}
+              isCompleted={props.generatedImage}
             />
           </div>
         )}

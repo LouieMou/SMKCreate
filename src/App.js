@@ -26,6 +26,13 @@ function App() {
   const [currentUser, setCurrentUser] = useState(null);
   const [bgColor, setBgColor] = useState();
 
+  /* TO SAVE THE STATE OF CANVAS-PAGE */
+  const [userInput, setUserInput] = useState("");
+  const [imagesOnLayer, setImagesOnLayer] = useState([]);
+  const [metaDataOnLayer, setMetaDataOnLayer] = useState([]);
+  const [referencesIsShown, setReferencesIsShown] = useState(false);
+  const [generatedImage, setGeneratedImage] = useState(false);
+
   useEffect(() => {
     if (currentUser) {
       fecthCategoriesWithPointer();
@@ -103,6 +110,16 @@ function App() {
                     <CanvasScreen
                       closeFavoriteList={closeFavoriteList}
                       setBgColor={setBgColor}
+                      setImagesOnLayer={setImagesOnLayer}
+                      imagesOnLayer={imagesOnLayer}
+                      setMetaDataOnLayer={setMetaDataOnLayer}
+                      metaDataOnLayer={metaDataOnLayer}
+                      referencesIsShown={referencesIsShown}
+                      setReferencesIsShown={setReferencesIsShown}
+                      setGeneratedImage={setGeneratedImage}
+                      generatedImage={generatedImage}
+                      userInput={userInput}
+                      setUserInput={setUserInput}
                     />
                   }
                 />
