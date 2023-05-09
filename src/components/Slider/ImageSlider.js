@@ -5,7 +5,7 @@ import "./ImageSlider.css";
 
 export default function ImageSlider(props) {
   return (
-    <Slider autoplay={3000} dots={true}>
+    <Slider autoplay={100000} dots={true}>
       {props.content.map((item, index) => (
         <div
           key={index}

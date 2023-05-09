@@ -17,3 +17,13 @@
 .slider a.nextButton {
   right: -8px;
 }
+
+.previousButton svg {
+  width: 10px;
+  height: 20px;
+}
+
+.nextButton svg {
+  width: 10px;
+  height: 20px;
+}
