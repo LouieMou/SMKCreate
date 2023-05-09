@@ -1,5 +1,5 @@
 import useImage from "use-image";
-import React, { useState, useRef, useEffect } from "react";
+import React, { useState, useRef } from "react";
 import { Image, Transformer, Group, Text, Rect } from "react-konva";
 
 export default function KonvaImage({

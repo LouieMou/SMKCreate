@@ -1,10 +1,8 @@
 import "./Konva.css";
 import { Stage, Layer } from "react-konva";
-
 import KonvaImage from "./KonvaImage";
 import KonvaText from "./KonvaText";
 import KonvaAnimation from "./KonvaAnimation";
-import { useEffect } from "react";
 
 export default function Konva(props) {
   const handleOnDrop = (e) => {

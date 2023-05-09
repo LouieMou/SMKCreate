@@ -42,10 +42,6 @@ function App() {
   async function fecthCategoriesWithPointer() {
     let categoriesAndObjectsResult = await getCategoriesWithPointer();
     setCategoriesAndObjects(categoriesAndObjectsResult);
-    console.log(
-      "This are the categories and objects",
-      categoriesAndObjectsResult
-    );
   }
 
   function openFavoriteList() {

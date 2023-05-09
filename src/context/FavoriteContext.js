@@ -7,18 +7,14 @@ export function FavoriteContextProvider({ children }) {
 
   function updateFavoriteList(object) {
     if (favoriteList.some((item) => item.object.id === object.id)) {
-      console.log("Object already exists in favoriteList");
       return;
     }
 
     setFavoriteList([{ object }, ...favoriteList]);
-
-    console.log("this is the favorite list: ", favoriteList);
   }
 
   function removeFromFavoriteList(id) {
     setFavoriteList(favoriteList.filter((item) => item.object.id !== id));
-    console.log(`Object with id ${id} removed from favoriteList`);
   }
 
   return (

@@ -12,9 +12,10 @@
   position: absolute;
   display: flex;
   flex-direction: column;
-  width: 400px;
+  width: 401px;
   height: 100%;
   z-index: 102;
+  background-color: white; 
 }
 
 .pageheading-container-homescreen {

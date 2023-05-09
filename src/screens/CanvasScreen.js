@@ -35,11 +35,6 @@ function CanvasScreen(props) {
     }
   }, []);
 
-  useEffect(() => {
-    console.log("imagesOnLayer: ", props.imagesOnLayer);
-    console.log("metaDataOnLayer: ", props.metaDataOnLayer);
-  }, [props.imagesOnLayer, props.metaDataOnLayer]);
-
   const handleUserInput = (event) => {
     props.setUserInput(event.target.value);
   };
@@ -129,7 +124,7 @@ function CanvasScreen(props) {
     document.body.removeChild(link);
   }
 
-  function downloadURL(url) {
+  /*   function downloadURL(url) {
     fetch(url)
       .then((response) => {
         const filename = response.headers
@@ -148,7 +143,7 @@ function CanvasScreen(props) {
       .catch((error) => {
         console.error(error);
       });
-  }
+  } */
 
   function downloadImage() {
     /*     if (generatedImageURL !== "") {

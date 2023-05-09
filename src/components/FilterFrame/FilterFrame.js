@@ -31,7 +31,7 @@ function FilterFrame(props) {
     if (state) {
       setSelectedLabelButton(state.filter);
     }
-  }, []);
+  }, [state]);
 
   function updateFilter(label_text) {
     props.setFilter(label_text);

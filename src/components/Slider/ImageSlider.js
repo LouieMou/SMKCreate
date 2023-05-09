@@ -5,7 +5,7 @@ import "./ImageSlider.css";
 
 export default function ImageSlider(props) {
   return (
-    <Slider autoplay={100000} dots={true} previousButton={<div></div>}>
+    <Slider autoplay={2000} dots={true} previousButton={<div></div>}>
       {props.content.map((item, index) => (
         <div
           key={index}
@@ -21,8 +21,8 @@ export default function ImageSlider(props) {
               src={item.src}
               alt={item.alt}
               style={{
-                height: "395px",
                 cursor: "pointer",
+                height: "395px",
               }}
               onClick={() => props.handleSliderClick(item.link)}
             />
