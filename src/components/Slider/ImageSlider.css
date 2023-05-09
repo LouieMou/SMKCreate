@@ -7,23 +7,15 @@
 }
 
 .slider {
-  left: 20px;
+  position: relative;
+  display: flex;
 }
 
-.slide.current {
- left: 15px;
-}
-
-.slider a.nextButton {
+ .slider a.nextButton {
   right: -8px;
-}
+} 
 
-.previousButton svg {
+ .nextButton svg {
   width: 10px;
   height: 20px;
-}
-
-.nextButton svg {
-  width: 10px;
-  height: 20px;
-}
+} 

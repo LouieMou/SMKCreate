@@ -76,7 +76,7 @@
 }
 
 @media (max-height: 800px) {
-  h1 {
+  .filter-frame-container h1 {
     font-size: 40px;
   }
   .filter-frame-container{

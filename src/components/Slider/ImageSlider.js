@@ -5,14 +5,14 @@ import "./ImageSlider.css";
 
 export default function ImageSlider(props) {
   return (
-    <Slider autoplay={100000} dots={true}>
+    <Slider autoplay={100000} dots={true} previousButton={<div></div>}>
       {props.content.map((item, index) => (
         <div
           key={index}
           style={{
             background: `url('${item.link}') no-repeat center center`,
             display: "flex",
-            justifyContent: "center",
+            justifyContent: "right",
             alignItems: "center",
           }}
         >

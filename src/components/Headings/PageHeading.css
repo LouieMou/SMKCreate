@@ -1,7 +1,7 @@
 @import url(../../index.css);
 
 .heading-container {
-  margin-bottom: 30px;
+  padding-bottom: 30px;
 }
 
 h2 {
@@ -9,8 +9,7 @@ h2 {
 }
 
 h1 {
-  line-height: 45px;
-  margin-bottom: 10px;
+  padding-bottom: 10px;
 }
 
 @media (max-width: 422px) {
@@ -21,11 +20,5 @@ h1 {
 }
 
 @media (max-height: 800px) {
-  h2 {
-    font-size: 35px;
-  }
 
-  h3 {
-    font-size: 27px;
-  }
 }

@@ -41,18 +41,18 @@ function HomeScreen(props) {
   const content = [
     {
       src: "/slider/1.png",
-      alt: "Link to Canvas-page",
-      link: "/canvas",
-    },
-    {
-      src: "/slider/2.png",
-      alt: "Link to Categories",
+      alt: "Link to Category-page",
       link: "/categories",
     },
     {
-      src: "/slider/3.png",
+      src: "/slider/2.png",
       alt: "Link to Food-page",
       link: "food",
+    },
+    {
+      src: "/slider/3.png",
+      alt: "Link to Canvas-page",
+      link: "/canvas",
     },
   ];
 
@@ -60,10 +60,12 @@ function HomeScreen(props) {
     <Frame>
       <div className="homescreen">
         <div className="left-heading-container">
-          <PageHeading
-            title="What would you like to explore?"
-            subtitle="Choose a category" /*color={textColor}*/
-          />
+          <div className="pageheading-container-homescreen">
+            <PageHeading
+              title="What would you like to explore?"
+              subtitle="Choose a category" /*color={textColor}*/
+            />
+          </div>
           <div className="homepage-button-container">
             <LabelButton
               button_size={"large"}
