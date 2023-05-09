@@ -62,12 +62,12 @@ function FilterFrame(props) {
               handleClick={() => updateFilter(label.objectLabel.toLowerCase())}
               label_text={label.objectLabel.toLowerCase()}
               button_size={
-                label.objectLabel === selectedLabelButton
+                label.objectLabel.toLowerCase() === selectedLabelButton
                   ? "selected"
                   : "standard"
               }
               text_color={
-                label.objectLabel === selectedLabelButton
+                label.objectLabel.toLowerCase() === selectedLabelButton
                   ? props.label_text_color
                   : "white"
               }
