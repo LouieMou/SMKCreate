@@ -2,7 +2,7 @@ import { useContext } from "react";
 import { useNavigate, generatePath } from "react-router-dom";
 /* Component */
 import Frame from "../components/FrontPageFrame/Frame";
-import PageHeading from "../components/Headings/PageHeading";
+import FrontPageHeading from "../components/Headings/FrontPageHeading";
 import ImageSlider from "../components/Slider/ImageSlider";
 import LabelButton from "../components/LabelButton/LabelButton";
 /* Functions */
@@ -61,15 +61,15 @@ function HomeScreen(props) {
       <div className="homescreen">
         <div className="left-heading-container">
           <div className="pageheading-container-homescreen">
-            <PageHeading
-              title="What would you like to explore?"
-              subtitle="Choose a category" /*color={textColor}*/
+            <FrontPageHeading
+              title="Which motifs inspire you?"
+              subtitle="Create your own art by combining famous paintings through AI" /*color={textColor}*/
             />
           </div>
           <div className="homepage-button-container">
             <LabelButton
               button_size={"large"}
-              label_text={"All Categories"}
+              label_text={"Start Exploring"}
               handleClick={handleNavigation}
             />
           </div>
