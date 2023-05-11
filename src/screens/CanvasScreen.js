@@ -209,22 +209,22 @@ function CanvasScreen(props) {
         ) : (
           <div className="steps">
             <Step
-              number={"1"}
+              number="1"
               text="Collect objects and add to your favorite list."
               isCompleted={favoriteList.length > 0}
             />
             <Step
-              number={"2"}
+              number="2"
               text="Drag objects to the canvas from your favorite list."
               isCompleted={props.imagesOnLayer.length > 0}
             />
             <Step
-              number={3}
+              number="3"
               text="Write a text to help generate your full image."
               isCompleted={props.userInput.length > 0}
             />
             <Step
-              number={4}
+              number="4"
               text="Click 'Generate Image' to generate your own artwork with the help of AI."
               isCompleted={props.generatedImage}
             />

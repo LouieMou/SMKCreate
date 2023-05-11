@@ -80,14 +80,8 @@ function App() {
               <Routes>
                 <Route
                   path="/"
-                  element={
-                    <HomeScreen
-                      categories={categoriesAndObjects}
-                      setBgColor={setBgColor}
-                    />
-                  }
+                  element={<HomeScreen setBgColor={setBgColor} />}
                 />
-
                 <Route
                   exact
                   path="/search/:id"
@@ -95,7 +89,6 @@ function App() {
                     <SearchScreen setBgColor={setBgColor} bgColor={bgColor} />
                   }
                 />
-                {/* <Route path="/search/:id" element={<SearchScreen />} /> */}
                 <Route
                   path="/painting"
                   element={<PaintingScreen setBgColor={setBgColor} />}
