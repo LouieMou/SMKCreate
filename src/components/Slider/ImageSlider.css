@@ -1,0 +1,21 @@
+.ras-prev, .ras-next {
+  margin-top: 200px;
+}
+
+.ras-slider > div {
+  margin-top: 150px;
+}
+
+.slider {
+  position: relative;
+  display: flex;
+}
+
+ .slider a.nextButton {
+  right: -8px;
+} 
+
+ .nextButton svg {
+  width: 10px;
+  height: 20px;
+}

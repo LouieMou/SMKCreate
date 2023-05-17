@@ -17,47 +17,17 @@ export default function KonvaText(props) {
             fill="black"
             fontStyle="bold"
             offsetX={120}
-            offsetY={150}
-          />
-          <Text
-            x={props.dimensions.width / 2}
-            y={props.dimensions.height / 2 + 10}
-            text="Drag items from your favorite list onto the empty canvas."
-            fontSize={fontSize1024}
-            fontFamily="Open sans"
-            fill="black"
-            offsetX={260}
             offsetY={110}
           />
           <Text
             x={props.dimensions.width / 2}
-            y={props.dimensions.height / 2 + 40}
-            text="Let AI help you to generate your final image."
+            y={props.dimensions.height / 2}
+            text="Drag items from your favorite list onto the canvas."
             fontSize={fontSize1024}
             fontFamily="Open sans"
             fill="black"
-            offsetX={190}
-            offsetY={110}
-          />
-          <Text
-            x={props.dimensions.width / 2}
-            y={props.dimensions.height / 2 + 70}
-            text="Guide it with a text prompt."
-            fontSize={fontSize1024}
-            fontFamily="Open sans"
-            fill="black"
-            offsetX={126}
-            offsetY={110}
-          />
-          <Text
-            x={props.dimensions.width / 2}
-            y={props.dimensions.height / 2 + 130}
-            text="Let your creativity flow and see where it takes you!"
-            fontSize={fontSize1024}
-            fontFamily="Open sans"
-            fill="black"
-            offsetX={230}
-            offsetY={110}
+            offsetX={240}
+            offsetY={190}
           />
         </>
       ) : (
@@ -70,48 +40,18 @@ export default function KonvaText(props) {
             fontFamily="Open sans"
             fill="black"
             fontStyle="bold"
-            offsetX={110}
-            offsetY={110}
+            offsetX={90}
+            offsetY={50}
           />
           <Text
             x={props.dimensions.width / 2}
-            y={props.dimensions.height / 2 + 10}
-            text="Drag items from your favorite list onto the empty canvas."
+            y={props.dimensions.height / 2}
+            text="Drag items from your favorite list onto the canvas."
             fontSize={fontSize512}
             fontFamily="Open sans"
             fill="black"
-            offsetX={225}
-            offsetY={70}
-          />
-          <Text
-            x={props.dimensions.width / 2}
-            y={props.dimensions.height / 2 + 40}
-            text="Let AI help you to generate your final image."
-            fontSize={fontSize512}
-            fontFamily="Open sans"
-            fill="black"
-            offsetX={170}
-            offsetY={70}
-          />
-          <Text
-            x={props.dimensions.width / 2}
-            y={props.dimensions.height / 2 + 70}
-            text="Guide it with a text prompt."
-            fontSize={fontSize512}
-            fontFamily="Open sans"
-            fill="black"
-            offsetX={110}
-            offsetY={70}
-          />
-          <Text
-            x={props.dimensions.width / 2}
-            y={props.dimensions.height / 2 + 130}
-            text="Let your creativity flow and see where it takes you!"
-            fontSize={fontSize512}
-            fontFamily="Open sans"
-            fill="black"
-            offsetX={200}
-            offsetY={70}
+            offsetX={185}
+            offsetY={20}
           />
         </>
       )}

@@ -11,10 +11,10 @@ import FullScreenImage from "../components/FullScreenImage/FullScreenImage";
 import "../index.css";
 import "./PaintingScreen.css";
 
-function TestScreen(props) {
+export default function PaintingScreen(props) {
   const { state } = useLocation();
   useEffect(() => {
-    fetchPainting(state.paintingId)
+    fetchPainting(state.paintingId);
   }, []);
 
   useEffect(() => {
@@ -29,15 +29,14 @@ function TestScreen(props) {
   async function fetchPainting(paintingId) {
     let painting = await readPaintingById(paintingId);
     setPainting(painting);
-    setBackgroundColor(painting.suggested_bg_color)
-    console.log("This is the painting: ", painting)
+    setBackgroundColor(painting.suggested_bg_color);
+    props.setBgColor(painting.suggested_bg_color);
   }
 
   async function fetchObjects(paintingId) {
     try {
       const objects = await readObjectsByPaintingId(paintingId);
       setObjects(objects);
-      console.log("these are the objects in painting screen; ", objects)
     } catch (error) {
       console.error(error);
     }
@@ -45,9 +44,7 @@ function TestScreen(props) {
   return (
     <>
       {painting && objects ? (
-        <div
-          className="paintingScreen"
-        >
+        <div className="paintingScreen">
           <>
             <MetaData
               painting={painting}
@@ -57,9 +54,10 @@ function TestScreen(props) {
             <FullScreenImage
               imgURL={painting.image_thumbnail}
               imgWidth={painting.image_width}
+              imgHeight={painting.image_height}
               objects={objects}
               colorMode={colorMode}
-              painting_id= {painting.id}
+              painting_id={painting.id}
             />
           </>
         </div>
@@ -69,5 +67,3 @@ function TestScreen(props) {
     </>
   );
 }
-
-export default TestScreen;

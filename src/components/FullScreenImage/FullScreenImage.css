@@ -15,6 +15,7 @@
 
 .message {
   color: var(--primary-white);
+  margin-top: 10px;
 }
 
 .object-hover p {

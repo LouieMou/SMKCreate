@@ -31,7 +31,7 @@ function FilterFrame(props) {
     if (state) {
       setSelectedLabelButton(state.filter);
     }
-  }, []);
+  }, [state]);
 
   function updateFilter(label_text) {
     props.setFilter(label_text);
@@ -49,21 +49,25 @@ function FilterFrame(props) {
 
   return (
     <div className="filter-frame-container">
-      <h1>{category}</h1>
+      {category && category.length > 10 ? (
+        <h1 style={{ fontSize: "33px" }}>{category}</h1>
+      ) : (
+        <h1>{category}</h1>
+      )}
       <div className="filter-frame-button-container">
         {labelList ? (
           labelList.map((label, index) => (
             <LabelButton
               key={index}
-              handleClick={() => updateFilter(label.objectLabel)}
-              label_text={label.objectLabel}
+              handleClick={() => updateFilter(label.objectLabel.toLowerCase())}
+              label_text={label.objectLabel.toLowerCase()}
               button_size={
-                label.objectLabel === selectedLabelButton
+                label.objectLabel.toLowerCase() === selectedLabelButton
                   ? "selected"
                   : "standard"
               }
               text_color={
-                label.objectLabel === selectedLabelButton
+                label.objectLabel.toLowerCase() === selectedLabelButton
                   ? props.label_text_color
                   : "white"
               }

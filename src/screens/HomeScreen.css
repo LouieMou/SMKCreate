@@ -3,19 +3,31 @@
 .homescreen {
   display: flex;
   flex-direction: row;
+  justify-content: space-between;
+  width: calc(100vw - 70px);
+  padding: 50px;
 }
 
 .left-heading-container {
+  position: absolute;
   display: flex;
   flex-direction: column;
-  padding: 50px;
-  min-width: 445px;
+  width: 401px;
+  height: 100%;
+  z-index: 102;
+  background-color: white; 
+}
+
+.pageheading-container-homescreen {
+  background-color: white;
 }
 
 .homepage-button-container {
-  margin-top: 50px;
-  margin-bottom: 20px;
-  margin-right: 15px;
+  padding-bottom: 20px;
+  padding-right: 15px;
+  background-color: white;
+  width: 300px;
+  flex: 1;
 }
 
 

@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect } from "react";
 import { Route, Routes } from "react-router-dom";
 /* Screens */
 import HomeScreen from "./screens/HomeScreen";
@@ -24,6 +24,14 @@ function App() {
   const [categoriesAndObjects, setCategoriesAndObjects] = useState();
   const [favoriteIsActive, setFavoriteIsActive] = useState(false);
   const [currentUser, setCurrentUser] = useState(null);
+  const [bgColor, setBgColor] = useState();
+
+  /* TO SAVE THE STATE OF CANVAS-PAGE */
+  const [userInput, setUserInput] = useState("");
+  const [imagesOnLayer, setImagesOnLayer] = useState([]);
+  const [metaDataOnLayer, setMetaDataOnLayer] = useState([]);
+  const [referencesIsShown, setReferencesIsShown] = useState(false);
+  const [generatedImage, setGeneratedImage] = useState(false);
 
   useEffect(() => {
     if (currentUser) {
@@ -66,22 +74,42 @@ function App() {
               </div>
             )}
 
-            <NavBar openFavoriteList={openFavoriteList} />
+            <NavBar openFavoriteList={openFavoriteList} bgColor={bgColor} />
 
             {categoriesAndObjects ? (
               <Routes>
                 <Route
                   path="/"
-                  element={<HomeScreen categories={categoriesAndObjects} />}
+                  element={<HomeScreen setBgColor={setBgColor} />}
                 />
-
-                <Route exact path="/search/:id" element={<SearchScreen />} />
-                {/* <Route path="/search/:id" element={<SearchScreen />} /> */}
-                <Route path="/painting" element={<PaintingScreen />} />
+                <Route
+                  exact
+                  path="/search/:id"
+                  element={
+                    <SearchScreen setBgColor={setBgColor} bgColor={bgColor} />
+                  }
+                />
+                <Route
+                  path="/painting"
+                  element={<PaintingScreen setBgColor={setBgColor} />}
+                />
                 <Route
                   path="/canvas"
                   element={
-                    <CanvasScreen closeFavoriteList={closeFavoriteList} />
+                    <CanvasScreen
+                      closeFavoriteList={closeFavoriteList}
+                      setBgColor={setBgColor}
+                      setImagesOnLayer={setImagesOnLayer}
+                      imagesOnLayer={imagesOnLayer}
+                      setMetaDataOnLayer={setMetaDataOnLayer}
+                      metaDataOnLayer={metaDataOnLayer}
+                      referencesIsShown={referencesIsShown}
+                      setReferencesIsShown={setReferencesIsShown}
+                      setGeneratedImage={setGeneratedImage}
+                      generatedImage={generatedImage}
+                      userInput={userInput}
+                      setUserInput={setUserInput}
+                    />
                   }
                 />
                 <Route
@@ -90,12 +118,18 @@ function App() {
                     <ProfileScreen
                       currentUser={currentUser}
                       setCurrentUser={setCurrentUser}
+                      setBgColor={setBgColor}
                     />
                   }
                 />
                 <Route
                   path="/categories"
-                  element={<CategoryScreen categories={categoriesAndObjects} />}
+                  element={
+                    <CategoryScreen
+                      categories={categoriesAndObjects}
+                      setBgColor={setBgColor}
+                    />
+                  }
                 />
               </Routes>
             ) : (

@@ -1,45 +1,80 @@
-import { React } from "react";
-import { useNavigate } from "react-router-dom";
+import { useContext } from "react";
+import { useNavigate, generatePath } from "react-router-dom";
 /* Component */
 import Frame from "../components/FrontPageFrame/Frame";
-import PageHeading from "../components/Headings/PageHeading";
-import FrontPageGrid from "../components/FrontPageGrid/FrontPageGrid";
+import FrontPageHeading from "../components/Headings/FrontPageHeading";
+import ImageSlider from "../components/Slider/ImageSlider";
 import LabelButton from "../components/LabelButton/LabelButton";
 /* Functions */
-import { setWhiteBackground } from "../functions/background";
+import { setBackgroundColor } from "../functions/background";
+/* Context */
+import { SearchContext } from "../context/SearchContext";
 /* Styles */
 import "./HomeScreen.css";
 
 function HomeScreen(props) {
+  const { setCategoryIdAndFilter } = useContext(SearchContext);
   const navigate = useNavigate();
 
-  setWhiteBackground();
+  const white = getComputedStyle(document.documentElement).getPropertyValue(
+    "--primary-white"
+  );
+  setBackgroundColor(white);
+  props.setBgColor(white);
 
   function handleNavigation() {
     navigate("/categories");
   }
 
+  const handleSliderClick = (link) => {
+    if (link === "food") {
+      setCategoryIdAndFilter({ id: "D5UWgmXGQk", name: "Food" }, undefined);
+      const path = generatePath("/search/:id", {
+        id: "food",
+      });
+      navigate(path);
+    } else {
+      navigate(link);
+    }
+  };
+
+  const content = [
+    {
+      src: "/slider/1.png",
+      alt: "Link to Category-page",
+      link: "/categories",
+    },
+    {
+      src: "/slider/2.png",
+      alt: "Link to Food-page",
+      link: "food",
+    },
+    {
+      src: "/slider/3.png",
+      alt: "Link to Canvas-page",
+      link: "/canvas",
+    },
+  ];
+
   return (
     <Frame>
       <div className="homescreen">
         <div className="left-heading-container">
-          <PageHeading
-            title="What would you like to explore?"
-            subtitle="Choose a category" /*color={textColor}*/
-          />
+          <div className="pageheading-container-homescreen">
+            <FrontPageHeading
+              title="Which motifs inspire you?"
+              subtitle="Create your own art by combining famous paintings through AI" /*color={textColor}*/
+            />
+          </div>
           <div className="homepage-button-container">
             <LabelButton
               button_size={"large"}
-              label_text={"All Categories"}
+              label_text={"Start Exploring"}
               handleClick={handleNavigation}
             />
           </div>
         </div>
-        {props.categories ? (
-          <FrontPageGrid data={props.categories.slice(0, 9)} />
-        ) : (
-          <></>
-        )}
+        <ImageSlider handleSliderClick={handleSliderClick} content={content} />
       </div>
     </Frame>
   );

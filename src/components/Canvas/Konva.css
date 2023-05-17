@@ -2,9 +2,16 @@
   display: flex;
   align-items: center;
   flex-direction: row;
-  box-sizing: border-box;
   width: 512px;
   height: 512px;
+}
+
+.konvajs-content {
+  width: 512px;
+  height: 512px;
+}
+
+.konva-frame {
   border: 10px solid #101011;
 }
 
@@ -12,5 +19,15 @@
   .konva-container {
     width: 1024px;
     height: 1024px;
+  }
+
+  .konvajs-content {
+    width: 1024px !important;
+    height: 1024px !important;
+  }
+
+  canvas {
+    width: 1024px !important;
+    height: 1024px !important;
   }
 }

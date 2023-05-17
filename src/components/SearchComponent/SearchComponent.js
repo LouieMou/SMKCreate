@@ -41,9 +41,11 @@ function SearchComponent(props) {
   function filterObjects(searchFilter) {
     setUseFilter(true);
     let objectsFiltered = objects.filter(
-      (object) => object.attributes.label_text === searchFilter
+      (object) => object.attributes.label_text === searchFilter.toLowerCase()
     );
     setFilteredObjects(objectsFiltered);
+    console.log("this is the searchFilter", searchFilter);
+    console.log("these are the filtered objects",filteredObjects)
   }
   return (
     <div>

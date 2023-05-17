@@ -1,0 +1,56 @@
+.step {
+    display: flex;
+    margin-bottom: 15px;
+  }
+  
+  .step-circle {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 25px;
+    width: 25px;
+    border-radius: 50%;
+    background-color: #d3d3d3;
+    margin-right: 10px;
+    border: 1px solid #d3d3d3;
+    box-sizing: border-box;
+  }
+  
+  .step.completed   .step-circle{
+    background-color: black;
+    border-color: black;
+    border-radius: 50%;
+    width: 32px;
+    height: 25px;
+    width: 25px;
+  }
+  
+  .step-number {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    color: white;
+    font-size: 14px;
+    font-weight: 600;
+    width: 25px;
+    font-family: 'Open sans';
+  }
+
+  .step-checkmark {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 13px;
+    height: 13px;
+    padding-top: 3px;
+    padding-left: 1px;
+    margin: 5px;
+  }
+  
+  .step-text {
+    color: #555555;
+    font-family: 'Open sans';
+    margin-top: -1px;
+    font-size: 14px;
+  }

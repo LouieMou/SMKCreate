@@ -1,48 +1,52 @@
 /* Importing global colors */
 const yellow = getComputedStyle(document.documentElement).getPropertyValue(
-    "--secondary-yellow"
-  );
+  "--secondary-yellow"
+);
 
 const green = getComputedStyle(document.documentElement).getPropertyValue(
-    "--SMK-green"
-  );
+  "--SMK-green"
+);
 const dusty_blue = getComputedStyle(document.documentElement).getPropertyValue(
-    "--SMK-dusty-blue"
-  );
+  "--SMK-dusty-blue"
+);
 const dark_blue = getComputedStyle(document.documentElement).getPropertyValue(
-    "--SMK-dark-blue"
-  );
+  "--SMK-dark-blue"
+);
 
 const blue = getComputedStyle(document.documentElement).getPropertyValue(
-    "--SMK-blue"
-  );
+  "--SMK-blue"
+);
 const brown = getComputedStyle(document.documentElement).getPropertyValue(
-    "--SMK-brown"
-  );
+  "--SMK-brown"
+);
 
 const turquoise = getComputedStyle(document.documentElement).getPropertyValue(
-    "--accented-turquoise"
-  );
+  "--accented-turquoise"
+);
 
 // Color array based on global colors
-const colorArray = [yellow, green, dusty_blue, dark_blue, blue, brown, turquoise]
+const colorArray = [
+  yellow,
+  green,
+  dusty_blue,
+  dark_blue,
+  blue,
+  brown,
+  turquoise,
+];
 
-
-export function setBackgroundColor(color) {        
-    document.documentElement.style.setProperty('--background-color', color)
+export function setBackgroundColor(color) {
+  document.documentElement.style.setProperty("--background-color", color);
 }
 
-export function randomizeBackground(){
-    const randomColor = colorArray[Math.floor(Math.random()*colorArray.length)]
-    setBackgroundColor(randomColor);
-    return randomColor;
+export function randomizeBackground() {
+  const randomColor = colorArray[Math.floor(Math.random() * colorArray.length)];
+  return randomColor;
 }
 
-export function setWhiteBackground(){
+export function setWhiteBackground() {
   const white = getComputedStyle(document.documentElement).getPropertyValue(
     "--primary-white"
   );
   setBackgroundColor(white);
 }
-
-

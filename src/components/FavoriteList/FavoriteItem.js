@@ -7,13 +7,21 @@ export default function FavoriteItem(props) {
       onClick={props.handleClick}
       draggable="true"
       onDragStart={() => {
-        props.dragURL.current = `/${props.source}`;
+        props.dragURL.current = `/${props.object.object_url}`;
+        props.dragId.current = props.object.id + "_" + Date.now().toString();
+        props.setMetaDataOnLayer([
+          ...props.metaDataOnLayer,
+          {
+            ...props.object,
+            id: props.dragId.current,
+          },
+        ]);
       }}
     >
       <img
         className="favorite-image"
-        src={`/${props.source}`}
-        alt={`${props.title}`}
+        src={`/${props.object.object_url}`}
+        alt={`${props.object.label_text}`}
       />
 
       <div className="favorite-overlay">
@@ -23,7 +31,7 @@ export default function FavoriteItem(props) {
           alt="delete-icon"
           onClick={props.removeItemFromFavoriteList}
         />
-        <p className="favorite-title-overlay">{props.title}</p>
+        <p className="favorite-title-overlay">{props.object.label_text}</p>
       </div>
     </div>
   );

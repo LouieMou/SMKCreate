@@ -1,7 +1,7 @@
 import { useState } from "react";
 import Parse from "parse";
 
-import FrontPageHeading from "../components/Headings/PageHeading";
+import PageHeading from "../components/Headings/PageHeading";
 import ProfileForm from "../components/Profile/ProfileForm";
 import Frame from "../components/FrontPageFrame/Frame";
 import "./LoginScreen.css";
@@ -50,7 +50,7 @@ export default function LoginScreen(props) {
   return (
     <Frame>
       <div className="loginScreen">
-        <FrontPageHeading title="Login" />
+        <PageHeading title="Login" />
         <ProfileForm
           label_text={"Login"}
           onSubmit={loginHandler}

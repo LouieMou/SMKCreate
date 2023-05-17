@@ -4,6 +4,8 @@ import FilterFrame from "../components/FilterFrame/FilterFrame";
 import ImageGrid from "../components/ImageGrid/ImageGrid";
 /* Functions */
 import { randomizeBackground } from "../functions/background";
+import { setBackgroundColor } from "../functions/background";
+
 import { readObjectsByCategory } from "../database/Object";
 /* Styles */
 import "./SearchScreen.css";
@@ -59,19 +61,23 @@ function SearchScreen(props) {
   }
 
   function updateSearchScreenColor() {
-    randomizeBackground();
-    setColor(randomizeBackground());
+    const color = randomizeBackground();
+    props.setBgColor(color);
+    setBackgroundColor(color);
   }
 
   return (
     <div className="search-screen">
-      <div className="search-screen-left" style={{ backgroundColor: color }}>
+      <div
+        className="search-screen-left"
+        style={{ backgroundColor: props.bgColor }}
+      >
         {search ? (
           <FilterFrame
             category={search.category_name}
             setFilter={setFilter}
             showAllObjectsInCategory={showAllObjectsInCategory}
-            label_text_color={color}
+            label_text_color={props.bgColor}
           />
         ) : (
           <></>

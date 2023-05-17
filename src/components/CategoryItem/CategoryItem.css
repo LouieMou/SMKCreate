@@ -1,0 +1,37 @@
+@import url(../../index.css);
+
+.category-frame {
+    border: solid;
+    border-width: 2px;
+    border-color: var(--primary-white);
+    width: 350px;
+    height: 185px;
+/*     margin-right: 20px;  */
+    margin-bottom: 20px; 
+}
+
+.category-frame:hover {
+    background-color: var(--primary-white-33);
+    cursor: pointer;
+}
+
+.category-frame p {
+    color: var(--primary-white);
+    text-align: center;
+    font-weight: 600;
+    margin: 0;
+}
+
+.category-images {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    margin: 15px;
+}
+
+.category-images img {
+    height: 100px;
+    margin: 5px;
+    object-fit: cover;
+    max-width: 110px;
+}

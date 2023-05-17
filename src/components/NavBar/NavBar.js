@@ -8,22 +8,22 @@ import "./NavBar.css";
 
 function NavBar(props) {
   const location = useLocation();
-  const [navBarColor, setNavBarColor] = useState();
+  const [navBarTextColor, setNavBarTextColor] = useState();
   const [SMKlogoSize, setSMKlogoSize] = useState("");
 
   useEffect(() => {
     if (location.pathname === "/" || location.pathname === "/profile") {
-      setNavBarColor("black");
+      setNavBarTextColor("black");
       setSMKlogoSize("large");
     } else {
-      setNavBarColor("white");
+      setNavBarTextColor("white");
       setSMKlogoSize("small");
     }
   }, [location.pathname]);
 
   useEffect(() => {
     if (location.pathname === "/canvas") {
-      setNavBarColor("black");
+      setNavBarTextColor("black");
       setSMKlogoSize("large");
     }
   }, [location.pathname]);
@@ -39,16 +39,19 @@ function NavBar(props) {
   }
 
   return (
-    <nav className="navbar-container">
+    <nav
+      className="navbar-container"
+      style={{ backgroundColor: props.bgColor }}
+    >
       {SMKlogoSize === "small" ? (
         <NavIcon
-          src={`/icons/explore_logo_${navBarColor}.svg`}
+          src={`/icons/explore_logo_${navBarTextColor}.svg`}
           handleClick={() => navigateTo("/")}
           iconWidth="118px"
         />
       ) : (
         <NavIcon
-          src={`/icons/explore_logo_${navBarColor}.svg`}
+          src={`/icons/explore_logo_${navBarTextColor}.svg`}
           handleClick={() => navigateTo("/")}
         />
       )}
@@ -56,31 +59,31 @@ function NavBar(props) {
       <div className="rightside-icons">
         <NavIcon
           img_container_style={"nav-icon-img"}
-          src={`/icons/back_icon_${navBarColor}.svg`}
+          src={`/icons/back_icon_${navBarTextColor}.svg`}
           handleClick={() => goBack()}
         />
         {location.pathname === "/canvas" ? (
           <NavIcon
             img_container_style={"nav-icon-img"}
-            src={`/icons/heart_filled_${navBarColor}.svg`}
+            src={`/icons/heart_filled_${navBarTextColor}.svg`}
           />
         ) : (
           <NavIcon
             img_container_style={"nav-icon-img"}
-            src={`/icons/heart_unfilled_${navBarColor}.svg`}
+            src={`/icons/heart_unfilled_${navBarTextColor}.svg`}
             handleClick={props.openFavoriteList}
           />
         )}
 
         <NavLinkIcon
-          filledIcon={`/icons/create_${navBarColor}_filled.svg`}
-          unfilledIcon={`/icons/create_${navBarColor}_unfilled.svg`}
+          filledIcon={`/icons/create_${navBarTextColor}_filled.svg`}
+          unfilledIcon={`/icons/create_${navBarTextColor}_unfilled.svg`}
           path="/canvas"
         />
 
         <NavLinkIcon
-          filledIcon={`/icons/profile_filled_${navBarColor}.svg`}
-          unfilledIcon={`/icons/profile_unfilled_${navBarColor}.svg`}
+          filledIcon={`/icons/profile_filled_${navBarTextColor}.svg`}
+          unfilledIcon={`/icons/profile_unfilled_${navBarTextColor}.svg`}
           path="/profile"
         />
       </div>
