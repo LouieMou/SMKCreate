@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/art-explorer/static/css/main.e95c71f1.css",
+    "main.js": "/art-explorer/static/js/main.6be5c96f.js",
+    "index.html": "/art-explorer/index.html",
+    "main.e95c71f1.css.map": "/art-explorer/static/css/main.e95c71f1.css.map",
+    "main.6be5c96f.js.map": "/art-explorer/static/js/main.6be5c96f.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.e95c71f1.css",
+    "static/js/main.6be5c96f.js"
+  ]
+}
