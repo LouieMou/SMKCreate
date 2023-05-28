@@ -9,8 +9,10 @@ textarea {
   overflow-wrap: break-word;
   border: solid 2px black;
   font-size: 16px;
+  font-family: "Open Sans", "Inter", "Roboto", "Nunito Sans", sans-serif;
 }
 
 textarea::placeholder {
   font-size: 14px;
+  font-family: "Open Sans", "Inter", "Roboto", "Nunito Sans", sans-serif;
 }
