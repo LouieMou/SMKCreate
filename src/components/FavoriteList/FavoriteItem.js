@@ -20,14 +20,14 @@ export default function FavoriteItem(props) {
     >
       <img
         className="favorite-image"
-        src={`/${props.object.object_url}`}
+        src={`${props.object.object_url}`}
         alt={`${props.object.label_text}`}
       />
 
       <div className="favorite-overlay">
         <img
           className="favorite-delete"
-          src={`/icons/delete_favoriteItem_white.svg`}
+          src={`icons/delete_favoriteItem_white.svg`}
           alt="delete-icon"
           onClick={props.removeItemFromFavoriteList}
         />

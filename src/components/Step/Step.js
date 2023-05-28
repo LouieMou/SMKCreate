@@ -6,7 +6,7 @@ export default function Step(props) {
       <div className="step-circle">
         {props.isCompleted ? (
           <img
-            src="/icons/check_white.png"
+            src="icons/check_white.png"
             alt="Checkmark"
             className="step-checkmark"
           />
