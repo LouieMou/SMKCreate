@@ -43,7 +43,7 @@ export default function KonvaAnimation(props) {
         y={props.dimensions.height / 2}
         text="Generating your artwork"
         fontSize={18}
-        fontFamily="Open sans"
+        fontFamily="Open Sans"
         fill="black"
         fontStyle="bold"
         offsetX={120}
