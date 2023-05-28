@@ -45,13 +45,13 @@ function NavBar(props) {
     >
       {SMKlogoSize === "small" ? (
         <NavIcon
-          src={`/icons/create_logo_${navBarTextColor}.svg`}
+          src={`icons/create_logo_${navBarTextColor}.svg`}
           handleClick={() => navigateTo("/")}
           iconWidth="118px"
         />
       ) : (
         <NavIcon
-          src={`/icons/create_logo_${navBarTextColor}.svg`}
+          src={`icons/create_logo_${navBarTextColor}.svg`}
           handleClick={() => navigateTo("/")}
         />
       )}
@@ -59,31 +59,31 @@ function NavBar(props) {
       <div className="rightside-icons">
         <NavIcon
           img_container_style={"nav-icon-img"}
-          src={`/icons/back_icon_${navBarTextColor}.svg`}
+          src={`icons/back_icon_${navBarTextColor}.svg`}
           handleClick={() => goBack()}
         />
         {location.pathname === "/canvas" ? (
           <NavIcon
             img_container_style={"nav-icon-img"}
-            src={`/icons/heart_filled_${navBarTextColor}.svg`}
+            src={`icons/heart_filled_${navBarTextColor}.svg`}
           />
         ) : (
           <NavIcon
             img_container_style={"nav-icon-img"}
-            src={`/icons/heart_unfilled_${navBarTextColor}.svg`}
+            src={`icons/heart_unfilled_${navBarTextColor}.svg`}
             handleClick={props.openFavoriteList}
           />
         )}
 
         <NavLinkIcon
-          filledIcon={`/icons/create_${navBarTextColor}_filled.svg`}
-          unfilledIcon={`/icons/create_${navBarTextColor}_unfilled.svg`}
+          filledIcon={`icons/create_${navBarTextColor}_filled.svg`}
+          unfilledIcon={`icons/create_${navBarTextColor}_unfilled.svg`}
           path="/canvas"
         />
 
         <NavLinkIcon
-          filledIcon={`/icons/profile_filled_${navBarTextColor}.svg`}
-          unfilledIcon={`/icons/profile_unfilled_${navBarTextColor}.svg`}
+          filledIcon={`icons/profile_filled_${navBarTextColor}.svg`}
+          unfilledIcon={`icons/profile_unfilled_${navBarTextColor}.svg`}
           path="/profile"
         />
       </div>

@@ -29,7 +29,7 @@ export default function NavBarPlain(props) {
       style={{ backgroundColor: screenColor }}
     >
       <NavIcon
-        src={`./icons/create_logo_black.svg`}
+        src={`icons/create_logo_black.svg`}
         handleClick={() => navigateTo("/")}
       />
     </nav>

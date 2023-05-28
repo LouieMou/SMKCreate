@@ -20,11 +20,11 @@ export default function ImageItem(props) {
 
   return (
     <div className="image-container">
-      <img className="image" src={`/${props.source}`} alt={`${props.title}`} />
+      <img className="image" src={`${props.source}`} alt={`${props.title}`} />
       <span className="favorite-icon-container">
         {props.object.saved && (
           <img
-            src="/icons/heart_filled_white.svg"
+            src="icons/heart_filled_white.svg"
             onClick={() => handleRemoveFromFavorite(props.object)}
             alt="icon"
           ></img>
@@ -34,13 +34,13 @@ export default function ImageItem(props) {
         <span className="favorite-icon-container">
           {props.object.saved ? (
             <img
-              src="/icons/heart_filled_white.svg"
+              src="icons/heart_filled_white.svg"
               onClick={() => handleRemoveFromFavorite(props.object)}
               alt="icon"
             ></img>
           ) : (
             <img
-              src="/icons/heart_unfilled_white.svg"
+              src="icons/heart_unfilled_white.svg"
               onClick={() => handleSaveToFavorite(props.object)}
               alt="icon"
             ></img>
