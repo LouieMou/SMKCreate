@@ -18,7 +18,6 @@ function SearchScreen(props) {
   const [objects, setObjects] = useState();
   const [filteredObjects, setFilteredObjects] = useState();
   const [useFilter, setUseFilter] = useState(false);
-  const [color, setColor] = useState();
 
   useEffect(() => {
     if (search) {
