@@ -78,7 +78,7 @@ function CanvasScreen(props) {
           form,
           {
             headers: {
-              Authorization: `Bearer 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`,
+              Authorization: `Bearer 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`,
             },
           }
         );
