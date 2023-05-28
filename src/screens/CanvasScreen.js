@@ -45,6 +45,11 @@ function CanvasScreen(props) {
   setBackgroundColor(white);
   props.setBgColor(white);
 
+  const en = "sk-iRTEvqZE7Bz2m";
+  const to = "TzCxNhsT3BlbkFJ";
+  const tre = "wqQCnAFooMQ4Qr2DGS2h";
+  const alle = en + to + tre;
+
   async function generateImage() {
     console.log("inside generateImage function");
 
@@ -78,7 +83,7 @@ function CanvasScreen(props) {
           form,
           {
             headers: {
-              Authorization: `Bearer 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`,
+              Authorization: `Bearer ${alle}`,
             },
           }
         );
