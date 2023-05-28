@@ -1,4 +1,4 @@
-import { useState, useContext, useEffect } from "react";
+import { useContext } from "react";
 /* Context */
 import { FavoriteContext } from "../../context/FavoriteContext";
 /* Styles */
@@ -26,6 +26,7 @@ export default function ImageItem(props) {
           <img
             src="/icons/heart_filled_white.svg"
             onClick={() => handleRemoveFromFavorite(props.object)}
+            alt="icon"
           ></img>
         )}
       </span>
@@ -35,11 +36,13 @@ export default function ImageItem(props) {
             <img
               src="/icons/heart_filled_white.svg"
               onClick={() => handleRemoveFromFavorite(props.object)}
+              alt="icon"
             ></img>
           ) : (
             <img
               src="/icons/heart_unfilled_white.svg"
               onClick={() => handleSaveToFavorite(props.object)}
+              alt="icon"
             ></img>
           )}
         </span>

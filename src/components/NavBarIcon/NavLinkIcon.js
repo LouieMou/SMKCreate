@@ -11,6 +11,7 @@ function NavLinkIcon(props) {
             src={isActive ? props.filledIcon : props.unfilledIcon}
             onClick={props.handleClick}
             className="nav-icon-img"
+            alt="icon"
           ></img>
         )}
       </NavLink>

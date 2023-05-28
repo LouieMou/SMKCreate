@@ -8,6 +8,7 @@ function NavIcon(props) {
       src={props.src}
       onClick={props.handleClick}
       style={{ width: props.iconWidth, cursor: "pointer" }}
+      alt="icon"
     ></img>
   );
 }
