@@ -12,6 +12,7 @@ import Step from "../components/Step/Step";
 import { setBackgroundColor } from "../functions/background";
 import { FavoriteContext } from "../context/FavoriteContext";
 import FormData from "form-data"; //imported from the openai library (needed)
+import { picasso } from "../database/Picasso";
 
 function CanvasScreen(props) {
   const [dimensions, setDimensions] = useState({
@@ -66,6 +67,8 @@ function CanvasScreen(props) {
       const response = await fetch(konvaDataURL);
       const blob = await response.blob();
 
+      const result = await picasso();
+
       try {
         const form = new FormData();
         form.append("image", blob, "image.png");
@@ -78,7 +81,7 @@ function CanvasScreen(props) {
           form,
           {
             headers: {
-              Authorization: `Bearer ${process.env.REACT_APP_OPENAI_KEY}`,
+              Authorization: `Bearer ${result}`,
             },
           }
         );
