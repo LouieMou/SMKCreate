@@ -13,7 +13,7 @@ export default function KonvaText(props) {
             y={props.dimensions.height / 2}
             text="Create your own artwork"
             fontSize={fontSize1024}
-            fontFamily="Open sans"
+            fontFamily="Open Sans"
             fill="black"
             fontStyle="bold"
             offsetX={120}
@@ -24,7 +24,7 @@ export default function KonvaText(props) {
             y={props.dimensions.height / 2}
             text="Drag items from your favorite list onto the canvas."
             fontSize={fontSize1024}
-            fontFamily="Open sans"
+            fontFamily="Open Sans"
             fill="black"
             offsetX={240}
             offsetY={190}
@@ -37,7 +37,7 @@ export default function KonvaText(props) {
             y={props.dimensions.height / 2}
             text="Create your own artwork"
             fontSize={fontSize512}
-            fontFamily="Open sans"
+            fontFamily="Open Sans"
             fill="black"
             fontStyle="bold"
             offsetX={90}
@@ -48,7 +48,7 @@ export default function KonvaText(props) {
             y={props.dimensions.height / 2}
             text="Drag items from your favorite list onto the canvas."
             fontSize={fontSize512}
-            fontFamily="Open sans"
+            fontFamily="Open Sans"
             fill="black"
             offsetX={185}
             offsetY={20}

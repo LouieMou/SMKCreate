@@ -35,7 +35,6 @@
     font-size: 14px;
     font-weight: 600;
     width: 25px;
-    font-family: 'Open sans';
   }
 
   .step-checkmark {
@@ -51,7 +50,6 @@
   
   .step-text {
     color: #555555;
-    font-family: 'Open sans';
     margin-top: -1px;
     font-size: 14px;
   }
