@@ -7,7 +7,7 @@ export default function FavoriteItem(props) {
       onClick={props.handleClick}
       draggable="true"
       onDragStart={() => {
-        props.dragURL.current = `/${props.object.object_url}`;
+        props.dragURL.current = `${props.object.object_url}`;
         props.dragId.current = props.object.id + "_" + Date.now().toString();
         props.setMetaDataOnLayer([
           ...props.metaDataOnLayer,
