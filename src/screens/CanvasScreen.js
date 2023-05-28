@@ -35,8 +35,6 @@ function CanvasScreen(props) {
     }
   }, []);
 
-  const openai = "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";
-
   const handleUserInput = (event) => {
     props.setUserInput(event.target.value);
   };
@@ -80,7 +78,7 @@ function CanvasScreen(props) {
           form,
           {
             headers: {
-              Authorization: `Bearer ${openai}`,
+              Authorization: `Bearer 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`,
             },
           }
         );
