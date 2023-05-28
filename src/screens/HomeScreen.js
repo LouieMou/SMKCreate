@@ -40,17 +40,17 @@ function HomeScreen(props) {
 
   const content = [
     {
-      src: "/slider/1.png",
+      src: "slider/1.png",
       alt: "Link to Category-page",
       link: "/categories",
     },
     {
-      src: "/slider/2.png",
+      src: "slider/2.png",
       alt: "Link to Food-page",
       link: "food",
     },
     {
-      src: "/slider/3.png",
+      src: "slider/3.png",
       alt: "Link to Canvas-page",
       link: "/canvas",
     },

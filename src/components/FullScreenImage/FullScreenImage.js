@@ -129,9 +129,9 @@ export default function FullScreenImage(props) {
             style={{ ...getCenterPosition(hoverArea) }}
           >
             {hoverArea.fillHeart ? (
-              <img src="/icons/heart_filled_white.svg" alt="icon"></img>
+              <img src="icons/heart_filled_white.svg" alt="icon"></img>
             ) : (
-              <img src="/icons/heart_unfilled_white.svg" alt="icon"></img>
+              <img src="icons/heart_unfilled_white.svg" alt="icon"></img>
             )}
           </div>
         </>
