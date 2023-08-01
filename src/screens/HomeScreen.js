@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import { useNavigate, generatePath } from "react-router-dom";
 /* Component */
 import Frame from "../components/FrontPageFrame/Frame";
@@ -16,11 +16,13 @@ function HomeScreen(props) {
   const { setCategoryIdAndFilter } = useContext(SearchContext);
   const navigate = useNavigate();
 
-  const white = getComputedStyle(document.documentElement).getPropertyValue(
-    "--primary-white"
-  );
-  setBackgroundColor(white);
-  props.setBgColor(white);
+  useEffect(() => {
+    const white = getComputedStyle(document.documentElement).getPropertyValue(
+      "--primary-white"
+    );
+    setBackgroundColor(white);
+    props.setBgColor(white);
+  }, []);
 
   function handleNavigation() {
     navigate("/categories");

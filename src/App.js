@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Route, Routes } from "react-router-dom";
+import { Route, Routes, useLocation, useNavigate } from "react-router-dom";
 /* Screens */
 import HomeScreen from "./screens/HomeScreen";
 import SearchScreen from "./screens/SearchScreen";
@@ -12,6 +12,7 @@ import LoginScreen from "./screens/LoginScreen";
 import NavBar from "./components/NavBar/NavBar";
 import NavBarPlain from "./components/NavBar/NavBarPlain";
 import FavoriteList from "./components/FavoriteList/FavoriteList";
+import Listener from "./components/Counter/Listener";
 /* Functions */
 import { getCategoriesWithPointer } from "./database/Category";
 /* Context */
@@ -25,6 +26,9 @@ function App() {
   const [favoriteIsActive, setFavoriteIsActive] = useState(false);
   const [currentUser, setCurrentUser] = useState(null);
   const [bgColor, setBgColor] = useState();
+  const [routeChange, setRouteChange] = useState(null);
+  const location = useLocation();
+  const navigate = useNavigate();
 
   /* TO SAVE THE STATE OF CANVAS-PAGE */
   const [userInput, setUserInput] = useState("");
@@ -34,10 +38,23 @@ function App() {
   const [generatedImage, setGeneratedImage] = useState(false);
 
   useEffect(() => {
+    if(!currentUser){
+      navigate("/login")
+    }
     if (currentUser) {
       fecthCategoriesWithPointer();
+      navigate("/")
     }
   }, [currentUser]);
+
+  useEffect(() => {
+    // This callback will be executed every time the route changes
+    if(currentUser){
+    console.log("Route changed:", location.pathname);
+    setRouteChange(location.pathname)
+    }
+    // You can put your logic here to handle the route change event
+  }, [location]);
 
   async function fecthCategoriesWithPointer() {
     let categoriesAndObjectsResult = await getCategoriesWithPointer();
@@ -59,7 +76,7 @@ function App() {
           <NavBarPlain openFavoriteList={openFavoriteList} />
           <Routes>
             <Route
-              path="/"
+              path="/login"
               element={<LoginScreen setCurrentUser={setCurrentUser} />}
             />
           </Routes>
@@ -75,6 +92,7 @@ function App() {
             )}
 
             <NavBar openFavoriteList={openFavoriteList} bgColor={bgColor} />
+            <Listener routeChange={routeChange}/>
 
             {categoriesAndObjects ? (
               <Routes>

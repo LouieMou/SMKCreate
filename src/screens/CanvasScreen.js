@@ -28,6 +28,11 @@ function CanvasScreen(props) {
   const { favoriteList } = useContext(FavoriteContext);
 
   useEffect(() => {
+    const white = getComputedStyle(document.documentElement).getPropertyValue(
+      "--primary-white"
+    );
+    setBackgroundColor(white);
+    props.setBgColor(white);
     if (divRef.current?.offsetHeight && divRef.current?.offsetWidth) {
       setDimensions({
         width: divRef.current.offsetWidth - 20,
@@ -39,12 +44,6 @@ function CanvasScreen(props) {
   const handleUserInput = (event) => {
     props.setUserInput(event.target.value);
   };
-
-  const white = getComputedStyle(document.documentElement).getPropertyValue(
-    "--primary-white"
-  );
-  setBackgroundColor(white);
-  props.setBgColor(white);
 
   async function generateImage() {
     console.log("inside generateImage function");

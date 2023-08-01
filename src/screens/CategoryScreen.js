@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 /* Components */
 import PageHeading from "../components/Headings/PageHeading";
 import CategoryGrid from "../components/CategoryGrid/CategoryGrid";
@@ -9,9 +10,11 @@ import { randomizeBackground } from "../functions/background";
 import { setBackgroundColor } from "../functions/background";
 
 export default function CategoryScreen(props) {
-  const color = randomizeBackground();
-  setBackgroundColor(color);
-  props.setBgColor(color);
+  useEffect(() => {
+    const color = randomizeBackground();
+    setBackgroundColor(color);
+    props.setBgColor(color);
+  }, []);
 
   return (
     <div className="categoryScreen">
