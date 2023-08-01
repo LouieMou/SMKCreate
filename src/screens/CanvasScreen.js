@@ -134,6 +134,10 @@ function CanvasScreen(props) {
     document.body.removeChild(link);
   }
 
+  function navigateToCategoryPage() {
+    navigate("/categories");
+  }
+
   /*   function downloadURL(url) {
     fetch(url)
       .then((response) => {
@@ -173,14 +177,25 @@ function CanvasScreen(props) {
 
   return (
     <div className="canvas-screen-container">
-      <div className="fav-grid-container">
-        <FavoriteGrid
-          closeFavoriteList={props.closeFavoriteList}
-          dragURL={dragURL}
-          dragId={dragId}
-          setMetaDataOnLayer={props.setMetaDataOnLayer}
-          metaDataOnLayer={props.metaDataOnLayer}
-        />
+      <div className="explore-container">
+        <div className="fav-grid-container">
+          <FavoriteGrid
+            closeFavoriteList={props.closeFavoriteList}
+            dragURL={dragURL}
+            dragId={dragId}
+            setMetaDataOnLayer={props.setMetaDataOnLayer}
+            metaDataOnLayer={props.metaDataOnLayer}
+          />
+        </div>
+        <div className="explore-button-container">
+          <LabelButton
+            button_size={"canvas"}
+            label_text={
+              favoriteList.length > 0 ? "Keep exploring" : "Start exploring"
+            }
+            handleClick={navigateToCategoryPage}
+          />
+        </div>
       </div>
       <Konva
         dragURL={dragURL}
@@ -255,15 +270,15 @@ function CanvasScreen(props) {
 
           <div className="small-canvas-buttons-container">
             <LabelButton
-              button_size={"canvas-small"}
+              button_size={"canvas"}
               label_text={"Clear"}
               handleClick={clearCanvas}
             />
-            <LabelButton
+            {/* <LabelButton
               button_size={"canvas-small"}
               label_text={"Download"}
               handleClick={downloadImage}
-            />
+            /> */}
           </div>
         </div>
       </div>

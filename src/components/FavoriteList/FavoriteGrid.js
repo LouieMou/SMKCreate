@@ -46,7 +46,7 @@ export default function FavoriteGrid(props) {
           </p>
           <p className="label-text-favorite">
             Explore the collection and save your favorites here. <br /> <br />{" "}
-            The objects can be used to creating your own artwork. <br />
+            The objects can be used to create your own artwork. <br />
             <br />
             Happy exploring!
           </p>

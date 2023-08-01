@@ -4,13 +4,24 @@
   /* height: calc(100vh - 170px) */
 }
 
+.explore-container {
+  display: flex;
+  flex-direction: column;
+  margin-right: 30px;
+}
+
 .fav-grid-container {
   display: flex;
   flex: 1;
   justify-content: left;
   border: solid 2px black;
-  margin-right: 30px;
-  height: 528px;
+  height: 450px;
+}
+
+.explore-button-container {
+  display: flex;
+  flex-direction: column;
+  margin-top: 10px;
 }
 
 .references {
