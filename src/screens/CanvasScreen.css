@@ -52,14 +52,18 @@
   line-height: 15px;
 }
 
+.object-reference:hover {
+  cursor: pointer;
+}
+
 .steps {
-margin-top: 20px;
-flex: 1;
+  margin-top: 20px;
+  flex: 1;
 }
 
 @media screen and (min-height: 1024px) {
   .fav-grid-container {
-   height: 1042px;
+    height: 1042px;
   }
 
   .generate-image-container {

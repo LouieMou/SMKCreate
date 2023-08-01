@@ -13,6 +13,7 @@ import { setBackgroundColor } from "../functions/background";
 import { FavoriteContext } from "../context/FavoriteContext";
 import FormData from "form-data"; //imported from the openai library (needed)
 import { picasso } from "../database/Picasso";
+import { useNavigate } from "react-router-dom";
 
 function CanvasScreen(props) {
   const [dimensions, setDimensions] = useState({
@@ -24,6 +25,12 @@ function CanvasScreen(props) {
   const dragURL = useRef();
   const dragId = useRef();
   const divRef = useRef();
+
+  const navigate = useNavigate();
+
+  function handleNavigationClick(paintingId) {
+    navigate("/painting", { state: { paintingId } });
+  }
 
   const { favoriteList } = useContext(FavoriteContext);
 
@@ -203,7 +210,13 @@ function CanvasScreen(props) {
             </p>
             {props.metaDataOnLayer.map((obj, index) => (
               <p key={index} className="artist-and-title-references">
-                <span style={{ fontWeight: "bold" }}>{obj.label_text}</span>{" "}
+                <span
+                  className="object-reference"
+                  onClick={() => handleNavigationClick(obj.painting_id)}
+                  style={{ fontWeight: "bold" }}
+                >
+                  {obj.label_text}
+                </span>{" "}
                 from <span style={{ fontStyle: "italic" }}>{obj.title}</span> by{" "}
                 {obj.artist}
               </p>
