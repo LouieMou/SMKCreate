@@ -56,9 +56,7 @@ export default function FullScreenImage(props) {
 
   const enterArea = (area) => {
     setHoverArea(area);
-    setMessage(
-      `You found ${startsWithVowel(area.label_text)} ${area.label_text}`
-    );
+    setMessage(`${area.label_text}`);
   };
 
   function startsWithVowel(word) {

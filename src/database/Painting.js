@@ -24,6 +24,7 @@ export async function readPaintingById(paintingId) {
       object_labels: painting[0].attributes.object_labels,
       image_width: painting[0].attributes.image_width,
       image_height: painting[0].attributes.image_height,
+      painting_id: painting[0].attributes.painting_id,
     };
     return destructuredpainting;
   }
