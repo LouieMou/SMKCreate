@@ -30,7 +30,7 @@ export default function NavBarPlain(props) {
     >
       <NavIcon
         src={`./icons/create_logo_black.svg`}
-        handleClick={() => navigateTo("/")}
+        handleClick={() => navigateTo("/home")}
       />
     </nav>
   );

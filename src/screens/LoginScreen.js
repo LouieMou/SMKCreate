@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import Parse from "parse";
 
 import PageHeading from "../components/Headings/PageHeading";
@@ -9,6 +10,7 @@ import "./LoginScreen.css";
 export default function LoginScreen(props) {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const navigate = useNavigate();
 
   const loginHandler = async function (e) {
     e.preventDefault();
@@ -31,7 +33,11 @@ export default function LoginScreen(props) {
       setUsername("");
       setPassword("");
       // Update state variable holding current user
+      
       getCurrentUser(props.setCurrentUser);
+      navigate("/home")
+      props.setStartCounter(true);
+      
       return true;
     } catch (error) {
       // Error can be caused by wrong parameters or lack of Internet connection

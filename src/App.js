@@ -12,7 +12,7 @@ import LoginScreen from "./screens/LoginScreen";
 import NavBar from "./components/NavBar/NavBar";
 import NavBarPlain from "./components/NavBar/NavBarPlain";
 import FavoriteList from "./components/FavoriteList/FavoriteList";
-import Listener from "./components/Counter/Listener";
+import TimeTracker from "./components/Counter/TimeTracker";
 /* Functions */
 import { getCategoriesWithPointer } from "./database/Category";
 /* Context */
@@ -27,6 +27,7 @@ function App() {
   const [currentUser, setCurrentUser] = useState(null);
   const [bgColor, setBgColor] = useState();
   const [routeChange, setRouteChange] = useState(null);
+  const [startCounter, setStartCounter] = useState(null);
   const location = useLocation();
   const navigate = useNavigate();
 
@@ -38,23 +39,10 @@ function App() {
   const [generatedImage, setGeneratedImage] = useState(false);
 
   useEffect(() => {
-    if(!currentUser){
-      navigate("/login")
-    }
     if (currentUser) {
       fecthCategoriesWithPointer();
-      navigate("/")
     }
   }, [currentUser]);
-
-  useEffect(() => {
-    // This callback will be executed every time the route changes
-    if(currentUser){
-    console.log("Route changed:", location.pathname);
-    setRouteChange(location.pathname)
-    }
-    // You can put your logic here to handle the route change event
-  }, [location]);
 
   async function fecthCategoriesWithPointer() {
     let categoriesAndObjectsResult = await getCategoriesWithPointer();
@@ -76,8 +64,8 @@ function App() {
           <NavBarPlain openFavoriteList={openFavoriteList} />
           <Routes>
             <Route
-              path="/login"
-              element={<LoginScreen setCurrentUser={setCurrentUser} />}
+              path="/"
+              element={<LoginScreen setCurrentUser={setCurrentUser} setStartCounter={setStartCounter} />}
             />
           </Routes>
         </>
@@ -92,12 +80,13 @@ function App() {
             )}
 
             <NavBar openFavoriteList={openFavoriteList} bgColor={bgColor} />
-            <Listener routeChange={routeChange}/>
+            {/* <Listener routeChange={routeChange} startCounter={startCounter}/> */}
+            <TimeTracker startCounter={startCounter}/>
 
             {categoriesAndObjects ? (
               <Routes>
                 <Route
-                  path="/"
+                  path="/home"
                   element={<HomeScreen setBgColor={setBgColor} />}
                 />
                 <Route
