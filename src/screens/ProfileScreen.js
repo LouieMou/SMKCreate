@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Parse from "parse";
 /* Components */
 import ProfileHeader from "../components/Profile/ProfileHeader";
@@ -10,6 +10,13 @@ import ProfileForm from "../components/Profile/ProfileForm";
 import "./ProfileScreen.css";
 
 function ProfileScreen(props) {
+  useEffect(() => {
+    const white = getComputedStyle(document.documentElement).getPropertyValue(
+      "--primary-white"
+    );
+    setBackgroundColor(white);
+    props.setBgColor(white);
+  }, []);
   const initialName =
     props.currentUser === null ? "" : props.currentUser.attributes.name;
   const initialUsername =
@@ -20,12 +27,6 @@ function ProfileScreen(props) {
   const [name, setName] = useState(initialName);
   const [username, setUsername] = useState(initialUsername);
   const [password, setPassword] = useState(initialPassword);
-
-  const white = getComputedStyle(document.documentElement).getPropertyValue(
-    "--primary-white"
-  );
-  setBackgroundColor(white);
-  props.setBgColor(white);
 
   async function saveChangesToProfile(e) {
     e.preventDefault();

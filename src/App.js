@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Route, Routes } from "react-router-dom";
+import { Route, Routes, useLocation, useNavigate } from "react-router-dom";
 /* Screens */
 import HomeScreen from "./screens/HomeScreen";
 import SearchScreen from "./screens/SearchScreen";
@@ -12,6 +12,7 @@ import LoginScreen from "./screens/LoginScreen";
 import NavBar from "./components/NavBar/NavBar";
 import NavBarPlain from "./components/NavBar/NavBarPlain";
 import FavoriteList from "./components/FavoriteList/FavoriteList";
+import TimeTracker from "./components/Counter/TimeTracker";
 /* Functions */
 import { getCategoriesWithPointer } from "./database/Category";
 /* Context */
@@ -25,6 +26,10 @@ function App() {
   const [favoriteIsActive, setFavoriteIsActive] = useState(false);
   const [currentUser, setCurrentUser] = useState(null);
   const [bgColor, setBgColor] = useState();
+  const [routeChange, setRouteChange] = useState(null);
+  const [startCounter, setStartCounter] = useState(null);
+  const location = useLocation();
+  const navigate = useNavigate();
 
   /* TO SAVE THE STATE OF CANVAS-PAGE */
   const [userInput, setUserInput] = useState("");
@@ -60,7 +65,7 @@ function App() {
           <Routes>
             <Route
               path="/"
-              element={<LoginScreen setCurrentUser={setCurrentUser} />}
+              element={<LoginScreen setCurrentUser={setCurrentUser} setStartCounter={setStartCounter} />}
             />
           </Routes>
         </>
@@ -75,11 +80,13 @@ function App() {
             )}
 
             <NavBar openFavoriteList={openFavoriteList} bgColor={bgColor} />
+            {/* <Listener routeChange={routeChange} startCounter={startCounter}/> */}
+            <TimeTracker startCounter={startCounter}/>
 
             {categoriesAndObjects ? (
               <Routes>
                 <Route
-                  path="/"
+                  path="/home"
                   element={<HomeScreen setBgColor={setBgColor} />}
                 />
                 <Route

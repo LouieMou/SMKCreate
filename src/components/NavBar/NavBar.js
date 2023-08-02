@@ -12,7 +12,7 @@ function NavBar(props) {
   const [SMKlogoSize, setSMKlogoSize] = useState("");
 
   useEffect(() => {
-    if (location.pathname === "/" || location.pathname === "/profile") {
+    if (location.pathname === "/home" || location.pathname === "/profile") {
       setNavBarTextColor("black");
       setSMKlogoSize("large");
     } else {
@@ -46,13 +46,13 @@ function NavBar(props) {
       {SMKlogoSize === "small" ? (
         <NavIcon
           src={`/icons/create_logo_${navBarTextColor}.svg`}
-          handleClick={() => navigateTo("/")}
+          handleClick={() => navigateTo("/home")}
           iconWidth="118px"
         />
       ) : (
         <NavIcon
           src={`/icons/create_logo_${navBarTextColor}.svg`}
-          handleClick={() => navigateTo("/")}
+          handleClick={() => navigateTo("/home")}
         />
       )}
 
