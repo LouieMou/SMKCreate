@@ -196,7 +196,7 @@ function CanvasScreen(props) {
             handleClick={navigateToCategoryPage}
           />
           <LabelButton
-            style={{ marginLeft: "10px" }}
+            className="example-button"
             button_size={"canvas"}
             label_text={"Show Example"}
             handleClick={console.log("Example coming soon")}

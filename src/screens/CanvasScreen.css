@@ -26,6 +26,10 @@
   margin-top: 10px;
 }
 
+.example-button {
+  margin-left: 10px;
+}
+
 .references {
   overflow: scroll;
   flex: 1;

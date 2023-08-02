@@ -62,8 +62,8 @@ function HomeScreen(props) {
         <div className="left-heading-container">
           <div className="pageheading-container-homescreen">
             <FrontPageHeading
-              title="Which motifs inspire you?"
-              subtitle="Create your own art by combining famous paintings through AI" /*color={textColor}*/
+              title="516 skulls, 106 sofas, 18 lobsters"
+              subtitle="Combine objects from famous paintings and create your own art with AI"
             />
           </div>
           <div className="homepage-button-container">
