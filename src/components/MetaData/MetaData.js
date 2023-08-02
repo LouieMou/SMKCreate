@@ -26,6 +26,7 @@ export default function MetaData(props) {
       <LabelGrid objects={props.objects} />
       <ColorGrid colors={props.painting.colors} colorMode={props.colorMode} />
       <InformationLink
+        className="information-link"
         handleClick={() => handleNavigationToSMK(props.painting.painting_id)}
         text={text}
       ></InformationLink>

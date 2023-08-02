@@ -1,3 +1,11 @@
 .metadata {
-    padding-right: 50px;
+  padding-right: 50px;
+}
+.information-link {
+  margin-top: 30px;
+}
+
+.information-link:hover {
+  text-decoration: underline;
+  cursor: pointer;
 }

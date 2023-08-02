@@ -8,6 +8,7 @@
   display: flex;
   flex-direction: column;
   margin-right: 30px;
+  width: 450px;
 }
 
 .fav-grid-container {
@@ -15,12 +16,13 @@
   flex: 1;
   justify-content: left;
   border: solid 2px black;
-  height: 450px;
+  max-height: 470px;
+  overflow-y: auto;
 }
 
 .explore-button-container {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   margin-top: 10px;
 }
 
@@ -65,6 +67,7 @@
 
 .object-reference:hover {
   cursor: pointer;
+  text-decoration: underline;
 }
 
 .steps {
@@ -73,7 +76,7 @@
 }
 
 @media screen and (min-height: 1024px) {
-  .fav-grid-container {
+  .explore-container {
     height: 1042px;
   }
 

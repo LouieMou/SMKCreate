@@ -195,6 +195,12 @@ function CanvasScreen(props) {
             }
             handleClick={navigateToCategoryPage}
           />
+          <LabelButton
+            style={{ marginLeft: "10px" }}
+            button_size={"canvas"}
+            label_text={"Show Example"}
+            handleClick={console.log("Example coming soon")}
+          />
         </div>
       </div>
       <Konva
