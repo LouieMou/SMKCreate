@@ -1,25 +1,6 @@
 import Parse from "parse";
 
-export async function updateTimeTracking(timeAndPath){
-const newTimeTracking = timeAndPath;
-  // Creates a new Todo parse object instance
-  let Logging = new Parse.Object('Logging');
-  Logging.set('time_test', newTimeTracking);
-  try {
-    await Logging.save();
-    console.log('Logging succesful: ', newTimeTracking);
-    // Success
-    // Refresh to-dos list to show the new one (you will create this function later)
-    return true;
-  } catch (error) {
-    // Error can be caused by lack of Internet connection
-    alert(`Error! ${error.message}`);
-    return false;
-  };
-}
-
-export async function setTimeAndPath(path, seconds){
-
+export async function setTimeAndPath(path, seconds) {
   const currentUser = Parse.User.current();
   const seconds_tracked = seconds;
   const path_tracked = path;
@@ -27,35 +8,86 @@ export async function setTimeAndPath(path, seconds){
   // Get the session token for the current user
   const sessionToken = currentUser.getSessionToken();
 
-  Parse.Cloud.run('addToSessionArrays', {
+  Parse.Cloud.run("addToSessionArrays", {
     sessionToken,
     array1ValueToAdd: path_tracked,
-    array2ValueToAdd: seconds_tracked
+    array2ValueToAdd: seconds_tracked,
+  }).catch((error) => {
+    console.error("Error adding to arrays:", error);
+  });
+}
+
+export async function setSavedObjects(savedObject) {
+  const saved_object_value = savedObject;
+  // Get the session token for the current user
+  const currentUser = Parse.User.current();
+  const sessionToken = currentUser.getSessionToken();
+
+  // Call a Cloud Code function to update the custom column in the session
+  Parse.Cloud.run("updateSavedObjects", {
+    sessionToken,
+    savedObject: saved_object_value,
   })
     .catch((error) => {
-      console.error('Error adding to arrays:', error);
+      console.error("Error updating custom column:", error);
     });
 }
 
-export async function updateTimeWithSession(timeAndPath){
+export async function updateObjectNavCount() {
   const currentUser = Parse.User.current();
-  const newTimeTracking = timeAndPath;
-  // Get the session token for the current user
   const sessionToken = currentUser.getSessionToken();
-  // Call a Cloud Code function to update the custom column in the session
-  /* Parse.Cloud.run('updateSessionCustomColumn', { sessionToken, customColumnValue: newTimeTracking })
-    .then((result) => {
-      console.log('Custom column updated:', result);
-    })
-    .catch((error) => {
-      console.error('Error updating custom column:', error);
-    }); */
 
-  Parse.Cloud.run('addToSessionArray', { sessionToken, valueToAdd: newTimeTracking })
-    .then((result) => {
-      console.log('Value added to array:', result);
-    })
+  // Call a Cloud Code function to increment the numeric column in the session
+  Parse.Cloud.run("incrementNavByObjectColumn", { sessionToken })
     .catch((error) => {
-      console.error('Error adding to array:', error);
+      console.error("Error incrementing numeric column:", error);
+    });
+}
+
+export async function setSavedPrompt(savedPrompt) {
+  const saved_prompt_value = savedPrompt;
+  console.log('the prompt: ', saved_prompt_value)
+  // Get the session token for the current user
+  const currentUser = Parse.User.current();
+  const sessionToken = currentUser.getSessionToken();
+
+  // Call a Cloud Code function to update the custom column in the session
+  Parse.Cloud.run("updateUserPrompt", {
+    sessionToken,
+    savedPrompt: saved_prompt_value,
+  }).catch((error) => {
+      console.error("Error updating custom column:", error);
+    });
+}
+
+export async function setAppliedObjects(appliedObjectArray) {
+  const applied_objects_array = appliedObjectArray;
+  console.log('the applied objects: ', applied_objects_array)
+  // Get the session token for the current user
+  const currentUser = Parse.User.current();
+  const sessionToken = currentUser.getSessionToken();
+
+  // Call a Cloud Code function to update the custom column in the session
+  Parse.Cloud.run("updateAppliedObjects", {
+    sessionToken,
+    appliedObjects: applied_objects_array,
+  }).catch((error) => {
+      console.error("Error updating custom column:", error);
+    });
+}
+
+export async function updateAppliedFilters(filter) {
+  const applied_filter = filter;
+  // Get the session token for the current user
+  const currentUser = Parse.User.current();
+  const sessionToken = currentUser.getSessionToken();
+
+  // Call a Cloud Code function to update the custom column in the session
+  Parse.Cloud.run("updateAppliedFilters", {
+    sessionToken,
+    appliedFilter: applied_filter,
+  })
+    .catch((error) => {
+      console.error("Error updating custom column:", error);
     });
 }

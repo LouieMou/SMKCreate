@@ -14,6 +14,9 @@ import { FavoriteContext } from "../context/FavoriteContext";
 import FormData from "form-data"; //imported from the openai library (needed)
 import { picasso } from "../database/Picasso";
 import { useNavigate } from "react-router-dom";
+import {updateObjectNavCount} from "../database/Logging";
+import {setSavedPrompt} from "../database/Logging";
+import {setAppliedObjects} from "../database/Logging";
 
 function CanvasScreen(props) {
   const [dimensions, setDimensions] = useState({
@@ -29,6 +32,7 @@ function CanvasScreen(props) {
   const navigate = useNavigate();
 
   function handleNavigationClick(paintingId) {
+    updateObjectNavCount()
     navigate("/painting", { state: { paintingId } });
   }
 
@@ -54,6 +58,9 @@ function CanvasScreen(props) {
 
   async function generateImage() {
     console.log("inside generateImage function");
+    // sending prompt and applied objects to the database
+    setSavedPrompt(props.userInput);
+    setAppliedObjects(props.metaDataOnLayer);
 
     let hasUserInput = props.userInput !== "";
     let hasCanvasContent = props.imagesOnLayer.length !== 0;
