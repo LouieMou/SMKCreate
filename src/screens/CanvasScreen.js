@@ -199,7 +199,9 @@ function CanvasScreen(props) {
             className="example-button"
             button_size={"canvas"}
             label_text={"Show Example"}
-            handleClick={console.log("Example coming soon")}
+            handleClick={() => {
+              console.log("Example coming soon");
+            }}
           />
         </div>
       </div>
