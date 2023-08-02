@@ -1,7 +1,6 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 // FUNCTIONS
-import { updateTimeWithSession } from '../../database/Logging';
 import { setTimeAndPath } from '../../database/Logging';
 
 function TimeTracker (props) {
@@ -13,10 +12,9 @@ function TimeTracker (props) {
     if (props.startCounter && prevLocation !== location) {
       const endTime = Date.now();
       const elapsedTime = Math.round((endTime - startTime) / 1000); // Convert to seconds
-      console.log(`Time spent on "${prevLocation.pathname}": ${elapsedTime} seconds`);
-      setTimeAndPath(prevLocation.pathname, elapsedTime);
-      //updateTimeWithSession(timeAndPath)
-      
+      // console.log(`Time spent on "${prevLocation.pathname}": ${elapsedTime} seconds`);
+      setTimeAndPath(prevLocation.pathname, elapsedTime);      
+
       // Update previous location and start time for the new screen
       setPrevLocation(location);
       setStartTime(endTime);

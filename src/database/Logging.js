@@ -32,9 +32,6 @@ export async function setTimeAndPath(path, seconds){
     array1ValueToAdd: path_tracked,
     array2ValueToAdd: seconds_tracked
   })
-    .then((result) => {
-      console.log('Values added to arrays:', result);
-    })
     .catch((error) => {
       console.error('Error adding to arrays:', error);
     });
