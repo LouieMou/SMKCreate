@@ -8,6 +8,7 @@ import LabelButton from "../components/LabelButton/LabelButton";
 import Konva from "../components/Canvas/Konva";
 import FavoriteGrid from "../components/FavoriteList/FavoriteGrid";
 import Step from "../components/Step/Step";
+import Overlay from "../components/Overlay/Overlay";
 /* Functions */
 import { setBackgroundColor } from "../functions/background";
 import { FavoriteContext } from "../context/FavoriteContext";
@@ -25,6 +26,10 @@ function CanvasScreen(props) {
   const dragURL = useRef();
   const dragId = useRef();
   const divRef = useRef();
+  const [isOpen, setIsOpen] = useState(false);
+  const toggleOverlay = () => {
+    setIsOpen(!isOpen);
+  };
 
   const navigate = useNavigate();
 
@@ -199,12 +204,13 @@ function CanvasScreen(props) {
             className="example-button"
             button_size={"canvas"}
             label_text={"Show Example"}
-            handleClick={() => {
-              console.log("Example coming soon");
-            }}
+            handleClick={toggleOverlay}
           />
         </div>
       </div>
+      <Overlay isOpen={isOpen} onClose={toggleOverlay}>
+        <h1>Example coming soon</h1>
+      </Overlay>
       <Konva
         dragURL={dragURL}
         dragId={dragId}
