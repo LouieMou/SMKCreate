@@ -4,6 +4,7 @@ import { useNavigate, useLocation } from "react-router-dom";
 import LabelButton from "../LabelButton/LabelButton";
 /* Functions */
 import { readLabelsInCategory } from "../../database/Category";
+import {updateAppliedFilters} from "../../database/Logging";
 /* Styles */
 import "./FilterFrame.css";
 import "../../index.css";
@@ -36,6 +37,13 @@ function FilterFrame(props) {
   function updateFilter(label_text) {
     props.setFilter(label_text);
     setSelectedLabelButton(label_text);
+
+    const filter_and_category_database = {
+      label_filter: label_text, 
+      category: props.category
+    }
+    
+    updateAppliedFilters(filter_and_category_database);
   }
 
   function navigateToAllCategories() {
