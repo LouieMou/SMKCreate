@@ -13,12 +13,12 @@ export async function readPaintingById(paintingId) {
     const destructuredpainting = {
       id: painting[0].id,
       artist: painting[0].attributes.artist,
-      techniques: painting[0].attributes.techniques,
+      techniques: painting[0].attributes.techniques_en,
       suggested_bg_color: stripSuggestedColor(
         painting[0].attributes.suggested_bg_color
       ),
       colors: painting[0].attributes.colors,
-      title: painting[0].attributes.title,
+      title: painting[0].attributes.title_en,
       image_thumbnail: painting[0].attributes.image_thumbnail,
       publication_year: painting[0].attributes.publication_year,
       object_labels: painting[0].attributes.object_labels,
