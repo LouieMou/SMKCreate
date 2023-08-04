@@ -199,21 +199,25 @@ function CanvasScreen(props) {
           />
         </div>
         <div className="explore-button-container">
-          <LabelButton
-            button_size={"canvas"}
-            label_text={
-              favoriteList.length > 0 ? "Keep exploring" : "Start exploring"
-            }
-            handleClick={navigateToCategoryPage}
-          />
-          <LabelButton
-            className="example-button"
-            button_size={"canvas"}
-            label_text={"Show Example"}
-            handleClick={handleOpenOverlay}
-          />
+          <div className="explore-button">
+            <LabelButton
+              button_size={"canvas"}
+              label_text={
+                favoriteList.length > 0 ? "Keep exploring" : "Start exploring"
+              }
+              handleClick={navigateToCategoryPage}
+            />
+          </div>
+          <div className="example-button">
+            <LabelButton
+              button_size={"canvas"}
+              label_text={"Show Example"}
+              handleClick={handleOpenOverlay}
+            />
+          </div>
         </div>
       </div>
+
       <Konva
         dragURL={dragURL}
         dragId={dragId}
