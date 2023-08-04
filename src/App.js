@@ -13,6 +13,7 @@ import NavBar from "./components/NavBar/NavBar";
 import NavBarPlain from "./components/NavBar/NavBarPlain";
 import FavoriteList from "./components/FavoriteList/FavoriteList";
 import TimeTracker from "./components/Counter/TimeTracker";
+import Overlay from "./components/Overlay/Overlay";
 /* Functions */
 import { getCategoriesWithPointer } from "./database/Category";
 /* Context */
@@ -26,6 +27,7 @@ function App() {
   const [favoriteIsActive, setFavoriteIsActive] = useState(false);
   const [currentUser, setCurrentUser] = useState(null);
   const [bgColor, setBgColor] = useState();
+  const [isOverlayOpen, setIsOverlayOpen] = useState(false);
   const [routeChange, setRouteChange] = useState(null);
   const [startCounter, setStartCounter] = useState(null);
   const location = useLocation();
@@ -57,6 +59,14 @@ function App() {
     setFavoriteIsActive(false);
   }
 
+  function handleOpenOverlay() {
+    setIsOverlayOpen(true);
+  }
+
+  function handleCloseOverlay() {
+    setIsOverlayOpen(false);
+  }
+
   return (
     <>
       {currentUser === null && (
@@ -65,7 +75,12 @@ function App() {
           <Routes>
             <Route
               path="/"
-              element={<LoginScreen setCurrentUser={setCurrentUser} setStartCounter={setStartCounter} />}
+              element={
+                <LoginScreen
+                  setCurrentUser={setCurrentUser}
+                  setStartCounter={setStartCounter}
+                />
+              }
             />
           </Routes>
         </>
@@ -81,7 +96,7 @@ function App() {
 
             <NavBar openFavoriteList={openFavoriteList} bgColor={bgColor} />
             {/* <Listener routeChange={routeChange} startCounter={startCounter}/> */}
-            <TimeTracker startCounter={startCounter}/>
+            <TimeTracker startCounter={startCounter} />
 
             {categoriesAndObjects ? (
               <Routes>
@@ -103,20 +118,29 @@ function App() {
                 <Route
                   path="/canvas"
                   element={
-                    <CanvasScreen
-                      closeFavoriteList={closeFavoriteList}
-                      setBgColor={setBgColor}
-                      setImagesOnLayer={setImagesOnLayer}
-                      imagesOnLayer={imagesOnLayer}
-                      setMetaDataOnLayer={setMetaDataOnLayer}
-                      metaDataOnLayer={metaDataOnLayer}
-                      referencesIsShown={referencesIsShown}
-                      setReferencesIsShown={setReferencesIsShown}
-                      setGeneratedImage={setGeneratedImage}
-                      generatedImage={generatedImage}
-                      userInput={userInput}
-                      setUserInput={setUserInput}
-                    />
+                    <div>
+                      <CanvasScreen
+                        closeFavoriteList={closeFavoriteList}
+                        setBgColor={setBgColor}
+                        setImagesOnLayer={setImagesOnLayer}
+                        imagesOnLayer={imagesOnLayer}
+                        setMetaDataOnLayer={setMetaDataOnLayer}
+                        metaDataOnLayer={metaDataOnLayer}
+                        referencesIsShown={referencesIsShown}
+                        setReferencesIsShown={setReferencesIsShown}
+                        setGeneratedImage={setGeneratedImage}
+                        generatedImage={generatedImage}
+                        userInput={userInput}
+                        setUserInput={setUserInput}
+                        handleOpenOverlay={handleOpenOverlay}
+                      />
+                      <Overlay
+                        isOpen={isOverlayOpen}
+                        onClick={handleCloseOverlay}
+                      >
+                        <p>Example coming soon</p>
+                      </Overlay>
+                    </div>
                   }
                 />
                 <Route

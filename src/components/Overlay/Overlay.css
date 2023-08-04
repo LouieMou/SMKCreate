@@ -1,0 +1,52 @@
+.overlay-overlay {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 20;
+  background-color: var(--primary-black-66);
+  transition: opacity 0.3s ease;
+}
+.overlay-background {
+  background-color: rgba(0, 0, 0, 0.5);
+  width: 100vw;
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  left: 0;
+  cursor: pointer;
+}
+
+.overlay-container {
+  background-color: white;
+  z-index: 25;
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  margin: auto;
+  z-index: 10;
+  padding: 30px;
+  width: fit-content;
+  height: fit-content;
+}
+
+.overlay-controls {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.overlay-close:after {
+  display: inline-block;
+  content: "\00d7";
+}
+
+.overlay-close {
+  border: none;
+  background-color: transparent;
+  font-size: 36px;
+  cursor: pointer;
+}

@@ -8,15 +8,16 @@ import LabelButton from "../components/LabelButton/LabelButton";
 import Konva from "../components/Canvas/Konva";
 import FavoriteGrid from "../components/FavoriteList/FavoriteGrid";
 import Step from "../components/Step/Step";
+import Overlay from "../components/Overlay/Overlay";
 /* Functions */
 import { setBackgroundColor } from "../functions/background";
 import { FavoriteContext } from "../context/FavoriteContext";
 import FormData from "form-data"; //imported from the openai library (needed)
 import { picasso } from "../database/Picasso";
 import { useNavigate } from "react-router-dom";
-import {updateObjectNavCount} from "../database/Logging";
-import {setSavedPrompt} from "../database/Logging";
-import {setAppliedObjects} from "../database/Logging";
+import { updateObjectNavCount } from "../database/Logging";
+import { setSavedPrompt } from "../database/Logging";
+import { setAppliedObjects } from "../database/Logging";
 
 function CanvasScreen(props) {
   const [dimensions, setDimensions] = useState({
@@ -31,8 +32,12 @@ function CanvasScreen(props) {
 
   const navigate = useNavigate();
 
+  const handleOpenOverlay = () => {
+    props.handleOpenOverlay();
+  };
+
   function handleNavigationClick(paintingId) {
-    updateObjectNavCount()
+    updateObjectNavCount();
     navigate("/painting", { state: { paintingId } });
   }
 
@@ -205,7 +210,7 @@ function CanvasScreen(props) {
             className="example-button"
             button_size={"canvas"}
             label_text={"Show Example"}
-            handleClick={console.log("Example coming soon")}
+            handleClick={handleOpenOverlay}
           />
         </div>
       </div>
