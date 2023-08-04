@@ -9,13 +9,15 @@ import { FavoriteContext } from "../../context/FavoriteContext";
 export default function FullScreenImage(props) {
   const [coords, setCoords] = useState([]);
   const [message, setMessage] = useState("");
-  const [hoverArea, setHoverArea] = useState(null);
   const [savedObject, setSavedObject] = useState();
+  const [scaledWidth, setScaledWidth] = useState();
 
+  // context
   const { updateFavoriteList } = useContext(FavoriteContext);
 
   useEffect(() => {
     updateAreaObject();
+    updateScale();
   }, []);
 
   useEffect(() => {
@@ -55,7 +57,8 @@ export default function FullScreenImage(props) {
   };
 
   const enterArea = (area) => {
-    setHoverArea(area);
+    props.setHoverArea(area);
+    console.log("this is the area:", area);
     setMessage(`${area.label_text}`);
   };
 
@@ -69,7 +72,7 @@ export default function FullScreenImage(props) {
   }
 
   const leaveArea = (area) => {
-    setHoverArea(null);
+    props.setHoverArea(null);
     setMessage("Hover the image to explore the objects");
   };
 
@@ -89,8 +92,8 @@ export default function FullScreenImage(props) {
       artist: savedObject.artist,
       title: savedObject.title,
     };
-    if (hoverArea) {
-      hoverArea.fillHeart = true;
+    if (props.hoverArea) {
+      props.hoverArea.fillHeart = true;
     }
     setMessage(
       `You saved ${startsWithVowel(savedObject.label_text)} ${
@@ -100,17 +103,29 @@ export default function FullScreenImage(props) {
     updateFavoriteList(object);
   }
 
-  const heightImage = props.imgHeight;
-  const maxImageHeight = window.innerHeight - 125 - 70;
-  const procentSmaller = (maxImageHeight / heightImage) * 100;
-  const scaledWidthImage = (procentSmaller * props.imgWidth) / 100;
+  function updateScale() {
+    const heightImage = props.imgHeight;
+    const maxImageHeight = window.innerHeight - 125 - 70;
+    const procentSmaller = (maxImageHeight / heightImage) * 100;
+    const scaledWidthImage = (procentSmaller * props.imgWidth) / 100;
+    setScaledWidth(scaledWidthImage);
+    function getImgWidth() {
+      if (props.imgWidth > 1660) {
+        return 1024;
+      } else {
+        return props.imgWidth;
+      }
+    }
+
+    props.setScale(getImgWidth() / scaledWidthImage);
+  }
 
   return coords ? (
     <div className="image-fullscreen-container">
       <ImageMapper
         src={URL}
         map={MAP}
-        width={scaledWidthImage}
+        width={scaledWidth}
         imgWidth={props.imgWidth > 1660 ? 1024 : props.imgWidth}
         onClick={(area) => setSavedObject(area)}
         onLoad={() => load()}
@@ -120,13 +135,13 @@ export default function FullScreenImage(props) {
         strokeColor="transparent"
       />
 
-      {hoverArea && (
+      {props.hoverArea && (
         <>
           <div
             className="favorite-icon-fullscreen"
-            style={{ ...getCenterPosition(hoverArea) }}
+            style={{ ...getCenterPosition(props.hoverArea) }}
           >
-            {hoverArea.fillHeart ? (
+            {props.hoverArea.fillHeart ? (
               <img src="/icons/heart_filled_white.svg" alt="icon"></img>
             ) : (
               <img src="/icons/heart_unfilled_white.svg" alt="icon"></img>

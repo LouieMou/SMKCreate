@@ -23,8 +23,12 @@ export default function PaintingScreen(props) {
 
   const [painting, setPainting] = useState();
   const [objects, setObjects] = useState();
+  const [hoverArea, setHoverArea] = useState(null);
+  const [scale, setScale] = useState(null);
+
 
   let colorMode = "var(--primary-white)";
+
 
   async function fetchPainting(paintingId) {
     let painting = await readPaintingById(paintingId);
@@ -50,6 +54,8 @@ export default function PaintingScreen(props) {
               painting={painting}
               objects={objects}
               colorMode={colorMode}
+              setHoverArea={setHoverArea}
+              scale={scale}
             />
             <FullScreenImage
               imgURL={painting.image_thumbnail}
@@ -58,6 +64,9 @@ export default function PaintingScreen(props) {
               objects={objects}
               colorMode={colorMode}
               painting_id={painting.id}
+              setHoverArea={setHoverArea}
+              hoverArea={hoverArea}
+              setScale={setScale}
             />
           </>
         </div>

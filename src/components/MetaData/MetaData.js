@@ -7,13 +7,13 @@ import InformationLink from "../InformationLink/InformationLink";
 import "./../../index.css";
 import "./MetaData.css";
 
-const text = "For more information click here";
-const SMKUrl = "https://open.smk.dk/artwork/image/";
-function handleNavigationToSMK(paintingId) {
-  window.open(SMKUrl + paintingId, "_blank");
-}
-
 export default function MetaData(props) {
+  const text = "For more information click here";
+  const SMKUrl = "https://open.smk.dk/artwork/image/";
+  function handleNavigationToSMK(paintingId) {
+    window.open(SMKUrl + paintingId, "_blank");
+  }
+
   return (
     <div className="metadata" style={{ color: props.colorMode }}>
       <HeadingFullScreen
@@ -23,7 +23,7 @@ export default function MetaData(props) {
         year={props.painting.publication_year}
         techniques={props.painting.techniques}
       />
-      <LabelGrid objects={props.objects} />
+      <LabelGrid objects={props.objects} setHoverArea={props.setHoverArea} scale={props.scale}/>
       <ColorGrid colors={props.painting.colors} colorMode={props.colorMode} />
       <InformationLink
         className="information-link"
