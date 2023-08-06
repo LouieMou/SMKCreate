@@ -14,6 +14,7 @@ import NavBarPlain from "./components/NavBar/NavBarPlain";
 import FavoriteList from "./components/FavoriteList/FavoriteList";
 import TimeTracker from "./components/Counter/TimeTracker";
 import Overlay from "./components/Overlay/Overlay";
+import { ReactComponent as Example } from "./example-photo/examplephoto.svg";
 /* Functions */
 import { getCategoriesWithPointer } from "./database/Category";
 /* Context */
@@ -138,7 +139,7 @@ function App() {
                         isOpen={isOverlayOpen}
                         onClick={handleCloseOverlay}
                       >
-                        <p>Example coming soon</p>
+                        <Example />
                       </Overlay>
                     </div>
                   }
