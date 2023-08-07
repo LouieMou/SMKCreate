@@ -41,6 +41,13 @@
   text-align: center;
   margin: 0;
   cursor: pointer;
+  font-size: x-small;
+  line-height: normal;
+  font-style: italic;
+}
+
+.text-overlay:hover{
+  text-decoration: underline;
 }
 
 .favorite-icon-container {
@@ -56,4 +63,24 @@
   .image {
   max-width: 100vw;
   }
+}
+
+.object-text-overlay{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+}
+
+p.text-overlay-see-painting{
+  font-size: x-small;
+  color: var(--primary-white);
+  position: absolute;
+  top: 60%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    text-align: center;
 }

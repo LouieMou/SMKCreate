@@ -11,6 +11,7 @@ export default function ImageItem(props) {
   function handleSaveToFavorite(object) {
     object.saved = true;
     updateFavoriteList(object);
+    console.log("this is the object:", object);
   }
 
   function handleRemoveFromFavorite(object) {
@@ -46,9 +47,12 @@ export default function ImageItem(props) {
             ></img>
           )}
         </span>
-        <p className="text-overlay" onClick={props.handleClick}>
-          {props.title}
-        </p>
+        <div className="object-text-overlay">
+          <p className="text-overlay" onClick={props.handleClick}>
+            {"See painting by " + props.artist}
+          </p>
+          <p className="text-overlay-see-painting"></p>
+        </div>
       </div>
     </div>
   );
