@@ -63,20 +63,20 @@
 
 .references-title {
   font-weight: bold;
-  font-size: 13px;
-  margin-top: 20px;
+  font-size: 15px;
+  margin-top: 15px;
   margin-bottom: 0px;
   line-height: 20px;
 }
 
 .artist-and-title-references {
-  font-size: 11px;
-  margin-top: 0px;
+  font-size: 15px;
+  margin-top: 8px;
   margin-bottom: 0px;
   line-height: 15px;
 }
 
-.object-reference:hover {
+.artist-and-title-references:hover {
   cursor: pointer;
   text-decoration: underline;
 }

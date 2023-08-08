@@ -7,7 +7,7 @@ import InformationLink from "../InformationLink/InformationLink";
 import "./../../index.css";
 import "./MetaData.css";
 
-const text = "For more information click here";
+const text = "Visit SMK Open for more information";
 const SMKUrl = "https://open.smk.dk/artwork/image/";
 function handleNavigationToSMK(paintingId) {
   window.open(SMKUrl + paintingId, "_blank");

@@ -203,7 +203,7 @@ function CanvasScreen(props) {
             <LabelButton
               button_size={"canvas"}
               label_text={
-                favoriteList.length > 0 ? "Keep exploring" : "Start exploring"
+                favoriteList.length > 0 ? "Find More Objects" : "Find Objects"
               }
               handleClick={navigateToCategoryPage}
             />
@@ -211,7 +211,7 @@ function CanvasScreen(props) {
           <div className="example-button">
             <LabelButton
               button_size={"canvas"}
-              label_text={"Show Example"}
+              label_text={"Canvas Guide"}
               handleClick={handleOpenOverlay}
             />
           </div>
@@ -233,7 +233,7 @@ function CanvasScreen(props) {
       />
       <div className="generate-image-container">
         <TextBox
-          placeholder='Write some text here to help generate an image e.g. "two cats drinking coffee in the sunset on Mars"'
+          placeholder='Write some text here to help generate an image e.g. "A sunset in Baroque style"'
           value={props.userInput}
           onChange={handleUserInput}
         />
@@ -241,14 +241,17 @@ function CanvasScreen(props) {
           <div className="references">
             <p className="references-title">
               {props.metaDataOnLayer.length > 1
-                ? "This artwork is generated using the following objects:"
-                : "This artwork is generated using the following object:"}
+                ? "This artwork was generated using the following objects:"
+                : "This artwork was generated using the following object:"}
             </p>
             {props.metaDataOnLayer.map((obj, index) => (
-              <p key={index} className="artist-and-title-references">
+              <p
+                key={index}
+                className="artist-and-title-references"
+                onClick={() => handleNavigationClick(obj.painting_id)}
+              >
                 <span
                   className="object-reference"
-                  onClick={() => handleNavigationClick(obj.painting_id)}
                   style={{ fontWeight: "bold" }}
                 >
                   {obj.label_text}
