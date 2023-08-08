@@ -64,8 +64,8 @@ function HomeScreen(props) {
         <div className="left-heading-container">
           <div className="pageheading-container-homescreen">
             <FrontPageHeading
-              title="516 skulls, 106 sofas, 18 lobsters"
-              subtitle="Combine objects from famous paintings and create your own art with AI"
+              title={`Skulls, lobsters, lamps, faces`}
+              subtitle="Discover the many peculiar objects in SMK's collection of paintings"
             />
           </div>
           <div className="homepage-button-container">
