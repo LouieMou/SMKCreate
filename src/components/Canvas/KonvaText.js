@@ -29,6 +29,16 @@ export default function KonvaText(props) {
             offsetX={240}
             offsetY={190}
           />
+          <Text
+            x={props.dimensions.width / 2}
+            y={props.dimensions.height / 2}
+            text="Make sure to leave plenty of white space for a better result!"
+            fontSize={fontSize1024}
+            fontFamily="Open sans"
+            fill="black"
+            offsetX={240}
+            offsetY={190}
+          />
         </>
       ) : (
         <>
@@ -52,6 +62,17 @@ export default function KonvaText(props) {
             fill="black"
             offsetX={185}
             offsetY={20}
+          />
+
+          <Text
+            x={props.dimensions.width / 2}
+            y={props.dimensions.height / 2}
+            text="Make sure to leave plenty of white space for a better result!"
+            fontSize={fontSize512}
+            fontFamily="Open sans"
+            fill="black"
+            offsetX={220}
+            offsetY={-10}
           />
         </>
       )}
