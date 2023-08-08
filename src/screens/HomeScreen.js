@@ -28,6 +28,40 @@ function HomeScreen(props) {
     navigate("/categories");
   }
 
+  const handleSliderClickNew = (link) => {
+    const filter = link;
+    switch (link) {
+      case "skull":
+        setCategoryIdAndFilter({ id: "fuksgbj7UM", name: "Occultism" }, link);
+        const path_skull = generatePath("/search/:id", {
+          id: "occultism",
+        });
+        navigate(path_skull, { state: { filter } });
+        break;
+
+      case "lobster":
+        setCategoryIdAndFilter({ id: "D5UWgmXGQk", name: "Food" }, link);
+        const path_lobster = generatePath("/search/:id", { id: "food" });
+        navigate(path_lobster, { state: { filter } });
+        break;
+
+      case "face":
+        setCategoryIdAndFilter({ id: "6mghHNbCJk", name: "Human" }, undefined);
+        const path_face = generatePath("/search/:id", { id: "human" });
+        navigate(path_face, { state: { filter } });
+        break;
+
+      case "lamp":
+        setCategoryIdAndFilter({ id: "5x8Q5HCweq", name: "Interior" }, undefined);
+        const path_lamp = generatePath("/search/:id", { id: "interior" });
+        navigate(path_lamp, { state: { filter } });
+        break;
+
+      default:
+        navigate("/categories");
+    }
+  };
+
   const handleSliderClick = (link) => {
     if (link === "food") {
       setCategoryIdAndFilter({ id: "D5UWgmXGQk", name: "Food" }, undefined);
@@ -43,18 +77,23 @@ function HomeScreen(props) {
   const content = [
     {
       src: "/slider/1.png",
-      alt: "Link to Category-page",
-      link: "/categories",
+      alt: "Link to search-page-occultism",
+      link: "skull",
     },
     {
       src: "/slider/2.png",
-      alt: "Link to Food-page",
-      link: "food",
+      alt: "Link to search-page-food",
+      link: "lobster",
     },
     {
       src: "/slider/3.png",
-      alt: "Link to Canvas-page",
-      link: "/canvas",
+      alt: "Link to search-page-human",
+      link: "face",
+    },
+    {
+      src: "/slider/4.png",
+      alt: "Link to search-page-interior",
+      link: "lamp",
     },
   ];
 
@@ -64,8 +103,8 @@ function HomeScreen(props) {
         <div className="left-heading-container">
           <div className="pageheading-container-homescreen">
             <FrontPageHeading
-              title={`Skulls, lobsters, lamps, faces`}
-              subtitle="Discover the many peculiar objects in SMK's collection of paintings"
+              title={`How many skulls, lobsters, faces and lamps can you find?`}
+              subtitle="Discover the many peculiar objects that appear in SMK's digital collection of paintings"
             />
           </div>
           <div className="homepage-button-container">
@@ -76,7 +115,10 @@ function HomeScreen(props) {
             />
           </div>
         </div>
-        <ImageSlider handleSliderClick={handleSliderClick} content={content} />
+        <ImageSlider
+          handleSliderClick={handleSliderClickNew}
+          content={content}
+        />
       </div>
     </Frame>
   );

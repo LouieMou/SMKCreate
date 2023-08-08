@@ -8,17 +8,27 @@ h2 {
   margin: 0px;
 }
 
+.h1-front-page {
+  padding-top: 10px;
+  padding-bottom: 10px;
+  font-family: "Open Sans", "Inter", "Roboto", "Nunito Sans", sans-serif;
+  font-size: 40px;
+  font-weight: 700;
+  line-height: 50px;
+  letter-spacing: -0.02em;
+  text-align: left;
+  margin: 0px;
+}
+
 h1 {
   padding-bottom: 10px;
 }
 
 @media (max-width: 422px) {
-  .heading-container{
+  .heading-container {
     margin-bottom: 0px;
   }
-
 }
 
 @media (max-height: 800px) {
-
 }
