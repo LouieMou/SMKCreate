@@ -19,7 +19,7 @@ export default function ImageGrid(props) {
             <ImageItem
               key={index}
               source={obj.object_url}
-              title={obj.label_text}
+              artist={obj.artist}
               object={obj}
               handleClick={() => onClickImage(obj.painting_id)}
             />

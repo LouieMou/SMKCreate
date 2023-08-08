@@ -41,6 +41,13 @@
   text-align: center;
   margin: 0;
   cursor: pointer;
+  font-size: x-small;
+  line-height: normal;
+  font-style: italic;
+}
+
+.text-overlay:hover{
+  text-decoration: underline;
 }
 
 .favorite-icon-container {
