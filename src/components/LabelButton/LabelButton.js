@@ -8,7 +8,7 @@ function LabelButton(props) {
       type={props.type}
       className={`label-button-${props.button_size}`}
       onClick={props.handleClick}
-    > {props.button_size=== 'small' ? <p
+    > {props.button_size=== 'small' || props.button_size=== 'short-long' || props.button_size=== 'selected-test'? <p
         className={`label-text`}
         style={{ color: props.text_color, textAlign: "center", fontSize: '12px'}}
       >

@@ -16,7 +16,24 @@
   height: 40px;
   margin-bottom: 20px;
   color: var(--primary-white);
-  font-size: x-small;
+}
+
+.label-button-short-long {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: transparent;
+  position: relative;
+  text-shadow: none;
+  cursor: pointer;
+  box-shadow: none;
+  border: solid;
+  border-color: var(--primary-white);
+  border-width: 2px;
+  width: 140px;
+  height: 40px;
+  margin-bottom: 20px;
+  color: var(--primary-white);
 }
 
 
@@ -38,8 +55,33 @@
   color: var(--primary-white);
 }
 
+.label-button-small:hover {
+  background-color: var(--primary-white-33);
+}
+
 .label-button-standard:hover {
   background-color: var(--primary-white-33);
+}
+
+.label-button-short-long:hover{
+  background-color: var(--primary-white-33);
+}
+
+.label-button-selected-test {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--primary-white);
+  position: relative;
+  text-shadow: none;
+  cursor: pointer;
+  box-shadow: none;
+  border: solid;
+  border-width: 2px;
+  border-color: var(--primary-white);
+  width: 90px;
+  height: 40px;
+  margin-bottom: 20px;
 }
 
 .label-button-selected{

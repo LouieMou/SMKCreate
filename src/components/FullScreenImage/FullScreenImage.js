@@ -120,6 +120,7 @@ export default function FullScreenImage(props) {
         onMouseLeave={(area) => leaveArea(area)}
         fillColor="transparent"
         strokeColor="transparent"
+        active={true}
       />
 
       {hoverArea && (

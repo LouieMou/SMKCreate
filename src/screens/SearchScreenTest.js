@@ -1,18 +1,17 @@
 import { React, useState, useEffect, useContext } from "react";
 /* Components */
-import FilterFrame from "../components/FilterFrame/FilterFrame";
+import FilterFrameTest from "../components/FilterFrame/FilterFrameTest";
 import ImageGrid from "../components/ImageGrid/ImageGrid";
 /* Functions */
 import { randomizeBackground } from "../functions/background";
 import { setBackgroundColor } from "../functions/background";
-
 import { readObjectsByCategory } from "../database/Object";
 /* Styles */
-import "./SearchScreen.css";
+import "./SearchScreenTest.css";
 /* Context */
 import { SearchContext } from "../context/SearchContext";
 
-function SearchScreen(props) {
+function SearchScreenTest(props) {
   const { search } = useContext(SearchContext);
   const [filter, setFilter] = useState();
   const [objects, setObjects] = useState();
@@ -66,13 +65,10 @@ function SearchScreen(props) {
   }
 
   return (
-    <div className="search-screen">
-      <div
-        className="search-screen-left"
-        style={{ backgroundColor: props.bgColor }}
-      >
+    <div>
+        <div className="filter-frame-container-search-screen" style={{ backgroundColor: props.bgColor }}>
         {search ? (
-          <FilterFrame
+          <FilterFrameTest
             category={search.category_name}
             setFilter={setFilter}
             showAllObjectsInCategory={showAllObjectsInCategory}
@@ -81,9 +77,9 @@ function SearchScreen(props) {
         ) : (
           <></>
         )}
-      </div>
-      <div className="search-screen-right">
-        <p style={{textAlign: 'center', color: 'white', fontStyle: 'italic'}}>See the full sized painting by clicking on the artist name. Save the object by clicking the heart </p>
+        </div>
+  
+      <div >
         {objects && !useFilter ? <ImageGrid list={objects} /> : <></>}
         {filteredObjects && useFilter ? (
           <ImageGrid list={filteredObjects} />
@@ -95,4 +91,4 @@ function SearchScreen(props) {
   );
 }
 
-export default SearchScreen;
+export default SearchScreenTest;
