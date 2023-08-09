@@ -4,6 +4,11 @@
   position: relative;
 }
 
+.mapper-and-text-container{
+  display: flex;
+  flex-direction: column;
+}
+
 .object-hover {
   position: absolute;
   color: var(--primary-white);

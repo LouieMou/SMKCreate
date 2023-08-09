@@ -91,7 +91,7 @@ function HomeScreen(props) {
         <div className="left-heading-container">
           <div className="pageheading-container-homescreen">
             <FrontPageHeading
-              title={`How many skulls, lobsters, faces and lamps can you find?`}
+              title={`Skulls, lobsters, faces, lamps and swords`}
               subtitle="Discover the many peculiar objects that appear in SMK's digital collection of paintings"
             />
           </div>

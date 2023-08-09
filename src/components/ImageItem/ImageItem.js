@@ -48,7 +48,7 @@ export default function ImageItem(props) {
           )}
         </span>
           <p className="text-overlay" onClick={props.handleClick}>
-            {"See painting by " + props.artist}
+            {"By " + props.artist}
           </p>
       </div>
     </div>

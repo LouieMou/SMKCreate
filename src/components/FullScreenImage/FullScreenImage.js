@@ -106,6 +106,8 @@ export default function FullScreenImage(props) {
   const scaledWidthImage = (procentSmaller * props.imgWidth) / 100;
 
   return coords ? (
+    <div className="mapper-and-text-container">
+    <p className="message">{message ? message : ""}</p>
     <div className="image-fullscreen-container">
       <ImageMapper
         src={URL}
@@ -134,8 +136,7 @@ export default function FullScreenImage(props) {
           </div>
         </>
       )}
-
-      <p className="message">{message ? message : ""}</p>
+    </div>
     </div>
   ) : (
     "Loading"
