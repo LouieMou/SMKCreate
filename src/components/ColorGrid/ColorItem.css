@@ -4,13 +4,14 @@
     border-radius: 50%;
     display: inline-block;
     margin-right: 15px;
-    margin-top: 15px;
+    margin-top: 10px;
 }
 
 .color-heading {
-     margin-bottom: 5px;  
+     margin-bottom: 0px;  
 }
 
 .colorgrid {
-    margin-top: 20px;
+    margin-top: 40px;
+    margin-bottom: 20px
 }

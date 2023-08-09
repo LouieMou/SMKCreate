@@ -11,7 +11,7 @@ export default function FrontPageHeading(props) {
   return (
     <div className="heading-container" style={textColor}>
       <p className="h1-front-page">{props.title}</p>
-      <h2 style={{fontSize: "30px", lineHeight: "40px"}}>{props.subtitle}</h2>
+      <h2 style={{fontSize: "30px", lineHeight: "38px"}}>{props.subtitle}</h2>
     </div>
   );
 }

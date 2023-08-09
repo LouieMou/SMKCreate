@@ -28,7 +28,7 @@ function HomeScreen(props) {
     navigate("/categories");
   }
 
-  const handleSliderClickNew = (link) => {
+  const handleSliderClick = (link) => {
     const filter = link;
     switch (link) {
       case "skull":
@@ -46,31 +46,19 @@ function HomeScreen(props) {
         break;
 
       case "face":
-        setCategoryIdAndFilter({ id: "6mghHNbCJk", name: "Human" }, undefined);
+        setCategoryIdAndFilter({ id: "6mghHNbCJk", name: "Human" }, link);
         const path_face = generatePath("/search/:id", { id: "human" });
         navigate(path_face, { state: { filter } });
         break;
 
       case "lamp":
-        setCategoryIdAndFilter({ id: "5x8Q5HCweq", name: "Interior" }, undefined);
+        setCategoryIdAndFilter({ id: "5x8Q5HCweq", name: "Interior" }, link);
         const path_lamp = generatePath("/search/:id", { id: "interior" });
         navigate(path_lamp, { state: { filter } });
         break;
 
       default:
         navigate("/categories");
-    }
-  };
-
-  const handleSliderClick = (link) => {
-    if (link === "food") {
-      setCategoryIdAndFilter({ id: "D5UWgmXGQk", name: "Food" }, undefined);
-      const path = generatePath("/search/:id", {
-        id: "food",
-      });
-      navigate(path);
-    } else {
-      navigate(link);
     }
   };
 
@@ -116,7 +104,7 @@ function HomeScreen(props) {
           </div>
         </div>
         <ImageSlider
-          handleSliderClick={handleSliderClickNew}
+          handleSliderClick={handleSliderClick}
           content={content}
         />
       </div>

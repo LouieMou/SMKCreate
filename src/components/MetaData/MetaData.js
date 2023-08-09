@@ -23,8 +23,8 @@ export default function MetaData(props) {
         year={props.painting.publication_year}
         techniques={props.painting.techniques}
       />
-      <LabelGrid objects={props.objects} />
       <ColorGrid colors={props.painting.colors} colorMode={props.colorMode} />
+      <LabelGrid objects={props.objects} />
       <InformationLink
         className="information-link"
         handleClick={() => handleNavigationToSMK(props.painting.painting_id)}

@@ -41,7 +41,7 @@ export default function LabelGrid(props) {
 
   return (
     <div className="label-grid-container">
-      <h4>Objects</h4>
+      <h4 >Find similar objects</h4>
       <div className="label-grid">
         {uniqueLabels
           ? uniqueLabels.map((obj, index) => {
@@ -49,7 +49,7 @@ export default function LabelGrid(props) {
                 <div className="label-grid-space" key={index}>
                   <LabelButton
                     label_text={obj.attributes.label_text}
-                    button_size={"standard"}
+                    button_size={"small"}
                     handleClick={() => handleClick(obj)}
                   />
                 </div>
