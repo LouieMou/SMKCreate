@@ -1,0 +1,10 @@
+@import url(../index.css);
+
+.filter-frame-container-search-screen{
+    width: 100vw;
+    position: -webkit-sticky;
+    position: sticky;
+    top: 125px;
+    z-index: 2;
+}
+

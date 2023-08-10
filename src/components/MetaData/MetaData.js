@@ -7,7 +7,7 @@ import InformationLink from "../InformationLink/InformationLink";
 import "./../../index.css";
 import "./MetaData.css";
 
-const text = "Visit SMK Open for more information";
+const text = "See more information about this painting in SMK Open";
 const SMKUrl = "https://open.smk.dk/artwork/image/";
 function handleNavigationToSMK(paintingId) {
   window.open(SMKUrl + paintingId, "_blank");
@@ -23,8 +23,8 @@ export default function MetaData(props) {
         year={props.painting.publication_year}
         techniques={props.painting.techniques}
       />
-      <LabelGrid objects={props.objects} />
       <ColorGrid colors={props.painting.colors} colorMode={props.colorMode} />
+      <LabelGrid objects={props.objects} />
       <InformationLink
         className="information-link"
         handleClick={() => handleNavigationToSMK(props.painting.painting_id)}
