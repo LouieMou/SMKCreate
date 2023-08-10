@@ -83,7 +83,7 @@ function SearchScreen(props) {
         )}
       </div>
       <div className="search-screen-right">
-        <p style={{textAlign: 'center', color: 'white', fontStyle: 'italic'}}>See the full sized painting by clicking on the artist name. Save the object by clicking the heart </p>
+        <p style={{ textAlign: 'center', color: 'white', fontStyle: 'italic'}}>See the full sized painting by clicking on the artist name </p>
         {objects && !useFilter ? <ImageGrid list={objects} /> : <></>}
         {filteredObjects && useFilter ? (
           <ImageGrid list={filteredObjects} />

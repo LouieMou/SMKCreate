@@ -19,6 +19,11 @@ export default function ImageItem(props) {
     removeFromFavoriteList(object.id);
   }
 
+  function handleUpperCase(label_text){
+    const result = label_text.charAt(0).toUpperCase() + label_text.slice(1);
+    return result;
+  }
+
   return (
     <div className="image-container">
       <img className="image" src={`/${props.source}`} alt={`${props.title}`} />
@@ -48,7 +53,7 @@ export default function ImageItem(props) {
           )}
         </span>
           <p className="text-overlay" onClick={props.handleClick}>
-            {"By " + props.artist}
+            { handleUpperCase(props.object.label_text)  + " by " + props.artist}
           </p>
       </div>
     </div>

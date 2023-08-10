@@ -57,6 +57,7 @@ function FilterFrame(props) {
 
   return (
    <div className="contain-all-filters-test">
+    <h1 style={{textAlign: 'center', color: 'white'}}>{category}</h1>
       <div className="filter-frame-button-container-test">
         {labelList ? (
           labelList.map((label, index) => (
