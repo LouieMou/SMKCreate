@@ -60,6 +60,22 @@ export async function setSavedPrompt(savedPrompt) {
     });
 }
 
+export async function saveGeneratedImgUrl(savedURL) {
+  const saved_url_value = savedURL;
+  console.log('the url: ', saved_url_value)
+  // Get the session token for the current user
+  const currentUser = Parse.User.current();
+  const sessionToken = currentUser.getSessionToken();
+
+  // Call a Cloud Code function to update the custom column in the session
+  Parse.Cloud.run("updateGeneratedImgUrl", {
+    sessionToken,
+    savedURL: saved_url_value,
+  }).catch((error) => {
+      console.error("Error updating custom column:", error);
+    });
+}
+
 export async function setAppliedObjects(appliedObjectArray) {
   const applied_objects_array = appliedObjectArray;
   console.log('the applied objects: ', applied_objects_array)

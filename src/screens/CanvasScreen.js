@@ -18,6 +18,7 @@ import { useNavigate } from "react-router-dom";
 import { updateObjectNavCount } from "../database/Logging";
 import { setSavedPrompt } from "../database/Logging";
 import { setAppliedObjects } from "../database/Logging";
+import {saveGeneratedImgUrl} from "../database/Logging";
 
 function CanvasScreen(props) {
   const [dimensions, setDimensions] = useState({
@@ -62,11 +63,6 @@ function CanvasScreen(props) {
   };
 
   async function generateImage() {
-    console.log("inside generateImage function");
-    // sending prompt and applied objects to the database
-    setSavedPrompt(props.userInput);
-    setAppliedObjects(props.metaDataOnLayer);
-
     let hasUserInput = props.userInput !== "";
     let hasCanvasContent = props.imagesOnLayer.length !== 0;
 
@@ -106,6 +102,7 @@ function CanvasScreen(props) {
 
         const generatedImageURL = response.data.data[0].url;
         console.log("response: ", generatedImageURL);
+        
 
         let centerX;
         let centerY;
@@ -128,6 +125,11 @@ function CanvasScreen(props) {
           },
         ]);
         props.setReferencesIsShown(true);
+
+        // sending applied objects, img_url and text_prompt to database 
+        setAppliedObjects(props.metaDataOnLayer);
+        saveGeneratedImgUrl(generatedImageURL);
+        setSavedPrompt(props.userInput);
       } catch (error) {
         console.log("Error in the generate:", error.message);
       } finally {

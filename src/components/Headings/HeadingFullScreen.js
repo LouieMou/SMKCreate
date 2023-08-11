@@ -6,7 +6,7 @@ export default function HeadingFullScreen(props) {
     <>
       <h3>{props.artist}</h3>
       <h1>{props.title}</h1>
-      <div clasName="technique-and-info">
+      <div className="technique-and-info">
       <h5 style={{fontStyle: 'italic'}}>
         {props.year ? props.year + "," : ""} {props.techniques}
       </h5>

@@ -11,7 +11,6 @@ export default function ImageItem(props) {
   function handleSaveToFavorite(object) {
     object.saved = true;
     updateFavoriteList(object);
-    console.log("this is the object:", object);
   }
 
   function handleRemoveFromFavorite(object) {
