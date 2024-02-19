@@ -45,13 +45,13 @@ function NavBar(props) {
     >
       {SMKlogoSize === "small" ? (
         <NavIcon
-          src={`/icons/create_logo_${navBarTextColor}.svg`}
+          src={`/icons/explore_logo_${navBarTextColor}.svg`}
           handleClick={() => navigateTo("/home")}
           iconWidth="118px"
         />
       ) : (
         <NavIcon
-          src={`/icons/create_logo_${navBarTextColor}.svg`}
+          src={`/icons/explore_logo_${navBarTextColor}.svg`}
           handleClick={() => navigateTo("/home")}
         />
       )}
