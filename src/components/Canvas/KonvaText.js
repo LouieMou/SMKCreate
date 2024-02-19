@@ -60,7 +60,7 @@ export default function KonvaText(props) {
             fontSize={fontSize512}
             fontFamily="Open sans"
             fill="black"
-            offsetX={185}
+            offsetX={165}
             offsetY={20}
           />
 
@@ -71,7 +71,7 @@ export default function KonvaText(props) {
             fontSize={fontSize512}
             fontFamily="Open sans"
             fill="black"
-            offsetX={220}
+            offsetX={200}
             offsetY={-10}
           />
         </>
