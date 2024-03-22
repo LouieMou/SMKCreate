@@ -92,7 +92,7 @@ function HomeScreen(props) {
           <div className="pageheading-container-homescreen">
             <FrontPageHeading
               title={`Skulls, lobsters, faces, lamps and swords`}
-              subtitle="Discover the many peculiar objects that appear in SMK's digital collection of paintings"
+              subtitle={"Discover the many peculiar objects that appear in the museums's digital collection"}
             />
           </div>
           <div className="homepage-button-container">
