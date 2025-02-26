@@ -64,7 +64,7 @@ function HomeScreen(props) {
 
   const content = [
     {
-      src: "/slider/1.png",
+      src: "/slider/Skulls_Updated.png",
       alt: "Link to search-page-occultism",
       link: "skull",
     },
